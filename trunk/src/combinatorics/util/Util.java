@@ -1,5 +1,8 @@
 package combinatorics.util;
 
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+
 /**
  * Utility class for combinatorial package
  */
@@ -75,5 +78,72 @@ public class Util {
    */
   public static long lcm(long a, long b) {
     return (a * b) / gcd(a, b);
+  }
+  
+  /**
+   * The linear interpolant is the straight line between these points
+   * @param x0
+   * @param y0
+   * @param x1
+   * @param y1
+   * @param x
+   * @return y
+   */
+  public static double linearInterpolation(double x0, double y0, double x1, double y1, double x) {
+      return y0 + ((y1-y0)/(x1-x0))*(x-x0);
+  }
+  
+  public static Point2D calculateIntersection(Line2D line1, Line2D line2) {
+      double a,b,c,d,e,f,g,h;
+      if (line1.intersectsLine(line2)) {
+	  a = line1.getX1();
+	  b = line1.getY1();
+	  c = line2.getX1();
+	  d = line2.getY1();
+	  e = line1.getX2();
+	  f = line1.getY2();
+	  g = line2.getX2();
+	  h = line2.getY2();
+
+	  double x,y;
+	  
+	  if (line1.getX2() == line1.getX1()
+		  && line2.getY2() == line2.getY1()) {
+	      x = line1.getX1();
+	      y = line2.getY1();
+	  } else if (line1.getY2() == line1.getY1()
+		  && line2.getX2() == line2.getX1()) {
+	      x = line2.getX1();
+	      y = line1.getY1();
+	  } else {
+	  
+//	  if (line1.getX2() < line1.getX1()) {
+//	      e = line1.getX1();
+//	      a = line1.getX2();
+//	  }
+//	  if (line1.getY2() < line1.getY1()) {
+//	      f = line1.getY1();
+//	      b = line1.getY2();
+//	  }
+//	  if (line2.getX2() < line2.getX1()) {
+//	      g = line2.getX1();
+//	      c = line2.getX2();
+//	  }
+//	  if (line2.getY2() < line2.getY1()) {
+//	      h = line2.getY1();
+//	      d = line2.getY2();
+//	  }
+        	  double t1 = -a*d+a*h+b*c-b*g-c*h+d*g;
+        	  double zn = a*d-a*h-b*c+b*g+c*f-d*e+e*h-f*g;
+        	  t1 = t1 / zn;
+        	  double t2 = a*d-a*f-b*c+b*e+c*f-d*e;
+        	  t2 = t2 / (-zn);
+        	  
+        	  x = a + t1*(e-a);
+        	  y = b + t1*(f-b);
+	  }
+	  return new Point2D.Double(x, y);
+      }
+      return null;
   }
 }

@@ -1,9 +1,7 @@
 
 package diagram.render;
 
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Double;
-
+import diagram.geom.GeomObject;
 import diagram.geom.Link;
 
 /**
@@ -12,20 +10,25 @@ import diagram.geom.Link;
  */
 public class Linker {
   
-  private final Rectangle2D.Double startObject;
-  private final Rectangle2D.Double endObject;
+  private final GeomObject startObject;
+  private final GeomObject endObject;
   private final Link link;
+  
   /**
    * @param startObject
    * @param endObject
    * @param link
    */
-  public Linker(Double startObject, Double endObject, Link link) {
+  public Linker(GeomObject startObject, GeomObject endObject, Link link) {
     super();
     this.startObject = startObject;
     this.endObject = endObject;
     this.link = link;
   }
 
+  
+  public void connect(Integer startBorder, Integer endBorder){
+      
+  }
   
 }
