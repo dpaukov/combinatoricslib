@@ -5,9 +5,12 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import combinatorics.util.Util;
+import diagram.geom.Port.State;
 
 public class GeomObject {
 
@@ -16,8 +19,9 @@ public class GeomObject {
     }
 
     private final Rectangle2D.Double shape;
-    private int countOfPorts = 5;
+    private int countOfPorts = 8;
     private double marginOfPorts = 0.05; // in %
+    private final HashMap<Integer, List<Port>> portsHash= new HashMap<Integer, List<Port>>();
 
     /**
      * @param shape
@@ -25,6 +29,9 @@ public class GeomObject {
     public GeomObject(double x1, double y1, double x2, double y2) {
 	super();
 	this.shape = new Rectangle2D.Double(x1, y1, x2 - x1, y2 - y1);
+	Integer edges = getCountOfEdges();
+	for (Integer i = 1; i <= edges; i++)
+	    portsHash.put(i, createPorts(i));
     }
 
     /**
@@ -34,7 +41,7 @@ public class GeomObject {
 	return shape;
     }
 
-    public Integer getCountOfBorders() {
+    public Integer getCountOfEdges() {
 	Integer count = 0;
 	// Iterate through the specified shape, perturb its coordinates, and
 	// use them to build up the new shape.
@@ -58,10 +65,10 @@ public class GeomObject {
 	return count;
     }
 
-    public Line2D.Double getBorder(Integer borderNumber) {
+    public Line2D getEdge(Integer edgeNo) {
 
 	Integer count = 0;
-	Point2D.Double point1 = null, point2 = null;
+	Point2D point1 = null, point2 = null;
 	double[] coords = new double[6];
 
 	// Iterate through the specified shape, perturb its coordinates, and
@@ -76,7 +83,7 @@ public class GeomObject {
 	    case PathIterator.SEG_LINETO:
 		point2 = new Point2D.Double(coords[0], coords[1]);
 		count++;
-		if (count == borderNumber) {
+		if (count == edgeNo) {
 		    return new Line2D.Double(point1, point2);
 		}
 		point1 = point2;
@@ -92,24 +99,55 @@ public class GeomObject {
 	return null;
     }
 
-    public List<Port> getPorts(List<Integer> borders) {
+    public List<Port> getPorts(List<Integer> edges) {
 
-	// if border is null, return ports for all borders
-	if (borders == null) {
-	    borders = new ArrayList<Integer>();
-	    for (int i = 0; i < getCountOfBorders(); i++)
-		borders.add(i + 1);
+	// if edges is null, return ports for all borders
+	if (edges == null) {
+	    edges = new ArrayList<Integer>();
+	    for (int i = 1; i <= getCountOfEdges(); i++)
+		edges.add(i);
 	}
 
 	List<Port> ports = new ArrayList<Port>();
-	for (Integer borderNumber : borders) {
-	    Line2D.Double line = getBorder(borderNumber);
-	    if (line != null) {
-		ports.addAll(createBorderPorts(line));
-	    }
+	for (Integer borderNumber : edges) {
+	    ports.addAll(portsHash.get(borderNumber));
 	}
 	return ports;
     }
+
+    public List<Port> getFreePorts(List<Integer> edges) {
+
+	// if edges is null, return ports for all borders
+	if (edges == null) {
+	    edges = new ArrayList<Integer>();
+	    for (int i = 0; i < getCountOfEdges(); i++)
+		edges.add(i + 1);
+	}
+
+	List<Port> freePorts = new ArrayList<Port>();
+	for (Integer borderNumber : edges) {
+	    List<Port> ports = portsHash.get(borderNumber);
+	    Iterator<Port> itr = ports.iterator();
+	    while (itr.hasNext()){
+		Port port = itr.next();
+		if (port.getState() == State.free)
+		    freePorts.add(port);
+	    }
+	}
+	return freePorts;
+    }
+
+    
+    
+    private List<Port> createPorts(Integer edgeNo) {
+	List<Port> ports = new ArrayList<Port>();
+	Line2D line = getEdge(edgeNo);
+	if (line != null) {
+	    ports.addAll(createBorderPorts(line));
+	}
+	return ports;
+    }
+
 
     protected List<Port> createBorderPorts(Line2D inLine) {
 
@@ -153,6 +191,37 @@ public class GeomObject {
 	    }
 	}
 	return ports;
+    }
+    
+    public Port createPortForLine(Line2D line){
+	if (getShape().intersectsLine(line)) {
+	    //select the best edge
+	    Double minDist = Double.MAX_VALUE;
+	    int minIndex = -1;
+	    Point2D bestPoint = null;
+	    Integer edges = getCountOfEdges();
+	    // calculate intersect point on each edges
+	    for (Integer i = 1; i <= edges; i++) {
+		Line2D edge = getEdge(i);
+		//calculate intersection point
+		Point2D point = Util.calculateIntersection(edge, line);
+		if (point != null){
+		    Double dist = point.distance(line.getP1());
+		    if (dist < minDist){
+			bestPoint = point;
+			minDist = dist;
+			minIndex = i;
+		    }
+		}
+	    }
+	    
+	    if (minIndex != -1){
+		Port port = new Port(bestPoint, this, getEdge(minIndex));
+		portsHash.get(minIndex).add(port);
+		return port;
+	    }
+	}
+	return null;
     }
 
 }
