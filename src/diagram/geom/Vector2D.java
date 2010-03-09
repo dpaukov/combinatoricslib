@@ -3,29 +3,34 @@ package diagram.geom;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
+
+/**
+ * 
+ * @author dpaukov
+ *
+ *                                          
+ *              (a,b) = (x2-x1,y2-y1)         \
+ *    *----------------------------------------*
+ *   (x1,y1)                                  / (x2,y2)
+ *    
+ *
+ */
 public class Vector2D {
 
     public final Double a;
     public final Double b;
 
     private Vector2D(Point2D begin, Point2D end) {
-	super();
-	double x = end.getX() - begin.getX();
-	double y = end.getY() - begin.getY();
-	double norma = Math.sqrt(x * x + y * y);
-	if (norma != 0) {
-	    a = x / norma;
-	    b = y / norma;
-	} else {
-	    a = x;
-	    b = y;
-	}
+	this(end.getX() - begin.getX(), end.getY() - begin.getY());
     }
 
     private Vector2D(Line2D line) {
+	this(line.getP2().getX() - line.getP1().getX(), line.getP2().getY()
+		- line.getP1().getY());
+    }
+
+    private Vector2D(double x, double y) {
 	super();
-	double x = line.getP2().getX() - line.getP1().getX();
-	double y = line.getP2().getY() - line.getP1().getY();
 	double norma = Math.sqrt(x * x + y * y);
 	if (norma != 0) {
 	    a = x / norma;
@@ -52,6 +57,10 @@ public class Vector2D {
 	return a * vector.a + b * vector.b;
     }
 
+    public Vector2D mult(double multValue) {
+	return new Vector2D(a * multValue, b * multValue);
+    }
+
     public double length() {
 	return Math.sqrt(a * a + b * b);
     }
@@ -60,6 +69,15 @@ public class Vector2D {
 	if (length() != 0 && vector.length() != 0)
 	    return scalarMult(vector) / (length() * vector.length());
 	return null;
+    }
+
+    public Double ang(Vector2D vector) {
+	Double d = a * vector.b - b * vector.a;
+	Double arccos = Math.acos(cosAngle(vector));
+	if (d >= 0)
+	    return arccos;
+	else
+	    return -arccos;
     }
 
     public Line2D getLine(Point2D point, Double length) {

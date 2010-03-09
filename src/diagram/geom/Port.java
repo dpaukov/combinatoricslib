@@ -6,6 +6,16 @@ import java.awt.geom.Point2D;
 /**
  * Description
  * 
+ *           |normal
+ *           |
+ *           | port
+ *  ---------*---------  edge
+ *  |                 |
+ *  |    object       |
+ *  |                 |
+ *  |                 |
+ *  -------------------
+ * 
  */
 public class Port {
 
@@ -16,42 +26,42 @@ public class Port {
     private final Point2D point;
     private State state;
     private final GeomObject object;
-    private final Line2D line;
+    private final Line2D edge;
 
     /**
      * @param point
      * @param state
      */
-    public Port(Point2D point, State state, GeomObject object, Line2D line) {
+    public Port(Point2D point, State state, GeomObject object, Line2D edge) {
 	super();
 	this.point = point;
 	this.state = state;
 	this.object = object;
-	this.line = line;
+	this.edge = edge;
     }
 
     /**
      * @param point
      * @param state
      */
-    public Port(Point2D point, GeomObject object, Line2D line) {
+    public Port(Point2D point, GeomObject object, Line2D edge) {
 	super();
 	this.point = point;
 	this.state = State.free;
 	this.object = object;
-	this.line = line;
+	this.edge = edge;
     }
 
     /**
      * @param point
      * @param state
      */
-    public Port(double x, double y, GeomObject object, Line2D line) {
+    public Port(double x, double y, GeomObject object, Line2D edge) {
 	super();
 	this.point = new Point2D.Double(x, y);
 	this.state = State.free;
 	this.object = object;
-	this.line = line;
+	this.edge = edge;
     }
 
     /**
@@ -80,26 +90,24 @@ public class Port {
 	return object;
     }
 
-    public Line2D getLine() {
-	return line;
+    public Line2D getEdge() {
+	return edge;
     }
 
     public Vector2D getNormalVector() {
-	return Vector2D.createNormalVector(line);
+	return Vector2D.createNormalVector(edge);
     }
 
-    public Line2D getNormal(double length) {
+    public Line2D getNormalLine(double length) {
 	return getNormalVector().getLine(point, length);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+    /**
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-	return "Port [point=" + point + ", state=" + state + "]";
+	return "Port [point=" + point + ", state=" + state + ", edge=" + edge +"]";
     }
 
 }

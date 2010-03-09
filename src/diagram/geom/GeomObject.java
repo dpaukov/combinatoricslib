@@ -128,7 +128,7 @@ public class GeomObject {
 
 	// if line is not vertical
 	if (x0 != x1) {
-	    
+
 	    double marginX = (x1 - x0) * marginOfPorts;
 	    double deltaX = (x1 - x0 - 2 * marginOfPorts) / countOfPorts;
 	    double x = x0 + marginX;
