@@ -3,6 +3,7 @@ package diagram.geom;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,32 +40,77 @@ public class Link {
 		Vector2D vectorNormalStart = startPort.getNormalVector();
 		Vector2D vectorNormalEnd = endPort.getNormalVector();
 
-		Double cosAngle = vectorNormalStart.cosAngle(vectorNormalEnd);
+		// calculate bounding box
+		Rectangle2D boundRect = getBoundRect();
+		// calculate angle between normal vectors
+		Double ang = vectorNormalStart.ang(vectorNormalEnd);
+		// calculate length of a step
+		Double step = 1.1 * Math.max(boundRect.getWidth(), boundRect
+			.getHeight());
+		// calculate distance
 		Double distance = startPort.getPoint().distance(
 			endPort.getPoint());
 
-		if (cosAngle >= 0 && cosAngle < 1) {
-		    Line2D startLine = startPort.getNormal(200);
-		    Line2D endLine = endPort.getNormal(200);
-		    Point2D intersectPoint = Util.calculateIntersection(
-			    startLine, endLine);
+		// Calculate intersection point of two lines
+		Line2D startLine = startPort.getNormalLine(step);
+		Line2D endLine = endPort.getNormalLine(step);
+		Point2D intersectPoint = Util.calculateIntersection(startLine,
+			endLine);
 
-		    vertices.add(startPort.getPoint());
-		    if (intersectPoint != null) {
-			vertices.add(intersectPoint);
+		vertices.add(startPort.getPoint());
+
+		while ((ang != Math.PI / 2 || ang != -Math.PI / 2)
+			&& intersectPoint == null) {
+		    // new start point is a simple old end point of start line
+		    Port newStartPort = new Port(startLine.getP2(), startPort
+			    .getObject(), startLine);
+		    // to calculate new end port
+		    Vector2D newNormalVector1 = newStartPort.getNormalVector();
+		    Vector2D newNormalVector2 = newNormalVector1.mult(-1.0);
+		    Line2D newStartLine1 = newNormalVector1.getLine(
+			    newStartPort.getPoint(), step);
+		    Line2D newStartLine2 = newNormalVector2.getLine(
+			    newStartPort.getPoint(), step);
+		    // calculate distance to the end port
+		    Double distance1 = newStartLine1.getP2().distance(
+			    endPort.getPoint());
+		    Double distance2 = newStartLine2.getP2().distance(
+			    endPort.getPoint());
+		    // choose the correct direction
+		    if (distance1 < distance2) {
+			vectorNormalStart = newNormalVector1;
+			startLine = newStartLine1;
+		    } else {
+			vectorNormalStart = newNormalVector2;
+			startLine = newStartLine2;
 		    }
-		    vertices.add(endPort.getPoint());
-		    return;
+		    vertices.add(newStartPort.getPoint());
+		    ang = vectorNormalStart.ang(vectorNormalEnd);
+		    intersectPoint = Util.calculateIntersection(startLine,
+			    endLine);
 		}
+		vertices.add(intersectPoint);
+		vertices.add(endPort.getPoint());
+		return;
 	    }
 	}
+    }
+
+    private Rectangle2D getBoundRect() {
+	Rectangle2D start = startObject.getShape();
+	Rectangle2D end = endObject.getShape();
+	double minX = Math.min(start.getMinX(), end.getMinX());
+	double maxX = Math.max(start.getMaxX(), end.getMaxX());
+	double minY = Math.min(start.getMinY(), end.getMinY());
+	double maxY = Math.max(start.getMaxY(), end.getMaxY());
+	return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
     }
 
     public GeneralPath getPath() {
 	GeneralPath polyline = new GeneralPath(GeneralPath.WIND_EVEN_ODD,
 		vertices.size());
-	if (vertices.size() > 1) {
 
+	if (vertices.size() > 1) {
 	    polyline.moveTo(vertices.get(0).getX(), vertices.get(0).getY());
 	    for (int index = 1; index < vertices.size(); index++) {
 		polyline.lineTo(vertices.get(index).getX(), vertices.get(index)
@@ -72,6 +118,5 @@ public class Link {
 	    }
 	}
 	return polyline;
-
     }
 }

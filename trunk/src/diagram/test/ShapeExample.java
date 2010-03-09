@@ -25,22 +25,21 @@ public class ShapeExample extends JPanel {
 
 	List<Port> ports = object1.getPorts(null);
 	for (Port port : ports) {
-	    g2d.draw(port.getNormal(10));
+	    g2d.draw(port.getNormalLine(10));
 	}
 
 	ports = object2.getPorts(null);
 	for (Port port : ports) {
-	    g2d.draw(port.getNormal(10));
+	    g2d.draw(port.getNormalLine(10));
 	}
 
-	link.connect(3, 4);
+	link.connect(3, 1);
 	g2d.draw(link.getPath());
 
     }
 
     // super.paintComponent clears offscreen pixmap,
     // since we're using double buffering by default.
-
     protected void clear(Graphics g) {
 	super.paintComponent(g);
     }
