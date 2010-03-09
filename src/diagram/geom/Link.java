@@ -48,15 +48,16 @@ public class Link {
 		// calculate angle between normal vectors
 		Double ang = vectorNormalStart.ang(vectorNormalEnd);
 		// calculate length of a step
-		Double step = (1.05 + 0.1*Math.random())* Math.max(boundRect.getWidth(), boundRect
+		Double step = (1.1 + 0.4*Math.random())* Math.max(boundRect.getWidth(), boundRect
 			.getHeight());
 		// calculate distance
 		Double distance = startPort.getPoint().distance(
 			endPort.getPoint());
 
 		// Calculate intersection point of two lines
-		Line2D startLine = startPort.getNormalLine(step);
 		Line2D endLine = endPort.getNormalLine(2.5*step);
+		step = 0.9 * calculateStep(startPort.getObject(), endPort.getObject());
+		Line2D startLine = startPort.getNormalLine(step);
 		Point2D intersectPoint = Util.calculateIntersection(startLine,
 			endLine);
 
@@ -82,6 +83,7 @@ public class Link {
 		    // new start point is a simple old end point of start line
 		    Port newStartPort = new Port(startLine.getP2(), startPort
 			    .getObject(), startLine);
+		    
 		    // to calculate new end port
 		    Vector2D newNormalVector1 = newStartPort.getNormalVector();
 		    Vector2D newNormalVector2 = newNormalVector1.mult(-1.0);
@@ -141,6 +143,35 @@ public class Link {
 	double minY = Math.min(start.getMinY(), end.getMinY());
 	double maxY = Math.max(start.getMaxY(), end.getMaxY());
 	return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
+    }
+    
+    private Double calculateStep(GeomObject obj1, GeomObject obj2){
+	Double minDist = Double.MAX_VALUE;
+	Line2D minLine = new Line2D.Double(0.0, 0.0, 0.0, 0.0);
+	List<Line2D> edges = obj1.getEdges();
+	List<Point2D> points = obj2.getPoints();
+	for (Point2D point : points){
+	    for (Line2D edge : edges) {
+		Double dist1 = point.distance(edge.getP1());
+		if (dist1 < minDist){
+		    minDist = dist1;
+		    minLine.setLine(point, edge.getP1());
+		}
+		dist1 = point.distance(edge.getP2());
+		if (dist1 < minDist){
+		    minDist = dist1;
+		    minLine.setLine(point, edge.getP2());
+		}
+	    }
+	}
+	double dx = Math.abs(minLine.getX2()-minLine.getX1());
+	double dy = Math.abs(minLine.getY2()-minLine.getY1());
+	if (dx == 0)
+	    return dy;
+	else if (dy == 0)
+	    return dx;
+	    else
+		return Math.min(dx, dy);
     }
 
     public GeneralPath getPath() {

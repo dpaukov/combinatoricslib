@@ -135,6 +135,10 @@ public class Util {
 //	  }
         	  double t1 = -a*d+a*h+b*c-b*g-c*h+d*g;
         	  double zn = a*d-a*h-b*c+b*g+c*f-d*e+e*h-f*g;
+        	  
+        	  if (zn == 0.0)
+        	      return null;
+        	  
         	  t1 = t1 / zn;
         	  double t2 = a*d-a*f-b*c+b*e+c*f-d*e;
         	  t2 = t2 / (-zn);
