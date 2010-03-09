@@ -51,7 +51,7 @@ public class ShapeExample extends JPanel {
 	Link link1 = new Link(obj1, obj2);
 	Link link2 = new Link(obj2, obj1);
 	
-//	link1.connect(3, 2);
+//	link1.connect(2, 2);
 //	g2d.draw(link1.getPath());
 //	link2.connect(3, 3);
 //	g2d.draw(link2.getPath());

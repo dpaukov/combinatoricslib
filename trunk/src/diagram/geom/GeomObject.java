@@ -98,6 +98,62 @@ public class GeomObject {
 	}
 	return null;
     }
+    
+    
+    public List<Line2D> getEdges() {
+
+	Point2D point1 = null, point2 = null;
+	double[] coords = new double[6];
+	List<Line2D> edgesArray = new ArrayList<Line2D>();
+
+	// Iterate through the specified shape, perturb its coordinates, and
+	// use them to build up the new shape.
+	for (PathIterator i = shape.getPathIterator(null); !i.isDone(); i
+		.next()) {
+	    int type = i.currentSegment(coords);
+	    switch (type) {
+	    case PathIterator.SEG_MOVETO:
+		point1 = new Point2D.Double(coords[0], coords[1]);
+		break;
+	    case PathIterator.SEG_LINETO:
+		point2 = new Point2D.Double(coords[0], coords[1]);
+		edgesArray.add(new Line2D.Double(point1, point2));
+		point1 = point2;
+		break;
+	    case PathIterator.SEG_QUADTO:
+	    case PathIterator.SEG_CUBICTO:
+	    case PathIterator.SEG_CLOSE:
+		// not supported
+		break;
+	    }
+	}
+	return edgesArray;
+    }
+    
+    public List<Point2D> getPoints(){
+	List<Point2D> points = new ArrayList<Point2D>();
+	double[] coords = new double[6];
+	// Iterate through the specified shape, perturb its coordinates, and
+	// use them to build up the new shape.
+	for (PathIterator i = shape.getPathIterator(null); !i.isDone(); i
+		.next()) {
+	    int type = i.currentSegment(coords);
+	    switch (type) {
+	    case PathIterator.SEG_MOVETO:
+		//points.add(new Point2D.Double(coords[0], coords[1]));
+		break;
+	    case PathIterator.SEG_LINETO:
+		points.add(new Point2D.Double(coords[0], coords[1]));
+		break;
+	    case PathIterator.SEG_QUADTO:
+	    case PathIterator.SEG_CUBICTO:
+	    case PathIterator.SEG_CLOSE:
+		// not supported
+		break;
+	    }
+	}
+	return points;
+    }
 
     public List<Port> getPorts(List<Integer> edges) {
 
