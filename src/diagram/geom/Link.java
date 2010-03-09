@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import combinatorics.util.Util;
+import diagram.geom.Port.State;
 
 /**
  * Description
@@ -32,8 +33,10 @@ public class Link {
 	List<Integer> endBorders = new ArrayList<Integer>();
 	endBorders.add(endBorder);
 
-	List<Port> startPorts = startObject.getPorts(startBorders);
-	List<Port> endPorts = endObject.getPorts(endBorders);
+	List<Port> startPorts = startObject.getFreePorts(startBorders);
+	List<Port> endPorts = endObject.getFreePorts(endBorders);
+	
+	vertices.clear();
 
 	for (Port startPort : startPorts) {
 	    for (Port endPort : endPorts) {
@@ -45,7 +48,7 @@ public class Link {
 		// calculate angle between normal vectors
 		Double ang = vectorNormalStart.ang(vectorNormalEnd);
 		// calculate length of a step
-		Double step = 1.1 * Math.max(boundRect.getWidth(), boundRect
+		Double step = (1.05 + 0.1*Math.random())* Math.max(boundRect.getWidth(), boundRect
 			.getHeight());
 		// calculate distance
 		Double distance = startPort.getPoint().distance(
@@ -53,36 +56,69 @@ public class Link {
 
 		// Calculate intersection point of two lines
 		Line2D startLine = startPort.getNormalLine(step);
-		Line2D endLine = endPort.getNormalLine(step);
+		Line2D endLine = endPort.getNormalLine(2.5*step);
 		Point2D intersectPoint = Util.calculateIntersection(startLine,
 			endLine);
 
+		startPort.setState(Port.State.allocated);
 		vertices.add(startPort.getPoint());
-
+		
 		while ((ang != Math.PI / 2 || ang != -Math.PI / 2)
 			&& intersectPoint == null) {
+		    
+		    // check the intersection with the end object
+		    boolean endObjectIntersect = endObject.getShape().intersectsLine(startLine);
+		    if (endObjectIntersect){
+			// create the specific port for this intersection
+			Port newPort = endObject.createPortForLine(startLine);
+			if (newPort != null) {
+			    newPort.setState(State.allocated);
+			    vertices.add(newPort.getPoint());
+			    return;
+			}
+		    }
+
+		    
 		    // new start point is a simple old end point of start line
 		    Port newStartPort = new Port(startLine.getP2(), startPort
 			    .getObject(), startLine);
 		    // to calculate new end port
 		    Vector2D newNormalVector1 = newStartPort.getNormalVector();
 		    Vector2D newNormalVector2 = newNormalVector1.mult(-1.0);
+		    Vector2D newVector3 = vectorNormalStart;
+		    
 		    Line2D newStartLine1 = newNormalVector1.getLine(
 			    newStartPort.getPoint(), step);
 		    Line2D newStartLine2 = newNormalVector2.getLine(
 			    newStartPort.getPoint(), step);
-		    // calculate distance to the end port
+		    Line2D newStartLine3 = newVector3.getLine(
+			    newStartPort.getPoint(), step);
+		    
+		    // Choose the direction
+		    // 1) calculate distance to the end port
 		    Double distance1 = newStartLine1.getP2().distance(
 			    endPort.getPoint());
 		    Double distance2 = newStartLine2.getP2().distance(
 			    endPort.getPoint());
-		    // choose the correct direction
+		    Double distance3 = newStartLine3.getP2().distance(
+			    endPort.getPoint());
+		    // 2) select the smallest distance which is the correct direction
 		    if (distance1 < distance2) {
-			vectorNormalStart = newNormalVector1;
-			startLine = newStartLine1;
+			if (distance1 < distance3) {
+			    vectorNormalStart = newNormalVector1;
+			    startLine = newStartLine1;
+			} else {
+			    vectorNormalStart = newVector3;
+			    startLine = newStartLine3;
+			}
 		    } else {
-			vectorNormalStart = newNormalVector2;
-			startLine = newStartLine2;
+			if (distance2 < distance3) {
+			    vectorNormalStart = newNormalVector2;
+			    startLine = newStartLine2;
+			} else {
+			    vectorNormalStart = newVector3;
+			    startLine = newStartLine3;
+			} 
 		    }
 		    vertices.add(newStartPort.getPoint());
 		    ang = vectorNormalStart.ang(vectorNormalEnd);
@@ -91,6 +127,7 @@ public class Link {
 		}
 		vertices.add(intersectPoint);
 		vertices.add(endPort.getPoint());
+		endPort.setState(Port.State.allocated);
 		return;
 	    }
 	}

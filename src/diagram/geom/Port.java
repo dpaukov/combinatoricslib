@@ -24,7 +24,7 @@ public class Port {
     }
 
     private final Point2D point;
-    private State state;
+    private State state = State.free;
     private final GeomObject object;
     private final Line2D edge;
 
@@ -47,7 +47,6 @@ public class Port {
     public Port(Point2D point, GeomObject object, Line2D edge) {
 	super();
 	this.point = point;
-	this.state = State.free;
 	this.object = object;
 	this.edge = edge;
     }
@@ -59,7 +58,6 @@ public class Port {
     public Port(double x, double y, GeomObject object, Line2D edge) {
 	super();
 	this.point = new Point2D.Double(x, y);
-	this.state = State.free;
 	this.object = object;
 	this.edge = edge;
     }
