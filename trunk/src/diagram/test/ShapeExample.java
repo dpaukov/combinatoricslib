@@ -12,15 +12,20 @@ import java.util.List;
 
 public class ShapeExample extends JPanel {
 
-    private GeomObject object1 = new GeomObject(100, 100, 130, 120);
-    private GeomObject object2 = new GeomObject(150, 130, 180, 150);
+    private GeomObject object1 = new GeomObject(100, 100, 30, 20);
+    private GeomObject object2 = new GeomObject(150, 130, 80, 50);
 
-    private GeomObject object3 = new GeomObject(300, 130, 330, 150);
-    private GeomObject object4 = new GeomObject(350, 100, 380, 120);
+    private GeomObject object3 = new GeomObject(300, 130, 30, 50);
+    private GeomObject object4 = new GeomObject(350, 100, 80, 20);
     
 
-    private GeomObject object5 = new GeomObject(100, 300, 200, 350);
-    private GeomObject object6 = new GeomObject(100, 400, 200, 450);
+    private GeomObject object5 = new GeomObject(100, 300, 100, 50);
+    private GeomObject object6 = new GeomObject(100, 400, 100, 45);
+    
+    private GeomObject object7 = new GeomObject(200, 200, 40, 35);
+    private GeomObject object8 = new GeomObject(550, 550, 60, 60);
+    
+    private GeomObject object9 = new GeomObject(500, 50, 150, 600);
 
     
     public void paintComponent(Graphics g) {
@@ -30,6 +35,17 @@ public class ShapeExample extends JPanel {
 	test(g2d, object1, object2);
 	test(g2d, object3, object4);
 	test(g2d, object5, object6);
+	test(g2d, object7, object8);
+	
+	test(g2d, object1, object7);
+	test(g2d, object1, object8);
+	test(g2d, object5, object7);
+	test(g2d, object5, object4);
+	
+	test(g2d, object9, object1);
+	test(g2d, object9, object2);
+	
+	test(g2d, object9, object8);
 	
 
     }
@@ -49,21 +65,21 @@ public class ShapeExample extends JPanel {
 	}
 
 	Link link1 = new Link(obj1, obj2);
-	Link link2 = new Link(obj2, obj1);
+//	Link link2 = new Link(obj2, obj1);
 	
-//	link1.connect(2, 2);
-//	g2d.draw(link1.getPath());
-//	link2.connect(3, 3);
+	link1.connect();
+	g2d.draw(link1.getPath());
+//	link2.connect();
 //	g2d.draw(link2.getPath());
 	
-	for (int i = 1; i<=4; i++){
-	    for (int j = 1; j<=4; j++){
-		link1.connect(i, j);
-		link2.connect(i, j);
-		g2d.draw(link1.getPath());
-		g2d.draw(link2.getPath());
-	    }
-	}
+//	for (int i = 1; i<=4; i++){
+//	    for (int j = 1; j<=4; j++){
+//		link1.connect(i, j);
+//		link2.connect(i, j);
+//		g2d.draw(link1.getPath());
+//		g2d.draw(link2.getPath());
+//	    }
+//	}
     }
 
     // super.paintComponent clears offscreen pixmap,

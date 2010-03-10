@@ -19,26 +19,47 @@ public class GeomObject {
     }
 
     private final Rectangle2D.Double shape;
-    private int countOfPorts = 8;
+    private int countOfPorts = 20;
     private double marginOfPorts = 0.05; // in %
     private final HashMap<Integer, List<Port>> portsHash= new HashMap<Integer, List<Port>>();
 
     /**
      * @param shape
      */
-    public GeomObject(double x1, double y1, double x2, double y2) {
+    public GeomObject(double x1, double y1, double width, double height) {
 	super();
-	this.shape = new Rectangle2D.Double(x1, y1, x2 - x1, y2 - y1);
+	this.shape = new Rectangle2D.Double(x1, y1, width, height);
 	Integer edges = getCountOfEdges();
 	for (Integer i = 1; i <= edges; i++)
 	    portsHash.put(i, createPorts(i));
     }
-
+    
+    private GeomObject(GeomObject obj) {
+	super();
+	this.shape = new Rectangle2D.Double(obj.getShape().getX(), obj.getShape().getY(),
+		obj.getShape().getWidth(), obj.getShape().getHeight());
+	for (Integer i : obj.portsHash.keySet()) {
+	    List<Port> list = obj.portsHash.get(i);
+	    List<Port> newList = new ArrayList<Port>();
+	    for (Port port : list)
+		newList.add(new Port(port.getPoint(), this, port.getEdge()));
+	    portsHash.put(i, newList);
+	}
+    }
+    
+    public GeomObject clone(){
+	return new GeomObject(this);
+    }
+    
     /**
      * @return Returns the shape.
      */
     public Rectangle2D.Double getShape() {
 	return shape;
+    }
+    
+    public Point2D getCenterPoint() {
+	return new Point2D.Double(getShape().getCenterX(), getShape().getCenterY());
     }
 
     public Integer getCountOfEdges() {
@@ -130,6 +151,44 @@ public class GeomObject {
 	return edgesArray;
     }
     
+    /**
+     * Returns list of edge numbers which are visible from the specified point
+     * @param point
+     * @return
+     */
+    public List<Integer> getVisibleEdgeNumbers(Point2D point){
+	
+	List<Integer> visibleEdges = new ArrayList<Integer>();
+
+	// if point is outside of shape
+	if (!getShape().contains(point)) {
+	    // for each edge
+	    Integer edges = getCountOfEdges();
+	    for (Integer i = 1; i <= edges; i++) {
+		// get edge
+		Line2D line = getEdge(i);
+		if (!line.getP1().equals(line.getP2())) {
+		    // calculate center point on the line
+		    Vector2D vectorLine = Vector2D.createVector(line);
+		    vectorLine.mult(0.5 * Math.sqrt(Math.pow(line.getX2()
+			    - line.getX1(), 2)
+			    + Math.pow(line.getY2() - line.getY1(), 2)));
+		    Point2D centerPoint = new Point2D.Double(line.getX1()
+			    + vectorLine.a, line.getY1() + vectorLine.b);
+		    // line from center point to the specified point
+		    Vector2D vectorRadius = Vector2D
+			    .createVector(new Line2D.Double(centerPoint, point));
+		    Vector2D vectorNormal = Vector2D.createNormalVector(line);
+		    Double angle = vectorNormal.ang(vectorRadius);
+		    if (-Math.PI / 2 <= angle && angle <= Math.PI / 2)
+			visibleEdges.add(i);
+		}
+
+	    }
+	}
+	return visibleEdges;
+    }
+    
     public List<Point2D> getPoints(){
 	List<Point2D> points = new ArrayList<Point2D>();
 	double[] coords = new double[6];
@@ -171,30 +230,44 @@ public class GeomObject {
 	return ports;
     }
 
-    public List<Port> getFreePorts(List<Integer> edges) {
 
+    /**
+     * Returns list of free ports for specified edges
+     * @param edges Edge's numbers
+     */
+    public List<Port> getFreePorts(List<Integer> edges) {
 	// if edges is null, return ports for all borders
 	if (edges == null) {
 	    edges = new ArrayList<Integer>();
 	    for (int i = 0; i < getCountOfEdges(); i++)
 		edges.add(i + 1);
 	}
-
 	List<Port> freePorts = new ArrayList<Port>();
 	for (Integer borderNumber : edges) {
 	    List<Port> ports = portsHash.get(borderNumber);
+	    if (ports != null) {
 	    Iterator<Port> itr = ports.iterator();
-	    while (itr.hasNext()){
-		Port port = itr.next();
-		if (port.getState() == State.free)
-		    freePorts.add(port);
+        	    while (itr.hasNext()){
+        		Port port = itr.next();
+        		if (port.getState() == State.free)
+        		    freePorts.add(port);
+        	    }
 	    }
+	}
+	
+	
+	// if there is no free port, we create new
+	if (freePorts.isEmpty()){
+	    // TODO: create new port on specified edges
 	}
 	return freePorts;
     }
 
     
-    
+    /**
+     * Creates list of new ports for specified edge number. All created ports are free
+     * @param edgeNo Edge number
+     */
     private List<Port> createPorts(Integer edgeNo) {
 	List<Port> ports = new ArrayList<Port>();
 	Line2D line = getEdge(edgeNo);
@@ -205,6 +278,9 @@ public class GeomObject {
     }
 
 
+    /**
+     * Creates list of ports on specified line
+     */
     protected List<Port> createBorderPorts(Line2D inLine) {
 
 	List<Port> ports = new ArrayList<Port>();
@@ -249,7 +325,11 @@ public class GeomObject {
 	return ports;
     }
     
-    public Port createPortForLine(Line2D line){
+    /**
+     * Creates new free port for specified attached line. Port is located 
+     * on the edge which is the best for the line
+     */
+    public Port createNewPortForAttachedLine(Line2D line){
 	if (getShape().intersectsLine(line)) {
 	    //select the best edge
 	    Double minDist = Double.MAX_VALUE;

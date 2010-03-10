@@ -17,8 +17,8 @@ import java.awt.geom.Point2D;
  */
 public class Vector2D {
 
-    public final Double a;
-    public final Double b;
+    protected final Double a;
+    protected final Double b;
 
     private Vector2D(Point2D begin, Point2D end) {
 	this(end.getX() - begin.getX(), end.getY() - begin.getY());
@@ -71,7 +71,7 @@ public class Vector2D {
 	return null;
     }
 
-    public Double ang(Vector2D vector) {
+    public double ang(Vector2D vector) {
 	Double d = a * vector.b - b * vector.a;
 	Double arccos = Math.acos(cosAngle(vector));
 	if (d >= 0)
