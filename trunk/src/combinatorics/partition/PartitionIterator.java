@@ -44,8 +44,8 @@ public class PartitionIterator implements Iterator<CombinatoricsVector<Integer>>
    */
   public PartitionIterator(PartitionGenerator generator) {
     _generator = generator;
-    _mVector = new int[generator._coreValue + 1];
-    _zVector = new int[generator._coreValue + 1];
+    _mVector = new int[generator._coreValue + 2];
+    _zVector = new int[generator._coreValue + 2];
   }
 
   /**
@@ -53,8 +53,15 @@ public class PartitionIterator implements Iterator<CombinatoricsVector<Integer>>
    */
   @Override
   public void first() {
+
+    if (_generator._coreValue < 1) {
+	_kIndex = 0;
+	return;
+    }
+
     _currentIndex = 0;
     _kIndex = 1;
+    
     setInternalVectorValue(-1, _zVector, 0);
     setInternalVectorValue(-1, _mVector, 0);
 
