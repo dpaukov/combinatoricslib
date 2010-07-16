@@ -41,6 +41,8 @@ public class PermutationGenerator<T> extends Generator<T> {
    * @see combinatorics.Generator#getNumberOfGeneratedObjects()
    */
   public long getNumberOfGeneratedObjects() {
+    if (_corePermutation.getSize() == 0)
+	return 0;
     return Util.factorial(_corePermutation.getSize());
   }
 

@@ -48,10 +48,13 @@ public class PartitionGenerator extends Generator<Integer> {
    */
   @Override
   public long getNumberOfGeneratedObjects() {
-    double result = 2.0 * _coreValue / 3.0;
-    result = Math.exp(Math.PI * Math.sqrt(result));
-    result /= 4.0 * _coreValue * Math.sqrt(3);
-    return (long)result;
+    if (_coreValue > 0 && _coreValue<=MAXN) {
+      double result = 2.0 * _coreValue / 3.0;
+      result = Math.exp(Math.PI * Math.sqrt(result));
+      result /= 4.0 * _coreValue * Math.sqrt(3);
+      return (long)result;
+    }
+    return 0;
   }
 
 }
