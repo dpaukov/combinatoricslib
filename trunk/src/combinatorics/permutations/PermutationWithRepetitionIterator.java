@@ -50,7 +50,7 @@ public class PermutationWithRepetitionIterator<T extends Object> implements Iter
     _n = generator.getCoreObject().getSize();
     _k = generator.getPermutationLength();
     _currentPermutation = new CombinatoricsVector<T>(_k, generator.getCoreObject().getValue(0));
-    _bitVector = new int[_k + 1];
+    _bitVector = new int[_k + 2];
   }
 
   /**
@@ -101,10 +101,17 @@ public class PermutationWithRepetitionIterator<T extends Object> implements Iter
     }
 
     int i = 0;
-    while (_bitVector[i] == _n - 1) {
-      _bitVector[i] = 0;
+    while ( _bitVector[i] == _n - 1) {
+      if (i<_k+1)
+	  _bitVector[i] = 0;
+      else
+      {
+	  _bitVector[_k] = 1;
+	  return;
+      }
       i++;
     }
+    
     _bitVector[i]++;
 
   }
