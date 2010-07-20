@@ -39,8 +39,8 @@ public class PermutationsTest {
 
 		Iterator<CombinatoricsVector<Integer>> iterator = generator
 				.createIterator();
-		iterator.first();
-		while (!iterator.isDone()) {
+
+		while (iterator.hasNext()) {
 			iterator.next();
 			System.out.println(iterator);
 		}
@@ -81,8 +81,8 @@ public class PermutationsTest {
 
 		Iterator<CombinatoricsVector<Integer>> iterator = generator
 				.createIterator();
-		iterator.first();
-		while (!iterator.isDone()) {
+
+		while (iterator.hasNext()) {
 			iterator.next();
 			System.out.println(iterator);
 		}
@@ -112,8 +112,8 @@ public class PermutationsTest {
 
 		Iterator<CombinatoricsVector<Integer>> iterator = generator
 				.createIterator();
-		iterator.first();
-		while (!iterator.isDone()) {
+
+		while (iterator.hasNext()) {
 			iterator.next();
 			System.out.println(iterator);
 		}

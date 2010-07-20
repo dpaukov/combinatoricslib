@@ -43,8 +43,7 @@ public class PermutationWithRepetitionsTest {
 				+ permutationWithRepetitionGenerator
 						.getNumberOfGeneratedObjects());
 
-		permutationWithRepetitionIterator.first();
-		while (!permutationWithRepetitionIterator.isDone()) {
+		while (permutationWithRepetitionIterator.hasNext()) {
 			permutationWithRepetitionIterator.next();
 			System.out.println(permutationWithRepetitionIterator);
 		}
@@ -97,8 +96,7 @@ public class PermutationWithRepetitionsTest {
 				+ permutationWithRepetitionGenerator
 						.getNumberOfGeneratedObjects());
 
-		permutationWithRepetitionIterator.first();
-		while (!permutationWithRepetitionIterator.isDone()) {
+		while (permutationWithRepetitionIterator.hasNext()) {
 			permutationWithRepetitionIterator.next();
 			System.out.println(permutationWithRepetitionIterator);
 		}
@@ -139,8 +137,7 @@ public class PermutationWithRepetitionsTest {
 				+ permutationWithRepetitionGenerator
 						.getNumberOfGeneratedObjects());
 
-		permutationWithRepetitionIterator.first();
-		while (!permutationWithRepetitionIterator.isDone()) {
+		while (permutationWithRepetitionIterator.hasNext()) {
 			permutationWithRepetitionIterator.next();
 			System.out.println(permutationWithRepetitionIterator);
 		}
@@ -175,8 +172,7 @@ public class PermutationWithRepetitionsTest {
 				+ permutationWithRepetitionGenerator
 						.getNumberOfGeneratedObjects());
 
-		permutationWithRepetitionIterator.first();
-		while (!permutationWithRepetitionIterator.isDone()) {
+		while (permutationWithRepetitionIterator.hasNext()) {
 			permutationWithRepetitionIterator.next();
 			System.out.println(permutationWithRepetitionIterator);
 		}
@@ -211,8 +207,7 @@ public class PermutationWithRepetitionsTest {
 				+ permutationWithRepetitionGenerator
 						.getNumberOfGeneratedObjects());
 
-		permutationWithRepetitionIterator.first();
-		while (!permutationWithRepetitionIterator.isDone()) {
+		while (permutationWithRepetitionIterator.hasNext()) {
 			permutationWithRepetitionIterator.next();
 			System.out.println(permutationWithRepetitionIterator);
 		}
@@ -247,8 +242,7 @@ public class PermutationWithRepetitionsTest {
 				+ permutationWithRepetitionGenerator
 						.getNumberOfGeneratedObjects());
 
-		permutationWithRepetitionIterator.first();
-		while (!permutationWithRepetitionIterator.isDone()) {
+		while (permutationWithRepetitionIterator.hasNext()) {
 			permutationWithRepetitionIterator.next();
 			System.out.println(permutationWithRepetitionIterator);
 		}
