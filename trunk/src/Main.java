@@ -16,73 +16,56 @@ public class Main {
    * @param args
    */
   public static void main(String[] args) {
-    ArrayList<Integer> array = new ArrayList<Integer>();
-    array.add(1);
-    array.add(2);
-    array.add(3);
-    array.add(4);
+    
+    ArrayList<String> array = new ArrayList<String>();
+    array.add("red");
+    array.add("black");
+    array.add("white");
+    array.add("green");
+    array.add("blue");
 
-    CombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(array);
-    Generator<Integer> generator = new PermutationGenerator<Integer>(corePermutation);
-    System.out.println("Number of permutations is: " + generator.getNumberOfGeneratedObjects());
-    Iterator<CombinatoricsVector<Integer>> iterator = generator.createIterator();
-    iterator.first();
-    while (!iterator.isDone()) {
-      iterator.next();
-      CombinatoricsVector<Integer> permutation = iterator.getCurrentItem();
-      System.out.println(iterator);
-    }
+    CombinatoricsVector<String> corePermutation = new CombinatoricsVector<String>(array);
+//    Generator<String> generator = new PermutationGenerator<String>(corePermutation);
+//    System.out.println("Number of permutations is: " + generator.getNumberOfGeneratedObjects());
+//    Iterator<CombinatoricsVector<String>> iterator = generator.createIterator();
+//    iterator.first();
+//    while (!iterator.isDone()) {
+//      iterator.next();
+//      CombinatoricsVector<String> permutation = iterator.getCurrentItem();
+//      System.out.println(permutation);
+//    }
+//    
+//    Generator<String> subSetGenerator = new SubSetGenerator<String>(corePermutation);
+//    Iterator<CombinatoricsVector<String>> subSetIterator = subSetGenerator.createIterator();
+//    System.out.println("Number of subsets is: " + subSetGenerator.getNumberOfGeneratedObjects());
+//    subSetIterator.first();
+//    while (!subSetIterator.isDone()) {
+//      subSetIterator.next();
+//      CombinatoricsVector<String> subSet = subSetIterator.getCurrentItem();
+//      System.out.println(subSetIterator);
+//    }
 
-    Generator<Integer> subSetGenerator = new SubSetGenerator<Integer>(corePermutation);
-    Iterator<CombinatoricsVector<Integer>> subSetIterator = subSetGenerator.createIterator();
-    System.out.println("Number of subsets is: " + subSetGenerator.getNumberOfGeneratedObjects());
-    subSetIterator.first();
-    while (!subSetIterator.isDone()) {
-      subSetIterator.next();
-      CombinatoricsVector<Integer> subSet = subSetIterator.getCurrentItem();
-      System.out.println(subSetIterator);
-    }
-
-    Generator<Integer> combinationGenerator = new SimpleCombinationGenerator<Integer>(corePermutation, 2);
-    Iterator<CombinatoricsVector<Integer>> combinationIterator = combinationGenerator.createIterator();
+    Generator<String> combinationGenerator = new SimpleCombinationGenerator<String>(corePermutation, 3);
+    Iterator<CombinatoricsVector<String>> combinationIterator = combinationGenerator.createIterator();
     System.out.println("Number of combinations is: " + combinationGenerator.getNumberOfGeneratedObjects());
     combinationIterator.first();
     while (!combinationIterator.isDone()) {
       combinationIterator.next();
-      CombinatoricsVector<Integer> combination = combinationIterator.getCurrentItem();
+      CombinatoricsVector<String> combination = combinationIterator.getCurrentItem();
       System.out.println(combinationIterator);
     }
 
     System.out.println("GCD=" + Util.gcd(231, 525));
     System.out.println("LCM=" + Util.lcm(231, 525));
 
-    int k = 3;
-    int n = 4;
-
-    int[] b = new int[k + 1];
-    for (int j = 0; j <= k; j++) {
-      b[j] = 0;
-    }
-    while (b[k] != 1) {
-      for (int j = k - 1; j >= 0; j--) {
-        System.out.print(b[j] + ", ");
-      }
-      System.out.println("");
-      int i = 0;
-      while (b[i] == n - 1) {
-        b[i] = 0;
-        i++;
-      }
-      b[i]++;
-    }
-    
-    Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(corePermutation, 4);
-    Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator.createIterator();
+       
+    Generator<String> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<String>(corePermutation, 3);
+    Iterator<CombinatoricsVector<String>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator.createIterator();
     System.out.println("Number of permutationWithRepetition is: " + permutationWithRepetitionGenerator.getNumberOfGeneratedObjects());
     permutationWithRepetitionIterator.first();
     while (!permutationWithRepetitionIterator.isDone()) {
       permutationWithRepetitionIterator.next();
-      CombinatoricsVector<Integer> permutationWithRepetition = permutationWithRepetitionIterator.getCurrentItem();
+      CombinatoricsVector<String> permutationWithRepetition = permutationWithRepetitionIterator.getCurrentItem();
       System.out.println(permutationWithRepetitionIterator);
     }
     
