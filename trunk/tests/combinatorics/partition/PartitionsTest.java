@@ -29,8 +29,7 @@ public class PartitionsTest {
 				+ partitionGenerator.getNumberOfGeneratedObjects());
 		assertEquals(8, partitionGenerator.getNumberOfGeneratedObjects());
 
-		partitionIterator.first();
-		while (!partitionIterator.isDone()) {
+		while (partitionIterator.hasNext()) {
 			partitionIterator.next();
 			System.out.println(partitionIterator);
 		}
@@ -67,8 +66,7 @@ public class PartitionsTest {
 				+ partitionGenerator.getNumberOfGeneratedObjects());
 		assertEquals(2, partitionGenerator.getNumberOfGeneratedObjects());
 
-		partitionIterator.first();
-		while (!partitionIterator.isDone()) {
+		while (partitionIterator.hasNext()) {
 			partitionIterator.next();
 			System.out.println(partitionIterator);
 		}
@@ -95,8 +93,7 @@ public class PartitionsTest {
 				+ partitionGenerator.getNumberOfGeneratedObjects());
 		assertEquals(1, partitionGenerator.getNumberOfGeneratedObjects());
 
-		partitionIterator.first();
-		while (!partitionIterator.isDone()) {
+		while (partitionIterator.hasNext()) {
 			partitionIterator.next();
 			System.out.println(partitionIterator);
 		}
@@ -121,8 +118,7 @@ public class PartitionsTest {
 				+ partitionGenerator.getNumberOfGeneratedObjects());
 		assertEquals(0, partitionGenerator.getNumberOfGeneratedObjects());
 
-		partitionIterator.first();
-		while (!partitionIterator.isDone()) {
+		while (partitionIterator.hasNext()) {
 			partitionIterator.next();
 			System.out.println(partitionIterator);
 		}
