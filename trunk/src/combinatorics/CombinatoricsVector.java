@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class CombinatoricsVector<T> {
 
-	protected ArrayList<T> _vector = null;
+	protected final ArrayList<T> _vector;
 
 	/**
 	 * Default constructor
@@ -59,7 +59,7 @@ public class CombinatoricsVector<T> {
 	}
 
 	/**
-	 * Sets value to position <code>index</code>
+	 * Sets value to position <code>index</code>. If the index is out of bounds the value is added.
 	 * 
 	 * @param index
 	 *            Position of element
@@ -72,6 +72,17 @@ public class CombinatoricsVector<T> {
 		} catch (IndexOutOfBoundsException ex) {
 			_vector.add(index, value);
 		}
+	}
+	
+	
+	/**
+	 * Adds value to the vector.
+	 * 
+	 * @param value
+	 *            Value of element
+	 */
+	public boolean addValue(T value){
+		return _vector.add(value);
 	}
 
 	/**
