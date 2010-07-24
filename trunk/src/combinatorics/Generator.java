@@ -49,4 +49,31 @@ public abstract class Generator<T> {
 		return list;
 	}
 
+	/**
+	 * Returns vectors as a list for specified range of indexes (from the
+	 * <code>startIndex</code> to <code>stopIndex</code>)
+	 * 
+	 * @return List of generated vectors
+	 */
+	public List<CombinatoricsVector<T>> generateObjectsRange(int startIndex,
+			int stopIndex) {
+		assert (startIndex <= stopIndex);
+		List<CombinatoricsVector<T>> list = new ArrayList<CombinatoricsVector<T>>();
+		Iterator<CombinatoricsVector<T>> iterator = createIterator();
+		int index = 1;
+		while (iterator.hasNext()) {
+			if (index >= startIndex && index <= stopIndex) {
+				CombinatoricsVector<T> vector = new CombinatoricsVector<T>(
+						iterator.next());
+				list.add(vector);
+			} else if (index > stopIndex) {
+				return list;
+			} else {
+				iterator.next();
+			}
+			index++;
+		}
+		return list;
+	}
+
 }
