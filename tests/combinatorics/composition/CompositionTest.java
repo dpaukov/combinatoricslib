@@ -77,6 +77,28 @@ public class CompositionTest {
 	}
 
 	@Test
+	public void simpleFiveCompositionRange() {
+
+		Generator<Integer> compositionGenerator = new CompositionGenerator(5);
+
+		System.out.println("Number of compositions is: "
+				+ compositionGenerator.getNumberOfGeneratedObjects());
+		assertEquals(16, compositionGenerator.getNumberOfGeneratedObjects());
+
+		List<CombinatoricsVector<Integer>> list = compositionGenerator
+				.generateObjectsRange(5, 7);
+
+		assertEquals(3, list.size());
+
+		assertEquals("CombinatoricsVector=[[3, 2]], size=2]", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=[[1, 2, 2]], size=3]", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=[[2, 1, 2]], size=3]", list.get(2)
+				.toString());
+	}
+
+	@Test
 	public void simpleOneComposition() {
 
 		Generator<Integer> compositionGenerator = new CompositionGenerator(1);
