@@ -1,6 +1,3 @@
-/**
- * Composition of an integer n
- */
 package combinatorics.composition;
 
 import combinatorics.CombinatoricsVector;
