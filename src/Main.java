@@ -4,6 +4,7 @@ import combinatorics.CombinatoricsVector;
 import combinatorics.Generator;
 import combinatorics.Iterator;
 import combinatorics.combination.simple.SimpleCombinationGenerator;
+import combinatorics.composition.CompositionGenerator;
 import combinatorics.partition.PartitionGenerator;
 import combinatorics.permutations.PermutationGenerator;
 import combinatorics.permutations.PermutationWithRepetitionGenerator;
@@ -71,12 +72,22 @@ public class Main {
     
     Generator<Integer> partitionGenerator = new PartitionGenerator(5);
     Iterator<CombinatoricsVector<Integer>> partitionIterator = partitionGenerator.createIterator();
-    System.out.println("Number of partition is: " + partitionGenerator.getNumberOfGeneratedObjects());
+    System.out.println("Number of partitions is: " + partitionGenerator.getNumberOfGeneratedObjects());
     partitionIterator.first();
     while (!partitionIterator.isDone()) {
       partitionIterator.next();
       CombinatoricsVector<Integer> partition = partitionIterator.getCurrentItem();
       System.out.println(partitionIterator);
+    }
+    
+    //compositions
+    Generator<Integer> compositionGenerator = new CompositionGenerator(5);
+    Iterator<CombinatoricsVector<Integer>> compositionIterator = compositionGenerator.createIterator();
+    System.out.println("Number of compositions is: " + compositionGenerator.getNumberOfGeneratedObjects());
+    while (compositionIterator.hasNext()) {
+      compositionIterator.next();
+      CombinatoricsVector<Integer> composition = compositionIterator.getCurrentItem();
+      System.out.println(compositionIterator);
     }
   }
 
