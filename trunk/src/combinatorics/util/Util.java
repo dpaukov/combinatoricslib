@@ -12,14 +12,13 @@ public class Util {
      * Get minimum of three values
      */
     public static int minimum(int a, int b, int c) {
-	int mi;
-	mi = a;
-	if (b < mi) {
+	int mi = a;
+	if (b < mi)
 	    mi = b;
-	}
-	if (c < mi) {
+
+	if (c < mi)
 	    mi = c;
-	}
+
 	return mi;
     }
 
