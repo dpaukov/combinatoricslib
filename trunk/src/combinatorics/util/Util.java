@@ -351,8 +351,7 @@ public class Util {
 	    for (int i = 0; i < n; i++)
 		result = result.multiply(a[i][i]);
 
-	    return result.divide(BigDecimal.valueOf(1), 0,
-		    BigDecimal.ROUND_HALF_EVEN);
+	    return result;
 
 	} catch (Exception e) {
 	    return BigDecimal.ZERO;
