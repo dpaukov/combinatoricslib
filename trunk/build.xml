@@ -16,7 +16,7 @@
 	</target>
 
 
-	<target name="compile" depends="init" description="compile sources">
+	<target name="compile" depends="init" description="Compile sources">
 		<javac srcdir="${src}" destdir="${buildSrc}"/>
 		<javac srcdir="${test}" destdir="${buildTest}">
 			<classpath>
@@ -32,7 +32,7 @@
 	</target>
 
 
-	<target name="runtest" depends="compile" description="Run jUnit tests">
+	<target name="runtests" depends="compile" description="Run jUnit tests">
 		<junit fork="yes" haltonfailure="yes">
 			<classpath>
 				<pathelement path="${lib}/junit-4.8.2.jar"/>
@@ -47,7 +47,7 @@
 	</target>
 
 
-	<target name="packsrc">
+	<target name="packsrc" description="Make sources zip-archive">
 		<zip destfile="combinatoricslib-${version}_src.zip">
 			<fileset dir="." includes="**/*.java, **/*.mf,
                  **/*.xml, **/*.jar"/>
