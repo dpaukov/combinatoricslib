@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 
-import combinatorics.CombinatoricsVector;
-import combinatorics.Generator;
-import combinatorics.Iterator;
-import combinatorics.combination.simple.SimpleCombinationGenerator;
-import combinatorics.composition.CompositionGenerator;
-import combinatorics.partition.PartitionGenerator;
-import combinatorics.permutations.PermutationGenerator;
-import combinatorics.permutations.PermutationWithRepetitionGenerator;
-import combinatorics.subsets.SubSetGenerator;
-import combinatorics.util.Util;
+import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.combination.simple.SimpleCombinationGenerator;
+import org.paukov.combinatorics.composition.CompositionGenerator;
+import org.paukov.combinatorics.partition.PartitionGenerator;
+import org.paukov.combinatorics.permutations.PermutationGenerator;
+import org.paukov.combinatorics.permutations.PermutationWithRepetitionGenerator;
+import org.paukov.combinatorics.subsets.SubSetGenerator;
+import org.paukov.combinatorics.util.Util;
+
 
 public class Main {
 
