@@ -3,23 +3,31 @@ package simplex.problem;
 import simplex.parser.Token;
 
 public class Variable {
-    public Token variable;
 
-    public Variable(Token variavel) {
+    private final Token token;
+
+    public Variable(Token token) {
 	super();
-	this.variable = variavel;
+	this.token = token;
+    }
+
+    /**
+     * @return the variable
+     */
+    public Token getToken() {
+	return token;
     }
 
     public String toString() {
-	return variable.getValue().toString();
+	return token.getValue().toString();
     }
 
     @Override
     public boolean equals(Object obj) {
 	if (!(obj instanceof Variable))
 	    return false;
-	Variable outra = (Variable) obj;
-	return variable.getToken().equals(outra.variable.getToken());
+	Variable other = (Variable) obj;
+	return token.getToken().equals(other.token.getToken());
     }
 
 }

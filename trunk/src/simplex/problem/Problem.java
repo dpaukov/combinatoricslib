@@ -31,7 +31,7 @@ public class Problem {
 	interpretConstrains(tokens);
 	tratarCondicoesDasVariaveis();
 
-	if (!verificarSeTodasVariaveisTemRestricoesIniciais())
+	if (!isEnoughtConstraints())
 	    throw new SimplexException("Error: Not enought constraints");
 
 	// System.out.println(problem.toString());
@@ -100,7 +100,7 @@ public class Problem {
 
     private boolean containsVariavel(Token token) {
 	for (Variable t : getVariables())
-	    if (t.variable.equals(token))
+	    if (t.getToken().equals(token))
 		return true;
 	return false;
     }
@@ -187,7 +187,7 @@ public class Problem {
 		value *= Double.parseDouble(token.getValue().toString());
 	    } else if (token.getId() == Token.VARIAVEL) {
 		for (int k = 0; k < getVariables().size(); k++) {
-		    if (getVariables().get(k).variable.equals(token)) {
+		    if (getVariables().get(k).getToken().equals(token)) {
 			ta.coefficients.put(getVariables().get(k), value);
 			break;
 		    }
@@ -203,7 +203,7 @@ public class Problem {
 	boolean valorIndependenteEncontrado = false;
 	for (Token token : t) {
 	    if (valorIndependenteEncontrado) {
-		ta.valueindependance = Double.parseDouble(token.getValue()
+		ta.valueIndependance = Double.parseDouble(token.getValue()
 			.toString());
 		break;
 	    }
@@ -213,7 +213,7 @@ public class Problem {
 		value *= Double.parseDouble(token.getValue().toString());
 	    } else if (token.getId() == Token.VARIAVEL) {
 		for (int k = 0; k < getVariables().size(); k++) {
-		    if (getVariables().get(k).variable.equals(token)) {
+		    if (getVariables().get(k).getToken().equals(token)) {
 			ta.coefficients.put(getVariables().get(k), value);
 			break;
 		    }
@@ -262,27 +262,31 @@ public class Problem {
 	    }
 	    if (isCondicaoInicial
 		    || restricao.signOfConstraint != SignOfConstraint.MORE_OR_EQUAL
-		    || restricao.valueindependance != 0)
+		    || restricao.valueIndependance != 0)
 		continue;
 
-	    restricao.restricaoNaoPraticavelParaCalculo = true;
+	    restricao.constraintIsImpossible = true;
 	}
     }
 
-    private boolean verificarSeTodasVariaveisTemRestricoesIniciais() {
-	HashMap<Variable, Boolean> variavies = new HashMap<Variable, Boolean>();
-	for (Variable variavel : getVariables()) {
-	    variavies.put(variavel, false);
+    private boolean isEnoughtConstraints() {
+
+	HashMap<Variable, Boolean> variables = new HashMap<Variable, Boolean>();
+
+	for (Variable var : getVariables()) {
+	    variables.put(var, false);
 	}
-	for (Constraint restricao : getConstraints())
-	    if (restricao.restricaoNaoPraticavelParaCalculo)
-		for (Variable variavel : restricao.variables)
-		    if (restricao.coefficients.get(variavel) == 1) {
-			variavies.put(variavel, true);
+
+	for (Constraint constraint : getConstraints())
+	    if (constraint.constraintIsImpossible)
+		for (Variable variavel : constraint.variables)
+		    if (constraint.coefficients.get(variavel) == 1) {
+			variables.put(variavel, true);
 			break;
 		    }
-	for (Variable variavel : getVariables())
-	    if (variavies.get(variavel) == false)
+
+	for (Variable var : getVariables())
+	    if (variables.get(var) == false)
 		return false;
 
 	return true;
@@ -291,13 +295,13 @@ public class Problem {
     private void inserirVariaveisDeFolgaEAuxiliares() {
 	int quantidadeDeVariaveisDeFolga = 0;
 	int quantidadeDeVariaveisAuxiliares = 0;
-	for (Constraint restricao : getConstraints()) {
-	    if (!restricao.restricaoNaoPraticavelParaCalculo
-		    && restricao.signOfConstraint != SignOfConstraint.EQUAL) {
+	for (Constraint constraint : getConstraints()) {
+	    if (!constraint.constraintIsImpossible
+		    && constraint.signOfConstraint != SignOfConstraint.EQUAL) {
 		quantidadeDeVariaveisDeFolga++;
 	    }
-	    if (!restricao.restricaoNaoPraticavelParaCalculo
-		    && restricao.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL) {
+	    if (!constraint.constraintIsImpossible
+		    && constraint.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL) {
 		quantidadeDeVariaveisAuxiliares++;
 	    }
 	}
@@ -317,9 +321,9 @@ public class Problem {
 
 	inserirNovasVariaveisAuxiliares(novasVariaveisAuxiliares);
 
-	for (Constraint restricao : getConstraints()) {
-	    if (!restricao.restricaoNaoPraticavelParaCalculo)
-		restricao.signOfConstraint = SignOfConstraint.EQUAL;
+	for (Constraint constraint : getConstraints()) {
+	    if (!constraint.constraintIsImpossible)
+		constraint.signOfConstraint = SignOfConstraint.EQUAL;
 	}
     }
 
@@ -355,11 +359,11 @@ public class Problem {
 	for (Constraint restricao : getConstraints()) {
 	    for (int i = 0; i < novasVariaveisAuxiliares.size(); i++) {
 		if (variavelAtual == i && !jaAdicionadoNessaRestricao) {
-		    if (!restricao.restricaoNaoPraticavelParaCalculo
+		    if (!restricao.constraintIsImpossible
 			    && restricao.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL) {
 			restricao.coefficients.put(novasVariaveisAuxiliares
 				.get(i), 1.0);
-			restricao.variavelBasica = novasVariaveisAuxiliares
+			restricao.basicVariable = novasVariaveisAuxiliares
 				.get(i);
 			variavelAtual++;
 			jaAdicionadoNessaRestricao = true;
@@ -378,24 +382,24 @@ public class Problem {
 	    ArrayList<Variable> novasVariaveisDeFolga) {
 	int variavelAtual = 0;
 	boolean jaAdicionadoNessaRestricao = false;
-	for (Constraint restricao : getConstraints()) {
+	for (Constraint constraint : getConstraints()) {
 	    for (int i = 0; i < novasVariaveisDeFolga.size(); i++) {
 		if (variavelAtual == i && !jaAdicionadoNessaRestricao) {
-		    if (!restricao.restricaoNaoPraticavelParaCalculo
-			    && restricao.signOfConstraint != SignOfConstraint.EQUAL) {
-			restricao.coefficients
+		    if (!constraint.constraintIsImpossible
+			    && constraint.signOfConstraint != SignOfConstraint.EQUAL) {
+			constraint.coefficients
 				.put(
 					novasVariaveisDeFolga.get(i),
-					restricao.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL ? -1.0
+					constraint.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL ? -1.0
 						: 1.0);
-			restricao.variavelBasica = novasVariaveisDeFolga.get(i);
+			constraint.basicVariable = novasVariaveisDeFolga.get(i);
 			variavelAtual++;
 			jaAdicionadoNessaRestricao = true;
 		    } else
-			restricao.coefficients.put(
-				novasVariaveisDeFolga.get(i), 0.0);
+			constraint.coefficients.put(novasVariaveisDeFolga
+				.get(i), 0.0);
 		} else
-		    restricao.coefficients.put(novasVariaveisDeFolga.get(i),
+		    constraint.coefficients.put(novasVariaveisDeFolga.get(i),
 			    0.0);
 
 	    }
@@ -417,8 +421,8 @@ public class Problem {
 	string.append("\nObjetive            : " + type);
 	string.append("\nConstrains          :\n");
 
-	for (Constraint restricao : constraints) {
-	    string.append(restricao);
+	for (Constraint constraint : constraints) {
+	    string.append(constraint);
 	    string.append("\n");
 	}
 	string.append("-- End of Problem  --");

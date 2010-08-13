@@ -2,7 +2,6 @@ package simplex.parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -122,11 +121,7 @@ public class Parser {
 		}
 	    }
 	}
-	List<Token> temp = new ArrayList<Token>(tokens.size());
 
-	for (Token t : tokens) {
-	    temp.add(t);
-	}
-	return temp;
+	return tokens;
     }
 }
