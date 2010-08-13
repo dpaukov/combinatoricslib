@@ -1,7 +1,7 @@
 /**
  * 
  */
-package combinatorics.permutations;
+package org.paukov.combinatorics.permutations;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.permutations.PermutationGenerator;
 
-import combinatorics.CombinatoricsVector;
-import combinatorics.Generator;
-import combinatorics.Iterator;
 
 /**
  * @author Dmytro Paukov

@@ -1,14 +1,15 @@
-package simplex;
+package org.paukov.simplex;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.paukov.simplex.Simplex;
+import org.paukov.simplex.exception.SimplexException;
+import org.paukov.simplex.parser.Parser;
+import org.paukov.simplex.parser.Token;
+import org.paukov.simplex.problem.Solution;
 
-import simplex.exception.SimplexException;
-import simplex.parser.Parser;
-import simplex.parser.Token;
-import simplex.problem.Solution;
 
 import static org.junit.Assert.assertEquals;
 
