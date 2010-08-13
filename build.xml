@@ -119,7 +119,9 @@
 
 	<target name="runemma" depends="clean, emma, emmacompile" description="runs the emma coverage">
 		<emma enabled="${emma.enabled}">
-			<instr instrpathref="run.classpath" destdir="${out.instr.dir}" metadatafile="${coverage.dir}/metadata.emma" filter="-*Test" merge="true" />
+			<instr instrpathref="run.classpath" destdir="${out.instr.dir}" metadatafile="${coverage.dir}/metadata.emma" merge="true">
+				<filter includes="org.paukov.*" excludes="*Test*" />
+			</instr>
 		</emma>
 
 		<junit fork="yes" haltonfailure="yes">
