@@ -1,17 +1,18 @@
 /**
  * 
  */
-package combinatorics.composition;
+package org.paukov.combinatorics.composition;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.junit.Test;
+import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.composition.CompositionGenerator;
 
-import combinatorics.CombinatoricsVector;
-import combinatorics.Generator;
-import combinatorics.Iterator;
 
 /**
  * @author Dmytro.Paukov

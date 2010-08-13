@@ -1,16 +1,18 @@
 /**
  * 
  */
-package combinatorics.partition;
+package org.paukov.combinatorics.partition;
 
 import java.util.List;
 
 import org.junit.Test;
+import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.partition.PartitionGenerator;
+
 import static org.junit.Assert.*;
 
-import combinatorics.CombinatoricsVector;
-import combinatorics.Generator;
-import combinatorics.Iterator;
 
 /**
  * @author Dmytro Paukov
