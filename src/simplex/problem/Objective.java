@@ -10,12 +10,12 @@ public class Objective extends Equation {
     public Objective(List<Variable> variaveis,
 	    HashMap<Variable, Double> coeficientes) {
 	super(coeficientes, variaveis);
-	super.valueindependance = 0.0;
+	super.valueIndependance = 0.0;
     }
 
     public Objective(List<Variable> variaveis) {
 	super(new HashMap<Variable, Double>(), variaveis);
-	super.valueindependance = 0.0;
+	super.valueIndependance = 0.0;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Objective extends Equation {
 		    + format.format(Math.abs(coefficients.get(variavel))));
 	    string.append(variavel.toString());
 	}
-	string.append(" = " + format.format(valueindependance));
+	string.append(" = " + format.format(valueIndependance));
 	return string.toString();
     }
 
@@ -42,7 +42,7 @@ public class Objective extends Equation {
 	    restricao.coefficients.put(variavel, coefficients.get(variavel));
 	}
 
-	restricao.valueindependance = valueindependance;
+	restricao.valueIndependance = valueIndependance;
 
 	return restricao;
 

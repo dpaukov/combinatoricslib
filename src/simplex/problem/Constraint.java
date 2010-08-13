@@ -11,18 +11,62 @@ public class Constraint extends Equation {
 	EQUAL, MORE_OR_EQUAL, LESS_OR_EQUAL
     }
 
-    public boolean restricaoNaoPraticavelParaCalculo;
-    public SignOfConstraint signOfConstraint;
-    public Variable variavelBasica;
+    protected boolean constraintIsImpossible = false;
+    protected SignOfConstraint signOfConstraint;
+    protected Variable basicVariable;
 
-    public Constraint(List<Variable> variavies) {
-	super(new HashMap<Variable, Double>(), variavies);
-	restricaoNaoPraticavelParaCalculo = false;
+    public Constraint(List<Variable> variables) {
+	super(new HashMap<Variable, Double>(), variables);
+    }
+
+    /**
+     * @return the constraintIsImpossible
+     */
+    public boolean isConstraintImpossible() {
+	return constraintIsImpossible;
+    }
+
+    /**
+     * @param constraintIsImpossible
+     *            the constraintIsImpossible to set
+     */
+    public void setConstraintIsImpossible(boolean constraintIsImpossible) {
+	this.constraintIsImpossible = constraintIsImpossible;
+    }
+
+    /**
+     * @return the signOfConstraint
+     */
+    public SignOfConstraint getSignOfConstraint() {
+	return signOfConstraint;
+    }
+
+    /**
+     * @param signOfConstraint
+     *            the signOfConstraint to set
+     */
+    public void setSignOfConstraint(SignOfConstraint signOfConstraint) {
+	this.signOfConstraint = signOfConstraint;
+    }
+
+    /**
+     * @return the basicVariable
+     */
+    public Variable getBasicVariable() {
+	return basicVariable;
+    }
+
+    /**
+     * @param basicVariable
+     *            the basicVariable to set
+     */
+    public void setBasicVariable(Variable basicVariable) {
+	this.basicVariable = basicVariable;
     }
 
     @Override
     public String toString() {
-	if (restricaoNaoPraticavelParaCalculo)
+	if (constraintIsImpossible)
 	    return "";
 	StringBuffer string = new StringBuffer();
 	DecimalFormat format = new DecimalFormat("#.#####");
@@ -46,25 +90,25 @@ public class Constraint extends Equation {
 	    string.append(" <= ");
 	    break;
 	}
-	string.append(((valueindependance) < 0 ? " -" : " +")
-		+ format.format(Math.abs(valueindependance)));
-	string.append(" B:" + variavelBasica);
-	string
-		.append(restricaoNaoPraticavelParaCalculo ? " (Restrição Não Praticável)"
-			: "");
+	string.append(((valueIndependance) < 0 ? " -" : " +")
+		+ format.format(Math.abs(valueIndependance)));
+	string.append(" B:" + basicVariable);
+	string.append(constraintIsImpossible ? " (Constraint is impossible)"
+		: "");
 	return string.toString().trim();
     }
 
     public Constraint clone() {
+
 	Constraint restricao = new Constraint(variables);
 
-	for (Variable variavel : variables) {
-	    restricao.coefficients.put(variavel, coefficients.get(variavel));
+	for (Variable var : variables) {
+	    restricao.coefficients.put(var, coefficients.get(var));
 	}
 
-	restricao.restricaoNaoPraticavelParaCalculo = restricaoNaoPraticavelParaCalculo;
+	restricao.constraintIsImpossible = constraintIsImpossible;
 	restricao.signOfConstraint = signOfConstraint;
-	restricao.valueindependance = valueindependance;
+	restricao.valueIndependance = valueIndependance;
 
 	return restricao;
 
