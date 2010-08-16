@@ -1,0 +1,15 @@
+org.paukov.combinatorics
+org.paukov.combinatorics.combination.simple
+org.paukov.combinatorics.composition
+org.paukov.combinatorics.partition
+org.paukov.combinatorics.permutations
+org.paukov.combinatorics.subsets
+org.paukov.combinatorics.util
+org.paukov.diagram.geom
+org.paukov.diagram.render
+org.paukov.diagram.test
+org.paukov.simplex
+org.paukov.simplex.exception
+org.paukov.simplex.parser
+org.paukov.simplex.problem
+org.paukov.tool
