@@ -33,7 +33,7 @@ public class SimplexTest {
 	} catch (SimplexException e) {
 	    e.printStackTrace();
 	}
-	Solution solution = simplexSolver.resolverSimplex();
+	Solution solution = simplexSolver.resolve();
 
 	System.out.print(solution);
     }

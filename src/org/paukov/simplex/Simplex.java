@@ -11,131 +11,143 @@ import org.paukov.simplex.problem.Solution;
 import org.paukov.simplex.problem.Variable;
 import org.paukov.simplex.problem.Problem.Type;
 
-
 public class Simplex {
 
-    public final Problem problemSimplex;
-    public final List<Token> tokens;
+    protected final Problem problem;
+    protected final List<Token> tokens;
 
     public Simplex(List<Token> tokens) throws SimplexException {
 	this.tokens = tokens;
-	problemSimplex = new Problem(tokens);
+	problem = new Problem(tokens);
     }
 
-    public Solution resolverSimplex() {
-	if (problemSimplex.getType() == Type.MAX)
-	    problemSimplex.getObjective().mult(-1.0);
+    public Solution resolve() {
+	
+	if (problem.getType() == Type.MAX)
+	    problem.getObjective().mult(-1.0);
 
-	int iteracao = 0;
+	int iteration = 0;
 	while (!isSolutionOptimal()) {
-	    System.out.printf("Iteration %d\n", iteracao);
-	    System.out.println(problemSimplex.getObjective());
-	    for (Constraint constraint : problemSimplex.getConstraints())
+
+	    log("Iteration " + iteration);
+	    log(problem.getObjective().toString());
+
+	    for (Constraint constraint : problem.getConstraints())
 		if (!constraint.isConstraintImpossible())
-		    System.out.println(constraint);
+		    log(constraint.toString());
 
-	    calcularNovaEntrada();
-	    System.out.println("...:::...:::...:::...");
-	    iteracao++;
+	    calculateNewEntry();
+
+	    log("---------------------------");
+	    iteration++;
 	}
-	System.out.printf("Iteration %d\n", iteracao);
-	System.out.println(problemSimplex.getObjective());
-	for (Constraint constraint : problemSimplex.getConstraints())
+
+	log("Iteration " + iteration);
+	log(problem.getObjective().toString());
+
+	for (Constraint constraint : problem.getConstraints())
 	    if (!constraint.isConstraintImpossible())
-		System.out.println(constraint);
-	System.out.println("...:::...:::...:::...");
+		log(constraint.toString());
 
-	Solution solutionSimplex = new Solution(problemSimplex, problemSimplex.getObjective());
-	for (Variable variable : problemSimplex.getVariables()) {
-	    solutionSimplex.putResults(variable, 0.0);
+	log("---------------------------");
+
+	Solution solution = new Solution(problem, problem.getObjective());
+	for (Variable variable : problem.getVariables()) {
+	    solution.putResults(variable, 0.0);
 	}
-	for (Constraint constraint : problemSimplex.getConstraints()) {
-	    solutionSimplex.putResults(constraint.getBasicVariable(),
-		    constraint.getValueIndependance());
+	for (Constraint constraint : problem.getConstraints()) {
+	    solution.putResults(constraint.getBasicVariable(), constraint
+		    .getValueIndependance());
 	}
-	return solutionSimplex;
+	return solution;
     }
 
-    private void calcularNovaEntrada() {
-	Variable colunaPivo = getColunaPivo();
-	Constraint linhaPivo = (Constraint) getLinhaPivo(colunaPivo);
+    private void calculateNewEntry() {
+	Variable columnPivo = getColumnPivo();
+	Constraint linePivo = (Constraint) getLinePivo(columnPivo);
 
-	Double numeroPivo = linhaPivo.getCoefficients().get(colunaPivo);
-	System.out.println("Linha Pivo: " + linhaPivo);
-	linhaPivo.div(numeroPivo);
-	linhaPivo.setBasicVariable(colunaPivo);
-	Constraint linhaPivoClone = linhaPivo.clone();
+	Double numberPivo = linePivo.getCoefficients().get(columnPivo);
 
-	linhaPivoClone.mult(problemSimplex.getObjective().getCoefficients()
-		.get(colunaPivo));
-	problemSimplex.getObjective().subtract(linhaPivoClone);
-	linhaPivoClone = linhaPivo.clone();
+	log("Line Pivo: " + linePivo);
 
-	for (Constraint constraint : problemSimplex.getConstraints()) {
-	    if (!constraint.isConstraintImpossible() && constraint != linhaPivo) {
-		linhaPivoClone.mult(constraint.getCoefficients()
-			.get(colunaPivo));
-		constraint.subtract(linhaPivoClone);
-		linhaPivoClone = linhaPivo.clone();
+	linePivo.div(numberPivo);
+	linePivo.setBasicVariable(columnPivo);
+	Constraint linePivoClone = linePivo.clone();
+
+	linePivoClone.mult(problem.getObjective().getCoefficients().get(
+		columnPivo));
+	problem.getObjective().subtract(linePivoClone);
+	linePivoClone = linePivo.clone();
+
+	for (Constraint constraint : problem.getConstraints()) {
+	    if (!constraint.isConstraintImpossible() && constraint != linePivo) {
+		linePivoClone.mult(constraint.getCoefficients()
+			.get(columnPivo));
+		constraint.subtract(linePivoClone);
+		linePivoClone = linePivo.clone();
 	    }
 	}
     }
 
     private boolean isSolutionOptimal() {
 
-	for (Variable variable : problemSimplex.getVariables())
-	    if (getCoeficienteEmObjetivo(variable) < 0.0)
+	for (Variable variable : problem.getVariables())
+	    if (getCoefficientOfObjetive(variable) < 0.0)
 		return false;
 
 	return true;
 
     }
 
-    private Variable getColunaPivo() {
+    private Variable getColumnPivo() {
 
-	Variable colunaPivo = problemSimplex.getVariables().get(0);
+	Variable colunaPivo = problem.getVariables().get(0);
 
 	boolean allPositives = true;
-	for (Variable variables : problemSimplex.getVariables()) {
-	    if (getCoeficienteEmObjetivo(variables) < getCoeficienteEmObjetivo(colunaPivo))
+	for (Variable variables : problem.getVariables()) {
+	    if (getCoefficientOfObjetive(variables) < getCoefficientOfObjetive(colunaPivo))
 		colunaPivo = variables;
-	    if (getCoeficienteEmObjetivo(variables) < 0)
+	    if (getCoefficientOfObjetive(variables) < 0)
 		allPositives = false;
 	}
 	return allPositives ? null : colunaPivo;
     }
 
-    private Double getCoeficienteEmObjetivo(Variable variable) {
-	return problemSimplex.getObjective().getCoefficients().get(variable);
+    private Double getCoefficientOfObjetive(Variable variable) {
+	return problem.getObjective().getCoefficients().get(variable);
     }
 
-    private Equation getLinhaPivo(Variable colunaPivo) {
+    private Equation getLinePivo(Variable column) {
 
-	Equation linhaPivo = problemSimplex.getConstraints().get(0);
+	Equation linePivo = problem.getConstraints().get(0);
 
-	double minimo = Double.POSITIVE_INFINITY;
-	for (int i = 0; i < problemSimplex.getConstraints().size(); i++) {
-	    if (getCoeficienteDaRestricao(colunaPivo, i) > 0
-		    && (!problemSimplex.getConstraints().get(i)
+	double min = Double.POSITIVE_INFINITY;
+	for (int i = 0; i < problem.getConstraints().size(); i++) {
+	    if (getCoefficientOfConstraint(column, i) > 0
+		    && (!problem.getConstraints().get(i)
 			    .isConstraintImpossible())) {
-		double possivelMinimo = (problemSimplex.getConstraints().get(i)
+		double possiveMin = (problem.getConstraints().get(i)
 			.getValueIndependance())
-			/ getCoeficienteDaRestricao(colunaPivo, i);
-		if (minimo > possivelMinimo) {
-		    minimo = possivelMinimo;
-		    linhaPivo = problemSimplex.getConstraints().get(i);
+			/ getCoefficientOfConstraint(column, i);
+		if (min > possiveMin) {
+		    min = possiveMin;
+		    linePivo = problem.getConstraints().get(i);
 		}
 	    }
 	}
-	return linhaPivo;
+	return linePivo;
     }
 
     // +1 +0 +1 +0 +0 = +3
     // +0 +1 +0 +1 +0 = +4
     // +1 +2 +0 +0 +1 = +9
-    private Double getCoeficienteDaRestricao(Variable colunaPivo, int i) {
-	return problemSimplex.getConstraints().get(i).getCoefficients().get(
-		colunaPivo);
+    private Double getCoefficientOfConstraint(Variable column, int index) {
+	return problem.getConstraints().get(index).getCoefficients()
+		.get(column);
+    }
+
+    public static void log(String string) {
+	System.out.println(string);
     }
 
 }
