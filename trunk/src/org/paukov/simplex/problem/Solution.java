@@ -46,13 +46,13 @@ public class Solution {
 	string.append("Optimal objective function value = "
 		+ objectiveFunction.valueIndependance);
 	string.append("\nOptimal variable values:\n");
-	for (Variable variavel : problem.getVariablesOriginals()) {
-	    string.append(variavel.toString() + " = " + results.get(variavel)
+	for (Variable var : problem.getVariablesOriginals()) {
+	    string.append(var.toString() + " = " + results.get(var)
 		    + "\n");
 	}
 	string.append("VARIAVEIS DE FOLGA OU EXCESSO\n");
-	for (Variable variavel : problem.getVariablesFolga()) {
-	    string.append(variavel.toString() + " = " + results.get(variavel)
+	for (Variable var : problem.getVariablesFolga()) {
+	    string.append(var.toString() + " = " + results.get(var)
 		    + "\n");
 	}
 	string.append("End");

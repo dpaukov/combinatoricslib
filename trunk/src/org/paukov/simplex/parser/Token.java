@@ -2,8 +2,8 @@ package org.paukov.simplex.parser;
 
 public class Token {
 
-    public static final int INICIO_LINHA = -1, VARIAVEL = 0, SUBJECT_TO = 1;
-    public static final int MAXIMO = 2, MINIMO = 3;
+    public static final int INICIO_LINHA = -1, VARIABLE = 0, SUBJECT_TO = 1;
+    public static final int MAX = 2, MIN = 3;
     public static final int END = 4;
     public static final int NUMERO = 5, SINAL = 6;
     public static final int MAIOR_IGUAL = 7, MENOR_IGUAL = 8, IGUAL = 9;

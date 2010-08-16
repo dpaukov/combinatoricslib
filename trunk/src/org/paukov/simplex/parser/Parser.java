@@ -87,7 +87,7 @@ public class Parser {
 			    && (i < chars.length));
 		    if (buffer.toString().toUpperCase().trim()
 			    .equals("SUBJECT")) {
-			tokens.add(new Token(Token.VARIAVEL, "SUBJECT",
+			tokens.add(new Token(Token.VARIABLE, "SUBJECT",
 				"SUBJECT"));
 		    } else if (buffer.toString().toUpperCase().trim().equals(
 			    "TO")) {
@@ -98,23 +98,23 @@ public class Parser {
 					"SUBJECT TO"));
 			    } else {
 				tokens
-					.add(new Token(Token.VARIAVEL, "TO",
+					.add(new Token(Token.VARIABLE, "TO",
 						"TO"));
 			    }
 			} else {
-			    tokens.add(new Token(Token.VARIAVEL, "TO", "TO"));
+			    tokens.add(new Token(Token.VARIABLE, "TO", "TO"));
 			}
 		    } else if (buffer.toString().toUpperCase().trim().equals(
 			    "MAX")) {
-			tokens.add(new Token(Token.MAXIMO, null, "MAX"));
+			tokens.add(new Token(Token.MAX, null, "MAX"));
 		    } else if (buffer.toString().toUpperCase().trim().equals(
 			    "MIN")) {
-			tokens.add(new Token(Token.MINIMO, null, "MIN"));
+			tokens.add(new Token(Token.MIN, null, "MIN"));
 		    } else if (buffer.toString().toUpperCase().trim().equals(
 			    "END")) {
 			tokens.add(new Token(Token.END, null, "END"));
 		    } else {
-			tokens.add(new Token(Token.VARIAVEL, buffer.toString()
+			tokens.add(new Token(Token.VARIABLE, buffer.toString()
 				.toUpperCase().trim(), buffer.toString()
 				.toUpperCase().trim()));
 		    }

@@ -8,7 +8,6 @@ import org.paukov.simplex.exception.SimplexException;
 import org.paukov.simplex.parser.Token;
 import org.paukov.simplex.problem.Constraint.SignOfConstraint;
 
-
 public class Problem {
 
     public enum Type {
@@ -30,16 +29,12 @@ public class Problem {
 	interpretVariables(tokens);
 	interpretObjectiveFunction(tokens);
 	interpretConstrains(tokens);
-	tratarCondicoesDasVariaveis();
+	processConditions();
 
-	if (!isEnoughtConstraints())
-	    throw new SimplexException("Error: Not enought constraints");
+	if (!isEnougthConstraints())
+	    throw new SimplexException("Error: Not enought constraints", this);
 
-	// System.out.println(problem.toString());
-
-	inserirVariaveisDeFolgaEAuxiliares();
-
-	// System.out.println(problem.toString());
+	insertAuxiliareVariables();
     }
 
     /**
@@ -109,12 +104,12 @@ public class Problem {
     private void interpretObjectiveFunction(List<Token> temp) {
 	for (int i = 0; i < temp.size(); i++) {
 	    Token token = temp.get(i);
-	    if (token.getId() == Token.MAXIMO || token.getId() == Token.MINIMO) {
+	    if (token.getId() == Token.MAX || token.getId() == Token.MIN) {
 		switch (token.getId()) {
-		case Token.MAXIMO:
+		case Token.MAX:
 		    setType(Type.MAX);
 		    break;
-		case Token.MINIMO:
+		case Token.MIN:
 		    setType(Type.MIN);
 		    break;
 		default:
@@ -133,7 +128,7 @@ public class Problem {
 		for (int k = 0; k < getVariables().size(); k++) {
 		    getObjective().coefficients.put(getVariables().get(k), 0.0);
 		}
-		tratarObjetivo(tokensObjetivo, getObjective());
+		processObjective(tokensObjetivo, getObjective());
 		break;
 	    }
 	}
@@ -164,14 +159,14 @@ public class Problem {
 	    for (int k = 0; k < getVariables().size(); k++) {
 		ta.coefficients.put(getVariables().get(k), new Double(0));
 	    }
-	    tratarRestricao(t, ta, 0, t.size());
+	    processConstraints(t, ta, 0, t.size());
 	    getConstraints().add(ta);
 	}
     }
 
     private void interpretVariables(List<Token> arrayList) {
 	for (Token token : arrayList)
-	    if (token.getId() == Token.VARIAVEL)
+	    if (token.getId() == Token.VARIABLE)
 		if (!containsVariavel(token)) {
 		    Variable novaVariavel = new Variable(token);
 		    getVariables().add(novaVariavel);
@@ -179,14 +174,14 @@ public class Problem {
 		}
     }
 
-    private void tratarObjetivo(ArrayList<Token> t, Objective ta) {
+    private void processObjective(ArrayList<Token> t, Objective ta) {
 	double value = 1;
 	for (Token token : t) {
 	    if (token.getId() == Token.SINAL) {
 		value = Double.parseDouble(token.getValue().toString());
 	    } else if (token.getId() == Token.NUMERO) {
 		value *= Double.parseDouble(token.getValue().toString());
-	    } else if (token.getId() == Token.VARIAVEL) {
+	    } else if (token.getId() == Token.VARIABLE) {
 		for (int k = 0; k < getVariables().size(); k++) {
 		    if (getVariables().get(k).getToken().equals(token)) {
 			ta.coefficients.put(getVariables().get(k), value);
@@ -198,12 +193,12 @@ public class Problem {
 	}
     }
 
-    private void tratarRestricao(ArrayList<Token> t, Constraint ta, int i,
+    private void processConstraints(ArrayList<Token> t, Constraint ta, int i,
 	    int size) {
 	double value = 1;
-	boolean valorIndependenteEncontrado = false;
+	boolean independentFoundValue = false;
 	for (Token token : t) {
-	    if (valorIndependenteEncontrado) {
+	    if (independentFoundValue) {
 		ta.valueIndependance = Double.parseDouble(token.getValue()
 			.toString());
 		break;
@@ -212,7 +207,7 @@ public class Problem {
 		value = Double.parseDouble(token.getValue().toString());
 	    } else if (token.getId() == Token.NUMERO) {
 		value *= Double.parseDouble(token.getValue().toString());
-	    } else if (token.getId() == Token.VARIAVEL) {
+	    } else if (token.getId() == Token.VARIABLE) {
 		for (int k = 0; k < getVariables().size(); k++) {
 		    if (getVariables().get(k).getToken().equals(token)) {
 			ta.coefficients.put(getVariables().get(k), value);
@@ -234,43 +229,42 @@ public class Problem {
 		    ta.signOfConstraint = SignOfConstraint.LESS_OR_EQUAL;
 		    break;
 		}
-		valorIndependenteEncontrado = true;
+		independentFoundValue = true;
 	    }
 	}
     }
 
-    private void tratarCondicoesDasVariaveis() {
-	ArrayList<Constraint> restricoes = getConstraints();
+    private void processConditions() {
 
-	for (Constraint restricao : restricoes) {
-	    boolean isCondicaoInicial = false;
-	    boolean encontradoTermo1 = false;
-	    for (Variable variavel : restricao.variables) {
-		double coeficienteAtual = restricao.coefficients.get(variavel);
-		if (!encontradoTermo1) {
-		    if (coeficienteAtual == 1) {
-			encontradoTermo1 = true;
-		    } else if (coeficienteAtual == 0) {
+	for (Constraint constraint : getConstraints()) {
+	    boolean isMainCondition = false;
+	    boolean found = false;
+	    for (Variable var : constraint.variables) {
+		double currentCcoefficient = constraint.coefficients.get(var);
+		if (!found) {
+		    if (currentCcoefficient == 1) {
+			found = true;
+		    } else if (currentCcoefficient == 0) {
 			continue;
 		    } else {
-			isCondicaoInicial = true;
+			isMainCondition = true;
 			break;
 		    }
-		} else if (coeficienteAtual != 0) {
-		    isCondicaoInicial = true;
+		} else if (currentCcoefficient != 0) {
+		    isMainCondition = true;
 		    break;
 		}
 	    }
-	    if (isCondicaoInicial
-		    || restricao.signOfConstraint != SignOfConstraint.MORE_OR_EQUAL
-		    || restricao.valueIndependance != 0)
+	    if (isMainCondition
+		    || constraint.signOfConstraint != SignOfConstraint.MORE_OR_EQUAL
+		    || constraint.valueIndependance != 0)
 		continue;
 
-	    restricao.constraintIsImpossible = true;
+	    constraint.constraintIsImpossible = true;
 	}
     }
 
-    private boolean isEnoughtConstraints() {
+    private boolean isEnougthConstraints() {
 
 	HashMap<Variable, Boolean> variables = new HashMap<Variable, Boolean>();
 
@@ -280,9 +274,9 @@ public class Problem {
 
 	for (Constraint constraint : getConstraints())
 	    if (constraint.constraintIsImpossible)
-		for (Variable variavel : constraint.variables)
-		    if (constraint.coefficients.get(variavel) == 1) {
-			variables.put(variavel, true);
+		for (Variable var : constraint.variables)
+		    if (constraint.coefficients.get(var) == 1) {
+			variables.put(var, true);
 			break;
 		    }
 
@@ -293,34 +287,28 @@ public class Problem {
 	return true;
     }
 
-    private void inserirVariaveisDeFolgaEAuxiliares() {
-	int quantidadeDeVariaveisDeFolga = 0;
-	int quantidadeDeVariaveisAuxiliares = 0;
+    private void insertAuxiliareVariables() {
+	
+	int countOfSlackVariables = 0;
+	int countOfAuxiliaryVariables = 0;
 	for (Constraint constraint : getConstraints()) {
 	    if (!constraint.constraintIsImpossible
 		    && constraint.signOfConstraint != SignOfConstraint.EQUAL) {
-		quantidadeDeVariaveisDeFolga++;
+		countOfSlackVariables++;
 	    }
 	    if (!constraint.constraintIsImpossible
 		    && constraint.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL) {
-		quantidadeDeVariaveisAuxiliares++;
+		countOfAuxiliaryVariables++;
 	    }
 	}
 
-	ArrayList<Variable> novasVariaveisDeFolga = new ArrayList<Variable>(
-		quantidadeDeVariaveisDeFolga);
-	ArrayList<Variable> novasVariaveisAuxiliares = new ArrayList<Variable>(
-		quantidadeDeVariaveisAuxiliares);
+	List<Variable> newSlackVariables = createNewSlackVariables(countOfSlackVariables);
 
-	criarNovasVariaveisDeFolga(quantidadeDeVariaveisDeFolga,
-		novasVariaveisDeFolga);
+	insertNewSlackVariables(newSlackVariables);
 
-	inserirNovasVariaveisDeFolga(novasVariaveisDeFolga);
+	List<Variable> newAuxiliaryVariables = createNewAuxiliaryVariables(countOfAuxiliaryVariables);
 
-	criarNovasVariaveisAuxiliares(quantidadeDeVariaveisAuxiliares,
-		novasVariaveisAuxiliares);
-
-	inserirNovasVariaveisAuxiliares(novasVariaveisAuxiliares);
+	insertNewAuxiliaryVariables(newAuxiliaryVariables);
 
 	for (Constraint constraint : getConstraints()) {
 	    if (!constraint.constraintIsImpossible)
@@ -328,83 +316,84 @@ public class Problem {
 	}
     }
 
-    private void criarNovasVariaveisAuxiliares(
-	    int quantidadeDeVariaveisAuxiliares,
-	    ArrayList<Variable> novasVariaveisAuxiliares) {
-	for (int j = 1; j <= quantidadeDeVariaveisAuxiliares; j++) {
-	    Token token = new Token(Token.VARIAVEL, "A" + j, "A" + j);
-	    Variable variavel = new Variable(token);
-	    novasVariaveisAuxiliares.add(variavel);
-	    getVariables().add(variavel);
-	    getVariablesAuxiliares().add(variavel);
-	    getObjective().coefficients.put(variavel, -Integer.MAX_VALUE * 1.0);
+    private List<Variable> createNewAuxiliaryVariables(
+	    int countNewAuxiliaryVariables) {
+	List<Variable> novasVariaveisAuxiliares = new ArrayList<Variable>(
+		countNewAuxiliaryVariables);
+	for (int j = 1; j <= countNewAuxiliaryVariables; j++) {
+	    Token token = new Token(Token.VARIABLE, "A" + j, "A" + j);
+	    Variable var = new Variable(token);
+	    novasVariaveisAuxiliares.add(var);
+	    getVariables().add(var);
+	    getVariablesAuxiliares().add(var);
+	    getObjective().coefficients.put(var, -Integer.MAX_VALUE * 1.0);
 	}
+	return novasVariaveisAuxiliares;
     }
 
-    private void criarNovasVariaveisDeFolga(int quantidadeDeVariaveisDeFolga,
-	    ArrayList<Variable> novasVariaveisDeFolga) {
-	for (int j = 1; j <= quantidadeDeVariaveisDeFolga; j++) {
-	    Token token = new Token(Token.VARIAVEL, "XF" + j, "XF" + j);
-	    Variable variavel = new Variable(token);
-	    novasVariaveisDeFolga.add(variavel);
-	    getVariables().add(variavel);
-	    getVariablesFolga().add(variavel);
-	    getObjective().coefficients.put(variavel, 0.0);
+    private List<Variable> createNewSlackVariables(int countOfSlackVariables) {
+	ArrayList<Variable> newSlackVariables = new ArrayList<Variable>(
+		countOfSlackVariables);
+	for (int j = 1; j <= countOfSlackVariables; j++) {
+	    Token token = new Token(Token.VARIABLE, "XF" + j, "XF" + j);
+	    Variable var = new Variable(token);
+	    newSlackVariables.add(var);
+	    getVariables().add(var);
+	    getVariablesFolga().add(var);
+	    getObjective().coefficients.put(var, 0.0);
 	}
+	return newSlackVariables;
     }
 
-    private void inserirNovasVariaveisAuxiliares(
-	    ArrayList<Variable> novasVariaveisAuxiliares) {
-	int variavelAtual = 0;
-	boolean jaAdicionadoNessaRestricao = false;
+    private void insertNewAuxiliaryVariables(
+	    List<Variable> newAuxiliaryVariables) {
+	int currentVariable = 0;
+	boolean addedToThatConstraint = false;
 	for (Constraint restricao : getConstraints()) {
-	    for (int i = 0; i < novasVariaveisAuxiliares.size(); i++) {
-		if (variavelAtual == i && !jaAdicionadoNessaRestricao) {
+	    for (int i = 0; i < newAuxiliaryVariables.size(); i++) {
+		if (currentVariable == i && !addedToThatConstraint) {
 		    if (!restricao.constraintIsImpossible
 			    && restricao.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL) {
-			restricao.coefficients.put(novasVariaveisAuxiliares
-				.get(i), 1.0);
-			restricao.basicVariable = novasVariaveisAuxiliares
-				.get(i);
-			variavelAtual++;
-			jaAdicionadoNessaRestricao = true;
+			restricao.coefficients.put(
+				newAuxiliaryVariables.get(i), 1.0);
+			restricao.basicVariable = newAuxiliaryVariables.get(i);
+			currentVariable++;
+			addedToThatConstraint = true;
 		    } else
-			restricao.coefficients.put(novasVariaveisAuxiliares
-				.get(i), 0.0);
+			restricao.coefficients.put(
+				newAuxiliaryVariables.get(i), 0.0);
 		} else
-		    restricao.coefficients.put(novasVariaveisAuxiliares.get(i),
+		    restricao.coefficients.put(newAuxiliaryVariables.get(i),
 			    0.0);
 	    }
-	    jaAdicionadoNessaRestricao = false;
+	    addedToThatConstraint = false;
 	}
     }
 
-    private void inserirNovasVariaveisDeFolga(
-	    ArrayList<Variable> novasVariaveisDeFolga) {
-	int variavelAtual = 0;
-	boolean jaAdicionadoNessaRestricao = false;
+    private void insertNewSlackVariables(List<Variable> newSlackVariables) {
+	int currentVariable = 0;
+	boolean addedToThatConstraint = false;
 	for (Constraint constraint : getConstraints()) {
-	    for (int i = 0; i < novasVariaveisDeFolga.size(); i++) {
-		if (variavelAtual == i && !jaAdicionadoNessaRestricao) {
+	    for (int i = 0; i < newSlackVariables.size(); i++) {
+		if (currentVariable == i && !addedToThatConstraint) {
 		    if (!constraint.constraintIsImpossible
 			    && constraint.signOfConstraint != SignOfConstraint.EQUAL) {
 			constraint.coefficients
 				.put(
-					novasVariaveisDeFolga.get(i),
+					newSlackVariables.get(i),
 					constraint.signOfConstraint != SignOfConstraint.LESS_OR_EQUAL ? -1.0
 						: 1.0);
-			constraint.basicVariable = novasVariaveisDeFolga.get(i);
-			variavelAtual++;
-			jaAdicionadoNessaRestricao = true;
+			constraint.basicVariable = newSlackVariables.get(i);
+			currentVariable++;
+			addedToThatConstraint = true;
 		    } else
-			constraint.coefficients.put(novasVariaveisDeFolga
-				.get(i), 0.0);
+			constraint.coefficients.put(newSlackVariables.get(i),
+				0.0);
 		} else
-		    constraint.coefficients.put(novasVariaveisDeFolga.get(i),
-			    0.0);
+		    constraint.coefficients.put(newSlackVariables.get(i), 0.0);
 
 	    }
-	    jaAdicionadoNessaRestricao = false;
+	    addedToThatConstraint = false;
 	}
     }
 
