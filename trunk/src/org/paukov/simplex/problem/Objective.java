@@ -5,16 +5,30 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * This class represents the objective function
+ *
+ */
 public class Objective extends Equation {
 
-    public Objective(List<Variable> variaveis,
-	    HashMap<Variable, Double> coeficientes) {
-	super(coeficientes, variaveis);
+    
+    /**
+     * Constructor
+     * @param vars Variables
+     * @param coeffs Coefficients
+     */
+    public Objective(List<Variable> vars,
+	    HashMap<Variable, Double> coeffs) {
+	super(coeffs, vars);
 	super.valueIndependance = 0.0;
     }
 
-    public Objective(List<Variable> variaveis) {
-	super(new HashMap<Variable, Double>(), variaveis);
+    /**
+     * Constructor
+     * @param vars Variables
+     */
+    public Objective(List<Variable> vars) {
+	super(new HashMap<Variable, Double>(), vars);
 	super.valueIndependance = 0.0;
     }
 
@@ -25,27 +39,27 @@ public class Objective extends Equation {
 	Iterator<Variable> it = variables.iterator();
 
 	while (it.hasNext()) {
-	    Variable variavel = it.next();
+	    Variable var = it.next();
 
-	    string.append((coefficients.get(variavel) < 0 ? " -" : " +")
-		    + format.format(Math.abs(coefficients.get(variavel))));
-	    string.append(variavel.toString());
+	    string.append((coefficients.get(var) < 0 ? " -" : " +")
+		    + format.format(Math.abs(coefficients.get(var))));
+	    string.append(var.toString());
 	}
 	string.append(" = " + format.format(valueIndependance));
 	return string.toString();
     }
 
+    /**
+     * Creates the clone object
+     */
     public Objective clone() {
-	Objective restricao = new Objective(variables);
 
-	for (Variable variavel : variables) {
-	    restricao.coefficients.put(variavel, coefficients.get(variavel));
-	}
+	Objective obj = new Objective(variables);
+	for (Variable vars : variables) 
+	    obj.coefficients.put(vars, coefficients.get(vars));
 
-	restricao.valueIndependance = valueIndependance;
-
-	return restricao;
-
+	obj.valueIndependance = valueIndependance;
+	return obj;
     }
 
 }

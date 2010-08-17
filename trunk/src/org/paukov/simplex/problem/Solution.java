@@ -2,9 +2,11 @@ package org.paukov.simplex.problem;
 
 import java.util.HashMap;
 
+import org.paukov.simplex.exception.SimplexException;
+
 /**
  * This class represents the solution
- *
+ * 
  */
 public class Solution {
 
@@ -12,12 +14,12 @@ public class Solution {
      * The problem
      */
     protected final Problem problem;
-    
+
     /**
      * The objective function
      */
     protected final Objective objectiveFunction;
-    
+
     /**
      * Results
      */
@@ -25,8 +27,11 @@ public class Solution {
 
     /**
      * Constructor
-     * @param problem Problem object
-     * @param obj Objective function object
+     * 
+     * @param problem
+     *            Problem object
+     * @param obj
+     *            Objective function object
      */
     public Solution(Problem problem, Objective obj) {
 	this.problem = problem;
@@ -58,6 +63,24 @@ public class Solution {
 	return results.put(var, val);
     }
 
+    public Double getResult(Variable var) {
+	return results.get(var);
+    }
+
+    public Double getResult(String varName) {
+	for (Variable var : problem.getVariablesOriginals()) {
+	    if (varName.equals(var.toString()))
+		return results.get(var);
+	}
+
+	throw new IllegalArgumentException("Variable <" + varName
+		+ "> is not found in the problem");
+    }
+
+    public Double getOptimalObjectiveFunctionValue() {
+	return objectiveFunction.valueIndependance;
+    }
+
     @Override
     public String toString() {
 
@@ -67,13 +90,11 @@ public class Solution {
 		+ objectiveFunction.valueIndependance);
 	string.append("\nOptimal variable values:\n");
 	for (Variable var : problem.getVariablesOriginals()) {
-	    string.append(var.toString() + " = " + results.get(var)
-		    + "\n");
+	    string.append(var.toString() + " = " + results.get(var) + "\n");
 	}
-	string.append("VARIAVEIS DE FOLGA OU EXCESSO\n");
+	string.append("Slack variables or expressions\n");
 	for (Variable var : problem.getVariablesFolga()) {
-	    string.append(var.toString() + " = " + results.get(var)
-		    + "\n");
+	    string.append(var.toString() + " = " + results.get(var) + "\n");
 	}
 	string.append("End");
 

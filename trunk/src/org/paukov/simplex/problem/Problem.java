@@ -9,6 +9,10 @@ import org.paukov.simplex.parser.Token;
 import org.paukov.simplex.parser.Token.TokenCode;
 import org.paukov.simplex.problem.Constraint.SignOfConstraint;
 
+/**
+ * This class represents the problem
+ *
+ */
 public class Problem {
 
     public enum Type {
@@ -25,6 +29,11 @@ public class Problem {
     private Objective objective = new Objective(variables);
     private ArrayList<Constraint> constraints = new ArrayList<Constraint>();
 
+    /**
+     * Constructor
+     * @param tokens
+     * @throws SimplexException
+     */
     public Problem(List<Token> tokens) throws SimplexException {
 
 	interpretVariables(tokens);

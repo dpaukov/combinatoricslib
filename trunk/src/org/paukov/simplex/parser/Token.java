@@ -12,13 +12,32 @@ public class Token {
 
     private TokenCode id;
     private Object value;
-    private String token;
+    private String tokenString;
 
-    public Token(TokenCode id, Object value, String token) {
+    /**
+     * Constructor
+     * @param id
+     * @param value
+     * @param tokenString
+     */
+    public Token(TokenCode id, Object value, String tokenString) {
 	super();
 	this.id = id;
 	this.value = value;
-	this.token = token;
+	this.tokenString = tokenString;
+    }
+    
+    /**
+     * Constructor
+     * @param id
+     * @param value
+     * @param tokenString
+     */
+    public Token(Token token) {
+	super();
+	this.id = token.id;
+	this.value = token.value;
+	this.tokenString = token.tokenString;
     }
 
     /**
@@ -52,23 +71,23 @@ public class Token {
     }
 
     /**
-     * @return the token
+     * @return the tokenString
      */
-    public String getToken() {
-	return token;
+    public String getTokenString() {
+	return tokenString;
     }
 
     /**
-     * @param token
-     *            the token to set
+     * @param tokenString
+     *            the tokenString to set
      */
-    public void setToken(String token) {
-	this.token = token;
+    public void setTokenString(String tokenString) {
+	this.tokenString = tokenString;
     }
 
     public String toString() {
-	return "Token id=<" + id + ">, token=<" + token + ">, value=<" + value
-		+ ">";
+	return "Token id=<" + id + ">, tokenString=<" + tokenString
+		+ ">, value=<" + value + ">";
     }
 
     /*
@@ -80,7 +99,8 @@ public class Token {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((token == null) ? 0 : token.hashCode());
+	result = prime * result
+		+ ((tokenString == null) ? 0 : tokenString.hashCode());
 	return result;
     }
 
@@ -98,10 +118,10 @@ public class Token {
 	if (getClass() != obj.getClass())
 	    return false;
 	Token other = (Token) obj;
-	if (token == null) {
-	    if (other.token != null)
+	if (tokenString == null) {
+	    if (other.tokenString != null)
 		return false;
-	} else if (!token.equals(other.token))
+	} else if (!tokenString.equals(other.tokenString))
 	    return false;
 	return true;
     }
