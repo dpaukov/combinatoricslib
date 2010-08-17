@@ -123,7 +123,7 @@ public class Parser {
 		    } else if (buffer.toString().toUpperCase().trim().equals(
 			    "TO")) {
 			if (tokens.size() > 0) {
-			    if ("SUBJECT".equals(tokens.getLast().getToken())) {
+			    if ("SUBJECT".equals(tokens.getLast().getTokenString())) {
 				tokens.removeLast();
 				tokens.add(new Token(TokenCode.SUBJECT_TO,
 					null, "SUBJECT TO"));

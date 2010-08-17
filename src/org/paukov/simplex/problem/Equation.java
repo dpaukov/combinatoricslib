@@ -3,6 +3,10 @@ package org.paukov.simplex.problem;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class represents the equations
+ *
+ */
 public abstract class Equation {
 
     protected final List<Variable> variables;
