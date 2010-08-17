@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * This class represents the constraints
+ * 
+ */
 public class Constraint extends Equation {
 
     public enum SignOfConstraint {
@@ -15,6 +19,12 @@ public class Constraint extends Equation {
     protected SignOfConstraint signOfConstraint;
     protected Variable basicVariable;
 
+    /**
+     * Constructor
+     * 
+     * @param variables
+     *            List of variables
+     */
     public Constraint(List<Variable> variables) {
 	super(new HashMap<Variable, Double>(), variables);
     }

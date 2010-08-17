@@ -1,18 +1,20 @@
 package org.paukov.simplex.parser;
 
+/**
+ * This class represents tokens
+ * 
+ */
 public class Token {
 
-    public static final int INICIO_LINHA = -1, VARIABLE = 0, SUBJECT_TO = 1;
-    public static final int MAX = 2, MIN = 3;
-    public static final int END = 4;
-    public static final int NUMERO = 5, SINAL = 6;
-    public static final int MAIOR_IGUAL = 7, MENOR_IGUAL = 8, IGUAL = 9;
+    public enum TokenCode {
+	INITIAL_LINE, VARIABLE, SUBJECT_TO, MAX, MIN, END, NUMBER, SIGNAL, MORE_EQUAL, LESS_EQUAL, EQUAL
+    }
 
-    private int id;
+    private TokenCode id;
     private Object value;
     private String token;
 
-    public Token(int id, Object value, String token) {
+    public Token(TokenCode id, Object value, String token) {
 	super();
 	this.id = id;
 	this.value = value;
@@ -22,7 +24,7 @@ public class Token {
     /**
      * @return the id
      */
-    public int getId() {
+    public TokenCode getId() {
 	return id;
     }
 
@@ -30,7 +32,7 @@ public class Token {
      * @param id
      *            the id to set
      */
-    public void setId(int id) {
+    public void setId(TokenCode id) {
 	this.id = id;
     }
 

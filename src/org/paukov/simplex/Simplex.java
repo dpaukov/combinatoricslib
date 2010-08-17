@@ -11,16 +11,31 @@ import org.paukov.simplex.problem.Solution;
 import org.paukov.simplex.problem.Variable;
 import org.paukov.simplex.problem.Problem.Type;
 
+/**
+ * This class encapsulates the Simplex method resolver of the Linear problem
+ *
+ */
 public class Simplex {
 
+    /**
+     * Problem to resolve
+     */
     protected final Problem problem;
-    protected final List<Token> tokens;
+    
 
+    /**
+     * Constructor
+     * @param tokens List of tokens, which describe the problem
+     * @throws SimplexException
+     */
     public Simplex(List<Token> tokens) throws SimplexException {
-	this.tokens = tokens;
 	problem = new Problem(tokens);
     }
 
+    /**
+     * Resolves the problem
+     * @return The solution
+     */
     public Solution resolve() {
 	
 	if (problem.getType() == Type.MAX)
@@ -62,33 +77,40 @@ public class Simplex {
 	return solution;
     }
 
+    /**
+     * Calculates the new entry
+     */
     private void calculateNewEntry() {
-	Variable columnPivo = getColumnPivo();
-	Constraint linePivo = (Constraint) getLinePivo(columnPivo);
+	
+	Variable columnPivot = getColumn();
+	Constraint linePivot = (Constraint) getLine(columnPivot);
 
-	Double numberPivo = linePivo.getCoefficients().get(columnPivo);
+	Double numberPivo = linePivot.getCoefficients().get(columnPivot);
 
-	log("Line Pivo: " + linePivo);
+	log("Line Pivot: " + linePivot);
 
-	linePivo.div(numberPivo);
-	linePivo.setBasicVariable(columnPivo);
-	Constraint linePivoClone = linePivo.clone();
+	linePivot.div(numberPivo);
+	linePivot.setBasicVariable(columnPivot);
+	Constraint linePivotClone = linePivot.clone();
 
-	linePivoClone.mult(problem.getObjective().getCoefficients().get(
-		columnPivo));
-	problem.getObjective().subtract(linePivoClone);
-	linePivoClone = linePivo.clone();
+	linePivotClone.mult(problem.getObjective().getCoefficients().get(
+		columnPivot));
+	problem.getObjective().subtract(linePivotClone);
+	linePivotClone = linePivot.clone();
 
 	for (Constraint constraint : problem.getConstraints()) {
-	    if (!constraint.isConstraintImpossible() && constraint != linePivo) {
-		linePivoClone.mult(constraint.getCoefficients()
-			.get(columnPivo));
-		constraint.subtract(linePivoClone);
-		linePivoClone = linePivo.clone();
+	    if (!constraint.isConstraintImpossible() && constraint != linePivot) {
+		linePivotClone.mult(constraint.getCoefficients()
+			.get(columnPivot));
+		constraint.subtract(linePivotClone);
+		linePivotClone = linePivot.clone();
 	    }
 	}
     }
 
+    /**
+     * Returns true if the solution is optimal
+     */
     private boolean isSolutionOptimal() {
 
 	for (Variable variable : problem.getVariables())
@@ -99,27 +121,28 @@ public class Simplex {
 
     }
 
-    private Variable getColumnPivo() {
+    
+    private Variable getColumn() {
 
-	Variable colunaPivo = problem.getVariables().get(0);
+	Variable columnPivot = problem.getVariables().get(0);
 
 	boolean allPositives = true;
-	for (Variable variables : problem.getVariables()) {
-	    if (getCoefficientOfObjetive(variables) < getCoefficientOfObjetive(colunaPivo))
-		colunaPivo = variables;
-	    if (getCoefficientOfObjetive(variables) < 0)
+	for (Variable var : problem.getVariables()) {
+	    if (getCoefficientOfObjetive(var) < getCoefficientOfObjetive(columnPivot))
+		columnPivot = var;
+	    if (getCoefficientOfObjetive(var) < 0)
 		allPositives = false;
 	}
-	return allPositives ? null : colunaPivo;
+	return allPositives ? null : columnPivot;
     }
 
     private Double getCoefficientOfObjetive(Variable variable) {
 	return problem.getObjective().getCoefficients().get(variable);
     }
 
-    private Equation getLinePivo(Variable column) {
+    private Equation getLine(Variable column) {
 
-	Equation linePivo = problem.getConstraints().get(0);
+	Equation line = problem.getConstraints().get(0);
 
 	double min = Double.POSITIVE_INFINITY;
 	for (int i = 0; i < problem.getConstraints().size(); i++) {
@@ -131,11 +154,11 @@ public class Simplex {
 			/ getCoefficientOfConstraint(column, i);
 		if (min > possiveMin) {
 		    min = possiveMin;
-		    linePivo = problem.getConstraints().get(i);
+		    line = problem.getConstraints().get(i);
 		}
 	    }
 	}
-	return linePivo;
+	return line;
     }
 
     // +1 +0 +1 +0 +0 = +3
