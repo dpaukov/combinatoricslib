@@ -2,12 +2,32 @@ package org.paukov.simplex.problem;
 
 import java.util.HashMap;
 
+/**
+ * This class represents the solution
+ *
+ */
 public class Solution {
 
+    /**
+     * The problem
+     */
     protected final Problem problem;
+    
+    /**
+     * The objective function
+     */
     protected final Objective objectiveFunction;
+    
+    /**
+     * Results
+     */
     protected final HashMap<Variable, Double> results = new HashMap<Variable, Double>();
 
+    /**
+     * Constructor
+     * @param problem Problem object
+     * @param obj Objective function object
+     */
     public Solution(Problem problem, Objective obj) {
 	this.problem = problem;
 	this.objectiveFunction = obj;

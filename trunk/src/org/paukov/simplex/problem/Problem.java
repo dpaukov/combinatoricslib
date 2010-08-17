@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.paukov.simplex.exception.SimplexException;
 import org.paukov.simplex.parser.Token;
+import org.paukov.simplex.parser.Token.TokenCode;
 import org.paukov.simplex.problem.Constraint.SignOfConstraint;
 
 public class Problem {
@@ -101,72 +102,70 @@ public class Problem {
 	return false;
     }
 
-    private void interpretObjectiveFunction(List<Token> temp) {
-	for (int i = 0; i < temp.size(); i++) {
-	    Token token = temp.get(i);
-	    if (token.getId() == Token.MAX || token.getId() == Token.MIN) {
-		switch (token.getId()) {
-		case Token.MAX:
-		    setType(Type.MAX);
-		    break;
-		case Token.MIN:
+    private void interpretObjectiveFunction(List<Token> list) {
+
+	for (int index = 0; index < list.size(); index++) {
+
+	    Token token = list.get(index);
+	    if (token.getId() == TokenCode.MAX
+		    || token.getId() == TokenCode.MIN) {
+
+		setType(Type.MAX);
+		if (token.getId() == TokenCode.MIN)
 		    setType(Type.MIN);
-		    break;
-		default:
-		    break;
-		}
-		int j = i;
-		ArrayList<Token> tokensObjetivo = new ArrayList<Token>();
-		for (; j < temp.size(); j++) {
-		    Token token1 = temp.get(j);
-		    if (token1.getId() == Token.INICIO_LINHA) {
+
+		int j = index;
+		ArrayList<Token> tokensOfObjetive = new ArrayList<Token>();
+		for (; j < list.size(); j++) {
+		    Token tokenObj = list.get(j);
+		    if (tokenObj.getId() == TokenCode.INITIAL_LINE) {
 			break;
 		    }
-		    tokensObjetivo.add(token1);
+		    tokensOfObjetive.add(tokenObj);
 		}
 		objective = new Objective(getVariables());
 		for (int k = 0; k < getVariables().size(); k++) {
 		    getObjective().coefficients.put(getVariables().get(k), 0.0);
 		}
-		processObjective(tokensObjetivo, getObjective());
+		processObjective(tokensOfObjetive, getObjective());
 		break;
 	    }
 	}
     }
 
-    private void interpretConstrains(List<Token> temp) {
-	List<ArrayList<Token>> restricoes = new ArrayList<ArrayList<Token>>();
-	for (int i = 0; i < temp.size(); i++) {
-	    Token token = temp.get(i);
-	    if (token.getId() == Token.SUBJECT_TO) {
-		int j = i + 2;
-		ArrayList<Token> restricao = new ArrayList<Token>();
-		for (; j < temp.size(); j++) {
-		    if (temp.get(j).getId() == Token.END) {
+    private void interpretConstrains(List<Token> list) {
+	List<ArrayList<Token>> constraintsLocalList = new ArrayList<ArrayList<Token>>();
+	for (int index = 0; index < list.size(); index++) {
+	    Token token = list.get(index);
+	    if (token.getId() == TokenCode.SUBJECT_TO) {
+		int j = index + 2;
+		ArrayList<Token> constraint = new ArrayList<Token>();
+		for (; j < list.size(); j++) {
+		    if (list.get(j).getId() == TokenCode.END) {
 			break;
-		    } else if (temp.get(j).getId() == Token.INICIO_LINHA) {
-			restricoes.add(restricao);
-			restricao = new ArrayList<Token>();
+		    } else if (list.get(j).getId() == TokenCode.INITIAL_LINE) {
+			constraintsLocalList.add(constraint);
+			constraint = new ArrayList<Token>();
 		    } else {
-			restricao.add(temp.get(j));
+			constraint.add(list.get(j));
 		    }
 		}
 	    }
 	}
-	constraints = new ArrayList<Constraint>(restricoes.size());
-	for (ArrayList<Token> t : restricoes) {
+	constraints = new ArrayList<Constraint>(constraintsLocalList.size());
+	for (ArrayList<Token> constr : constraintsLocalList) {
 	    Constraint ta = new Constraint(getVariables());
 	    for (int k = 0; k < getVariables().size(); k++) {
 		ta.coefficients.put(getVariables().get(k), new Double(0));
 	    }
-	    processConstraints(t, ta, 0, t.size());
+	    processConstraints(constr, ta, 0, constr.size());
 	    getConstraints().add(ta);
 	}
     }
 
     private void interpretVariables(List<Token> arrayList) {
 	for (Token token : arrayList)
-	    if (token.getId() == Token.VARIABLE)
+	    if (token.getId() == TokenCode.VARIABLE)
 		if (!containsVariavel(token)) {
 		    Variable novaVariavel = new Variable(token);
 		    getVariables().add(novaVariavel);
@@ -177,11 +176,11 @@ public class Problem {
     private void processObjective(ArrayList<Token> t, Objective ta) {
 	double value = 1;
 	for (Token token : t) {
-	    if (token.getId() == Token.SINAL) {
+	    if (token.getId() == TokenCode.SIGNAL) {
 		value = Double.parseDouble(token.getValue().toString());
-	    } else if (token.getId() == Token.NUMERO) {
+	    } else if (token.getId() == TokenCode.NUMBER) {
 		value *= Double.parseDouble(token.getValue().toString());
-	    } else if (token.getId() == Token.VARIABLE) {
+	    } else if (token.getId() == TokenCode.VARIABLE) {
 		for (int k = 0; k < getVariables().size(); k++) {
 		    if (getVariables().get(k).getToken().equals(token)) {
 			ta.coefficients.put(getVariables().get(k), value);
@@ -203,11 +202,11 @@ public class Problem {
 			.toString());
 		break;
 	    }
-	    if (token.getId() == Token.SINAL) {
+	    if (token.getId() == TokenCode.SIGNAL) {
 		value = Double.parseDouble(token.getValue().toString());
-	    } else if (token.getId() == Token.NUMERO) {
+	    } else if (token.getId() == TokenCode.NUMBER) {
 		value *= Double.parseDouble(token.getValue().toString());
-	    } else if (token.getId() == Token.VARIABLE) {
+	    } else if (token.getId() == TokenCode.VARIABLE) {
 		for (int k = 0; k < getVariables().size(); k++) {
 		    if (getVariables().get(k).getToken().equals(token)) {
 			ta.coefficients.put(getVariables().get(k), value);
@@ -215,17 +214,17 @@ public class Problem {
 		    }
 		}
 		value = 1;
-	    } else if (token.getId() == Token.MAIOR_IGUAL
-		    || token.getId() == Token.IGUAL
-		    || token.getId() == Token.MENOR_IGUAL) {
+	    } else if (token.getId() == TokenCode.MORE_EQUAL
+		    || token.getId() == TokenCode.EQUAL
+		    || token.getId() == TokenCode.LESS_EQUAL) {
 		switch (token.getId()) {
-		case Token.MAIOR_IGUAL:
+		case MORE_EQUAL:
 		    ta.signOfConstraint = SignOfConstraint.MORE_OR_EQUAL;
 		    break;
-		case Token.IGUAL:
+		case EQUAL:
 		    ta.signOfConstraint = SignOfConstraint.EQUAL;
 		    break;
-		case Token.MENOR_IGUAL:
+		case LESS_EQUAL:
 		    ta.signOfConstraint = SignOfConstraint.LESS_OR_EQUAL;
 		    break;
 		}
@@ -288,7 +287,7 @@ public class Problem {
     }
 
     private void insertAuxiliareVariables() {
-	
+
 	int countOfSlackVariables = 0;
 	int countOfAuxiliaryVariables = 0;
 	for (Constraint constraint : getConstraints()) {
@@ -321,7 +320,7 @@ public class Problem {
 	List<Variable> novasVariaveisAuxiliares = new ArrayList<Variable>(
 		countNewAuxiliaryVariables);
 	for (int j = 1; j <= countNewAuxiliaryVariables; j++) {
-	    Token token = new Token(Token.VARIABLE, "A" + j, "A" + j);
+	    Token token = new Token(Token.TokenCode.VARIABLE, "A" + j, "A" + j);
 	    Variable var = new Variable(token);
 	    novasVariaveisAuxiliares.add(var);
 	    getVariables().add(var);
@@ -335,7 +334,8 @@ public class Problem {
 	ArrayList<Variable> newSlackVariables = new ArrayList<Variable>(
 		countOfSlackVariables);
 	for (int j = 1; j <= countOfSlackVariables; j++) {
-	    Token token = new Token(Token.VARIABLE, "XF" + j, "XF" + j);
+	    Token token = new Token(Token.TokenCode.VARIABLE, "XF" + j, "XF"
+		    + j);
 	    Variable var = new Variable(token);
 	    newSlackVariables.add(var);
 	    getVariables().add(var);
