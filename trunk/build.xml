@@ -101,8 +101,8 @@
 
 
 	<target name="emmacompile" depends="emmainit" description="Compile sources">
-		<javac srcdir="${src}" destdir="${buildSrc}" />
-		<javac srcdir="${test}" destdir="${buildTest}">
+		<javac srcdir="${src}" destdir="${buildSrc}" debug="on"/>
+		<javac srcdir="${test}" destdir="${buildTest}" debug="on">
 			<classpath>
 				<pathelement path="${lib}/junit-4.8.2.jar" />
 				<pathelement path="${buildSrc}" />
@@ -139,7 +139,7 @@
 		</junit>
 
 		<emma enabled="${emma.enabled}">
-			<report sourcepath="${src.dir}">
+			<report sourcepath="${src}">
 				<fileset dir="${coverage.dir}">
 					<include name="*.emma" />
 				</fileset>

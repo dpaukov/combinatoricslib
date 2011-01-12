@@ -16,14 +16,14 @@ public class SimplexTest {
     @Test
     public void simpleMaxTest() {
 
-	String[] problem = new String[] { " MAX 50X1 +60X2 +65X3",
+	String[] problem = new String[] { " MAX 50X1+60X2+65X3",
 		"SUBJECT TO", 
 		"2X1 + 3X2 + 2.5X3 <= 600",
 		"3X1 + 2X2 + 2.5X3 <= 500",
 		"X1 + 2X2 + X3 = 100",
-		"X1 >= 0",
-		"X2 >= 0", 
-		"X3 >= 0", "END" };
+		"X1 >=0",
+		"X2 >=0", 
+		"X3 >=0", "END" };
 
 	Parser parser = new Parser(problem);
 
@@ -47,13 +47,12 @@ public class SimplexTest {
 
     }
     
-    @Test
     public void simpleMinTest() {
 
-	String[] problem = new String[] { " MIN 50X1 +60X2 +65X3",
+	String[] problem = new String[] { " MIN 50X1+60X2+65X3",
 		"SUBJECT TO", "2X1 + 3X2 + 2.5X3 <= 600",
-		"3X1 + 2X2 + 2.5X3 <= 500", "X1 + 2X2 + X3 = 100", "X1 >= 0",
-		"X2 >= 0", "X3 >= 0", "END" };
+		"3X1 + 2X2 + 2.5X3 <= 500", "X1 + 2X2 + X3 = 100", "X1 >=0",
+		"X2 >=0", "X3 >=0", "END" };
 
 	Parser parser = new Parser(problem);
 
