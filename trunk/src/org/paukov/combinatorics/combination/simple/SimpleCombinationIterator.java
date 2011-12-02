@@ -66,6 +66,7 @@ public class SimpleCombinationIterator<T> extends
 	 * Initial action for iteration
 	 */
 	private void init() {
+		
 		for (int i = 0; i <= _lengthK; i++) {
 			_bitVector[i] = i;
 		}
@@ -88,7 +89,7 @@ public class SimpleCombinationIterator<T> extends
 	 */
 	@Override
 	public boolean isDone() {
-		return _endIndex == 0;
+		return (_endIndex == 0) || (_lengthK > _lengthN);
 	}
 
 	/**
