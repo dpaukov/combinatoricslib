@@ -1,62 +1,72 @@
 package org.paukov.combinatorics.combination.repetition;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
+import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 
 public class CombinationWithRepetition {
 
 	@Test
-	public void simpleCombinationWithRepetitionTest() {
+	public void multiCombinationTest() {
 
-		int N = 4; // Types to choose from
-		int K = 3; // Number chosen
+		// create array of initial items
+		List<String> array = new ArrayList<String>();
+		array.add("A");
+		array.add("B");
+		array.add("C");
 
-		int[] V = new int[K];
+		// create combinatorics vector
+		CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				array);
 
-		for (int i = 0; i < V.length; i++)
-			V[i] = 0;
+		// create multi-combination generator to generate 3-combination
+		Generator<String> gen = new MultiCombinationGenerator<String>(
+				initialVector, 3);
 
-		int k = V.length - 1;
+		// create iterator
+		Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
 
-		int count = 0;
+		// print the number of combinations
+		assertEquals(10, gen.getNumberOfGeneratedObjects());
 
-		boolean end = false;
-
-		while (end == false) {
-
-			// print V;
-			for (int i = 0; i < K; i++)
-				System.out.print(V[i] + " ");
-			System.out.println();
-
-			V[k]++;
-			if (V[k] > N - 1) {
-				int index = -1;
-				for (int i = 1; i <= V.length; i++) {
-					if (k - i >= 0) {
-						if (V[k - i] < N - 1) {
-							index = k - i;
-							break;
-						}
-					}
-				}
-
-				if (index != -1) {
-					V[index]++;
-
-					for (int j = 1; j < V.length - index; j++) {
-						V[index + j] = V[index];
-					}
-
-				} else {
-					end = true;
-				}
-
-			}
-
-			count++;
+		// go through the iterator
+		while (itr.hasNext()) {
+			CombinatoricsVector<String> combination = itr.next();
+			System.out.println(combination);
 		}
 
-		System.out.println("count=" + count);
+		List<CombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(10, list.size());
+
+		assertEquals("CombinatoricsVector=[[A, A, A]], size=3]", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=[[A, A, B]], size=3]", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=[[A, A, C]], size=3]", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=[[A, B, B]], size=3]", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=[[A, B, C]], size=3]", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=[[A, C, C]], size=3]", list.get(5)
+				.toString());
+		assertEquals("CombinatoricsVector=[[B, B, B]], size=3]", list.get(6)
+				.toString());
+
+		assertEquals("CombinatoricsVector=[[B, B, C]], size=3]", list.get(7)
+				.toString());
+		assertEquals("CombinatoricsVector=[[B, C, C]], size=3]", list.get(8)
+				.toString());
+		assertEquals("CombinatoricsVector=[[C, C, C]], size=3]", list.get(9)
+				.toString());
 	}
 
 }
