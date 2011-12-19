@@ -6,9 +6,9 @@ import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
 /**
- * This generator generates multi-combinations (with repetitions) from specified core set by
- * specified length. Core set and length are specified in the constructor of
- * generator
+ * This generator generates multi-combinations (with repetitions) from specified
+ * core set by specified length. Core set and length are specified in the
+ * constructor of generator
  * 
  * @param <T>
  *            Type of elements in the combination
@@ -29,7 +29,10 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	public MultiCombinationGenerator(CombinatoricsVector<T> coreSet,
 			int combinationsLength) {
 		_coreSet = new CombinatoricsVector<T>(coreSet);
-		_combinationLength = combinationsLength;
+		if (combinationsLength < 0)
+			_combinationLength = 0;
+		else
+			_combinationLength = combinationsLength;
 	}
 
 	/**
@@ -54,7 +57,8 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * Returns number of generated combinations with repetitions
 	 */
 	public long getNumberOfGeneratedObjects() {
-		return Util.combination(_coreSet.getSize() + _combinationLength - 1, _combinationLength);
+		return Util.combination(_coreSet.getSize() + _combinationLength - 1,
+				_combinationLength);
 	}
 
 	/**

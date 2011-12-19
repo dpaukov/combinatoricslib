@@ -58,7 +58,7 @@ public class MultiCombinationIterator<T> extends
 		_lengthN = generator.getCoreObject().getSize();
 		_currentCombination = new CombinatoricsVector<T>();
 		_bitVector = new int[generator.getCombinationLength()];
-		_lengthK = generator.getCombinationLength()-1;
+		_lengthK = generator.getCombinationLength() - 1;
 		init();
 	}
 
@@ -72,6 +72,7 @@ public class MultiCombinationIterator<T> extends
 		}
 		_end = false;
 		_currentIndex = 0;
+
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class MultiCombinationIterator<T> extends
 	@Override
 	public CombinatoricsVector<T> next() {
 		_currentIndex++;
-		
+
 		for (int i = 0; i < _generator.getCombinationLength(); i++) {
 			int index = _bitVector[i];
 			if (_generator.getCoreObject().getSize() > 0) {
@@ -105,29 +106,34 @@ public class MultiCombinationIterator<T> extends
 			}
 		}
 
-		_bitVector[_lengthK]++;
-		if (_bitVector[_lengthK] > _lengthN - 1) {
-			int index = -1;
-			for (int i = 1; i <= _bitVector.length; i++) {
-				if (_lengthK - i >= 0) {
-					if (_bitVector[_lengthK - i] < _lengthN - 1) {
-						index = _lengthK - i;
-						break;
+		if (_bitVector.length > 0) {
+			_bitVector[_lengthK]++;
+
+			if (_bitVector[_lengthK] > _lengthN - 1) {
+				int index = -1;
+				for (int i = 1; i <= _bitVector.length; i++) {
+					if (_lengthK - i >= 0) {
+						if (_bitVector[_lengthK - i] < _lengthN - 1) {
+							index = _lengthK - i;
+							break;
+						}
 					}
 				}
-			}
 
-			if (index != -1) {
-				_bitVector[index]++;
+				if (index != -1) {
+					_bitVector[index]++;
 
-				for (int j = 1; j < _bitVector.length - index; j++) {
-					_bitVector[index + j] = _bitVector[index];
+					for (int j = 1; j < _bitVector.length - index; j++) {
+						_bitVector[index + j] = _bitVector[index];
+					}
+
+				} else {
+					_end = true;
 				}
 
-			} else {
-				_end = true;
 			}
-
+		} else {
+			_end = true;
 		}
 
 		return getCurrentItem();
