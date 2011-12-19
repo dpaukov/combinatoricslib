@@ -69,4 +69,183 @@ public class CombinationWithRepetition {
 				.toString());
 	}
 
+	@Test
+	public void multiCombinationOneTest() {
+
+		// create array of initial items
+		List<String> array = new ArrayList<String>();
+		array.add("A");
+
+		// create combinatorics vector
+		CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				array);
+
+		// create multi-combination generator to generate 3-combination
+		Generator<String> gen = new MultiCombinationGenerator<String>(
+				initialVector, 3);
+
+		// create iterator
+		Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
+
+		// print the number of combinations
+		assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+		// go through the iterator
+		while (itr.hasNext()) {
+			CombinatoricsVector<String> combination = itr.next();
+			System.out.println(combination);
+		}
+
+		List<CombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(1, list.size());
+
+		assertEquals("CombinatoricsVector=[[A, A, A]], size=3]", list.get(0)
+				.toString());
+	}
+
+	@Test
+	public void multiCombinationEmptyTest() {
+
+		// create array of initial items
+		List<String> array = new ArrayList<String>();
+		array.add("A");
+		array.add("B");
+
+		// create combinatorics vector
+		CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				array);
+
+		// create multi-combination generator to generate 0-combination
+		Generator<String> gen = new MultiCombinationGenerator<String>(
+				initialVector, 0);
+
+		// create iterator
+		Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
+
+		// print the number of combinations
+		assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+		// go through the iterator
+		while (itr.hasNext()) {
+			CombinatoricsVector<String> combination = itr.next();
+			System.out.println(combination);
+		}
+
+		List<CombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(1, list.size());
+
+		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+				.toString());
+
+	}
+
+	@Test
+	public void multiCombinationEmptyEmptyTest() {
+
+		// create array of initial empty items
+		List<String> array = new ArrayList<String>();
+
+		// create combinatorics vector
+		CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				array);
+
+		// create multi-combination generator to generate 0-combination
+		Generator<String> gen = new MultiCombinationGenerator<String>(
+				initialVector, 0);
+
+		// create iterator
+		Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
+
+		// print the number of combinations
+		assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+		// go through the iterator
+		while (itr.hasNext()) {
+			CombinatoricsVector<String> combination = itr.next();
+			System.out.println(combination);
+		}
+
+		List<CombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(1, list.size());
+
+		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+				.toString());
+
+	}
+
+	@Test
+	public void multiCombinationEmptyOneTest() {
+
+		// create array of initial empty items
+		List<String> array = new ArrayList<String>();
+
+		// create combinatorics vector
+		CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				array);
+
+		// create multi-combination generator to generate 1-combination
+		Generator<String> gen = new MultiCombinationGenerator<String>(
+				initialVector, 1);
+
+		// create iterator
+		Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
+
+		// print the number of combinations
+		assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+		// go through the iterator
+		while (itr.hasNext()) {
+			CombinatoricsVector<String> combination = itr.next();
+			System.out.println(combination);
+		}
+
+		List<CombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(1, list.size());
+
+		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+				.toString());
+
+	}
+
+	@Test
+	public void multiCombinationMinusOneTest() {
+
+		// create array of initial items
+		List<String> array = new ArrayList<String>();
+		array.add("A");
+		array.add("B");
+		array.add("C");
+
+		// create combinatorics vector
+		CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				array);
+
+		// create multi-combination generator to generate 3-combination
+		Generator<String> gen = new MultiCombinationGenerator<String>(
+				initialVector, -1);
+
+		// create iterator
+		Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
+
+		// print the number of combinations
+		assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+		// go through the iterator
+		while (itr.hasNext()) {
+			CombinatoricsVector<String> combination = itr.next();
+			System.out.println(combination);
+		}
+
+		List<CombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(1, list.size());
+
+		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+				.toString());
+	}
+
 }
