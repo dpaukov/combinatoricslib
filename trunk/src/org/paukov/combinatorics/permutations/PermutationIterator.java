@@ -7,6 +7,9 @@ import org.paukov.combinatorics.Iterator;
 /**
  * Iterator of permutation generator
  * 
+ * @author Dmytro.Paukov
+ * @see CombinatoricsVector
+ * @see PermutationGenerator
  * @param <T>
  *            Type of elements of permutations
  */
