@@ -93,6 +93,7 @@ import org.paukov.combinatorics.util.Util;
  * <p>
  * 
  * @author Dmytro.Paukov
+ * @see CompositionIterator
  * 
  */
 public class CompositionGenerator extends Generator<Integer> {
