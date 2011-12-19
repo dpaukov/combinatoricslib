@@ -3,6 +3,10 @@ package org.paukov.combinatorics;
 /**
  * Iterator for enumeration of elements of collections
  * 
+ * @author Dmytro Paukov
+ * @see CombinatoricsVector
+ * @see Generator
+ * 
  * @param <T>
  *            Type of elements in collections
  */

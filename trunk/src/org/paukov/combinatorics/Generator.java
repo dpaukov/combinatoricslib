@@ -5,7 +5,39 @@ import java.util.List;
 
 /**
  * Base class for all generators
+ * <p>
+ * This is a library written on Java to resolve some combinatorics issues such
+ * as generating combinatorial objects (permutations, partitions, compositions,
+ * subsets, combinations and etc).
+ * <p>
+ * Type of the items should be specified as type parameter of generator and
+ * vector.
+ * <p>
+ * There is a general pattern how to use the generator <blockquote>
  * 
+ * <pre>
+ * // create combinatorics vector
+ * CombinatoricsVector&lt;T&gt; vector = new CombinatoricsVector&lt;T&gt;(array);
+ * 
+ * // create a concrete generator
+ * Generator&lt;T&gt; generator = new&lt;Concrete&gt; Generator&lt;T&gt;(vector);
+ * 
+ * // create iterator
+ * Iterator&lt;CombinatoricsVector&lt;T&gt;&gt; iterator = generator.createIterator();
+ * 
+ * // go through the iterator
+ * while (iterator.hasNext()) {
+ * 	CombinatoricsVector&lt;T&gt; item = iterator.next();
+ * 	System.out.println(item);
+ * }
+ * </pre>
+ * 
+ * </blockquote>
+ * <p>
+ * 
+ * @author Dmytro Paukov
+ * @see CombinatoricsVector
+ * @see Iterator
  * @param <T>
  *            Type of elements in the generated vectors
  */
