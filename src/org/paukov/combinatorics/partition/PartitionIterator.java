@@ -5,10 +5,15 @@ import java.util.List;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.composition.CompositionGenerator;
 
 
 /**
  * Iterator for enumeration of all partitions
+ * 
+ * @author Dmytro Paukov
+ * @see CombinatoricsVector
+ * @see PartitionGenerator
  */
 public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 
