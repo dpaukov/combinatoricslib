@@ -4,8 +4,13 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.math.BigDecimal;
 
+import org.paukov.combinatorics.CombinatoricsVector;
+
 /**
  * Utility class for combinatorial package
+ * 
+ * @author Dmytro.Paukov
+ * @see CombinatoricsVector
  */
 public class Util {
 
