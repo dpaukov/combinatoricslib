@@ -5,6 +5,10 @@ import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of permutation with repetitions
+ *
+ * @author Dmytro.Paukov
+ * @see CombinatoricsVector
+ * @see PermutationWithRepetitionGenerator
  * 
  * @param <T>
  *            Type of elements in the permutation
