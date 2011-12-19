@@ -7,6 +7,9 @@ import java.util.List;
 /**
  * This class represents a simple vector of elements of type T
  * 
+ * @author Dmytro Paukov
+ * @see Generator
+ * @see Iterator
  * @param <T>
  *            Type of elements
  */

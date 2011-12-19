@@ -2,10 +2,14 @@ package org.paukov.combinatorics.combination.simple;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
+import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 
 /**
  * Iterator of simple combinations
  * 
+ * @author Dmytro Paukov
+ * @see CombinatoricsVector
+ * @see SimpleCombinationGenerator
  * @param <T>
  *            Type of elements in a combination
  */

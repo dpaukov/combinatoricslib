@@ -6,6 +6,9 @@ import org.paukov.combinatorics.Iterator;
 /**
  * Multi-combinations iterator
  * 
+ * @author Dmytro Paukov
+ * @see CombinatoricsVector
+ * @see MultiCombinationGenerator
  * @param <T>
  *            Type of elements in a combination
  */

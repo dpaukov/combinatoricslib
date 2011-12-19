@@ -9,6 +9,10 @@ import org.paukov.combinatorics.subsets.SubSetGenerator;
 
 /**
  * Iterator for enumeration of all compositions
+ * 
+ * @author Dmytro Paukov
+ * @see CombinatoricsVector
+ * @see CompositionGenerator
  */
 public class CompositionIterator extends Iterator<CombinatoricsVector<Integer>> {
 
