@@ -54,6 +54,7 @@ import org.paukov.combinatorics.util.Util;
  * <p>
  * 
  * @author Dmytro Paukov
+ * @see SimpleCombinationIterator
  * @param <T>
  *            Type of elements in the combination
  */
