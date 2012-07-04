@@ -162,7 +162,7 @@ public class CombinatoricsVector<T> {
 	 */
 	@Override
 	public String toString() {
-		return "CombinatoricsVector=[" + _vector + "], size=" + getSize() + "]";
+		return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
 	}
 
 }

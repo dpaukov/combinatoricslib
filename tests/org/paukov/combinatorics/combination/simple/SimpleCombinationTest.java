@@ -47,26 +47,26 @@ public class SimpleCombinationTest {
 
 		assertEquals(10, list.size());
 
-		assertEquals("CombinatoricsVector=[[red, black, white]], size=3]", list
+		assertEquals("CombinatoricsVector=([red, black, white], size=3)", list
 				.get(0).toString());
-		assertEquals("CombinatoricsVector=[[red, black, green]], size=3]", list
+		assertEquals("CombinatoricsVector=([red, black, green], size=3)", list
 				.get(1).toString());
-		assertEquals("CombinatoricsVector=[[red, black, blue]], size=3]", list
+		assertEquals("CombinatoricsVector=([red, black, blue], size=3)", list
 				.get(2).toString());
-		assertEquals("CombinatoricsVector=[[red, white, green]], size=3]", list
+		assertEquals("CombinatoricsVector=([red, white, green], size=3)", list
 				.get(3).toString());
-		assertEquals("CombinatoricsVector=[[red, white, blue]], size=3]", list
+		assertEquals("CombinatoricsVector=([red, white, blue], size=3)", list
 				.get(4).toString());
-		assertEquals("CombinatoricsVector=[[red, green, blue]], size=3]", list
+		assertEquals("CombinatoricsVector=([red, green, blue], size=3)", list
 				.get(5).toString());
-		assertEquals("CombinatoricsVector=[[black, white, green]], size=3]",
+		assertEquals("CombinatoricsVector=([black, white, green], size=3)",
 				list.get(6).toString());
 
-		assertEquals("CombinatoricsVector=[[black, white, blue]], size=3]",
+		assertEquals("CombinatoricsVector=([black, white, blue], size=3)",
 				list.get(7).toString());
-		assertEquals("CombinatoricsVector=[[black, green, blue]], size=3]",
+		assertEquals("CombinatoricsVector=([black, green, blue], size=3)",
 				list.get(8).toString());
-		assertEquals("CombinatoricsVector=[[white, green, blue]], size=3]",
+		assertEquals("CombinatoricsVector=([white, green, blue], size=3)",
 				list.get(9).toString());
 	}
 
@@ -101,7 +101,7 @@ public class SimpleCombinationTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[]], size=0]", list
+		assertEquals("CombinatoricsVector=([], size=0)", list
 				.get(0).toString());
 	}
 	
@@ -136,7 +136,7 @@ public class SimpleCombinationTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[red]], size=1]", list
+		assertEquals("CombinatoricsVector=([red], size=1)", list
 				.get(0).toString());
 	}
 	
@@ -201,7 +201,7 @@ public class SimpleCombinationTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[red, green]], size=2]", list
+		assertEquals("CombinatoricsVector=([red, green], size=2)", list
 				.get(0).toString());
 
 	}

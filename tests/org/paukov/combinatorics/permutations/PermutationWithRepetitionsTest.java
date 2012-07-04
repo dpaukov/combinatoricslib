@@ -54,23 +54,23 @@ public class PermutationWithRepetitionsTest {
 
 		assertEquals(9, list.size());
 
-		assertEquals("CombinatoricsVector=[[1, 1]], size=2]", list.get(0)
+		assertEquals("CombinatoricsVector=([1, 1], size=2)", list.get(0)
 				.toString());
-		assertEquals("CombinatoricsVector=[[2, 1]], size=2]", list.get(1)
+		assertEquals("CombinatoricsVector=([2, 1], size=2)", list.get(1)
 				.toString());
-		assertEquals("CombinatoricsVector=[[3, 1]], size=2]", list.get(2)
+		assertEquals("CombinatoricsVector=([3, 1], size=2)", list.get(2)
 				.toString());
-		assertEquals("CombinatoricsVector=[[1, 2]], size=2]", list.get(3)
+		assertEquals("CombinatoricsVector=([1, 2], size=2)", list.get(3)
 				.toString());
-		assertEquals("CombinatoricsVector=[[2, 2]], size=2]", list.get(4)
+		assertEquals("CombinatoricsVector=([2, 2], size=2)", list.get(4)
 				.toString());
-		assertEquals("CombinatoricsVector=[[3, 2]], size=2]", list.get(5)
+		assertEquals("CombinatoricsVector=([3, 2], size=2)", list.get(5)
 				.toString());
-		assertEquals("CombinatoricsVector=[[1, 3]], size=2]", list.get(6)
+		assertEquals("CombinatoricsVector=([1, 3], size=2)", list.get(6)
 				.toString());
-		assertEquals("CombinatoricsVector=[[2, 3]], size=2]", list.get(7)
+		assertEquals("CombinatoricsVector=([2, 3], size=2)", list.get(7)
 				.toString());
-		assertEquals("CombinatoricsVector=[[3, 3]], size=2]", list.get(8)
+		assertEquals("CombinatoricsVector=([3, 3], size=2)", list.get(8)
 				.toString());
 	}
 
@@ -107,11 +107,11 @@ public class PermutationWithRepetitionsTest {
 
 		assertEquals(3, list.size());
 
-		assertEquals("CombinatoricsVector=[[1]], size=1]", list.get(0)
+		assertEquals("CombinatoricsVector=([1], size=1)", list.get(0)
 				.toString());
-		assertEquals("CombinatoricsVector=[[2]], size=1]", list.get(1)
+		assertEquals("CombinatoricsVector=([2], size=1)", list.get(1)
 				.toString());
-		assertEquals("CombinatoricsVector=[[3]], size=1]", list.get(2)
+		assertEquals("CombinatoricsVector=([3], size=1)", list.get(2)
 				.toString());
 	}
 
@@ -147,7 +147,7 @@ public class PermutationWithRepetitionsTest {
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
-		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
 				.toString());
 
 	}
@@ -183,7 +183,7 @@ public class PermutationWithRepetitionsTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[1]], size=1]", list.get(0)
+		assertEquals("CombinatoricsVector=([1], size=1)", list.get(0)
 				.toString());
 	}
 
@@ -218,7 +218,7 @@ public class PermutationWithRepetitionsTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[1, 1]], size=2]", list.get(0)
+		assertEquals("CombinatoricsVector=([1, 1], size=2)", list.get(0)
 				.toString());
 	}
 
@@ -253,7 +253,7 @@ public class PermutationWithRepetitionsTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
 				.toString());
 	}
 }
