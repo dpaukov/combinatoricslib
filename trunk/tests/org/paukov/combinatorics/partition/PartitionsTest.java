@@ -41,19 +41,19 @@ public class PartitionsTest {
 
 		assertEquals(7, list.size());
 
-		assertEquals("CombinatoricsVector=[[1, 1, 1, 1, 1]], size=5]", list
+		assertEquals("CombinatoricsVector=([1, 1, 1, 1, 1], size=5)", list
 				.get(0).toString());
-		assertEquals("CombinatoricsVector=[[2, 1, 1, 1]], size=4]", list.get(1)
+		assertEquals("CombinatoricsVector=([2, 1, 1, 1], size=4)", list.get(1)
 				.toString());
-		assertEquals("CombinatoricsVector=[[2, 2, 1]], size=3]", list.get(2)
+		assertEquals("CombinatoricsVector=([2, 2, 1], size=3)", list.get(2)
 				.toString());
-		assertEquals("CombinatoricsVector=[[3, 1, 1]], size=3]", list.get(3)
+		assertEquals("CombinatoricsVector=([3, 1, 1], size=3)", list.get(3)
 				.toString());
-		assertEquals("CombinatoricsVector=[[3, 2]], size=2]", list.get(4)
+		assertEquals("CombinatoricsVector=([3, 2], size=2)", list.get(4)
 				.toString());
-		assertEquals("CombinatoricsVector=[[4, 1]], size=2]", list.get(5)
+		assertEquals("CombinatoricsVector=([4, 1], size=2)", list.get(5)
 				.toString());
-		assertEquals("CombinatoricsVector=[[5]], size=1]", list.get(6)
+		assertEquals("CombinatoricsVector=([5], size=1)", list.get(6)
 				.toString());
 	}
 
@@ -78,9 +78,9 @@ public class PartitionsTest {
 
 		assertEquals(2, list.size());
 
-		assertEquals("CombinatoricsVector=[[1, 1]], size=2]", list.get(0)
+		assertEquals("CombinatoricsVector=([1, 1], size=2)", list.get(0)
 				.toString());
-		assertEquals("CombinatoricsVector=[[2]], size=1]", list.get(1)
+		assertEquals("CombinatoricsVector=([2], size=1)", list.get(1)
 				.toString());
 	}
 
@@ -105,7 +105,7 @@ public class PartitionsTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[1]], size=1]", list.get(0)
+		assertEquals("CombinatoricsVector=([1], size=1)", list.get(0)
 				.toString());
 	}
 

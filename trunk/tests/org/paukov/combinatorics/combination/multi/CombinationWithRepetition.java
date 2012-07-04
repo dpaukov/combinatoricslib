@@ -46,26 +46,26 @@ public class CombinationWithRepetition {
 
 		assertEquals(10, list.size());
 
-		assertEquals("CombinatoricsVector=[[A, A, A]], size=3]", list.get(0)
+		assertEquals("CombinatoricsVector=([A, A, A], size=3)", list.get(0)
 				.toString());
-		assertEquals("CombinatoricsVector=[[A, A, B]], size=3]", list.get(1)
+		assertEquals("CombinatoricsVector=([A, A, B], size=3)", list.get(1)
 				.toString());
-		assertEquals("CombinatoricsVector=[[A, A, C]], size=3]", list.get(2)
+		assertEquals("CombinatoricsVector=([A, A, C], size=3)", list.get(2)
 				.toString());
-		assertEquals("CombinatoricsVector=[[A, B, B]], size=3]", list.get(3)
+		assertEquals("CombinatoricsVector=([A, B, B], size=3)", list.get(3)
 				.toString());
-		assertEquals("CombinatoricsVector=[[A, B, C]], size=3]", list.get(4)
+		assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(4)
 				.toString());
-		assertEquals("CombinatoricsVector=[[A, C, C]], size=3]", list.get(5)
+		assertEquals("CombinatoricsVector=([A, C, C], size=3)", list.get(5)
 				.toString());
-		assertEquals("CombinatoricsVector=[[B, B, B]], size=3]", list.get(6)
+		assertEquals("CombinatoricsVector=([B, B, B], size=3)", list.get(6)
 				.toString());
 
-		assertEquals("CombinatoricsVector=[[B, B, C]], size=3]", list.get(7)
+		assertEquals("CombinatoricsVector=([B, B, C], size=3)", list.get(7)
 				.toString());
-		assertEquals("CombinatoricsVector=[[B, C, C]], size=3]", list.get(8)
+		assertEquals("CombinatoricsVector=([B, C, C], size=3)", list.get(8)
 				.toString());
-		assertEquals("CombinatoricsVector=[[C, C, C]], size=3]", list.get(9)
+		assertEquals("CombinatoricsVector=([C, C, C], size=3)", list.get(9)
 				.toString());
 	}
 
@@ -100,7 +100,7 @@ public class CombinationWithRepetition {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[A, A, A]], size=3]", list.get(0)
+		assertEquals("CombinatoricsVector=([A, A, A], size=3)", list.get(0)
 				.toString());
 	}
 
@@ -136,7 +136,7 @@ public class CombinationWithRepetition {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
 				.toString());
 
 	}
@@ -171,7 +171,7 @@ public class CombinationWithRepetition {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
 				.toString());
 
 	}
@@ -206,7 +206,7 @@ public class CombinationWithRepetition {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
 				.toString());
 
 	}
@@ -244,7 +244,7 @@ public class CombinationWithRepetition {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=[[]], size=0]", list.get(0)
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
 				.toString());
 	}
 
