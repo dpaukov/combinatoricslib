@@ -1,7 +1,7 @@
 package org.paukov.combinatorics;
 
 /**
- * Iterator for enumeration of elements of collections
+ * Iterator for enumerating a collection
  * 
  * @author Dmytro Paukov
  * @see CombinatoricsVector
@@ -28,9 +28,9 @@ public abstract class Iterator<T> implements java.util.Iterator<T> {
 	public abstract boolean isDone();
 
 	/**
-	 * Returns current element in the collection
+	 * Returns the current element in the collection
 	 * 
-	 * @return Current element in the collection
+	 * @return The current element in the collection
 	 */
 	public abstract T getCurrentItem();
 
@@ -39,9 +39,10 @@ public abstract class Iterator<T> implements java.util.Iterator<T> {
 		return !isDone();
 	}
 
+	
 	@Override
 	public void remove() {
-		// not implemented
+		throw new UnsupportedOperationException();
 	}
 
 }

@@ -2,7 +2,6 @@ package org.paukov.combinatorics.combination.simple;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 
 /**
  * Iterator of simple combinations
@@ -27,17 +26,17 @@ public class SimpleCombinationIterator<T> extends
 	protected CombinatoricsVector<T> _currentSimpleCombination = null;
 
 	/**
-	 * Current index of combination
+	 * Index of the current combination
 	 */
 	protected long _currentIndex = 0;
 
 	/**
-	 * Size of core set
+	 * Size of the original vector/set
 	 */
 	protected final int _lengthN;
 
 	/**
-	 * Size of combination (number of elements) to generate
+	 * Size of the generated combination.
 	 */
 	protected final int _lengthK;
 
@@ -55,7 +54,7 @@ public class SimpleCombinationIterator<T> extends
 	 * Constructor
 	 * 
 	 * @param generator
-	 *            Generator of simple combinations
+	 *            Generator of the simple combinations
 	 */
 	public SimpleCombinationIterator(SimpleCombinationGenerator<T> generator) {
 		_generator = generator;
@@ -67,7 +66,7 @@ public class SimpleCombinationIterator<T> extends
 	}
 
 	/**
-	 * Initial action for iteration
+	 * Initialization
 	 */
 	private void init() {
 		
@@ -81,7 +80,7 @@ public class SimpleCombinationIterator<T> extends
 	}
 
 	/**
-	 * Returns current combination
+	 * Returns the current combination
 	 */
 	@Override
 	public CombinatoricsVector<T> getCurrentItem() {
@@ -127,7 +126,7 @@ public class SimpleCombinationIterator<T> extends
 	}
 
 	/**
-	 * Returns current combination as a string
+	 * Returns the current combination as a string
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
