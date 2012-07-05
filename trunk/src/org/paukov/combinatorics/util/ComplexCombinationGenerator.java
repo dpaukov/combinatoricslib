@@ -49,7 +49,7 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 	 */
 	public long getNumberOfGeneratedObjects() {
 		// TODO: needs to be implemented
-		return -1;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
