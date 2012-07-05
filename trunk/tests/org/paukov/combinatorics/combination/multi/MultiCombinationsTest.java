@@ -11,7 +11,7 @@ import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 
-public class CombinationWithRepetition {
+public class MultiCombinationsTest {
 
 	@Test
 	public void multiCombinationTest() {
