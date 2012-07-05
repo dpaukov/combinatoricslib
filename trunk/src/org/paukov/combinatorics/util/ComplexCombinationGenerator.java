@@ -10,6 +10,7 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 	protected final CombinatoricsVector<T> _originalVector;
 	protected final int _combinationLength;
 	protected final boolean _isOrderImportant;
+	protected final boolean _excludeEmptySet;
 
 	/**
 	 * Constructor
@@ -24,6 +25,7 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 		_originalVector = new CombinatoricsVector<T>(originalVector);
 		_combinationLength = combinationsLength;
 		_isOrderImportant = true;
+		_excludeEmptySet = false;
 	}
 
 	
@@ -36,10 +38,11 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 	 *            Length of combination to generate
 	 */
 	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
-			int combinationsLength, boolean isOrderImportant) {
+			int combinationsLength, boolean isOrderImportant, boolean excludeEmptySet) {
 		_originalVector = new CombinatoricsVector<T>(originalVector);
 		_combinationLength = combinationsLength;
 		_isOrderImportant = isOrderImportant;
+		_excludeEmptySet = excludeEmptySet;
 	}
 	
 	/**
@@ -79,5 +82,9 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 	
 	public boolean isOrderImportant() {
 		return _isOrderImportant;
+	}
+	
+	public boolean excludeEmptySet() {
+		return _excludeEmptySet;
 	}
 }

@@ -60,6 +60,10 @@ public class ComplexCombinationIterator<T>
 				.getCoreObject().getValue(0));
 		List<CombinatoricsVector<T>> allSubsetsList = subSetGenerator
 				.generateAllObjects();
+		
+		// If empty set has to be excluded, remove it from the sub sets
+		if (_generator.excludeEmptySet())
+			allSubsetsList.remove(new CombinatoricsVector<T>());
 
 		// 3.1 Create a vector of all subsets
 		CombinatoricsVector<CombinatoricsVector<T>> allSubsetsVector = new CombinatoricsVector<CombinatoricsVector<T>>(
