@@ -110,21 +110,27 @@ public class ComplexCombinationIterator<T>
 			}
 		}
 
-		// 4. Generate permutations for each found combination and add them into
-		// the final result list
-		for (CombinatoricsVector<CombinatoricsVector<T>> combination : intermediateCombinations) {
+		if (!_generator.isOrderImportant()) {
+			_resultList.addAll(intermediateCombinations);
+		} else {
+			// 4. Generate permutations for each found combination and add them
+			// into
+			// the final result list
+			for (CombinatoricsVector<CombinatoricsVector<T>> combination : intermediateCombinations) {
 
-			// 4.1 Create a permutation generator for each intermediate
-			// combination
-			Generator<CombinatoricsVector<T>> permutationGen = new PermutationGenerator<CombinatoricsVector<T>>(
-					new CombinatoricsVector<CombinatoricsVector<T>>(combination));
+				// 4.1 Create a permutation generator for each intermediate
+				// combination
+				Generator<CombinatoricsVector<T>> permutationGen = new PermutationGenerator<CombinatoricsVector<T>>(
+						new CombinatoricsVector<CombinatoricsVector<T>>(
+								combination));
 
-			// 4.2 Generate all permutations
-			List<CombinatoricsVector<CombinatoricsVector<T>>> permutations = permutationGen
-					.generateAllObjects();
+				// 4.2 Generate all permutations
+				List<CombinatoricsVector<CombinatoricsVector<T>>> permutations = permutationGen
+						.generateAllObjects();
 
-			// 4.3 Add then into the final result list
-			_resultList.addAll(permutations);
+				// 4.3 Add then into the final result list
+				_resultList.addAll(permutations);
+			}
 		}
 
 		_resultIterator = _resultList.iterator();
