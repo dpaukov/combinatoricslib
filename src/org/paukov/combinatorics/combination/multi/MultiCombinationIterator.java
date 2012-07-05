@@ -4,7 +4,7 @@ import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
- * Multi-combinations iterator
+ * Multi-combinations iterator to enumerate combinations with repetitions
  * 
  * @author Dmytro Paukov
  * @see CombinatoricsVector
@@ -26,22 +26,22 @@ public class MultiCombinationIterator<T> extends
 	protected CombinatoricsVector<T> _currentCombination = null;
 
 	/**
-	 * Current index of combination
+	 * Index of the current combination
 	 */
 	protected long _currentIndex = 0;
 
 	/**
-	 * Size of core set
+	 * Size of the original vector/set
 	 */
 	protected final int _lengthN;
 
 	/**
-	 * Size of combination (number of elements) to generate
+	 * Size of the combinations (number of elements) to generate
 	 */
 	protected final int _lengthK;
 
 	/**
-	 * Helper array
+	 * A helper array
 	 */
 	private int[] _bitVector = null;
 
@@ -66,7 +66,7 @@ public class MultiCombinationIterator<T> extends
 	}
 
 	/**
-	 * Initial action for iteration
+	 * Initialization of the iterator
 	 */
 	private void init() {
 
@@ -79,7 +79,7 @@ public class MultiCombinationIterator<T> extends
 	}
 
 	/**
-	 * Returns current combination
+	 * Returns the current combination
 	 */
 	@Override
 	public CombinatoricsVector<T> getCurrentItem() {
@@ -143,7 +143,7 @@ public class MultiCombinationIterator<T> extends
 	}
 
 	/**
-	 * Returns current combination as a string
+	 * Returns the current combination as a string
 	 * 
 	 * @see java.lang.Object#toString()
 	 */

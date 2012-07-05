@@ -78,16 +78,16 @@ public class SimpleCombinationGenerator<T> extends Generator<T> {
 	}
 
 	/**
-	 * Returns core set
+	 * Returns the original vector/set
 	 * 
-	 * @return Returns the _coreSet.
+	 * @return Returns the _originalVector.
 	 */
 	public CombinatoricsVector<T> getCoreObject() {
 		return _coreSet;
 	}
 
 	/**
-	 * Returns length of combinations
+	 * Returns the length of the combinations
 	 * 
 	 * @return Returns the _combinationLength.
 	 */
@@ -96,14 +96,14 @@ public class SimpleCombinationGenerator<T> extends Generator<T> {
 	}
 
 	/**
-	 * Returns number of generated combinations
+	 * Returns the number of the generated combinations
 	 */
 	public long getNumberOfGeneratedObjects() {
 		return Util.combination(_coreSet.getSize(), _combinationLength);
 	}
 
 	/**
-	 * Creates iterator of simple combinations
+	 * Creates an iterator of the simple combinations (without repetitions)
 	 */
 	public Iterator<CombinatoricsVector<T>> createIterator() {
 		return new SimpleCombinationIterator<T>(this);

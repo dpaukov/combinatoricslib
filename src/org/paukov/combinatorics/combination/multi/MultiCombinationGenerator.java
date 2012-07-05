@@ -89,7 +89,7 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	/**
 	 * Returns core set
 	 * 
-	 * @return Returns the _coreSet.
+	 * @return Returns the _originalVector.
 	 */
 	public CombinatoricsVector<T> getCoreObject() {
 		return _coreSet;

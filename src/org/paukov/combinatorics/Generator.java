@@ -44,22 +44,23 @@ import java.util.List;
 public abstract class Generator<T> {
 
 	/**
-	 * Returns core object. This is a main vector which is used for generating
-	 * other objects
+	 * Returns core/original object. This is a main vector which is used for
+	 * generating other objects
 	 * 
-	 * @return core vector
+	 * @return The original vector which was passed into a constructor as an
+	 *         initializing parameter
 	 */
 	public abstract CombinatoricsVector<T> getCoreObject();
 
 	/**
-	 * Returns concrete value of number of generated vectors
+	 * Returns a concrete value of the number of the generated vectors
 	 * 
-	 * @return Value of generated vectors
+	 * @return Number of the generated vectors
 	 */
 	public abstract long getNumberOfGeneratedObjects();
 
 	/**
-	 * Creates iterator for enumeration all generated vectors
+	 * Creates an iterator for enumerating all generated vectors/objects
 	 * 
 	 * @return Iterator of vectors
 	 */

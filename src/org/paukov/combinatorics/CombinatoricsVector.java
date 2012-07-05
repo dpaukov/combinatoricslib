@@ -5,13 +5,13 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This class represents a simple vector of elements of type T
+ * This class represents a simple vector of elements of type <code>T</code>
  * 
  * @author Dmytro Paukov
  * @see Generator
  * @see Iterator
  * @param <T>
- *            Type of elements
+ *            Type of the elements
  */
 public class CombinatoricsVector<T> {
 
@@ -28,9 +28,9 @@ public class CombinatoricsVector<T> {
 	 * Constructor
 	 * 
 	 * @param size
-	 *            Size of vector
+	 *            Size of the created vector
 	 * @param defaulValue
-	 *            Initial value of vector's elements
+	 *            Default/Initial value for the vector's elements
 	 */
 	public CombinatoricsVector(int size, T defaulValue) {
 		_vector = new ArrayList<T>(size);
@@ -40,10 +40,10 @@ public class CombinatoricsVector<T> {
 	}
 
 	/**
-	 * Constructor
+	 * Copy constructor
 	 * 
 	 * @param vector
-	 *            Initial vector
+	 *            Initial vector to initialize the created vector
 	 */
 	public CombinatoricsVector(CombinatoricsVector<T> vector) {
 		_vector = new ArrayList<T>(vector.getSize());
@@ -54,7 +54,7 @@ public class CombinatoricsVector<T> {
 	 * Constructor
 	 * 
 	 * @param vector
-	 *            Initial collection
+	 *            Initial collection to initialize the created vector
 	 */
 	public CombinatoricsVector(Collection<? extends T> vector) {
 		_vector = new ArrayList<T>(vector.size());
@@ -62,7 +62,8 @@ public class CombinatoricsVector<T> {
 	}
 
 	/**
-	 * Sets value to position <code>index</code>. If the index is out of bounds the value is added.
+	 * Sets value to position <code>index</code>. If the index is out of bounds
+	 * the value will be added at the end of the vector
 	 * 
 	 * @param index
 	 *            Position of element
@@ -76,33 +77,32 @@ public class CombinatoricsVector<T> {
 			_vector.add(index, value);
 		}
 	}
-	
-	
+
 	/**
 	 * Adds value to the vector.
 	 * 
 	 * @param value
 	 *            Value of element
 	 */
-	public boolean addValue(T value){
+	public boolean addValue(T value) {
 		return _vector.add(value);
 	}
 
 	/**
-	 * Returns value of element for specified position <code>index</code>
+	 * Returns value of the <code>index</code>-element
 	 * 
 	 * @param index
-	 *            Position
-	 * @return Value of element
+	 *            The position of the element (Index of the element)
+	 * @return Value of the element
 	 */
 	public T getValue(int index) {
 		return _vector.get(index);
 	}
 
 	/**
-	 * Returns size of vector
+	 * Returns size of the vector
 	 * 
-	 * @return current size of vector
+	 * @return Current size of the vector
 	 */
 	public int getSize() {
 		if (_vector == null) {
@@ -121,7 +121,7 @@ public class CombinatoricsVector<T> {
 	}
 
 	/**
-	 * Hash code
+	 * Hash code of the vector
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -156,7 +156,7 @@ public class CombinatoricsVector<T> {
 	}
 
 	/**
-	 * Returns vector as string
+	 * Returns vector as a string
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
