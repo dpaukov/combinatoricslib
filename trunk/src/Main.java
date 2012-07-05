@@ -8,6 +8,7 @@ import org.paukov.combinatorics.combination.simple.SimpleCombinationGenerator;
 import org.paukov.combinatorics.permutations.PermutationGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
 import org.paukov.combinatorics.util.ComplexCombinationGenerator;
+import org.paukov.combinatorics.util.Util;
 
 
 public class Main {
@@ -25,7 +26,7 @@ public class Main {
 	  originalList.add("c");
 	  
 	  // Create a complex-combination generator and iterator
-	  Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>( new CombinatoricsVector<String>(originalList), 2);
+	  Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>( new CombinatoricsVector<String>(originalList), 2, false);
 	  
 	  // Create a complex-combination iterator
 	  Iterator <CombinatoricsVector<CombinatoricsVector<String>>> itr = complexGenerator.createIterator();
@@ -34,12 +35,27 @@ public class Main {
 	  while (itr.hasNext())
 	  {
 		  CombinatoricsVector<CombinatoricsVector<String>> combination = itr.next();
-		  System.out.println(itr);
+		  String str = getString(combination);
+		  System.out.println(str);
 	  }
 	  
 	  
   }
   
+  public static String getString( CombinatoricsVector<CombinatoricsVector<String>> vector)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("(");
+		for (int i = 0; i < vector.getSize(); i++)
+		{
+			sb.append(vector.getValue(i).getVector().toString());
+			if (i!=vector.getSize()-1)
+				sb.append(",");
+		}
+		sb.append(")");
+		return sb.toString();
+		
+	}
   
   /**
    * This method generates the n compositions (with fixed length)
