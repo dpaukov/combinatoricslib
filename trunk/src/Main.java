@@ -7,6 +7,7 @@ import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.combination.simple.SimpleCombinationGenerator;
 import org.paukov.combinatorics.permutations.PermutationGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
+import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
 
 public class Main {
@@ -23,12 +24,20 @@ public class Main {
 	  originalList.add("b");
 	  originalList.add("c");
 	  
-	  // Generate the results
-	  List<CombinatoricsVector<CombinatoricsVector<String>>> result = generateComplexComposition(originalList, 2 );
+	  // Create a complex-combination generator and iterator
+	  Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>( new CombinatoricsVector<String>(originalList), 2);
+	  
+	  // Create a complex-combination iterator
+	  Iterator <CombinatoricsVector<CombinatoricsVector<String>>> itr = complexGenerator.createIterator();
+	  
+	  // Iterate the elements
+	  while (itr.hasNext())
+	  {
+		  CombinatoricsVector<CombinatoricsVector<String>> combination = itr.next();
+		  System.out.println(itr);
+	  }
 	  
 	  
-	  for (CombinatoricsVector<CombinatoricsVector<String>> item : result)
-		  System.out.println( item );
   }
   
   
