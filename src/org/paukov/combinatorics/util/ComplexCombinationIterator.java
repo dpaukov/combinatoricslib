@@ -10,6 +10,10 @@ import org.paukov.combinatorics.combination.simple.SimpleCombinationGenerator;
 import org.paukov.combinatorics.permutations.PermutationGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
 
+/**
+ * @author Dmytro Paukov
+ * 
+ */
 public class ComplexCombinationIterator<T>
 		extends
 		org.paukov.combinatorics.Iterator<CombinatoricsVector<CombinatoricsVector<T>>> {
@@ -114,12 +118,14 @@ public class ComplexCombinationIterator<T>
 			}
 		}
 
+		// If order is not important, the intermediate combinations are the final result
+		// otherwise we need generate permutations
 		if (!_generator.isOrderImportant()) {
 			_resultList.addAll(intermediateCombinations);
 		} else {
+			
 			// 4. Generate permutations for each found combination and add them
-			// into
-			// the final result list
+			// into the final result list
 			for (CombinatoricsVector<CombinatoricsVector<T>> combination : intermediateCombinations) {
 
 				// 4.1 Create a permutation generator for each intermediate
