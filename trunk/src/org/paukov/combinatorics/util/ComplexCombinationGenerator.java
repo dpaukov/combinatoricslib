@@ -4,8 +4,12 @@ import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.Iterator;
 
-
-public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVector<T>> {
+/**
+ * @author Dmytro Paukov
+ * 
+ */
+public class ComplexCombinationGenerator<T> extends
+		Generator<CombinatoricsVector<T>> {
 
 	protected final CombinatoricsVector<T> _originalVector;
 	protected final int _combinationLength;
@@ -28,7 +32,6 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 		_excludeEmptySet = false;
 	}
 
-	
 	/**
 	 * Constructor
 	 * 
@@ -38,13 +41,14 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 	 *            Length of combination to generate
 	 */
 	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
-			int combinationsLength, boolean isOrderImportant, boolean excludeEmptySet) {
+			int combinationsLength, boolean isOrderImportant,
+			boolean excludeEmptySet) {
 		_originalVector = new CombinatoricsVector<T>(originalVector);
 		_combinationLength = combinationsLength;
 		_isOrderImportant = isOrderImportant;
 		_excludeEmptySet = excludeEmptySet;
 	}
-	
+
 	/**
 	 * Returns the original vector wrapped into one more vector.
 	 * 
@@ -79,12 +83,30 @@ public class ComplexCombinationGenerator<T> extends Generator<CombinatoricsVecto
 	public Iterator<CombinatoricsVector<CombinatoricsVector<T>>> createIterator() {
 		return new ComplexCombinationIterator<T>(this);
 	}
-	
+
 	public boolean isOrderImportant() {
 		return _isOrderImportant;
 	}
-	
+
 	public boolean excludeEmptySet() {
 		return _excludeEmptySet;
+	}
+
+	/**
+	 * This method converts a composition into a string
+	 * @param vector
+	 * @return
+	 */
+	public static <V> String convert2String(CombinatoricsVector<CombinatoricsVector<V>> vector) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("(");
+		for (int i = 0; i < vector.getSize(); i++) {
+			sb.append(vector.getValue(i).getVector().toString());
+			if (i != vector.getSize() - 1)
+				sb.append(",");
+		}
+		sb.append(")");
+		return sb.toString();
+
 	}
 }
