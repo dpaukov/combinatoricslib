@@ -6,7 +6,7 @@ import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
 /**
- * This generator generates all subsets of the specified set (core set)
+ * This generator generates all subsets of the specified set.
  * <p>
  * A set A is a subset of a set B if A is "contained" inside B. A and B may
  * coincide. The relationship of one set being a subset of another is called
@@ -82,6 +82,11 @@ import org.paukov.combinatorics.util.Util;
  * 
  * </blockquote>
  * <p>
+ * <p>
+ * <b>Note.</b> If the initial vector contains duplicates the generator will
+ * generate sub-lists with the duplicates. In this case the method
+ * <code>getNumberOfGeneratedObjects</code> won't be able to return the number
+ * of the sub sets/lists
  * 
  * @author Dmytro.Paukov
  * @see CombinatoricsVector
@@ -90,6 +95,8 @@ import org.paukov.combinatorics.util.Util;
  *            Type of elements in the set
  */
 public class SubSetGenerator<T> extends Generator<T> {
+
+	protected final boolean _hasDuplicates;
 
 	/**
 	 * Core set
@@ -103,6 +110,8 @@ public class SubSetGenerator<T> extends Generator<T> {
 	 *            Core set
 	 */
 	public SubSetGenerator(CombinatoricsVector<T> coreSet) {
+
+		_hasDuplicates = coreSet.hasDuplicates();
 		_coreSet = new CombinatoricsVector<T>(coreSet);
 	}
 
@@ -114,9 +123,15 @@ public class SubSetGenerator<T> extends Generator<T> {
 	}
 
 	/**
-	 * Returns the number of the subsets
+	 * Returns the number of the subsets. If the original set contains
+	 * duplicates this method will throw a runtime exception
 	 */
 	public long getNumberOfGeneratedObjects() {
+
+		if (_hasDuplicates)
+			throw new RuntimeException("The initial vector has duplicates: "
+					+ _coreSet);
+
 		return Util.pow2(_coreSet.getSize());
 	}
 
@@ -124,7 +139,10 @@ public class SubSetGenerator<T> extends Generator<T> {
 	 * Creates the iterator over the all subsets
 	 */
 	public Iterator<CombinatoricsVector<T>> createIterator() {
-		return new SubSetIterator<T>(this);
+		if (_hasDuplicates)
+			return new SubListIterator<T>(this);
+		else
+			return new SubSetIterator<T>(this);
 	}
 
 }
