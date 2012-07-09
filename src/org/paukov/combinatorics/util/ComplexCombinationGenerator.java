@@ -26,10 +26,7 @@ public class ComplexCombinationGenerator<T> extends
 	 */
 	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
 			int combinationsLength) {
-		_originalVector = new CombinatoricsVector<T>(originalVector);
-		_combinationLength = combinationsLength;
-		_isOrderImportant = true;
-		_excludeEmptySet = false;
+		this(originalVector, combinationsLength, true, false);
 	}
 
 	/**
@@ -39,10 +36,39 @@ public class ComplexCombinationGenerator<T> extends
 	 *            Core set which is used for combination generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
+	 * @param isOrderImportant
+	 *            true if the order of the generated combinations is important
+	 * 
+	 */
+	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
+			int combinationsLength, boolean isOrderImportant) {
+		this(originalVector, combinationsLength, isOrderImportant, false);
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param originalVector
+	 *            Core set which is used for combination generation
+	 * @param combinationsLength
+	 *            Length of combination to generate
+	 * @param isOrderImportant
+	 *            true if the order of the generated combinations is important
+	 * @param excludeEmptySet
+	 *            true if the empty set has to be excluded from the generated
+	 *            combinations
 	 */
 	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
 			int combinationsLength, boolean isOrderImportant,
 			boolean excludeEmptySet) {
+
+		if (combinationsLength > originalVector.getSize())
+			throw new RuntimeException(
+					"Unable to generate complex combinations, the requested combination length is more then the size of the original vector, length: "
+							+ combinationsLength
+							+ ", originalVector: "
+							+ originalVector);
+
 		_originalVector = new CombinatoricsVector<T>(originalVector);
 		_combinationLength = combinationsLength;
 		_isOrderImportant = isOrderImportant;
@@ -84,20 +110,30 @@ public class ComplexCombinationGenerator<T> extends
 		return new ComplexCombinationIterator<T>(this);
 	}
 
+	/**
+	 * Is the order of the generated combinations important
+	 */
 	public boolean isOrderImportant() {
 		return _isOrderImportant;
 	}
 
+	/**
+	 * Returns true if the empty set has to be excluded from the generated
+	 * combinations
+	 */
 	public boolean excludeEmptySet() {
 		return _excludeEmptySet;
 	}
 
 	/**
 	 * This method converts a composition into a string
+	 * 
 	 * @param vector
-	 * @return
+	 *            The vector
+	 * @return A string representation of the given vector
 	 */
-	public static <V> String convert2String(CombinatoricsVector<CombinatoricsVector<V>> vector) {
+	public static <V> String convert2String(
+			CombinatoricsVector<CombinatoricsVector<V>> vector) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
 		for (int i = 0; i < vector.getSize(); i++) {
