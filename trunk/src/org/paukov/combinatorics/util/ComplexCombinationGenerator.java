@@ -26,7 +26,7 @@ public class ComplexCombinationGenerator<T> extends
 	 */
 	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
 			int combinationsLength) {
-		this(originalVector, combinationsLength, true, false);
+		this(originalVector, combinationsLength, true, true);
 	}
 
 	/**

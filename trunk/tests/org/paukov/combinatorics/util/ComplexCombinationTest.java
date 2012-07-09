@@ -28,7 +28,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination generator and iterator
 		Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
-				new CombinatoricsVector<String>(originalList), 2);
+				new CombinatoricsVector<String>(originalList), 2, true, false);
 
 		// Create a complex-combination iterator
 		Iterator<CombinatoricsVector<CombinatoricsVector<String>>> itr = complexGenerator
@@ -381,7 +381,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination generator and iterator
 		Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
-				new CombinatoricsVector<String>(originalList), 2);
+				new CombinatoricsVector<String>(originalList), 2, true, false);
 
 		// Create a complex-combination iterator
 		Iterator<CombinatoricsVector<CombinatoricsVector<String>>> itr = complexGenerator
