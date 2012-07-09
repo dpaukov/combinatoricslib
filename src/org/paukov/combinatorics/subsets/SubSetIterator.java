@@ -71,7 +71,7 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	/**
 	 * Returns the current subset
 	 * 
-	 * @see org.paukov.combinatorics.iterator.Iterator#getCurrentItem()
+	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
 	 */
 	@Override
 	public CombinatoricsVector<T> getCurrentItem() {
@@ -81,7 +81,7 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
-	 * @see org.paukov.combinatorics.iterator.Iterator#isDone()
+	 * @see org.paukov.combinatorics.Iterator#isDone()
 	 */
 	@Override
 	public boolean isDone() {
@@ -91,7 +91,7 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	/**
 	 * Returns the next subset if it is available
 	 * 
-	 * @see org.paukov.combinatorics.iterator.Iterator#next()
+	 * @see org.paukov.combinatorics.Iterator#next()
 	 */
 	@Override
 	public CombinatoricsVector<T> next() {

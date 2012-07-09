@@ -79,7 +79,7 @@ public class SubListIterator<T> extends
 	/**
 	 * Returns the current sublist
 	 * 
-	 * @see org.paukov.combinatorics.iterator.Iterator#getCurrentItem()
+	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
 	 */
 	@Override
 	public CombinatoricsVector<T> getCurrentItem() {
@@ -89,7 +89,7 @@ public class SubListIterator<T> extends
 	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
-	 * @see org.paukov.combinatorics.iterator.Iterator#isDone()
+	 * @see org.paukov.combinatorics.Iterator#isDone()
 	 */
 	@Override
 	public boolean isDone() {
@@ -99,7 +99,7 @@ public class SubListIterator<T> extends
 	/**
 	 * Returns the next sublist if it is available
 	 * 
-	 * @see org.paukov.combinatorics.iterator.Iterator#next()
+	 * @see org.paukov.combinatorics.Iterator#next()
 	 */
 	@Override
 	public CombinatoricsVector<T> next() {
