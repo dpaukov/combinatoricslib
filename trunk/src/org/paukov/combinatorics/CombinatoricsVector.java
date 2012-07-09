@@ -2,7 +2,9 @@ package org.paukov.combinatorics;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class represents a simple vector of elements of type <code>T</code>
@@ -109,6 +111,16 @@ public class CombinatoricsVector<T> {
 			return 0;
 		}
 		return _vector.size();
+	}
+	
+	/**
+	 * This method detects duplicates in the vector
+	 * @return
+	 */
+	public boolean hasDuplicates()
+	{
+		Set<T> set = new HashSet<T>(_vector);
+		return set.size()<_vector.size();
 	}
 
 	/**
