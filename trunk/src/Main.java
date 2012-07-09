@@ -16,9 +16,9 @@ public class Main {
 	  // Initialize the list
 	  ArrayList<String> originalList = new ArrayList<String>();
 	  originalList.add("a");
-	  originalList.add("b");
-	  originalList.add("b");
-	  originalList.add("c");
+	  originalList.add("a");
+	  originalList.add("a");
+	  originalList.add("a");
 	  
 	  // Create a complex-combination generator and iterator
 	  Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>( new CombinatoricsVector<String>(originalList), 2, true, true);

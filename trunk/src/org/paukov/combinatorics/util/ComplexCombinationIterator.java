@@ -2,11 +2,13 @@ package org.paukov.combinatorics.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
-import org.paukov.combinatorics.combination.simple.SimpleCombinationGenerator;
+import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 import org.paukov.combinatorics.permutations.PermutationGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
 
@@ -33,9 +35,15 @@ public class ComplexCombinationIterator<T>
 	 */
 	protected long _currentIndex = 0;
 
-	List<CombinatoricsVector<CombinatoricsVector<T>>> _resultList = new ArrayList<CombinatoricsVector<CombinatoricsVector<T>>>();
+	/**
+	 * The set of the generated combinations
+	 */
+	protected Set<CombinatoricsVector<CombinatoricsVector<T>>> _resultSet = new LinkedHashSet<CombinatoricsVector<CombinatoricsVector<T>>>();
 
-	Iterator<CombinatoricsVector<CombinatoricsVector<T>>> _resultIterator = null;
+	/**
+	 * The iterator over the result combinations
+	 */
+	protected Iterator<CombinatoricsVector<CombinatoricsVector<T>>> _resultIterator = null;
 
 	/**
 	 * Constructor
@@ -64,7 +72,7 @@ public class ComplexCombinationIterator<T>
 				.getCoreObject().getValue(0));
 		List<CombinatoricsVector<T>> allSubsetsList = subSetGenerator
 				.generateAllObjects();
-		
+
 		// If empty set has to be excluded, remove it from the sub sets
 		if (_generator.excludeEmptySet())
 			allSubsetsList.remove(new CombinatoricsVector<T>());
@@ -74,7 +82,7 @@ public class ComplexCombinationIterator<T>
 				allSubsetsList);
 
 		// 3.2 Create a simple generator to get all n-combination of the subsets
-		Generator<CombinatoricsVector<T>> combinationGenerator = new SimpleCombinationGenerator<CombinatoricsVector<T>>(
+		Generator<CombinatoricsVector<T>> combinationGenerator = new MultiCombinationGenerator<CombinatoricsVector<T>>(
 				allSubsetsVector, _generator.getCombinationLength());
 
 		// 3.3 Get an iterator
@@ -97,7 +105,9 @@ public class ComplexCombinationIterator<T>
 			 */
 
 			// 3.5.2.1 Put the first element into the list
-			List<T> list = new ArrayList<T>(combination.getValue(0).getVector());
+			List<T> list = new ArrayList<T>();
+			if (combination.getSize() > 0)
+				list.addAll(combination.getValue(0).getVector());
 
 			// 3.5.2.2 Add all other elements into the list
 			for (int index = 1; index < combination.getSize(); index++)
@@ -118,12 +128,13 @@ public class ComplexCombinationIterator<T>
 			}
 		}
 
-		// If order is not important, the intermediate combinations are the final result
+		// If order is not important, the intermediate combinations are the
+		// final result
 		// otherwise we need generate permutations
 		if (!_generator.isOrderImportant()) {
-			_resultList.addAll(intermediateCombinations);
+			_resultSet.addAll(intermediateCombinations);
 		} else {
-			
+
 			// 4. Generate permutations for each found combination and add them
 			// into the final result list
 			for (CombinatoricsVector<CombinatoricsVector<T>> combination : intermediateCombinations) {
@@ -139,11 +150,11 @@ public class ComplexCombinationIterator<T>
 						.generateAllObjects();
 
 				// 4.3 Add then into the final result list
-				_resultList.addAll(permutations);
+				_resultSet.addAll(permutations);
 			}
 		}
 
-		_resultIterator = _resultList.iterator();
+		_resultIterator = _resultSet.iterator();
 		_currentIndex = 0;
 	}
 
