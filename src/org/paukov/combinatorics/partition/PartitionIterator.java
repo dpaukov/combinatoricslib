@@ -3,10 +3,9 @@ package org.paukov.combinatorics.partition;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-
 
 /**
  * Iterator for enumeration of all partitions
@@ -25,7 +24,7 @@ public class PartitionIterator extends Iterator<ICombinatoricsVector<Integer>> {
 	/**
 	 * Current partition
 	 */
-	protected CombinatoricsVector<Integer> _currentPartition = null;
+	protected ICombinatoricsVector<Integer> _currentPartition = null;
 
 	/**
 	 * Index of the current partition
@@ -84,7 +83,7 @@ public class PartitionIterator extends Iterator<ICombinatoricsVector<Integer>> {
 	 */
 	@Override
 	public ICombinatoricsVector<Integer> getCurrentItem() {
-		return new CombinatoricsVector<Integer>(_currentPartition);
+		return _currentPartition;
 	}
 
 	/**
@@ -137,7 +136,7 @@ public class PartitionIterator extends Iterator<ICombinatoricsVector<Integer>> {
 				list.add(getInternalVectorValue(index, _zVector));
 			}
 		}
-		_currentPartition = new CombinatoricsVector<Integer>(list);
+		_currentPartition = Factory.createVector(list);
 	}
 
 	private final int getInternalVectorValue(int index, int[] vector) {

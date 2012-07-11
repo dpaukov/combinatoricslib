@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.permutations.PermutationWithRepetitionGenerator;
 
 /**
  * @author Dmytro Paukov
@@ -24,10 +23,10 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleTreeTwoPermutationWithRepetition() {
 
-		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				new Integer[] { 1, 2, 3 });
+		ICombinatoricsVector<Integer> coreVector = Factory
+				.createVector(new Integer[] { 1, 2, 3 });
 
-		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
+		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 2);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
@@ -77,10 +76,9 @@ public class PermutationWithRepetitionsTest {
 		array.add(2);
 		array.add(3);
 
-		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> coreVector = Factory.createVector(array);
 
-		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
+		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 1);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
@@ -113,10 +111,10 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleThreeZeroPermutationWithRepetition() {
 
-		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				new Integer[] { 1, 2, 3 });
+		ICombinatoricsVector<Integer> coreVector = Factory
+				.createVector(new Integer[] { 1, 2, 3 });
 
-		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
+		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 0);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
@@ -144,10 +142,10 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleOneOnePermutationWithRepetition() {
 
-		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				new Integer[] { 1 });
+		ICombinatoricsVector<Integer> coreVector = Factory
+				.createVector(new Integer[] { 1 });
 
-		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
+		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 1);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
@@ -179,10 +177,9 @@ public class PermutationWithRepetitionsTest {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 
-		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> coreVector = Factory.createVector(array);
 
-		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
+		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 2);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
@@ -214,10 +211,9 @@ public class PermutationWithRepetitionsTest {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 
-		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> coreVector = Factory.createVector(array);
 
-		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
+		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 0);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();

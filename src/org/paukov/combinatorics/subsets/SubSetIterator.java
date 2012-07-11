@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.subsets;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -51,7 +51,7 @@ public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 	public SubSetIterator(Generator<T> generator) {
 		_generator = generator;
 		_length = generator.getOriginalVector().getSize();
-		_currentSubSet = new CombinatoricsVector<T>();
+		_currentSubSet = Factory.<T>createVector();
 		_bitVector = new int[_length + 2];
 		init();
 	}
@@ -76,7 +76,7 @@ public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 	 */
 	@Override
 	public ICombinatoricsVector<T> getCurrentItem() {
-		return new CombinatoricsVector<T>(_currentSubSet);
+		return Factory.createVector(_currentSubSet);
 	}
 
 	/**

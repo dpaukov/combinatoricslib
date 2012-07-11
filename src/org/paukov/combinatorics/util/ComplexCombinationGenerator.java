@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.util;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -70,7 +70,7 @@ public class ComplexCombinationGenerator<T> extends
 							+ ", originalVector: "
 							+ originalVector);
 
-		_originalVector = new CombinatoricsVector<T>(originalVector);
+		_originalVector = Factory.createVector(originalVector);
 		_combinationLength = combinationsLength;
 		_isOrderImportant = isOrderImportant;
 		_excludeEmptySet = excludeEmptySet;
@@ -82,7 +82,8 @@ public class ComplexCombinationGenerator<T> extends
 	 * @return Returns the _originalVector.
 	 */
 	public ICombinatoricsVector<ICombinatoricsVector<T>> getOriginalVector() {
-		ICombinatoricsVector<ICombinatoricsVector<T>> result = new CombinatoricsVector<ICombinatoricsVector<T>>();
+		ICombinatoricsVector<ICombinatoricsVector<T>> result = Factory
+				.<ICombinatoricsVector<T>> createVector();
 		result.addValue(_originalVector);
 		return result;
 	}

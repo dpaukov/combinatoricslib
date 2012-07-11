@@ -6,10 +6,10 @@ package org.paukov.combinatorics.partition;
 import java.util.List;
 
 import org.junit.Test;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.partition.PartitionGenerator;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +23,7 @@ public class PartitionsTest {
 	@Test
 	public void simplePartition() {
 
-		Generator<Integer> partitionGenerator = new PartitionGenerator(5);
+		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(5);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
@@ -60,7 +60,7 @@ public class PartitionsTest {
 	@Test
 	public void simpleTwoPartition() {
 
-		Generator<Integer> partitionGenerator = new PartitionGenerator(2);
+		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(2);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
@@ -87,7 +87,7 @@ public class PartitionsTest {
 	@Test
 	public void simpleOnePartition() {
 
-		Generator<Integer> partitionGenerator = new PartitionGenerator(1);
+		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(1);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
@@ -112,7 +112,7 @@ public class PartitionsTest {
 	@Test
 	public void simpleEmptyPartition() {
 
-		Generator<Integer> partitionGenerator = new PartitionGenerator(0);
+		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(0);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 

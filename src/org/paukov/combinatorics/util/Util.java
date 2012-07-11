@@ -2,13 +2,11 @@ package org.paukov.combinatorics.util;
 
 import java.math.BigDecimal;
 
-import org.paukov.combinatorics.CombinatoricsVector;
 
 /**
  * Utility class for combinatorial package
  * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
  */
 public class Util {
 

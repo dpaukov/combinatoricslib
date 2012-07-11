@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -17,10 +17,12 @@ public class SimpleCombinationTest {
 	public void simpleCombinationTest() {
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(new String[] { "red", "black", "white", "green", "blue" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "red", "black", "white", "green",
+						"blue" });
 
 		// create simple combination generator to generate 3-combination
-		Generator<String> gen = new SimpleCombinationGenerator<String>(
+		Generator<String> gen = Factory.createSimpleCombinationGenerator(
 				initialVector, 3);
 
 		// create iterator
@@ -54,12 +56,12 @@ public class SimpleCombinationTest {
 		assertEquals("CombinatoricsVector=([black, white, green], size=3)",
 				list.get(6).toString());
 
-		assertEquals("CombinatoricsVector=([black, white, blue], size=3)",
-				list.get(7).toString());
-		assertEquals("CombinatoricsVector=([black, green, blue], size=3)",
-				list.get(8).toString());
-		assertEquals("CombinatoricsVector=([white, green, blue], size=3)",
-				list.get(9).toString());
+		assertEquals("CombinatoricsVector=([black, white, blue], size=3)", list
+				.get(7).toString());
+		assertEquals("CombinatoricsVector=([black, green, blue], size=3)", list
+				.get(8).toString());
+		assertEquals("CombinatoricsVector=([white, green, blue], size=3)", list
+				.get(9).toString());
 	}
 
 	@Test
@@ -70,11 +72,11 @@ public class SimpleCombinationTest {
 		array.add("red");
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				array);
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(array);
 
 		// create simple combination generator to generate 0-combination
-		Generator<String> gen = new SimpleCombinationGenerator<String>(
+		Generator<String> gen = Factory.createSimpleCombinationGenerator(
 				initialVector, 0);
 
 		// create iterator
@@ -93,10 +95,9 @@ public class SimpleCombinationTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=([], size=0)", list
-				.get(0).toString());
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
 	}
-	
+
 	@Test
 	public void simpleOneCombinationTest() {
 
@@ -105,11 +106,11 @@ public class SimpleCombinationTest {
 		array.add("red");
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				array);
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(array);
 
 		// create simple combination generator to generate 1-combination
-		Generator<String> gen = new SimpleCombinationGenerator<String>(
+		Generator<String> gen = Factory.createSimpleCombinationGenerator(
 				initialVector, 1);
 
 		// create iterator
@@ -128,10 +129,10 @@ public class SimpleCombinationTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=([red], size=1)", list
-				.get(0).toString());
+		assertEquals("CombinatoricsVector=([red], size=1)", list.get(0)
+				.toString());
 	}
-	
+
 	@Test
 	public void simpleOneTwoCombinationTest() {
 
@@ -140,11 +141,11 @@ public class SimpleCombinationTest {
 		array.add("red");
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				array);
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(array);
 
 		// create simple combination generator to generate 2-combination of 1
-		Generator<String> gen = new SimpleCombinationGenerator<String>(
+		Generator<String> gen = Factory.createSimpleCombinationGenerator(
 				initialVector, 2);
 
 		// create iterator
@@ -160,15 +161,16 @@ public class SimpleCombinationTest {
 		assertEquals(0, list.size());
 
 	}
-	
+
 	@Test
 	public void simpleTwoTwoCombinationTest() {
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(new String[] { "red", "green" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "red", "green" });
 
 		// create simple combination generator to generate 2-combination of 2
-		Generator<String> gen = new SimpleCombinationGenerator<String>(
+		Generator<String> gen = Factory.createSimpleCombinationGenerator(
 				initialVector, 2);
 
 		// create iterator
@@ -187,8 +189,8 @@ public class SimpleCombinationTest {
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=([red, green], size=2)", list
-				.get(0).toString());
+		assertEquals("CombinatoricsVector=([red, green], size=2)", list.get(0)
+				.toString());
 
 	}
 }
