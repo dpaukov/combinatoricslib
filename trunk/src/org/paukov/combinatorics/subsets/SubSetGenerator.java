@@ -2,6 +2,7 @@ package org.paukov.combinatorics.subsets;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
@@ -101,25 +102,25 @@ public class SubSetGenerator<T> extends Generator<T> {
 	/**
 	 * Core set
 	 */
-	protected final CombinatoricsVector<T> _coreSet;
+	protected final ICombinatoricsVector<T> _originalVector;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param coreSet
-	 *            Core set
+	 * @param originalVector
+	 *            Original vector/set
 	 */
-	public SubSetGenerator(CombinatoricsVector<T> coreSet) {
+	public SubSetGenerator(ICombinatoricsVector<T> originalVector) {
 
-		_hasDuplicates = coreSet.hasDuplicates();
-		_coreSet = new CombinatoricsVector<T>(coreSet);
+		_hasDuplicates = originalVector.hasDuplicates();
+		_originalVector = new CombinatoricsVector<T>(originalVector);
 	}
 
 	/**
 	 * Returns the core set
 	 */
-	public CombinatoricsVector<T> getCoreObject() {
-		return _coreSet;
+	public ICombinatoricsVector<T> getOriginalVector() {
+		return _originalVector;
 	}
 
 	/**
@@ -130,15 +131,15 @@ public class SubSetGenerator<T> extends Generator<T> {
 
 		if (_hasDuplicates)
 			throw new RuntimeException("The initial vector has duplicates: "
-					+ _coreSet);
+					+ _originalVector);
 
-		return Util.pow2(_coreSet.getSize());
+		return Util.pow2(_originalVector.getSize());
 	}
 
 	/**
 	 * Creates the iterator over the all subsets
 	 */
-	public Iterator<CombinatoricsVector<T>> createIterator() {
+	public Iterator<ICombinatoricsVector<T>> createIterator() {
 		if (_hasDuplicates)
 			return new SubListIterator<T>(this);
 		else

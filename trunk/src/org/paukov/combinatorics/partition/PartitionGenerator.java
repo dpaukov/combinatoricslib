@@ -2,6 +2,7 @@ package org.paukov.combinatorics.partition;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
@@ -74,23 +75,23 @@ public class PartitionGenerator extends Generator<Integer> {
 
 	public static final int MAXN = 100;
 
-	protected final Integer _coreValue;
+	protected final Integer _initialValue;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param n
-	 *            Value to generate partitions
+	 *            An integer value to generate partitions
 	 */
 	public PartitionGenerator(Integer n) {
-		_coreValue = n;
+		_initialValue = n;
 	}
 
 	/**
 	 * Creates iterator to enumerate all partitions
 	 */
 	@Override
-	public Iterator<CombinatoricsVector<Integer>> createIterator() {
+	public Iterator<ICombinatoricsVector<Integer>> createIterator() {
 		return new PartitionIterator(this);
 	}
 
@@ -99,8 +100,8 @@ public class PartitionGenerator extends Generator<Integer> {
 	 * returned as a element of vector. Vector has length of 1
 	 */
 	@Override
-	public CombinatoricsVector<Integer> getCoreObject() {
-		return new CombinatoricsVector<Integer>(1, _coreValue);
+	public ICombinatoricsVector<Integer> getOriginalVector() {
+		return new CombinatoricsVector<Integer>(1, _initialValue);
 	}
 
 	/**
@@ -111,10 +112,10 @@ public class PartitionGenerator extends Generator<Integer> {
 	 */
 	@Override
 	public long getNumberOfGeneratedObjects() {
-		if (_coreValue > 0 && _coreValue <= MAXN) {
-			double result = 2.0 * _coreValue / 3.0;
+		if (_initialValue > 0 && _initialValue <= MAXN) {
+			double result = 2.0 * _initialValue / 3.0;
 			result = Math.exp(Math.PI * Math.sqrt(result));
-			result /= 4.0 * _coreValue * Math.sqrt(3);
+			result /= 4.0 * _initialValue * Math.sqrt(3);
 			return (long) result;
 		}
 		return 0;

@@ -11,9 +11,9 @@ import java.util.List;
 import org.junit.Test;
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.permutations.PermutationGenerator;
-
 
 /**
  * @author Dmytro Paukov
@@ -24,13 +24,8 @@ public class PermutationsTest {
 	@Test
 	public void simplePermutation() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-		array.add(2);
-		array.add(3);
-
-		CombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
+				new Integer[] { 1, 2, 3 });
 		Generator<Integer> generator = new PermutationGenerator<Integer>(
 				corePermutation);
 
@@ -38,7 +33,7 @@ public class PermutationsTest {
 				+ generator.getNumberOfGeneratedObjects());
 		assertEquals(6, generator.getNumberOfGeneratedObjects());
 
-		Iterator<CombinatoricsVector<Integer>> iterator = generator
+		Iterator<ICombinatoricsVector<Integer>> iterator = generator
 				.createIterator();
 
 		while (iterator.hasNext()) {
@@ -46,7 +41,7 @@ public class PermutationsTest {
 			System.out.println(iterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = generator
+		List<ICombinatoricsVector<Integer>> list = generator
 				.generateAllObjects();
 
 		assertEquals(6, list.size());
@@ -71,7 +66,7 @@ public class PermutationsTest {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 
-		CombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
+		ICombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
 				array);
 		Generator<Integer> generator = new PermutationGenerator<Integer>(
 				corePermutation);
@@ -80,7 +75,7 @@ public class PermutationsTest {
 				+ generator.getNumberOfGeneratedObjects());
 		assertEquals(1, generator.getNumberOfGeneratedObjects());
 
-		Iterator<CombinatoricsVector<Integer>> iterator = generator
+		Iterator<ICombinatoricsVector<Integer>> iterator = generator
 				.createIterator();
 
 		while (iterator.hasNext()) {
@@ -88,7 +83,7 @@ public class PermutationsTest {
 			System.out.println(iterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = generator
+		List<ICombinatoricsVector<Integer>> list = generator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
@@ -102,7 +97,7 @@ public class PermutationsTest {
 
 		ArrayList<Integer> array = new ArrayList<Integer>();
 
-		CombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
+		ICombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
 				array);
 		Generator<Integer> generator = new PermutationGenerator<Integer>(
 				corePermutation);
@@ -111,7 +106,7 @@ public class PermutationsTest {
 				+ generator.getNumberOfGeneratedObjects());
 		assertEquals(0, generator.getNumberOfGeneratedObjects());
 
-		Iterator<CombinatoricsVector<Integer>> iterator = generator
+		Iterator<ICombinatoricsVector<Integer>> iterator = generator
 				.createIterator();
 
 		while (iterator.hasNext()) {
@@ -119,7 +114,7 @@ public class PermutationsTest {
 			System.out.println(iterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = generator
+		List<ICombinatoricsVector<Integer>> list = generator
 				.generateAllObjects();
 
 		assertEquals(0, list.size());

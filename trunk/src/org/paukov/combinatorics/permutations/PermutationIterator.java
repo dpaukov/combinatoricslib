@@ -2,18 +2,19 @@ package org.paukov.combinatorics.permutations;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of permutation generator
  * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see PermutationGenerator
  * @param <T>
  *            Type of elements of permutations
  */
-public class PermutationIterator<T> extends Iterator<CombinatoricsVector<T>> {
+public class PermutationIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
@@ -23,7 +24,7 @@ public class PermutationIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	/**
 	 * Current permutation
 	 */
-	protected CombinatoricsVector<T> _currentPermutation;
+	protected ICombinatoricsVector<T> _currentPermutation;
 
 	/**
 	 * Current index of current permutation
@@ -55,9 +56,9 @@ public class PermutationIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	 */
 	public PermutationIterator(Generator<T> generator) {
 		_generator = generator;
-		_length = generator.getCoreObject().getSize();
+		_length = generator.getOriginalVector().getSize();
 		_currentPermutation = new CombinatoricsVector<T>(
-				generator.getCoreObject());
+				generator.getOriginalVector());
 		_pZ = new int[_length + 2];
 		_pP = new int[_length + 2];
 		_pD = new int[_length + 2];
@@ -88,15 +89,15 @@ public class PermutationIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	}
 
 	/**
-	 * Returns current permutation
+	 * Returns the current permutation
 	 */
 	@Override
-	public CombinatoricsVector<T> getCurrentItem() {
-		return _currentPermutation;
+	public ICombinatoricsVector<T> getCurrentItem() {
+		return new CombinatoricsVector<T>(_currentPermutation);
 	}
 
 	/**
-	 * Return true if iteration process is finished
+	 * Return true if the iteration process is finished
 	 */
 	@Override
 	public boolean isDone() {
@@ -107,11 +108,11 @@ public class PermutationIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	 * Moves to the next permutation
 	 */
 	@Override
-	public CombinatoricsVector<T> next() {
+	public ICombinatoricsVector<T> next() {
 
 		for (int i = 1; i <= _length; i++) {
 			int index = _pZ[i] - 1;
-			_currentPermutation.setValue(i - 1, _generator.getCoreObject()
+			_currentPermutation.setValue(i - 1, _generator.getOriginalVector()
 					.getValue(index));
 		}
 		m = _length;
@@ -134,7 +135,7 @@ public class PermutationIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	}
 
 	/**
-	 * Returns permutation as a string
+	 * Returns the current permutation as a string
 	 * 
 	 * @see java.lang.Object#toString()
 	 */

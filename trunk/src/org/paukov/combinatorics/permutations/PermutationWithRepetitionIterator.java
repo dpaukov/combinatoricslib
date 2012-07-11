@@ -1,20 +1,21 @@
 package org.paukov.combinatorics.permutations;
 
 import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of permutation with repetitions
  *
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see PermutationWithRepetitionGenerator
  * 
  * @param <T>
  *            Type of elements in the permutation
  */
 public class PermutationWithRepetitionIterator<T extends Object> extends
-		Iterator<CombinatoricsVector<T>> {
+		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
@@ -22,9 +23,9 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	protected final PermutationWithRepetitionGenerator<T> _generator;
 
 	/**
-	 * Current vector of permutation
+	 * Current permutation
 	 */
-	protected CombinatoricsVector<T> _currentPermutation = null;
+	protected ICombinatoricsVector<T> _currentPermutation = null;
 
 	/**
 	 * Index of the current permutation
@@ -55,10 +56,10 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	public PermutationWithRepetitionIterator(
 			PermutationWithRepetitionGenerator<T> generator) {
 		_generator = generator;
-		_n = generator.getCoreObject().getSize();
+		_n = generator.getOriginalVector().getSize();
 		_k = generator.getPermutationLength();
 		_currentPermutation = new CombinatoricsVector<T>(_k, generator
-				.getCoreObject().getValue(0));
+				.getOriginalVector().getValue(0));
 		_bitVector = new int[_k + 2];
 		init();
 	}
@@ -81,8 +82,8 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
 	 */
 	@Override
-	public CombinatoricsVector<T> getCurrentItem() {
-		return _currentPermutation;
+	public ICombinatoricsVector<T> getCurrentItem() {
+		return new CombinatoricsVector<T>(_currentPermutation);
 	}
 
 	/**
@@ -101,12 +102,12 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	 * @see org.paukov.combinatorics.Iterator#next()
 	 */
 	@Override
-	public CombinatoricsVector<T> next() {
+	public ICombinatoricsVector<T> next() {
 		_currentIndex++;
 
 		for (int j = _k - 1; j >= 0; j--) {
 			int index = _bitVector[j];
-			_currentPermutation.setValue(j, _generator.getCoreObject()
+			_currentPermutation.setValue(j, _generator.getOriginalVector()
 					.getValue(index));
 		}
 
@@ -127,7 +128,7 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	}
 
 	/**
-	 * Returns permutation as a string
+	 * Returns the current permutation as a string
 	 * 
 	 * @see java.lang.Object#toString()
 	 */

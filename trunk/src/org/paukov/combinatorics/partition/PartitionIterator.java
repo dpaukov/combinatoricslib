@@ -3,19 +3,19 @@ package org.paukov.combinatorics.partition;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.composition.CompositionGenerator;
 
 
 /**
  * Iterator for enumeration of all partitions
  * 
  * @author Dmytro Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see PartitionGenerator
  */
-public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
+public class PartitionIterator extends Iterator<ICombinatoricsVector<Integer>> {
 
 	/**
 	 * Generator
@@ -28,7 +28,7 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 	protected CombinatoricsVector<Integer> _currentPartition = null;
 
 	/**
-	 * Current index of partition
+	 * Index of the current partition
 	 */
 	protected long _currentIndex = 0;
 
@@ -51,8 +51,8 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 	 */
 	public PartitionIterator(PartitionGenerator generator) {
 		_generator = generator;
-		_mVector = new int[generator._coreValue + 2];
-		_zVector = new int[generator._coreValue + 2];
+		_mVector = new int[generator._initialValue + 2];
+		_zVector = new int[generator._initialValue + 2];
 		init();
 	}
 
@@ -61,7 +61,7 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 	 */
 	private void init() {
 
-		if (_generator._coreValue < 1) {
+		if (_generator._initialValue < 1) {
 			_kIndex = 0;
 			return;
 		}
@@ -72,23 +72,23 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 		setInternalVectorValue(-1, _zVector, 0);
 		setInternalVectorValue(-1, _mVector, 0);
 
-		setInternalVectorValue(0, _zVector, _generator._coreValue + 1);
+		setInternalVectorValue(0, _zVector, _generator._initialValue + 1);
 		setInternalVectorValue(0, _mVector, 0);
 
 		setInternalVectorValue(1, _zVector, 1);
-		setInternalVectorValue(1, _mVector, _generator._coreValue);
+		setInternalVectorValue(1, _mVector, _generator._initialValue);
 	}
 
 	/**
-	 * Returns current partition
+	 * Returns the current partition
 	 */
 	@Override
-	public CombinatoricsVector<Integer> getCurrentItem() {
-		return _currentPartition;
+	public ICombinatoricsVector<Integer> getCurrentItem() {
+		return new CombinatoricsVector<Integer>(_currentPartition);
 	}
 
 	/**
-	 * Returns true if all partitions were enumereted
+	 * Returns true if all partitions were enumerated
 	 */
 	public boolean isDone() {
 		return _kIndex == 0;
@@ -98,7 +98,7 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 	 * Moves to the next partition
 	 */
 	@Override
-	public CombinatoricsVector<Integer> next() {
+	public ICombinatoricsVector<Integer> next() {
 		_currentIndex++;
 		createCurrentPartition(_kIndex);
 		int sum = getInternalVectorValue(_kIndex, _mVector)
@@ -128,7 +128,7 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 	}
 
 	/**
-	 * Creates current partition based on internal vectors
+	 * Creates current partition based on the internal vectors
 	 */
 	private void createCurrentPartition(int k) {
 		List<Integer> list = new ArrayList<Integer>();
@@ -149,7 +149,7 @@ public class PartitionIterator extends Iterator<CombinatoricsVector<Integer>> {
 	}
 
 	/**
-	 * Returns partition as a string
+	 * Returns the current partition as a string
 	 * 
 	 * @see java.lang.Object#toString()
 	 */

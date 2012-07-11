@@ -1,19 +1,20 @@
 package org.paukov.combinatorics.combination.simple;
 
 import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of simple combinations
  * 
  * @author Dmytro Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see SimpleCombinationGenerator
  * @param <T>
  *            Type of elements in a combination
  */
 public class SimpleCombinationIterator<T> extends
-		Iterator<CombinatoricsVector<T>> {
+		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
@@ -23,7 +24,7 @@ public class SimpleCombinationIterator<T> extends
 	/**
 	 * Current simple combination
 	 */
-	protected CombinatoricsVector<T> _currentSimpleCombination = null;
+	protected ICombinatoricsVector<T> _currentSimpleCombination = null;
 
 	/**
 	 * Index of the current combination
@@ -58,7 +59,7 @@ public class SimpleCombinationIterator<T> extends
 	 */
 	public SimpleCombinationIterator(SimpleCombinationGenerator<T> generator) {
 		_generator = generator;
-		_lengthN = generator.getCoreObject().getSize();
+		_lengthN = generator.getOriginalVector().getSize();
 		_lengthK = generator.getCombinationLength();
 		_currentSimpleCombination = new CombinatoricsVector<T>();
 		_bitVector = new int[_lengthK + 1];
@@ -83,8 +84,8 @@ public class SimpleCombinationIterator<T> extends
 	 * Returns the current combination
 	 */
 	@Override
-	public CombinatoricsVector<T> getCurrentItem() {
-		return _currentSimpleCombination;
+	public ICombinatoricsVector<T> getCurrentItem() {
+		return new CombinatoricsVector<T>(_currentSimpleCombination);
 	}
 
 	/**
@@ -99,14 +100,14 @@ public class SimpleCombinationIterator<T> extends
 	 * Moves to the next combination
 	 */
 	@Override
-	public CombinatoricsVector<T> next() {
+	public ICombinatoricsVector<T> next() {
 		_currentIndex++;
 
 		for (int i = 1; i <= _lengthK; i++) {
 			int index = _bitVector[i] - 1;
-			if (_generator.getCoreObject().getSize() > 0) {
+			if (_generator.getOriginalVector().getSize() > 0) {
 				_currentSimpleCombination.setValue(i - 1, _generator
-						.getCoreObject().getValue(index));
+						.getOriginalVector().getValue(index));
 			}
 		}
 
