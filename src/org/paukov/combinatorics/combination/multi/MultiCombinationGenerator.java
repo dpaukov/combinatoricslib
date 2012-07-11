@@ -2,6 +2,7 @@ package org.paukov.combinatorics.combination.multi;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
@@ -66,20 +67,20 @@ import org.paukov.combinatorics.util.Util;
  */
 public class MultiCombinationGenerator<T> extends Generator<T> {
 
-	protected final CombinatoricsVector<T> _coreSet;
+	protected final ICombinatoricsVector<T> _originalSet;
 	protected final int _combinationLength;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param coreSet
-	 *            Core set which is used for combination generation
+	 * @param originalSet
+	 *            Original/initial set which is used for combination generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
 	 */
-	public MultiCombinationGenerator(CombinatoricsVector<T> coreSet,
+	public MultiCombinationGenerator(ICombinatoricsVector<T> originalSet,
 			int combinationsLength) {
-		_coreSet = new CombinatoricsVector<T>(coreSet);
+		_originalSet = new CombinatoricsVector<T>(originalSet);
 		if (combinationsLength < 0)
 			_combinationLength = 0;
 		else
@@ -91,8 +92,8 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * 
 	 * @return Returns the _originalVector.
 	 */
-	public CombinatoricsVector<T> getCoreObject() {
-		return _coreSet;
+	public ICombinatoricsVector<T> getOriginalVector() {
+		return _originalSet;
 	}
 
 	/**
@@ -108,14 +109,14 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * Returns number of generated combinations with repetitions
 	 */
 	public long getNumberOfGeneratedObjects() {
-		return Util.combination(_coreSet.getSize() + _combinationLength - 1,
+		return Util.combination(_originalSet.getSize() + _combinationLength - 1,
 				_combinationLength);
 	}
 
 	/**
 	 * Creates iterator of combinations with repetitions
 	 */
-	public Iterator<CombinatoricsVector<T>> createIterator() {
+	public Iterator<ICombinatoricsVector<T>> createIterator() {
 		return new MultiCombinationIterator<T>(this);
 	}
 }

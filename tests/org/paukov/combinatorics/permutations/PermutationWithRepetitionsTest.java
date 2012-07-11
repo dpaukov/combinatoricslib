@@ -11,9 +11,9 @@ import java.util.List;
 import org.junit.Test;
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.permutations.PermutationWithRepetitionGenerator;
-
 
 /**
  * @author Dmytro Paukov
@@ -24,17 +24,12 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleTreeTwoPermutationWithRepetition() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-		array.add(2);
-		array.add(3);
-
-		CombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
+				new Integer[] { 1, 2, 3 });
 
 		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
 				coreVector, 2);
-		Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
 
 		assertEquals(9,
@@ -49,7 +44,7 @@ public class PermutationWithRepetitionsTest {
 			System.out.println(permutationWithRepetitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
+		List<ICombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
 				.generateAllObjects();
 
 		assertEquals(9, list.size());
@@ -82,12 +77,12 @@ public class PermutationWithRepetitionsTest {
 		array.add(2);
 		array.add(3);
 
-		CombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
+		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
 				array);
 
 		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
 				coreVector, 1);
-		Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
 
 		assertEquals(3,
@@ -102,7 +97,7 @@ public class PermutationWithRepetitionsTest {
 			System.out.println(permutationWithRepetitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
+		List<ICombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
 				.generateAllObjects();
 
 		assertEquals(3, list.size());
@@ -118,17 +113,12 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleThreeZeroPermutationWithRepetition() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-		array.add(2);
-		array.add(3);
-
-		CombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
+				new Integer[] { 1, 2, 3 });
 
 		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
 				coreVector, 0);
-		Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
 
 		assertEquals(1,
@@ -143,27 +133,23 @@ public class PermutationWithRepetitionsTest {
 			System.out.println(permutationWithRepetitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
+		List<ICombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
-		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
-				.toString());
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
 
 	}
 
 	@Test
 	public void simpleOneOnePermutationWithRepetition() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-
-		CombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
-				array);
+		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
+				new Integer[] { 1 });
 
 		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
 				coreVector, 1);
-		Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
 
 		assertEquals(1,
@@ -178,7 +164,7 @@ public class PermutationWithRepetitionsTest {
 			System.out.println(permutationWithRepetitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
+		List<ICombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
@@ -193,12 +179,12 @@ public class PermutationWithRepetitionsTest {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 
-		CombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
+		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
 				array);
 
 		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
 				coreVector, 2);
-		Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
 
 		assertEquals(1,
@@ -213,7 +199,7 @@ public class PermutationWithRepetitionsTest {
 			System.out.println(permutationWithRepetitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
+		List<ICombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
@@ -228,12 +214,12 @@ public class PermutationWithRepetitionsTest {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 
-		CombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
+		ICombinatoricsVector<Integer> coreVector = new CombinatoricsVector<Integer>(
 				array);
 
 		Generator<Integer> permutationWithRepetitionGenerator = new PermutationWithRepetitionGenerator<Integer>(
 				coreVector, 0);
-		Iterator<CombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
 				.createIterator();
 
 		assertEquals(1,
@@ -248,12 +234,11 @@ public class PermutationWithRepetitionsTest {
 			System.out.println(permutationWithRepetitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
+		List<ICombinatoricsVector<Integer>> list = permutationWithRepetitionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
 
-		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
-				.toString());
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
 	}
 }

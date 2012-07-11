@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 import org.paukov.combinatorics.permutations.PermutationGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
@@ -18,7 +19,7 @@ import org.paukov.combinatorics.subsets.SubSetGenerator;
  */
 public class ComplexCombinationIterator<T>
 		extends
-		org.paukov.combinatorics.Iterator<CombinatoricsVector<CombinatoricsVector<T>>> {
+		org.paukov.combinatorics.Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> {
 
 	/**
 	 * Generator
@@ -28,7 +29,7 @@ public class ComplexCombinationIterator<T>
 	/**
 	 * Current combination
 	 */
-	protected CombinatoricsVector<CombinatoricsVector<T>> _currentComplexCombination = null;
+	protected ICombinatoricsVector<ICombinatoricsVector<T>> _currentComplexCombination = null;
 
 	/**
 	 * Current index of the combination
@@ -38,12 +39,12 @@ public class ComplexCombinationIterator<T>
 	/**
 	 * The set of the generated combinations
 	 */
-	protected Set<CombinatoricsVector<CombinatoricsVector<T>>> _resultSet = new LinkedHashSet<CombinatoricsVector<CombinatoricsVector<T>>>();
+	protected Set<ICombinatoricsVector<ICombinatoricsVector<T>>> _resultSet = new LinkedHashSet<ICombinatoricsVector<ICombinatoricsVector<T>>>();
 
 	/**
 	 * The iterator over the result combinations
 	 */
-	protected Iterator<CombinatoricsVector<CombinatoricsVector<T>>> _resultIterator = null;
+	protected Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> _resultIterator = null;
 
 	/**
 	 * Constructor
@@ -63,14 +64,14 @@ public class ComplexCombinationIterator<T>
 
 		// 1. Generate all permutations from the original list
 		Generator<T> permutationGenerator = new PermutationGenerator<T>(
-				_generator.getCoreObject().getValue(0));
-		List<CombinatoricsVector<T>> permutationsList = permutationGenerator
+				_generator.getOriginalVector().getValue(0));
+		List<ICombinatoricsVector<T>> permutationsList = permutationGenerator
 				.generateAllObjects();
 
 		// 2. Generate all subsets of the original list
 		Generator<T> subSetGenerator = new SubSetGenerator<T>(_generator
-				.getCoreObject().getValue(0));
-		List<CombinatoricsVector<T>> allSubsetsList = subSetGenerator
+				.getOriginalVector().getValue(0));
+		List<ICombinatoricsVector<T>> allSubsetsList = subSetGenerator
 				.generateAllObjects();
 
 		// If empty set has to be excluded, remove it from the sub sets
@@ -78,25 +79,25 @@ public class ComplexCombinationIterator<T>
 			allSubsetsList.remove(new CombinatoricsVector<T>());
 
 		// 3.1 Create a vector of all subsets
-		CombinatoricsVector<CombinatoricsVector<T>> allSubsetsVector = new CombinatoricsVector<CombinatoricsVector<T>>(
+		ICombinatoricsVector<ICombinatoricsVector<T>> allSubsetsVector = new CombinatoricsVector<ICombinatoricsVector<T>>(
 				allSubsetsList);
 
 		// 3.2 Create a simple generator to get all n-combination of the subsets
-		Generator<CombinatoricsVector<T>> combinationGenerator = new MultiCombinationGenerator<CombinatoricsVector<T>>(
+		Generator<ICombinatoricsVector<T>> combinationGenerator = new MultiCombinationGenerator<ICombinatoricsVector<T>>(
 				allSubsetsVector, _generator.getCombinationLength());
 
 		// 3.3 Get an iterator
-		Iterator<CombinatoricsVector<CombinatoricsVector<T>>> combinationIterator = combinationGenerator
+		Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> combinationIterator = combinationGenerator
 				.createIterator();
 
 		// 3.4 Create an intermediate combinations list to store the candidates
-		List<CombinatoricsVector<CombinatoricsVector<T>>> intermediateCombinations = new ArrayList<CombinatoricsVector<CombinatoricsVector<T>>>();
+		List<ICombinatoricsVector<ICombinatoricsVector<T>>> intermediateCombinations = new ArrayList<ICombinatoricsVector<ICombinatoricsVector<T>>>();
 
 		// 3.5 Search the combinations which are contained in the permutations
 		while (combinationIterator.hasNext()) {
 
 			// 3.5.1 Get a combination
-			CombinatoricsVector<CombinatoricsVector<T>> combination = combinationIterator
+			ICombinatoricsVector<ICombinatoricsVector<T>> combination = combinationIterator
 					.next();
 
 			/**
@@ -115,16 +116,14 @@ public class ComplexCombinationIterator<T>
 
 			// 3.5.2.3 Create a vector which contains all elements from the
 			// combination
-			CombinatoricsVector<T> vector = new CombinatoricsVector<T>(list);
+			ICombinatoricsVector<T> vector = new CombinatoricsVector<T>(list);
 
 			// 3.5.3 Add the combination into the intermediate result if the
 			// constructed vector exists in the permutations list
 			if (permutationsList.contains(vector)) {
-				CombinatoricsVector<CombinatoricsVector<T>> intermediateCombination = new CombinatoricsVector<CombinatoricsVector<T>>(
-						combination);
-
-				if (!intermediateCombinations.contains(intermediateCombination))
-					intermediateCombinations.add(intermediateCombination);
+				
+				if (!intermediateCombinations.contains(combination))
+					intermediateCombinations.add(combination);
 			}
 		}
 
@@ -137,16 +136,16 @@ public class ComplexCombinationIterator<T>
 
 			// 4. Generate permutations for each found combination and add them
 			// into the final result list
-			for (CombinatoricsVector<CombinatoricsVector<T>> combination : intermediateCombinations) {
+			for (ICombinatoricsVector<ICombinatoricsVector<T>> combination : intermediateCombinations) {
 
 				// 4.1 Create a permutation generator for each intermediate
 				// combination
-				Generator<CombinatoricsVector<T>> permutationGen = new PermutationGenerator<CombinatoricsVector<T>>(
-						new CombinatoricsVector<CombinatoricsVector<T>>(
+				Generator<ICombinatoricsVector<T>> permutationGen = new PermutationGenerator<ICombinatoricsVector<T>>(
+						new CombinatoricsVector<ICombinatoricsVector<T>>(
 								combination));
 
 				// 4.2 Generate all permutations
-				List<CombinatoricsVector<CombinatoricsVector<T>>> permutations = permutationGen
+				List<ICombinatoricsVector<ICombinatoricsVector<T>>> permutations = permutationGen
 						.generateAllObjects();
 
 				// 4.3 Add then into the final result list
@@ -162,7 +161,7 @@ public class ComplexCombinationIterator<T>
 	 * Returns the current combination
 	 */
 	@Override
-	public CombinatoricsVector<CombinatoricsVector<T>> getCurrentItem() {
+	public ICombinatoricsVector<ICombinatoricsVector<T>> getCurrentItem() {
 		return _currentComplexCombination;
 	}
 
@@ -178,7 +177,7 @@ public class ComplexCombinationIterator<T>
 	 * Moves to the next combination
 	 */
 	@Override
-	public CombinatoricsVector<CombinatoricsVector<T>> next() {
+	public ICombinatoricsVector<ICombinatoricsVector<T>> next() {
 		_currentIndex++;
 
 		_currentComplexCombination = _resultIterator.next();

@@ -2,6 +2,7 @@ package org.paukov.combinatorics.permutations;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
@@ -72,14 +73,14 @@ import org.paukov.combinatorics.Iterator;
  * @see PermutationWithRepetitionIterator
  * 
  * @param <T>
- *            Type of elements in permutation
+ *            Type of elements in the permutations
  */
 public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 
 	/**
-	 * Core vector which is used as the base for generator
+	 * Original vector which is used as the base for the permutations 
 	 */
-	protected final CombinatoricsVector<T> _coreVector;
+	protected final ICombinatoricsVector<T> _originalVector;
 
 	/**
 	 * Number of elements in the generated permutation
@@ -89,14 +90,14 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	/**
 	 * Constructor
 	 * 
-	 * @param coreVector
+	 * @param originalVector
 	 *            core vector which is used as the base for generator
 	 * @param permutationLength
 	 *            Number of elements in the generated permutation
 	 */
 	public PermutationWithRepetitionGenerator(
-			CombinatoricsVector<T> coreVector, int permutationLength) {
-		_coreVector = new CombinatoricsVector<T>(coreVector);
+			ICombinatoricsVector<T> originalVector, int permutationLength) {
+		_originalVector = new CombinatoricsVector<T>(originalVector);
 		_permutationLength = permutationLength;
 	}
 
@@ -104,7 +105,7 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	 * Creates iterator
 	 */
 	@Override
-	public Iterator<CombinatoricsVector<T>> createIterator() {
+	public Iterator<ICombinatoricsVector<T>> createIterator() {
 		return new PermutationWithRepetitionIterator<T>(this);
 	}
 
@@ -112,8 +113,8 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	 * Returns core vector
 	 */
 	@Override
-	public CombinatoricsVector<T> getCoreObject() {
-		return _coreVector;
+	public ICombinatoricsVector<T> getOriginalVector() {
+		return _originalVector;
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	 */
 	@Override
 	public long getNumberOfGeneratedObjects() {
-		return (long) Math.pow(_coreVector.getSize(), _permutationLength);
+		return (long) Math.pow(_originalVector.getSize(), _permutationLength);
 	}
 
 	/**

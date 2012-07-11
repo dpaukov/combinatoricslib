@@ -4,21 +4,13 @@ package org.paukov.combinatorics;
  * Iterator for enumerating a collection
  * 
  * @author Dmytro Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see Generator
  * 
  * @param <T>
- *            Type of elements in collections
+ *            Type of the elements in the iterator
  */
 public abstract class Iterator<T> implements java.util.Iterator<T> {
-
-	/**
-	 * Initial action
-	 */
-	@Deprecated
-	public void first() {
-		// empty method
-	}
 
 	/**
 	 * Checks if collection is finished

@@ -2,19 +2,20 @@ package org.paukov.combinatorics.subsets;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator over the all subsets
  * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see SubSetGenerator
  * 
  * @param <T>
  *            Type of elements of subset
  */
-public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
+public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
@@ -24,7 +25,7 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	/**
 	 * Current subset
 	 */
-	protected CombinatoricsVector<T> _currentSubSet = null;
+	protected ICombinatoricsVector<T> _currentSubSet = null;
 
 	/**
 	 * Index of the current subset
@@ -49,7 +50,7 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	 */
 	public SubSetIterator(Generator<T> generator) {
 		_generator = generator;
-		_length = generator.getCoreObject().getSize();
+		_length = generator.getOriginalVector().getSize();
 		_currentSubSet = new CombinatoricsVector<T>();
 		_bitVector = new int[_length + 2];
 		init();
@@ -74,8 +75,8 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
 	 */
 	@Override
-	public CombinatoricsVector<T> getCurrentItem() {
-		return _currentSubSet;
+	public ICombinatoricsVector<T> getCurrentItem() {
+		return new CombinatoricsVector<T>(_currentSubSet);
 	}
 
 	/**
@@ -94,12 +95,12 @@ public class SubSetIterator<T> extends Iterator<CombinatoricsVector<T>> {
 	 * @see org.paukov.combinatorics.Iterator#next()
 	 */
 	@Override
-	public CombinatoricsVector<T> next() {
+	public ICombinatoricsVector<T> next() {
 		_currentIndex++;
 		_currentSubSet.getVector().clear();
 		for (int index = 1; index <= _length; index++) {
 			if (_bitVector[index] == 1) {
-				T value = _generator.getCoreObject().getValue(index - 1);
+				T value = _generator.getOriginalVector().getValue(index - 1);
 				_currentSubSet.getVector().add(value);
 			}
 		}

@@ -15,9 +15,9 @@ import java.util.Set;
  * @param <T>
  *            Type of the elements
  */
-public class CombinatoricsVector<T> {
+public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
-	protected final ArrayList<T> _vector;
+	protected final List<T> _vector;
 
 	/**
 	 * Default constructor
@@ -40,18 +40,7 @@ public class CombinatoricsVector<T> {
 			_vector.add(defaulValue);
 		}
 	}
-
-	/**
-	 * Copy constructor
-	 * 
-	 * @param vector
-	 *            Initial vector to initialize the created vector
-	 */
-	public CombinatoricsVector(CombinatoricsVector<T> vector) {
-		_vector = new ArrayList<T>(vector.getSize());
-		_vector.addAll(vector.getVector());
-	}
-
+	
 	/**
 	 * Constructor
 	 * 
@@ -62,16 +51,37 @@ public class CombinatoricsVector<T> {
 		_vector = new ArrayList<T>(vector.size());
 		_vector.addAll(vector);
 	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param array
+	 *            Initial array to initialize the created vector
+	 */
+	public CombinatoricsVector(T[] array) {
+		_vector = new ArrayList<T>(array.length);
+		for (int i = 0; i < array.length; i++) {
+			_vector.add(array[i]);
+		}
+	}
+	
 
 	/**
-	 * Sets value to position <code>index</code>. If the index is out of bounds
-	 * the value will be added at the end of the vector
+	 * Copy constructor
 	 * 
-	 * @param index
-	 *            Position of element
-	 * @param value
-	 *            Value of element
+	 * @param vector
+	 *            Initial vector to initialize the created vector
 	 */
+	public CombinatoricsVector(ICombinatoricsVector<T> vector) {
+		_vector = new ArrayList<T>(vector.getSize());
+		_vector.addAll(vector.getVector());
+	}
+	
+	
+	/**
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#setValue(int, T)
+	 */
+	@Override
 	public void setValue(int index, T value) {
 		try {
 			_vector.set(index, value);
@@ -81,53 +91,45 @@ public class CombinatoricsVector<T> {
 	}
 
 	/**
-	 * Adds value to the vector.
-	 * 
-	 * @param value
-	 *            Value of element
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#addValue(T)
 	 */
+	@Override
 	public boolean addValue(T value) {
 		return _vector.add(value);
 	}
 
 	/**
-	 * Returns value of the <code>index</code>-element
-	 * 
-	 * @param index
-	 *            The position of the element (Index of the element)
-	 * @return Value of the element
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#getValue(int)
 	 */
+	@Override
 	public T getValue(int index) {
 		return _vector.get(index);
 	}
 
 	/**
-	 * Returns size of the vector
-	 * 
-	 * @return Current size of the vector
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#getSize()
 	 */
+	@Override
 	public int getSize() {
 		if (_vector == null) {
 			return 0;
 		}
 		return _vector.size();
 	}
-	
+
 	/**
-	 * This method detects duplicates in the vector
-	 * @return
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#hasDuplicates()
 	 */
-	public boolean hasDuplicates()
-	{
+	@Override
+	public boolean hasDuplicates() {
 		Set<T> set = new HashSet<T>(_vector);
-		return set.size()<_vector.size();
+		return set.size() < _vector.size();
 	}
 
 	/**
-	 * Returns vector as a list of elements
-	 * 
-	 * @return List of all elements
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#getVector()
 	 */
+	@Override
 	public List<T> getVector() {
 		return _vector;
 	}
@@ -176,5 +178,5 @@ public class CombinatoricsVector<T> {
 	public String toString() {
 		return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
 	}
-
+	
 }

@@ -2,6 +2,7 @@ package org.paukov.combinatorics.combination.simple;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
@@ -60,20 +61,20 @@ import org.paukov.combinatorics.util.Util;
  */
 public class SimpleCombinationGenerator<T> extends Generator<T> {
 
-	protected final CombinatoricsVector<T> _coreSet;
+	protected final ICombinatoricsVector<T> _originalVector;
 	protected final int _combinationLength;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param coreSet
-	 *            Core set which is used for combination generation
+	 * @param originalVector
+	 *            Original vector which is used for generating the combination
 	 * @param combinationsLength
-	 *            Length of combination to generate
+	 *            Length of the combinations
 	 */
-	public SimpleCombinationGenerator(CombinatoricsVector<T> coreSet,
+	public SimpleCombinationGenerator(ICombinatoricsVector<T> originalVector,
 			int combinationsLength) {
-		_coreSet = new CombinatoricsVector<T>(coreSet);
+		_originalVector = new CombinatoricsVector<T>(originalVector);
 		_combinationLength = combinationsLength;
 	}
 
@@ -82,8 +83,8 @@ public class SimpleCombinationGenerator<T> extends Generator<T> {
 	 * 
 	 * @return Returns the _originalVector.
 	 */
-	public CombinatoricsVector<T> getCoreObject() {
-		return _coreSet;
+	public ICombinatoricsVector<T> getOriginalVector() {
+		return _originalVector;
 	}
 
 	/**
@@ -99,13 +100,13 @@ public class SimpleCombinationGenerator<T> extends Generator<T> {
 	 * Returns the number of the generated combinations
 	 */
 	public long getNumberOfGeneratedObjects() {
-		return Util.combination(_coreSet.getSize(), _combinationLength);
+		return Util.combination(_originalVector.getSize(), _combinationLength);
 	}
 
 	/**
 	 * Creates an iterator of the simple combinations (without repetitions)
 	 */
-	public Iterator<CombinatoricsVector<T>> createIterator() {
+	public Iterator<ICombinatoricsVector<T>> createIterator() {
 		return new SimpleCombinationIterator<T>(this);
 	}
 }

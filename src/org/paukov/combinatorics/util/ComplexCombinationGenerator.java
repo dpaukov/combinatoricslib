@@ -2,6 +2,7 @@ package org.paukov.combinatorics.util;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
@@ -9,9 +10,9 @@ import org.paukov.combinatorics.Iterator;
  * 
  */
 public class ComplexCombinationGenerator<T> extends
-		Generator<CombinatoricsVector<T>> {
+		Generator<ICombinatoricsVector<T>> {
 
-	protected final CombinatoricsVector<T> _originalVector;
+	protected final ICombinatoricsVector<T> _originalVector;
 	protected final int _combinationLength;
 	protected final boolean _isOrderImportant;
 	protected final boolean _excludeEmptySet;
@@ -20,11 +21,11 @@ public class ComplexCombinationGenerator<T> extends
 	 * Constructor
 	 * 
 	 * @param originalVector
-	 *            Core set which is used for combination generation
+	 *            Original vector/set which is used for combination generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
 	 */
-	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
+	public ComplexCombinationGenerator(ICombinatoricsVector<T> originalVector,
 			int combinationsLength) {
 		this(originalVector, combinationsLength, true, true);
 	}
@@ -33,14 +34,14 @@ public class ComplexCombinationGenerator<T> extends
 	 * Constructor
 	 * 
 	 * @param originalVector
-	 *            Core set which is used for combination generation
+	 *            Original vector/set which is used for combination generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
 	 * @param isOrderImportant
 	 *            true if the order of the generated combinations is important
 	 * 
 	 */
-	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
+	public ComplexCombinationGenerator(ICombinatoricsVector<T> originalVector,
 			int combinationsLength, boolean isOrderImportant) {
 		this(originalVector, combinationsLength, isOrderImportant, false);
 	}
@@ -49,7 +50,7 @@ public class ComplexCombinationGenerator<T> extends
 	 * Constructor
 	 * 
 	 * @param originalVector
-	 *            Core set which is used for combination generation
+	 *            Original vector/set which is used for combination generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
 	 * @param isOrderImportant
@@ -58,7 +59,7 @@ public class ComplexCombinationGenerator<T> extends
 	 *            true if the empty set has to be excluded from the generated
 	 *            combinations
 	 */
-	public ComplexCombinationGenerator(CombinatoricsVector<T> originalVector,
+	public ComplexCombinationGenerator(ICombinatoricsVector<T> originalVector,
 			int combinationsLength, boolean isOrderImportant,
 			boolean excludeEmptySet) {
 
@@ -80,8 +81,8 @@ public class ComplexCombinationGenerator<T> extends
 	 * 
 	 * @return Returns the _originalVector.
 	 */
-	public CombinatoricsVector<CombinatoricsVector<T>> getCoreObject() {
-		CombinatoricsVector<CombinatoricsVector<T>> result = new CombinatoricsVector<CombinatoricsVector<T>>();
+	public ICombinatoricsVector<ICombinatoricsVector<T>> getOriginalVector() {
+		ICombinatoricsVector<ICombinatoricsVector<T>> result = new CombinatoricsVector<ICombinatoricsVector<T>>();
 		result.addValue(_originalVector);
 		return result;
 	}
@@ -106,7 +107,7 @@ public class ComplexCombinationGenerator<T> extends
 	/**
 	 * Creates an iterator of the complex combinations
 	 */
-	public Iterator<CombinatoricsVector<CombinatoricsVector<T>>> createIterator() {
+	public Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> createIterator() {
 		return new ComplexCombinationIterator<T>(this);
 	}
 
@@ -132,8 +133,8 @@ public class ComplexCombinationGenerator<T> extends
 	 *            The vector
 	 * @return A string representation of the given vector
 	 */
-	public static <V> String convert2String(
-			CombinatoricsVector<CombinatoricsVector<V>> vector) {
+	public static <T> String convert2String(
+			ICombinatoricsVector<ICombinatoricsVector<T>> vector) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
 		for (int i = 0; i < vector.getSize(); i++) {

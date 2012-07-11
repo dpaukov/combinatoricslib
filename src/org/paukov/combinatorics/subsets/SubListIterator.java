@@ -4,21 +4,21 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * Iterator over the all sublists (with duplicates)
  * 
- * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @author Dmytro Paukov
+ * @see ICombinatoricsVector
  * @see SubSetGenerator
  * 
  * @param <T>
  *            Type of the elements in the lists
  */
 public class SubListIterator<T> extends
-		org.paukov.combinatorics.Iterator<CombinatoricsVector<T>> {
+		org.paukov.combinatorics.Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
@@ -28,7 +28,7 @@ public class SubListIterator<T> extends
 	/**
 	 * Current sublist
 	 */
-	protected CombinatoricsVector<T> _currentSubList = null;
+	protected ICombinatoricsVector<T> _currentSubList = null;
 
 	/**
 	 * Index of the current sub-list
@@ -43,12 +43,12 @@ public class SubListIterator<T> extends
 	/**
 	 * Set of the result vectors (with duplicates)
 	 */
-	protected final Set<CombinatoricsVector<T>> _result = new LinkedHashSet<CombinatoricsVector<T>>();
+	protected final Set<ICombinatoricsVector<T>> _result = new LinkedHashSet<ICombinatoricsVector<T>>();
 
 	/**
 	 * Iterator over the result vectors
 	 */
-	protected Iterator<CombinatoricsVector<T>> _resultIterator = null;
+	protected Iterator<ICombinatoricsVector<T>> _resultIterator = null;
 
 	/**
 	 * Constructor
@@ -70,8 +70,8 @@ public class SubListIterator<T> extends
 	private void init() {
 		_currentIndex = 0;
 		while (_subSetsIterator.hasNext()) {
-			CombinatoricsVector<T> subVector = _subSetsIterator.next();
-			_result.add(new CombinatoricsVector<T>(subVector));
+			ICombinatoricsVector<T> subVector = _subSetsIterator.next();
+			_result.add( subVector );
 		}
 		_resultIterator = _result.iterator();
 	}
@@ -82,7 +82,7 @@ public class SubListIterator<T> extends
 	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
 	 */
 	@Override
-	public CombinatoricsVector<T> getCurrentItem() {
+	public ICombinatoricsVector<T> getCurrentItem() {
 		return _currentSubList;
 	}
 
@@ -102,7 +102,7 @@ public class SubListIterator<T> extends
 	 * @see org.paukov.combinatorics.Iterator#next()
 	 */
 	@Override
-	public CombinatoricsVector<T> next() {
+	public ICombinatoricsVector<T> next() {
 		_currentIndex++;
 		_currentSubList = _resultIterator.next();
 		return getCurrentItem();

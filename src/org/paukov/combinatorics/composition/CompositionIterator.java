@@ -3,6 +3,7 @@ package org.paukov.combinatorics.composition;
 import java.util.List;
 
 import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
 
@@ -11,10 +12,10 @@ import org.paukov.combinatorics.subsets.SubSetGenerator;
  * Iterator for enumeration of all compositions
  * 
  * @author Dmytro Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see CompositionGenerator
  */
-public class CompositionIterator extends Iterator<CombinatoricsVector<Integer>> {
+public class CompositionIterator extends Iterator<ICombinatoricsVector<Integer>> {
 
 	/**
 	 * Generator
@@ -39,37 +40,37 @@ public class CompositionIterator extends Iterator<CombinatoricsVector<Integer>> 
 	/**
 	 * Subset iterator
 	 */
-	protected final Iterator<CombinatoricsVector<Integer>> _subsetIterator;
+	protected final Iterator<ICombinatoricsVector<Integer>> _subsetIterator;
 
 	/**
 	 * Current subset
 	 */
-	protected CombinatoricsVector<Integer> _currentSubset = null;
+	protected ICombinatoricsVector<Integer> _currentSubset = null;
 
 	/**
 	 * Constructor of an iterator
 	 * 
 	 * @param _generator
 	 */
-	public CompositionIterator(CompositionGenerator _generator) {
+	public CompositionIterator(CompositionGenerator generator) {
 		super();
-		this._generator = _generator;
+		_generator = generator;
 
-		CombinatoricsVector<Integer> coreSet = new CombinatoricsVector<Integer>();
+		ICombinatoricsVector<Integer> coreSet = new CombinatoricsVector<Integer>();
 
-		for (int i = 1; i < this._generator._coreValue; i++)
+		for (int i = 1; i < this._generator._initialValue; i++)
 			coreSet.addValue(i);
 
-		this._subsetGenerator = new SubSetGenerator<Integer>(coreSet);
+		_subsetGenerator = new SubSetGenerator<Integer>(coreSet);
 
-		this._subsetIterator = this._subsetGenerator.createIterator();
+		_subsetIterator = _subsetGenerator.createIterator();
 	}
 
 	/**
 	 * Returns the next composition
 	 */
 	@Override
-	public CombinatoricsVector<Integer> next() {
+	public ICombinatoricsVector<Integer> next() {
 		_currentIndex++;
 		_currentSubset = this._subsetIterator.next();
 		return getCurrentItem();
@@ -87,7 +88,7 @@ public class CompositionIterator extends Iterator<CombinatoricsVector<Integer>> 
 	 * Returns current composition
 	 */
 	@Override
-	public CombinatoricsVector<Integer> getCurrentItem() {
+	public ICombinatoricsVector<Integer> getCurrentItem() {
 
 		_currentComposition = new CombinatoricsVector<Integer>();
 
@@ -107,7 +108,7 @@ public class CompositionIterator extends Iterator<CombinatoricsVector<Integer>> 
 			currentValueSubSet = currentSubsetElement;
 		}
 		_currentComposition.setValue(indexCompositionElement,
-				_generator._coreValue - currentValueSubSet);
+				_generator._initialValue - currentValueSubSet);
 
 		return _currentComposition;
 	}

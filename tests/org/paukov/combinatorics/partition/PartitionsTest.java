@@ -6,8 +6,8 @@ package org.paukov.combinatorics.partition;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.partition.PartitionGenerator;
 
@@ -24,7 +24,7 @@ public class PartitionsTest {
 	public void simplePartition() {
 
 		Generator<Integer> partitionGenerator = new PartitionGenerator(5);
-		Iterator<CombinatoricsVector<Integer>> partitionIterator = partitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
 		System.out.println("Number of partition is: "
@@ -36,7 +36,7 @@ public class PartitionsTest {
 			System.out.println(partitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = partitionGenerator
+		List<ICombinatoricsVector<Integer>> list = partitionGenerator
 				.generateAllObjects();
 
 		assertEquals(7, list.size());
@@ -61,7 +61,7 @@ public class PartitionsTest {
 	public void simpleTwoPartition() {
 
 		Generator<Integer> partitionGenerator = new PartitionGenerator(2);
-		Iterator<CombinatoricsVector<Integer>> partitionIterator = partitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
 		System.out.println("Number of partition is: "
@@ -73,7 +73,7 @@ public class PartitionsTest {
 			System.out.println(partitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = partitionGenerator
+		List<ICombinatoricsVector<Integer>> list = partitionGenerator
 				.generateAllObjects();
 
 		assertEquals(2, list.size());
@@ -88,7 +88,7 @@ public class PartitionsTest {
 	public void simpleOnePartition() {
 
 		Generator<Integer> partitionGenerator = new PartitionGenerator(1);
-		Iterator<CombinatoricsVector<Integer>> partitionIterator = partitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
 		System.out.println("Number of partition is: "
@@ -100,7 +100,7 @@ public class PartitionsTest {
 			System.out.println(partitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = partitionGenerator
+		List<ICombinatoricsVector<Integer>> list = partitionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
@@ -113,7 +113,7 @@ public class PartitionsTest {
 	public void simpleEmptyPartition() {
 
 		Generator<Integer> partitionGenerator = new PartitionGenerator(0);
-		Iterator<CombinatoricsVector<Integer>> partitionIterator = partitionGenerator
+		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
 				.createIterator();
 
 		System.out.println("Number of partition is: "
@@ -125,7 +125,7 @@ public class PartitionsTest {
 			System.out.println(partitionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = partitionGenerator
+		List<ICombinatoricsVector<Integer>> list = partitionGenerator
 				.generateAllObjects();
 
 		assertEquals(0, list.size());

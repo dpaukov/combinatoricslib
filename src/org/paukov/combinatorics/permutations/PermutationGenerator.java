@@ -2,6 +2,7 @@ package org.paukov.combinatorics.permutations;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
@@ -74,44 +75,44 @@ public class PermutationGenerator<T> extends Generator<T> {
 	/**
 	 * Core vector
 	 */
-	protected final CombinatoricsVector<T> _corePermutation;
+	protected final ICombinatoricsVector<T> _originalVector;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param corePermutation
+	 * @param originalVector
 	 *            Vector which is used for permutation generation
 	 */
-	public PermutationGenerator(CombinatoricsVector<T> corePermutation) {
-		_corePermutation = new CombinatoricsVector<T>(corePermutation);
+	public PermutationGenerator(ICombinatoricsVector<T> originalVector) {
+		_originalVector = new CombinatoricsVector<T>(originalVector);
 	}
 
 	/**
 	 * Returns core permutation
 	 * 
-	 * @see org.paukov.combinatorics.Generator#getCoreObject()
+	 * @see org.paukov.combinatorics.Generator#getOriginalVector()
 	 */
-	public CombinatoricsVector<T> getCoreObject() {
-		return _corePermutation;
+	public ICombinatoricsVector<T> getOriginalVector() {
+		return _originalVector;
 	}
 
 	/**
-	 * Returns number of all generated permutations
+	 * Returns the number of all generated permutations
 	 * 
 	 * @see org.paukov.combinatorics.Generator#getNumberOfGeneratedObjects()
 	 */
 	public long getNumberOfGeneratedObjects() {
-		if (_corePermutation.getSize() == 0)
+		if (_originalVector.getSize() == 0)
 			return 0;
-		return Util.factorial(_corePermutation.getSize());
+		return Util.factorial(_originalVector.getSize());
 	}
 
 	/**
-	 * Creates iterator
+	 * Creates an iterator
 	 * 
 	 * @see org.paukov.combinatorics.Generator#createIterator()
 	 */
-	public Iterator<CombinatoricsVector<T>> createIterator() {
+	public Iterator<ICombinatoricsVector<T>> createIterator() {
 		return new PermutationIterator<T>(this);
 	}
 

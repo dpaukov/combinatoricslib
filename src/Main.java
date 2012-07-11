@@ -1,37 +1,38 @@
-import java.util.ArrayList;
-
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
-
 public class Main {
-	
-  /**
-   * @param args
-   */
-  public static void main(String[] args) {
-    
-	  // Initialize the list
-	  ArrayList<String> originalList = new ArrayList<String>();
-	  originalList.add("a");
-	  originalList.add("a");
-	  originalList.add("a");
-	  originalList.add("a");
-	  
-	  // Create a complex-combination generator and iterator
-	  Generator<CombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>( new CombinatoricsVector<String>(originalList), 2);
-	  
-	  // Create a complex-combination iterator
-	  Iterator <CombinatoricsVector<CombinatoricsVector<String>>> itr = complexGenerator.createIterator();
-	  
-	  // Iterate the elements
-	  while (itr.hasNext())
-	  {
-		  CombinatoricsVector<CombinatoricsVector<String>> combination = itr.next();
-		  String str = ComplexCombinationGenerator.<String>convert2String(combination);
-		  System.out.println(str);
-	  }
-  }
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		// create a combinatorics vector (a, a, a, a)
+		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+				new String[] { "a", "a", "a", "a" });
+
+		// Create a complex-combination generator
+		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
+				initialVector, 2);
+
+		// Create a complex-combination iterator
+		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
+				.createIterator();
+
+		// Iterate the elements
+		while (itr.hasNext()) {
+
+			ICombinatoricsVector<ICombinatoricsVector<String>> combination = itr
+					.next();
+
+			String str = ComplexCombinationGenerator
+					.convert2String(combination);
+
+			System.out.println(str);
+		}
+	}
 }

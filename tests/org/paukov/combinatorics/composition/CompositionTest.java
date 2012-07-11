@@ -8,8 +8,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.composition.CompositionGenerator;
 
@@ -24,7 +24,7 @@ public class CompositionTest {
 	public void simpleFiveComposition() {
 
 		Generator<Integer> compositionGenerator = new CompositionGenerator(5);
-		Iterator<CombinatoricsVector<Integer>> compositionIterator = compositionGenerator
+		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
 		System.out.println("Number of compositions is: "
@@ -36,7 +36,7 @@ public class CompositionTest {
 			System.out.println(compositionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = compositionGenerator
+		List<ICombinatoricsVector<Integer>> list = compositionGenerator
 				.generateAllObjects();
 
 		assertEquals(16, list.size());
@@ -86,7 +86,7 @@ public class CompositionTest {
 				+ compositionGenerator.getNumberOfGeneratedObjects());
 		assertEquals(16, compositionGenerator.getNumberOfGeneratedObjects());
 
-		List<CombinatoricsVector<Integer>> list = compositionGenerator
+		List<ICombinatoricsVector<Integer>> list = compositionGenerator
 				.generateObjectsRange(5, 7);
 
 		assertEquals(3, list.size());
@@ -103,7 +103,7 @@ public class CompositionTest {
 	public void simpleOneComposition() {
 
 		Generator<Integer> compositionGenerator = new CompositionGenerator(1);
-		Iterator<CombinatoricsVector<Integer>> compositionIterator = compositionGenerator
+		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
 		System.out.println("Number of compositions is: "
@@ -115,7 +115,7 @@ public class CompositionTest {
 			System.out.println(compositionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = compositionGenerator
+		List<ICombinatoricsVector<Integer>> list = compositionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());
@@ -129,7 +129,7 @@ public class CompositionTest {
 	public void simpleTwoComposition() {
 
 		Generator<Integer> compositionGenerator = new CompositionGenerator(2);
-		Iterator<CombinatoricsVector<Integer>> compositionIterator = compositionGenerator
+		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
 		System.out.println("Number of compositions is: "
@@ -141,7 +141,7 @@ public class CompositionTest {
 			System.out.println(compositionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = compositionGenerator
+		List<ICombinatoricsVector<Integer>> list = compositionGenerator
 				.generateAllObjects();
 
 		assertEquals(2, list.size());
@@ -157,7 +157,7 @@ public class CompositionTest {
 	public void simpleZeroComposition() {
 
 		Generator<Integer> compositionGenerator = new CompositionGenerator(0);
-		Iterator<CombinatoricsVector<Integer>> compositionIterator = compositionGenerator
+		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
 		System.out.println("Number of compositions is: "
@@ -169,7 +169,7 @@ public class CompositionTest {
 			System.out.println(compositionIterator);
 		}
 
-		List<CombinatoricsVector<Integer>> list = compositionGenerator
+		List<ICombinatoricsVector<Integer>> list = compositionGenerator
 				.generateAllObjects();
 
 		assertEquals(1, list.size());

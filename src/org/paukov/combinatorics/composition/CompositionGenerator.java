@@ -2,6 +2,7 @@ package org.paukov.combinatorics.composition;
 
 import org.paukov.combinatorics.CombinatoricsVector;
 import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
@@ -100,17 +101,17 @@ public class CompositionGenerator extends Generator<Integer> {
 
 	public static final int MAXN = 100;
 
-	protected final Integer _coreValue;
+	protected final Integer _initialValue;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param n
-	 *            An positive integer value
+	 *            A positive integer value
 	 */
 	public CompositionGenerator(Integer n) {
 		super();
-		this._coreValue = n;
+		this._initialValue = n;
 	}
 
 	/**
@@ -118,8 +119,8 @@ public class CompositionGenerator extends Generator<Integer> {
 	 * returned as a element of vector. Vector has length of 1
 	 */
 	@Override
-	public CombinatoricsVector<Integer> getCoreObject() {
-		return new CombinatoricsVector<Integer>(1, _coreValue);
+	public ICombinatoricsVector<Integer> getOriginalVector() {
+		return new CombinatoricsVector<Integer>(1, _initialValue);
 	}
 
 	/**
@@ -127,14 +128,14 @@ public class CompositionGenerator extends Generator<Integer> {
 	 */
 	@Override
 	public long getNumberOfGeneratedObjects() {
-		return Util.pow2(_coreValue - 1);
+		return Util.pow2(_initialValue - 1);
 	}
 
 	/**
 	 * Creates the iterator over all compositions
 	 */
 	@Override
-	public Iterator<CombinatoricsVector<Integer>> createIterator() {
+	public Iterator<ICombinatoricsVector<Integer>> createIterator() {
 		return new CompositionIterator(this);
 	}
 
