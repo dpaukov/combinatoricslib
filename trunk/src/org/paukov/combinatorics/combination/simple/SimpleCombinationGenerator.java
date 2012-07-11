@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.combination.simple;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -74,7 +74,7 @@ public class SimpleCombinationGenerator<T> extends Generator<T> {
 	 */
 	public SimpleCombinationGenerator(ICombinatoricsVector<T> originalVector,
 			int combinationsLength) {
-		_originalVector = new CombinatoricsVector<T>(originalVector);
+		_originalVector = Factory.createVector(originalVector);
 		_combinationLength = combinationsLength;
 	}
 

@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.permutations;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -57,8 +57,8 @@ public class PermutationIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 	public PermutationIterator(Generator<T> generator) {
 		_generator = generator;
 		_length = generator.getOriginalVector().getSize();
-		_currentPermutation = new CombinatoricsVector<T>(
-				generator.getOriginalVector());
+		_currentPermutation = Factory.createVector(generator
+				.getOriginalVector());
 		_pZ = new int[_length + 2];
 		_pP = new int[_length + 2];
 		_pD = new int[_length + 2];
@@ -93,7 +93,7 @@ public class PermutationIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 	 */
 	@Override
 	public ICombinatoricsVector<T> getCurrentItem() {
-		return new CombinatoricsVector<T>(_currentPermutation);
+		return Factory.createVector(_currentPermutation);
 	}
 
 	/**

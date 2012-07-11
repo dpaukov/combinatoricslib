@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.composition;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -120,7 +120,7 @@ public class CompositionGenerator extends Generator<Integer> {
 	 */
 	@Override
 	public ICombinatoricsVector<Integer> getOriginalVector() {
-		return new CombinatoricsVector<Integer>(1, _initialValue);
+		return Factory.createVector(new Integer[] { _initialValue });
 	}
 
 	/**

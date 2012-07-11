@@ -2,11 +2,10 @@ package org.paukov.combinatorics.util;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -21,8 +20,8 @@ public class ComplexCombinationTest {
 	public void test0() {
 
 		// create a combinatorics vector (a, b, c, d)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "b", "c", "d" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "c", "d" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -84,8 +83,8 @@ public class ComplexCombinationTest {
 	public void test1() {
 
 		// create a combinatorics vector (a, b, b, c)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "b", "b", "c" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "b", "c" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -136,8 +135,8 @@ public class ComplexCombinationTest {
 	public void test2() {
 
 		// create a combinatorics vector (a, a, a, a)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "a", "a", "a" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a", "a", "a" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -174,8 +173,8 @@ public class ComplexCombinationTest {
 	public void test3() {
 
 		// create a combinatorics vector (a, a, a, b)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "a", "a", "b" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a", "a", "b" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -218,8 +217,8 @@ public class ComplexCombinationTest {
 	public void test4() {
 
 		// create a combinatorics vector (a, a)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "a" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -252,8 +251,8 @@ public class ComplexCombinationTest {
 	public void test5() {
 
 		// create a combinatorics vector (a, a)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "a" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -286,8 +285,8 @@ public class ComplexCombinationTest {
 	public void test6() {
 
 		// create a combinatorics vector (a, b)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "b" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -322,8 +321,8 @@ public class ComplexCombinationTest {
 	public void test7() {
 
 		// create a combinatorics vector (a, b)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "b" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -362,8 +361,8 @@ public class ComplexCombinationTest {
 	public void test8() {
 
 		// create a combinatorics vector (a, b)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "b" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -396,8 +395,8 @@ public class ComplexCombinationTest {
 	public void test9() {
 
 		// create a combinatorics vector (a, b)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "b" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
@@ -428,13 +427,13 @@ public class ComplexCombinationTest {
 	@Test
 	public void test10() {
 
-		// Initialize the list
-		ArrayList<String> originalList = new ArrayList<String>();
-		originalList.add("a");
+		// create a combinatorics vector (a)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a" });
 
 		// Create a complex-combination generator and iterator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
-				new CombinatoricsVector<String>(originalList), 1);
+				initialVector, 1);
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator

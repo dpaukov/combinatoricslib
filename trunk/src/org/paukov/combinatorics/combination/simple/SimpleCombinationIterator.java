@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.combination.simple;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
@@ -61,7 +61,7 @@ public class SimpleCombinationIterator<T> extends
 		_generator = generator;
 		_lengthN = generator.getOriginalVector().getSize();
 		_lengthK = generator.getCombinationLength();
-		_currentSimpleCombination = new CombinatoricsVector<T>();
+		_currentSimpleCombination = Factory.createVector();
 		_bitVector = new int[_lengthK + 1];
 		init();
 	}
@@ -70,7 +70,7 @@ public class SimpleCombinationIterator<T> extends
 	 * Initialization
 	 */
 	private void init() {
-		
+
 		for (int i = 0; i <= _lengthK; i++) {
 			_bitVector[i] = i;
 		}
@@ -85,7 +85,7 @@ public class SimpleCombinationIterator<T> extends
 	 */
 	@Override
 	public ICombinatoricsVector<T> getCurrentItem() {
-		return new CombinatoricsVector<T>(_currentSimpleCombination);
+		return Factory.createVector(_currentSimpleCombination);
 	}
 
 	/**

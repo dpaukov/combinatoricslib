@@ -8,11 +8,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import org.junit.Test;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.composition.CompositionGenerator;
-
 
 /**
  * @author Dmytro.Paukov
@@ -23,7 +22,8 @@ public class CompositionTest {
 	@Test
 	public void simpleFiveComposition() {
 
-		Generator<Integer> compositionGenerator = new CompositionGenerator(5);
+		Generator<Integer> compositionGenerator = Factory
+				.createCompositionGenerator(5);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
@@ -64,23 +64,24 @@ public class CompositionTest {
 				.toString());
 		assertEquals("CombinatoricsVector=([2, 2, 1], size=3)", list.get(10)
 				.toString());
-		assertEquals("CombinatoricsVector=([1, 1, 2, 1], size=4)", list
-				.get(11).toString());
+		assertEquals("CombinatoricsVector=([1, 1, 2, 1], size=4)", list.get(11)
+				.toString());
 		assertEquals("CombinatoricsVector=([3, 1, 1], size=3)", list.get(12)
 				.toString());
-		assertEquals("CombinatoricsVector=([1, 2, 1, 1], size=4)", list
-				.get(13).toString());
+		assertEquals("CombinatoricsVector=([1, 2, 1, 1], size=4)", list.get(13)
+				.toString());
 
-		assertEquals("CombinatoricsVector=([2, 1, 1, 1], size=4)", list
-				.get(14).toString());
-		assertEquals("CombinatoricsVector=([1, 1, 1, 1, 1], size=5)", list
-				.get(15).toString());
+		assertEquals("CombinatoricsVector=([2, 1, 1, 1], size=4)", list.get(14)
+				.toString());
+		assertEquals("CombinatoricsVector=([1, 1, 1, 1, 1], size=5)",
+				list.get(15).toString());
 	}
 
 	@Test
 	public void simpleFiveCompositionRange() {
 
-		Generator<Integer> compositionGenerator = new CompositionGenerator(5);
+		Generator<Integer> compositionGenerator = Factory
+				.createCompositionGenerator(5);
 
 		System.out.println("Number of compositions is: "
 				+ compositionGenerator.getNumberOfGeneratedObjects());
@@ -102,7 +103,8 @@ public class CompositionTest {
 	@Test
 	public void simpleOneComposition() {
 
-		Generator<Integer> compositionGenerator = new CompositionGenerator(1);
+		Generator<Integer> compositionGenerator = Factory
+				.createCompositionGenerator(1);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
@@ -128,7 +130,8 @@ public class CompositionTest {
 	@Test
 	public void simpleTwoComposition() {
 
-		Generator<Integer> compositionGenerator = new CompositionGenerator(2);
+		Generator<Integer> compositionGenerator = Factory
+				.createCompositionGenerator(2);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 
@@ -156,7 +159,8 @@ public class CompositionTest {
 	@Test
 	public void simpleZeroComposition() {
 
-		Generator<Integer> compositionGenerator = new CompositionGenerator(0);
+		Generator<Integer> compositionGenerator = Factory
+				.createCompositionGenerator(0);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.createIterator();
 

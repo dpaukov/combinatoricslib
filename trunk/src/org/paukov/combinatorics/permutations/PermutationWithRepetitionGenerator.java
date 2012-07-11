@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.permutations;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -78,7 +78,7 @@ import org.paukov.combinatorics.Iterator;
 public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 
 	/**
-	 * Original vector which is used as the base for the permutations 
+	 * Original vector which is used as the base for the permutations
 	 */
 	protected final ICombinatoricsVector<T> _originalVector;
 
@@ -97,7 +97,7 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	 */
 	public PermutationWithRepetitionGenerator(
 			ICombinatoricsVector<T> originalVector, int permutationLength) {
-		_originalVector = new CombinatoricsVector<T>(originalVector);
+		_originalVector = Factory.createVector(originalVector);
 		_permutationLength = permutationLength;
 	}
 

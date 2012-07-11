@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 
 public class MultiCombinationsTest {
 
@@ -18,11 +17,11 @@ public class MultiCombinationsTest {
 	public void multiCombinationTest() {
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+		ICombinatoricsVector<String> initialVector = Factory.createVector(
 				new String[] { "A", "B", "C" });
 
 		// create multi-combination generator to generate 3-combination
-		Generator<String> gen = new MultiCombinationGenerator<String>(
+		Generator<String> gen = Factory.createMultiCombinationGenerator(
 				initialVector, 3);
 
 		// create iterator
@@ -72,11 +71,11 @@ public class MultiCombinationsTest {
 		array.add("A");
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+		ICombinatoricsVector<String> initialVector = Factory.createVector(
 				array);
 
 		// create multi-combination generator to generate 3-combination
-		Generator<String> gen = new MultiCombinationGenerator<String>(
+		Generator<String> gen = Factory.createMultiCombinationGenerator(
 				initialVector, 3);
 
 		// create iterator
@@ -103,10 +102,10 @@ public class MultiCombinationsTest {
 	public void multiCombinationEmptyTest() {
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(new String[] { "A", "B" });
+		ICombinatoricsVector<String> initialVector = Factory.createVector(new String[] { "A", "B" });
 
 		// create multi-combination generator to generate 0-combination
-		Generator<String> gen = new MultiCombinationGenerator<String>(
+		Generator<String> gen = Factory.createMultiCombinationGenerator(
 				initialVector, 0);
 
 		// create iterator
@@ -136,11 +135,11 @@ public class MultiCombinationsTest {
 		List<String> array = new ArrayList<String>();
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+		ICombinatoricsVector<String> initialVector = Factory.createVector(
 				array);
 
 		// create multi-combination generator to generate 0-combination
-		Generator<String> gen = new MultiCombinationGenerator<String>(
+		Generator<String> gen = Factory.createMultiCombinationGenerator(
 				initialVector, 0);
 
 		// create iterator
@@ -170,11 +169,11 @@ public class MultiCombinationsTest {
 		List<String> array = new ArrayList<String>();
 
 		// create combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
+		ICombinatoricsVector<String> initialVector = Factory.createVector(
 				array);
 
 		// create multi-combination generator to generate 1-combination
-		Generator<String> gen = new MultiCombinationGenerator<String>(
+		Generator<String> gen = Factory.createMultiCombinationGenerator(
 				initialVector, 1);
 
 		// create iterator
@@ -201,10 +200,10 @@ public class MultiCombinationsTest {
 	public void multiCombinationMinusOneTest() {
 
 		// create combinatorics vector (A, B, C)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(new String[] { "A", "B", "C" });
+		ICombinatoricsVector<String> initialVector = Factory.createVector(new String[] { "A", "B", "C" });
 
 		// create multi-combination generator to generate 3-combination
-		Generator<String> gen = new MultiCombinationGenerator<String>(
+		Generator<String> gen = Factory.createMultiCombinationGenerator(
 				initialVector, -1);
 
 		// create iterator

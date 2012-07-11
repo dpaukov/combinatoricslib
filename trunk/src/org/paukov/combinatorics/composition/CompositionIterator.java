@@ -2,11 +2,10 @@ package org.paukov.combinatorics.composition;
 
 import java.util.List;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
+import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.subsets.SubSetGenerator;
-
 
 /**
  * Iterator for enumeration of all compositions
@@ -15,7 +14,8 @@ import org.paukov.combinatorics.subsets.SubSetGenerator;
  * @see ICombinatoricsVector
  * @see CompositionGenerator
  */
-public class CompositionIterator extends Iterator<ICombinatoricsVector<Integer>> {
+public class CompositionIterator extends
+		Iterator<ICombinatoricsVector<Integer>> {
 
 	/**
 	 * Generator
@@ -25,7 +25,7 @@ public class CompositionIterator extends Iterator<ICombinatoricsVector<Integer>>
 	/**
 	 * Current composition
 	 */
-	protected CombinatoricsVector<Integer> _currentComposition = null;
+	protected ICombinatoricsVector<Integer> _currentComposition = null;
 
 	/**
 	 * Current index of the weak composition
@@ -35,7 +35,7 @@ public class CompositionIterator extends Iterator<ICombinatoricsVector<Integer>>
 	/**
 	 * Subset generator
 	 */
-	protected final SubSetGenerator<Integer> _subsetGenerator;
+	protected final Generator<Integer> _subsetGenerator;
 
 	/**
 	 * Subset iterator
@@ -56,12 +56,12 @@ public class CompositionIterator extends Iterator<ICombinatoricsVector<Integer>>
 		super();
 		_generator = generator;
 
-		ICombinatoricsVector<Integer> coreSet = new CombinatoricsVector<Integer>();
+		ICombinatoricsVector<Integer> coreSet = Factory.createVector();
 
 		for (int i = 1; i < this._generator._initialValue; i++)
 			coreSet.addValue(i);
 
-		_subsetGenerator = new SubSetGenerator<Integer>(coreSet);
+		_subsetGenerator = Factory.createSubSetGenerator(coreSet);
 
 		_subsetIterator = _subsetGenerator.createIterator();
 	}
@@ -90,7 +90,7 @@ public class CompositionIterator extends Iterator<ICombinatoricsVector<Integer>>
 	@Override
 	public ICombinatoricsVector<Integer> getCurrentItem() {
 
-		_currentComposition = new CombinatoricsVector<Integer>();
+		_currentComposition = Factory.<Integer> createVector();
 
 		List<Integer> vector = _currentSubset.getVector();
 		java.util.Iterator<Integer> itr = vector.iterator();

@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.partition;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -12,7 +12,8 @@ import org.paukov.combinatorics.Iterator;
  * the sum becomes a composition. A summand in a partition is also called a
  * part.
  * <p>
- * WARNING. Be careful because number of all partitions can be very high even for not great given N.
+ * WARNING. Be careful because number of all partitions can be very high even
+ * for not great given N.
  * <p>
  * The partitions of 5 are listed below:
  * <ol>
@@ -66,8 +67,9 @@ import org.paukov.combinatorics.Iterator;
  * 
  * </blockquote>
  * <p>
+ * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see PartitionIterator
  * 
  */
@@ -101,7 +103,7 @@ public class PartitionGenerator extends Generator<Integer> {
 	 */
 	@Override
 	public ICombinatoricsVector<Integer> getOriginalVector() {
-		return new CombinatoricsVector<Integer>(1, _initialValue);
+		return Factory.createVector(new Integer[] { _initialValue });
 	}
 
 	/**
@@ -112,13 +114,20 @@ public class PartitionGenerator extends Generator<Integer> {
 	 */
 	@Override
 	public long getNumberOfGeneratedObjects() {
+
+		if (_initialValue == 0)
+			return 0;
+
 		if (_initialValue > 0 && _initialValue <= MAXN) {
 			double result = 2.0 * _initialValue / 3.0;
 			result = Math.exp(Math.PI * Math.sqrt(result));
 			result /= 4.0 * _initialValue * Math.sqrt(3);
 			return (long) result;
 		}
-		return 0;
+		
+		throw new RuntimeException(
+				"Unable to calculate the number of the pertitions for the value N="
+						+ _initialValue);
 	}
 
 }

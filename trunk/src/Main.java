@@ -1,4 +1,4 @@
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 
 		// create a combinatorics vector (a, a, a, a)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "a", "a", "a", "a" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a", "a", "a" });
 
 		// Create a complex-combination generator
 		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(

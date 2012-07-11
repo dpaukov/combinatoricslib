@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
-import org.paukov.combinatorics.permutations.PermutationGenerator;
 
 /**
  * @author Dmytro Paukov
@@ -24,9 +23,9 @@ public class PermutationsTest {
 	@Test
 	public void simplePermutation() {
 
-		ICombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
-				new Integer[] { 1, 2, 3 });
-		Generator<Integer> generator = new PermutationGenerator<Integer>(
+		ICombinatoricsVector<Integer> corePermutation = Factory
+				.createVector(new Integer[] { 1, 2, 3 });
+		Generator<Integer> generator = Factory.createPermutationGenerator(
 				corePermutation);
 
 		System.out.println("Number of permutations is: "
@@ -66,9 +65,9 @@ public class PermutationsTest {
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		array.add(1);
 
-		ICombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
-				array);
-		Generator<Integer> generator = new PermutationGenerator<Integer>(
+		ICombinatoricsVector<Integer> corePermutation = Factory
+				.createVector(array);
+		Generator<Integer> generator = Factory.createPermutationGenerator(
 				corePermutation);
 
 		System.out.println("Number of permutations is: "
@@ -97,9 +96,9 @@ public class PermutationsTest {
 
 		ArrayList<Integer> array = new ArrayList<Integer>();
 
-		ICombinatoricsVector<Integer> corePermutation = new CombinatoricsVector<Integer>(
-				array);
-		Generator<Integer> generator = new PermutationGenerator<Integer>(
+		ICombinatoricsVector<Integer> corePermutation = Factory
+				.createVector(array);
+		Generator<Integer> generator = Factory.createPermutationGenerator(
 				corePermutation);
 
 		System.out.println("Number of permutations is: "

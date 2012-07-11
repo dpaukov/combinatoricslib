@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.combination.multi;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -67,20 +67,20 @@ import org.paukov.combinatorics.util.Util;
  */
 public class MultiCombinationGenerator<T> extends Generator<T> {
 
-	protected final ICombinatoricsVector<T> _originalSet;
+	protected final ICombinatoricsVector<T> _originalVector;
 	protected final int _combinationLength;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param originalSet
-	 *            Original/initial set which is used for combination generation
+	 * @param originalVector
+	 *            Original/initial vector which is used for combination generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
 	 */
-	public MultiCombinationGenerator(ICombinatoricsVector<T> originalSet,
+	public MultiCombinationGenerator(ICombinatoricsVector<T> originalVector,
 			int combinationsLength) {
-		_originalSet = new CombinatoricsVector<T>(originalSet);
+		_originalVector = Factory.createVector(originalVector);
 		if (combinationsLength < 0)
 			_combinationLength = 0;
 		else
@@ -93,7 +93,7 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * @return Returns the _originalVector.
 	 */
 	public ICombinatoricsVector<T> getOriginalVector() {
-		return _originalSet;
+		return _originalVector;
 	}
 
 	/**
@@ -109,7 +109,8 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * Returns number of generated combinations with repetitions
 	 */
 	public long getNumberOfGeneratedObjects() {
-		return Util.combination(_originalSet.getSize() + _combinationLength - 1,
+		return Util.combination(
+				_originalVector.getSize() + _combinationLength - 1,
 				_combinationLength);
 	}
 

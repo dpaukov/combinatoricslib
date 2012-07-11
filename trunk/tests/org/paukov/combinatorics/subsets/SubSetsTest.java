@@ -2,11 +2,10 @@ package org.paukov.combinatorics.subsets;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -17,11 +16,11 @@ public class SubSetsTest {
 	public void simpleSubsetTest() {
 
 		// create a combinatorics vector (A, B, C)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "A", "B", "C" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "A", "B", "C" });
 
 		// create a sub-set generator
-		Generator<String> gen = new SubSetGenerator<String>(initialVector);
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
 		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
@@ -61,10 +60,11 @@ public class SubSetsTest {
 	public void emptySubsetTest() {
 
 		// create the empty combinatorics vector
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>();
+		ICombinatoricsVector<String> initialVector = Factory
+				.<String> createVector();
 
 		// create a sub-set generator
-		Generator<String> gen = new SubSetGenerator<String>(initialVector);
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
 		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
@@ -89,11 +89,11 @@ public class SubSetsTest {
 	public void complexSubsetTest() {
 
 		// create a combinatorics vector (A, A, B, B, C)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "A", "A", "B", "B", "C" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "A", "A", "B", "B", "C" });
 
 		// create a sub-set generator
-		Generator<String> gen = new SubSetGenerator<String>(initialVector);
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
 		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
@@ -149,11 +149,11 @@ public class SubSetsTest {
 	public void complexSubsetTest2() {
 
 		// create a combinatorics vector (A, A, A)
-		ICombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(
-				new String[] { "A", "A", "A" });
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "A", "A", "A" });
 
 		// create a sub-set generator
-		Generator<String> gen = new SubSetGenerator<String>(initialVector);
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
 		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();

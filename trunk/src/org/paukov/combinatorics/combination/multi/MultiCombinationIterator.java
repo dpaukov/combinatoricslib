@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.combination.multi;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
@@ -60,7 +60,7 @@ public class MultiCombinationIterator<T> extends
 	public MultiCombinationIterator(MultiCombinationGenerator<T> generator) {
 		_generator = generator;
 		_lengthN = generator.getOriginalVector().getSize();
-		_currentCombination = new CombinatoricsVector<T>();
+		_currentCombination = Factory.createVector();
 		_bitVector = new int[generator.getCombinationLength()];
 		_lengthK = generator.getCombinationLength() - 1;
 		init();
@@ -84,7 +84,7 @@ public class MultiCombinationIterator<T> extends
 	 */
 	@Override
 	public ICombinatoricsVector<T> getCurrentItem() {
-		return new CombinatoricsVector<T>(_currentCombination);
+		return Factory.createVector(_currentCombination);
 	}
 
 	/**

@@ -15,50 +15,35 @@ import java.util.Set;
  * @param <T>
  *            Type of the elements
  */
-public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
+class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
 	protected final List<T> _vector;
 
 	/**
-	 * Default constructor
+	 * Default constructor creates the empty vector
 	 */
-	public CombinatoricsVector() {
+	CombinatoricsVector() {
 		_vector = new ArrayList<T>();
 	}
 
 	/**
-	 * Constructor
-	 * 
-	 * @param size
-	 *            Size of the created vector
-	 * @param defaulValue
-	 *            Default/Initial value for the vector's elements
-	 */
-	public CombinatoricsVector(int size, T defaulValue) {
-		_vector = new ArrayList<T>(size);
-		for (int i = 0; i < size; i++) {
-			_vector.add(defaulValue);
-		}
-	}
-	
-	/**
-	 * Constructor
+	 * Constructor from collection
 	 * 
 	 * @param vector
 	 *            Initial collection to initialize the created vector
 	 */
-	public CombinatoricsVector(Collection<? extends T> vector) {
+	CombinatoricsVector(Collection<? extends T> vector) {
 		_vector = new ArrayList<T>(vector.size());
 		_vector.addAll(vector);
 	}
 	
 	/**
-	 * Constructor
+	 * Constructor from array
 	 * 
 	 * @param array
 	 *            Initial array to initialize the created vector
 	 */
-	public CombinatoricsVector(T[] array) {
+	CombinatoricsVector(T[] array) {
 		_vector = new ArrayList<T>(array.length);
 		for (int i = 0; i < array.length; i++) {
 			_vector.add(array[i]);
@@ -72,7 +57,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	 * @param vector
 	 *            Initial vector to initialize the created vector
 	 */
-	public CombinatoricsVector(ICombinatoricsVector<T> vector) {
+	CombinatoricsVector(ICombinatoricsVector<T> vector) {
 		_vector = new ArrayList<T>(vector.getSize());
 		_vector.addAll(vector.getVector());
 	}

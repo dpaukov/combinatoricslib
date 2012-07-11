@@ -1,12 +1,15 @@
 package org.paukov.combinatorics.permutations;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of permutation with repetitions
- *
+ * 
  * @author Dmytro.Paukov
  * @see ICombinatoricsVector
  * @see PermutationWithRepetitionGenerator
@@ -58,8 +61,15 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 		_generator = generator;
 		_n = generator.getOriginalVector().getSize();
 		_k = generator.getPermutationLength();
-		_currentPermutation = new CombinatoricsVector<T>(_k, generator
-				.getOriginalVector().getValue(0));
+
+		List<T> list = new ArrayList<T>(_k);
+		T defaultValue = generator.getOriginalVector().getValue(0);
+		for (int i = 0; i < _k; i++) {
+			list.add(defaultValue);
+		}
+
+		_currentPermutation = Factory.createVector(list);
+
 		_bitVector = new int[_k + 2];
 		init();
 	}
@@ -83,7 +93,7 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	 */
 	@Override
 	public ICombinatoricsVector<T> getCurrentItem() {
-		return new CombinatoricsVector<T>(_currentPermutation);
+		return Factory.createVector(_currentPermutation);
 	}
 
 	/**

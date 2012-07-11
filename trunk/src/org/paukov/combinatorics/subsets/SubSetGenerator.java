@@ -1,6 +1,6 @@
 package org.paukov.combinatorics.subsets;
 
-import org.paukov.combinatorics.CombinatoricsVector;
+import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.Iterator;
@@ -113,7 +113,7 @@ public class SubSetGenerator<T> extends Generator<T> {
 	public SubSetGenerator(ICombinatoricsVector<T> originalVector) {
 
 		_hasDuplicates = originalVector.hasDuplicates();
-		_originalVector = new CombinatoricsVector<T>(originalVector);
+		_originalVector = Factory.createVector(originalVector);
 	}
 
 	/**
