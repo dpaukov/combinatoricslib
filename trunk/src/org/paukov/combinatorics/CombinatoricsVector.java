@@ -153,6 +153,16 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 			return false;
 		return true;
 	}
+	
+	
+	/**
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#clearVector()
+	 */
+	@Override
+	public void clearVector() {
+		_vector.clear();
+	}
+	
 
 	/**
 	 * Returns vector as a string
@@ -164,4 +174,5 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 		return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
 	}
 	
+
 }

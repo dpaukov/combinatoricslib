@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * @author Dmytro Paukov
  * @param <T>
- *            Type of the elements
+ *          Type of the elements
  */
 public interface ICombinatoricsVector<T> {
 
@@ -16,9 +16,9 @@ public interface ICombinatoricsVector<T> {
 	 * the value will be added at the end of the vector
 	 * 
 	 * @param index
-	 *            Position of element
+	 *          Position of element
 	 * @param value
-	 *            Value of element
+	 *          Value of element
 	 */
 	public abstract void setValue(int index, T value);
 
@@ -26,7 +26,7 @@ public interface ICombinatoricsVector<T> {
 	 * Adds value to the vector.
 	 * 
 	 * @param value
-	 *            Value of element
+	 *          Value of element
 	 */
 	public abstract boolean addValue(T value);
 
@@ -34,7 +34,7 @@ public interface ICombinatoricsVector<T> {
 	 * Returns value of the <code>index</code>-element
 	 * 
 	 * @param index
-	 *            The position of the element (Index of the element)
+	 *          The position of the element (Index of the element)
 	 * @return Value of the element
 	 */
 	public abstract T getValue(int index);
@@ -60,4 +60,8 @@ public interface ICombinatoricsVector<T> {
 	 */
 	public abstract List<T> getVector();
 
+	/**
+	 * Clear the elements
+	 */
+	public abstract void clearVector();
 }
