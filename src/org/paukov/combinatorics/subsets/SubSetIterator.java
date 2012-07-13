@@ -97,11 +97,11 @@ public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 	@Override
 	public ICombinatoricsVector<T> next() {
 		_currentIndex++;
-		_currentSubSet.getVector().clear();
+		_currentSubSet.clearVector();
 		for (int index = 1; index <= _length; index++) {
 			if (_bitVector[index] == 1) {
 				T value = _generator.getOriginalVector().getValue(index - 1);
-				_currentSubSet.getVector().add(value);
+				_currentSubSet.addValue(value);
 			}
 		}
 		int i = 1;
