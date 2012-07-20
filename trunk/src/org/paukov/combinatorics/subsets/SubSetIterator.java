@@ -1,9 +1,10 @@
 package org.paukov.combinatorics.subsets;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator over the all subsets
@@ -15,7 +16,7 @@ import org.paukov.combinatorics.Iterator;
  * @param <T>
  *            Type of elements of subset
  */
-public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
+public class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
@@ -70,23 +71,13 @@ public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 	}
 
 	/**
-	 * Returns the current subset
-	 * 
-	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
-	 */
-	@Override
-	public ICombinatoricsVector<T> getCurrentItem() {
-		return Factory.createVector(_currentSubSet);
-	}
-
-	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
 	 * @see org.paukov.combinatorics.Iterator#isDone()
 	 */
 	@Override
-	public boolean isDone() {
-		return _bitVector[_length + 1] == 1;
+	public boolean hasNext() {
+		return _bitVector[_length + 1] != 1;
 	}
 
 	/**
@@ -111,7 +102,12 @@ public class SubSetIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 		}
 		_bitVector[i] = 1;
 
-		return getCurrentItem();
+		return Factory.createVector(_currentSubSet);
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

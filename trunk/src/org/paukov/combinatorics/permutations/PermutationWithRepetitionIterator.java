@@ -1,11 +1,11 @@
 package org.paukov.combinatorics.permutations;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of permutation with repetitions
@@ -17,7 +17,7 @@ import org.paukov.combinatorics.Iterator;
  * @param <T>
  *            Type of elements in the permutation
  */
-public class PermutationWithRepetitionIterator<T extends Object> extends
+public class PermutationWithRepetitionIterator<T extends Object> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
@@ -87,23 +87,13 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 	}
 
 	/**
-	 * Returns current permutation
-	 * 
-	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
-	 */
-	@Override
-	public ICombinatoricsVector<T> getCurrentItem() {
-		return Factory.createVector(_currentPermutation);
-	}
-
-	/**
 	 * Returns true if all permutations have been iterated
 	 * 
 	 * @see org.paukov.combinatorics.Iterator#isDone()
 	 */
 	@Override
-	public boolean isDone() {
-		return (_bitVector[_k] == 1);
+	public boolean hasNext() {
+		return (_bitVector[_k] != 1);
 	}
 
 	/**
@@ -127,14 +117,19 @@ public class PermutationWithRepetitionIterator<T extends Object> extends
 				_bitVector[i] = 0;
 			else {
 				_bitVector[_k] = 1;
-				return getCurrentItem();
+				return Factory.createVector(_currentPermutation);
 			}
 			i++;
 		}
 
 		_bitVector[i]++;
-		return getCurrentItem();
+		return Factory.createVector(_currentPermutation);
 
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

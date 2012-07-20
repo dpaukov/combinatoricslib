@@ -1,9 +1,10 @@
 package org.paukov.combinatorics.partition;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * In number theory, a partition of a positive integer n is a way of writing n

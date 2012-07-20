@@ -17,8 +17,8 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of the elements in the lists
  */
-public class SubListIterator<T> extends
-		org.paukov.combinatorics.Iterator<ICombinatoricsVector<T>> {
+public class SubListIterator<T> implements
+		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
@@ -77,23 +77,13 @@ public class SubListIterator<T> extends
 	}
 
 	/**
-	 * Returns the current sublist
-	 * 
-	 * @see org.paukov.combinatorics.Iterator#getCurrentItem()
-	 */
-	@Override
-	public ICombinatoricsVector<T> getCurrentItem() {
-		return _currentSubList;
-	}
-
-	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
 	 * @see org.paukov.combinatorics.Iterator#isDone()
 	 */
 	@Override
-	public boolean isDone() {
-		return !_resultIterator.hasNext();
+	public boolean hasNext() {
+		return _resultIterator.hasNext();
 	}
 
 	/**
@@ -105,7 +95,12 @@ public class SubListIterator<T> extends
 	public ICombinatoricsVector<T> next() {
 		_currentIndex++;
 		_currentSubList = _resultIterator.next();
-		return getCurrentItem();
+		return _currentSubList;
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

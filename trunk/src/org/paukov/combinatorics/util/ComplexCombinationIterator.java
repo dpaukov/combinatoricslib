@@ -15,8 +15,8 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * 
  */
 public class ComplexCombinationIterator<T>
-		extends
-		org.paukov.combinatorics.Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> {
+		implements
+		Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> {
 
 	/**
 	 * Generator
@@ -157,19 +157,11 @@ public class ComplexCombinationIterator<T>
 	}
 
 	/**
-	 * Returns the current combination
-	 */
-	@Override
-	public ICombinatoricsVector<ICombinatoricsVector<T>> getCurrentItem() {
-		return _currentComplexCombination;
-	}
-
-	/**
 	 * Returns true if all combinations were iterated, otherwise false
 	 */
 	@Override
-	public boolean isDone() {
-		return !_resultIterator.hasNext();
+	public boolean hasNext() {
+		return _resultIterator.hasNext();
 	}
 
 	/**
@@ -181,9 +173,14 @@ public class ComplexCombinationIterator<T>
 
 		_currentComplexCombination = _resultIterator.next();
 
-		return getCurrentItem();
+		return _currentComplexCombination;
 	}
 
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Returns the current combination as a string
 	 * 

@@ -1,11 +1,11 @@
 package org.paukov.combinatorics.composition;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator for enumeration of all compositions
@@ -14,7 +14,7 @@ import org.paukov.combinatorics.Iterator;
  * @see ICombinatoricsVector
  * @see CompositionGenerator
  */
-public class CompositionIterator extends
+public class CompositionIterator implements
 		Iterator<ICombinatoricsVector<Integer>> {
 
 	/**
@@ -80,15 +80,14 @@ public class CompositionIterator extends
 	 * Returns true when all composition are iterated
 	 */
 	@Override
-	public boolean isDone() {
-		return !this._subsetIterator.hasNext();
+	public boolean hasNext() {
+		return this._subsetIterator.hasNext();
 	}
 
 	/**
 	 * Returns current composition
 	 */
-	@Override
-	public ICombinatoricsVector<Integer> getCurrentItem() {
+	protected ICombinatoricsVector<Integer> getCurrentItem() {
 
 		_currentComposition = Factory.<Integer> createVector();
 
@@ -111,6 +110,11 @@ public class CompositionIterator extends
 				_generator._initialValue - currentValueSubSet);
 
 		return _currentComposition;
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

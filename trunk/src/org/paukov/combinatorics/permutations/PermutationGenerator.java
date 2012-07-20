@@ -1,9 +1,10 @@
 package org.paukov.combinatorics.permutations;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 import org.paukov.combinatorics.util.Util;
 
 /**
