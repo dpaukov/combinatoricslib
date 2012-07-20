@@ -110,7 +110,8 @@ public class ComplexCombinationGenerator<T> extends
 	/**
 	 * Creates an iterator of the complex combinations
 	 */
-	public Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> createIterator() {
+	@Override
+	public Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> iterator() {
 		return new ComplexCombinationIterator<T>(this);
 	}
 

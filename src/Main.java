@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
@@ -13,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		// A list of elements
-		String[] elements = new String[] { "a", "b", "b", "d" };
+		String[] elements = new String[] { "A", "B", "B", "C" };
 		
 		// create a combinatorics vector of indexes  (1, 1, 3)
 		ICombinatoricsVector<Integer> indixesVector = Factory
@@ -23,15 +21,8 @@ public class Main {
 		Generator<ICombinatoricsVector<Integer>> complexGenerator = new ComplexCombinationGenerator<Integer>(
 				indixesVector, 2 );
 
-		// Create a complex-combination iterator
-		Iterator<ICombinatoricsVector<ICombinatoricsVector<Integer>>> itr = complexGenerator
-				.createIterator();
-
 		// Iterate the elements
-		while (itr.hasNext()) {
-
-			ICombinatoricsVector<ICombinatoricsVector<Integer>> combination = itr
-					.next();
+		for (ICombinatoricsVector<ICombinatoricsVector<Integer>> combination : complexGenerator) {
 
 			String str = ComplexCombinationGenerator
 					.convertIndexes2String(elements, combination);

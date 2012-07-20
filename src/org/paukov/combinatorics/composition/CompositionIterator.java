@@ -63,7 +63,7 @@ public class CompositionIterator implements
 
 		_subsetGenerator = Factory.createSubSetGenerator(coreSet);
 
-		_subsetIterator = _subsetGenerator.createIterator();
+		_subsetIterator = _subsetGenerator.iterator();
 	}
 
 	/**

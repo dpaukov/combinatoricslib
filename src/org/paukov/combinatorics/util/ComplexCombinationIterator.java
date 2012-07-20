@@ -87,7 +87,7 @@ public class ComplexCombinationIterator<T>
 
 		// 3.3 Get an iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> combinationIterator = combinationGenerator
-				.createIterator();
+				.iterator();
 
 		// 3.4 Create an intermediate combinations list to store the candidates
 		List<ICombinatoricsVector<ICombinatoricsVector<T>>> intermediateCombinations = new ArrayList<ICombinatoricsVector<ICombinatoricsVector<T>>>();

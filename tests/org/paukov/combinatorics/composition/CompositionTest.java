@@ -25,7 +25,7 @@ public class CompositionTest {
 		Generator<Integer> compositionGenerator = Factory
 				.createCompositionGenerator(5);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of compositions is: "
 				+ compositionGenerator.getNumberOfGeneratedObjects());
@@ -106,7 +106,7 @@ public class CompositionTest {
 		Generator<Integer> compositionGenerator = Factory
 				.createCompositionGenerator(1);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of compositions is: "
 				+ compositionGenerator.getNumberOfGeneratedObjects());
@@ -133,7 +133,7 @@ public class CompositionTest {
 		Generator<Integer> compositionGenerator = Factory
 				.createCompositionGenerator(2);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of compositions is: "
 				+ compositionGenerator.getNumberOfGeneratedObjects());
@@ -162,7 +162,7 @@ public class CompositionTest {
 		Generator<Integer> compositionGenerator = Factory
 				.createCompositionGenerator(0);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of compositions is: "
 				+ compositionGenerator.getNumberOfGeneratedObjects());

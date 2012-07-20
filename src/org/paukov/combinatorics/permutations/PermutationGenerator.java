@@ -111,9 +111,10 @@ public class PermutationGenerator<T> extends Generator<T> {
 	/**
 	 * Creates an iterator
 	 * 
-	 * @see org.paukov.combinatorics.Generator#createIterator()
+	 * @see org.paukov.combinatorics.Generator#iterator()
 	 */
-	public Iterator<ICombinatoricsVector<T>> createIterator() {
+	@Override
+	public Iterator<ICombinatoricsVector<T>> iterator() {
 		return new PermutationIterator<T>(this);
 	}
 

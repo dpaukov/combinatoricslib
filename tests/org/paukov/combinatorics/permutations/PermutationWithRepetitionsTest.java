@@ -29,7 +29,7 @@ public class PermutationWithRepetitionsTest {
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 2);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
-				.createIterator();
+				.iterator();
 
 		assertEquals(9,
 				permutationWithRepetitionGenerator
@@ -81,7 +81,7 @@ public class PermutationWithRepetitionsTest {
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 1);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
-				.createIterator();
+				.iterator();
 
 		assertEquals(3,
 				permutationWithRepetitionGenerator
@@ -117,7 +117,7 @@ public class PermutationWithRepetitionsTest {
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 0);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
-				.createIterator();
+				.iterator();
 
 		assertEquals(1,
 				permutationWithRepetitionGenerator
@@ -148,7 +148,7 @@ public class PermutationWithRepetitionsTest {
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 1);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
-				.createIterator();
+				.iterator();
 
 		assertEquals(1,
 				permutationWithRepetitionGenerator
@@ -182,7 +182,7 @@ public class PermutationWithRepetitionsTest {
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 2);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
-				.createIterator();
+				.iterator();
 
 		assertEquals(1,
 				permutationWithRepetitionGenerator
@@ -216,7 +216,7 @@ public class PermutationWithRepetitionsTest {
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 0);
 		Iterator<ICombinatoricsVector<Integer>> permutationWithRepetitionIterator = permutationWithRepetitionGenerator
-				.createIterator();
+				.iterator();
 
 		assertEquals(1,
 				permutationWithRepetitionGenerator

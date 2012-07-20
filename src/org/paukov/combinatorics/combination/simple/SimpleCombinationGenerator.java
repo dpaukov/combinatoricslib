@@ -107,7 +107,8 @@ public class SimpleCombinationGenerator<T> extends Generator<T> {
 	/**
 	 * Creates an iterator of the simple combinations (without repetitions)
 	 */
-	public Iterator<ICombinatoricsVector<T>> createIterator() {
+	@Override
+	public Iterator<ICombinatoricsVector<T>> iterator() {
 		return new SimpleCombinationIterator<T>(this);
 	}
 }

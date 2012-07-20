@@ -42,7 +42,7 @@ import java.util.List;
  * @param <T>
  *            Type of the elements in the generated vectors
  */
-public abstract class Generator<T> {
+public abstract class Generator<T> implements Iterable<ICombinatoricsVector<T>> {
 
 	/**
 	 * Returns core/original vector. This is a main vector which is used for
@@ -65,7 +65,19 @@ public abstract class Generator<T> {
 	 * 
 	 * @return The iterator over the generated objects/vectors
 	 */
-	public abstract Iterator<ICombinatoricsVector<T>> createIterator();
+	public abstract Iterator<ICombinatoricsVector<T>> iterator();
+
+	/**
+	 * Creates an iterator for enumerating all generated objects/vectors
+	 * 
+	 * @return The iterator over the generated objects/vectors
+	 * @deprecated This method will removed in the near future. Use the method
+	 *             <code>iterator()</code> instead of this method
+	 */
+	@Deprecated
+	public Iterator<ICombinatoricsVector<T>> createIterator() {
+		return iterator();
+	}
 
 	/**
 	 * Returns all generated vectors as a list
@@ -74,7 +86,7 @@ public abstract class Generator<T> {
 	 */
 	public List<ICombinatoricsVector<T>> generateAllObjects() {
 		List<ICombinatoricsVector<T>> list = new ArrayList<ICombinatoricsVector<T>>();
-		Iterator<ICombinatoricsVector<T>> iterator = createIterator();
+		Iterator<ICombinatoricsVector<T>> iterator = iterator();
 		while (iterator.hasNext()) {
 			ICombinatoricsVector<T> vector = iterator.next();
 			list.add(vector);
@@ -92,7 +104,7 @@ public abstract class Generator<T> {
 			int stopIndex) {
 		assert (startIndex <= stopIndex);
 		List<ICombinatoricsVector<T>> list = new ArrayList<ICombinatoricsVector<T>>();
-		Iterator<ICombinatoricsVector<T>> iterator = createIterator();
+		Iterator<ICombinatoricsVector<T>> iterator = iterator();
 		int index = 1;
 		while (iterator.hasNext()) {
 			if (index >= startIndex && index <= stopIndex) {
