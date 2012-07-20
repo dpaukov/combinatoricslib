@@ -140,7 +140,8 @@ public class SubSetGenerator<T> extends Generator<T> {
 	/**
 	 * Creates the iterator over the all subsets
 	 */
-	public Iterator<ICombinatoricsVector<T>> createIterator() {
+	@Override
+	public Iterator<ICombinatoricsVector<T>> iterator() {
 		if (_hasDuplicates)
 			return new SubListIterator<T>(this);
 		else

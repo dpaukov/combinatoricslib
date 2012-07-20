@@ -136,7 +136,7 @@ public class CompositionGenerator extends Generator<Integer> {
 	 * Creates the iterator over all compositions
 	 */
 	@Override
-	public Iterator<ICombinatoricsVector<Integer>> createIterator() {
+	public Iterator<ICombinatoricsVector<Integer>> iterator() {
 		return new CompositionIterator(this);
 	}
 

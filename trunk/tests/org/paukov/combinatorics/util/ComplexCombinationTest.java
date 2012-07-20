@@ -29,7 +29,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -92,7 +92,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -144,7 +144,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -182,7 +182,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -226,7 +226,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -260,7 +260,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -294,7 +294,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -330,7 +330,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -370,7 +370,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -404,7 +404,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -437,7 +437,7 @@ public class ComplexCombinationTest {
 
 		// Create a complex-combination iterator
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = complexGenerator
-				.createIterator();
+				.iterator();
 
 		// Iterate the elements
 		while (itr.hasNext()) {
@@ -455,6 +455,60 @@ public class ComplexCombinationTest {
 
 		assertEquals("([a])",
 				ComplexCombinationGenerator.convert2String(list.get(0)));
+	}
+	
+	
+	@Test
+	public void foreachTest() {
+
+		// create a combinatorics vector (a, b, c, d)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "c", "d" });
+
+		// Create a complex-combination generator and iterator
+		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
+				initialVector, 2, true, false);
+
+		for (ICombinatoricsVector<ICombinatoricsVector<String>> element : complexGenerator)
+			System.out.println("For each: " + element);
+
+		List<ICombinatoricsVector<ICombinatoricsVector<String>>> list = complexGenerator
+				.generateAllObjects();
+
+		assertEquals(16, list.size());
+
+		assertEquals("([],[a, b, c, d])",
+				ComplexCombinationGenerator.convert2String(list.get(0)));
+		assertEquals("([a, b, c, d],[])",
+				ComplexCombinationGenerator.convert2String(list.get(1)));
+		assertEquals("([a],[b, c, d])",
+				ComplexCombinationGenerator.convert2String(list.get(2)));
+		assertEquals("([b, c, d],[a])",
+				ComplexCombinationGenerator.convert2String(list.get(3)));
+		assertEquals("([b],[a, c, d])",
+				ComplexCombinationGenerator.convert2String(list.get(4)));
+		assertEquals("([a, c, d],[b])",
+				ComplexCombinationGenerator.convert2String(list.get(5)));
+		assertEquals("([a, b],[c, d])",
+				ComplexCombinationGenerator.convert2String(list.get(6)));
+		assertEquals("([c, d],[a, b])",
+				ComplexCombinationGenerator.convert2String(list.get(7)));
+		assertEquals("([c],[a, b, d])",
+				ComplexCombinationGenerator.convert2String(list.get(8)));
+		assertEquals("([a, b, d],[c])",
+				ComplexCombinationGenerator.convert2String(list.get(9)));
+		assertEquals("([a, c],[b, d])",
+				ComplexCombinationGenerator.convert2String(list.get(10)));
+		assertEquals("([b, d],[a, c])",
+				ComplexCombinationGenerator.convert2String(list.get(11)));
+		assertEquals("([b, c],[a, d])",
+				ComplexCombinationGenerator.convert2String(list.get(12)));
+		assertEquals("([a, d],[b, c])",
+				ComplexCombinationGenerator.convert2String(list.get(13)));
+		assertEquals("([a, b, c],[d])",
+				ComplexCombinationGenerator.convert2String(list.get(14)));
+		assertEquals("([d],[a, b, c])",
+				ComplexCombinationGenerator.convert2String(list.get(15)));
 	}
 
 }

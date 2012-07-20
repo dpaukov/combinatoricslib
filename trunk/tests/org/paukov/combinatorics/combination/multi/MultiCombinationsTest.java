@@ -25,7 +25,7 @@ public class MultiCombinationsTest {
 				initialVector, 3);
 
 		// create iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// print the number of combinations
 		assertEquals(10, gen.getNumberOfGeneratedObjects());
@@ -79,7 +79,7 @@ public class MultiCombinationsTest {
 				initialVector, 3);
 
 		// create iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// print the number of combinations
 		assertEquals(1, gen.getNumberOfGeneratedObjects());
@@ -109,7 +109,7 @@ public class MultiCombinationsTest {
 				initialVector, 0);
 
 		// create iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// print the number of combinations
 		assertEquals(1, gen.getNumberOfGeneratedObjects());
@@ -143,7 +143,7 @@ public class MultiCombinationsTest {
 				initialVector, 0);
 
 		// create iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// print the number of combinations
 		assertEquals(1, gen.getNumberOfGeneratedObjects());
@@ -177,7 +177,7 @@ public class MultiCombinationsTest {
 				initialVector, 1);
 
 		// create iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// print the number of combinations
 		assertEquals(1, gen.getNumberOfGeneratedObjects());
@@ -207,7 +207,7 @@ public class MultiCombinationsTest {
 				initialVector, -1);
 
 		// create iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// print the number of combinations
 		assertEquals(1, gen.getNumberOfGeneratedObjects());

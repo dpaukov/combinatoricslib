@@ -33,7 +33,7 @@ public class PermutationsTest {
 		assertEquals(6, generator.getNumberOfGeneratedObjects());
 
 		Iterator<ICombinatoricsVector<Integer>> iterator = generator
-				.createIterator();
+				.iterator();
 
 		while (iterator.hasNext()) {
 			iterator.next();
@@ -75,7 +75,7 @@ public class PermutationsTest {
 		assertEquals(1, generator.getNumberOfGeneratedObjects());
 
 		Iterator<ICombinatoricsVector<Integer>> iterator = generator
-				.createIterator();
+				.iterator();
 
 		while (iterator.hasNext()) {
 			iterator.next();
@@ -106,7 +106,7 @@ public class PermutationsTest {
 		assertEquals(0, generator.getNumberOfGeneratedObjects());
 
 		Iterator<ICombinatoricsVector<Integer>> iterator = generator
-				.createIterator();
+				.iterator();
 
 		while (iterator.hasNext()) {
 			iterator.next();

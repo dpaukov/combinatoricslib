@@ -106,7 +106,7 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	 * Creates iterator
 	 */
 	@Override
-	public Iterator<ICombinatoricsVector<T>> createIterator() {
+	public Iterator<ICombinatoricsVector<T>> iterator() {
 		return new PermutationWithRepetitionIterator<T>(this);
 	}
 

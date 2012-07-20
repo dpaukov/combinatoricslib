@@ -94,7 +94,7 @@ public class PartitionGenerator extends Generator<Integer> {
 	 * Creates iterator to enumerate all partitions
 	 */
 	@Override
-	public Iterator<ICombinatoricsVector<Integer>> createIterator() {
+	public Iterator<ICombinatoricsVector<Integer>> iterator() {
 		return new PartitionIterator(this);
 	}
 

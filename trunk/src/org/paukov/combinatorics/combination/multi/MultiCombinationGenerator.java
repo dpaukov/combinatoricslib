@@ -118,7 +118,8 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	/**
 	 * Creates iterator of combinations with repetitions
 	 */
-	public Iterator<ICombinatoricsVector<T>> createIterator() {
+	@Override
+	public Iterator<ICombinatoricsVector<T>> iterator() {
 		return new MultiCombinationIterator<T>(this);
 	}
 }

@@ -23,7 +23,7 @@ public class SubSetsTest {
 		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// verify the number of sunsets
 		assertEquals(8, gen.getNumberOfGeneratedObjects());
@@ -57,6 +57,45 @@ public class SubSetsTest {
 	}
 
 	@Test
+	public void simpleSubsetFroEachTest() {
+
+		// create a combinatorics vector (A, B, C)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "A", "B", "C" });
+
+		// create a sub-set generator
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
+
+		// verify the number of sunsets
+		assertEquals(8, gen.getNumberOfGeneratedObjects());
+
+		for( ICombinatoricsVector<String> combination : gen )
+			System.out.println("For Each: " + combination);
+		
+		List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(8, list.size());
+
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+		assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([B], size=1)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([C], size=1)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(5)
+				.toString());
+		assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(6)
+				.toString());
+
+		assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(7)
+				.toString());
+	}
+
+	
+	@Test
 	public void emptySubsetTest() {
 
 		// create the empty combinatorics vector
@@ -67,7 +106,7 @@ public class SubSetsTest {
 		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// verify the number of sunsets
 		assertEquals(1, gen.getNumberOfGeneratedObjects());
@@ -96,7 +135,7 @@ public class SubSetsTest {
 		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// go through the iterator
 		while (itr.hasNext()) {
@@ -156,7 +195,7 @@ public class SubSetsTest {
 		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
 
 		// create an iterator
-		Iterator<ICombinatoricsVector<String>> itr = gen.createIterator();
+		Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
 		// go through the iterator
 		while (itr.hasNext()) {

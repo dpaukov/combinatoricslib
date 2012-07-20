@@ -25,7 +25,7 @@ public class PartitionsTest {
 
 		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(5);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of partition is: "
 				+ partitionGenerator.getNumberOfGeneratedObjects());
@@ -62,7 +62,7 @@ public class PartitionsTest {
 
 		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(2);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of partition is: "
 				+ partitionGenerator.getNumberOfGeneratedObjects());
@@ -89,7 +89,7 @@ public class PartitionsTest {
 
 		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(1);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of partition is: "
 				+ partitionGenerator.getNumberOfGeneratedObjects());
@@ -114,7 +114,7 @@ public class PartitionsTest {
 
 		Generator<Integer> partitionGenerator = Factory.createPartitionGenerator(0);
 		Iterator<ICombinatoricsVector<Integer>> partitionIterator = partitionGenerator
-				.createIterator();
+				.iterator();
 
 		System.out.println("Number of partition is: "
 				+ partitionGenerator.getNumberOfGeneratedObjects());
