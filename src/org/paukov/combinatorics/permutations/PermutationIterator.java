@@ -1,9 +1,10 @@
 package org.paukov.combinatorics.permutations;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of permutation generator
@@ -14,7 +15,7 @@ import org.paukov.combinatorics.Iterator;
  * @param <T>
  *            Type of elements of permutations
  */
-public class PermutationIterator<T> extends Iterator<ICombinatoricsVector<T>> {
+public class PermutationIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
@@ -88,20 +89,13 @@ public class PermutationIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 
 	}
 
-	/**
-	 * Returns the current permutation
-	 */
-	@Override
-	public ICombinatoricsVector<T> getCurrentItem() {
-		return Factory.createVector(_currentPermutation);
-	}
-
+	
 	/**
 	 * Return true if the iteration process is finished
 	 */
 	@Override
-	public boolean isDone() {
-		return m == 1;
+	public boolean hasNext() {
+		return m != 1;
 	}
 
 	/**
@@ -131,9 +125,14 @@ public class PermutationIterator<T> extends Iterator<ICombinatoricsVector<T>> {
 		_pP[m] = w;
 		_currentIndex++;
 
-		return getCurrentItem();
+		return Factory.createVector(_currentPermutation);
 	}
 
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * Returns the current permutation as a string
 	 * 

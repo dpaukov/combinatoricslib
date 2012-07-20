@@ -1,9 +1,11 @@
 package org.paukov.combinatorics.util;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
+
 
 /**
  * @author Dmytro Paukov
@@ -140,6 +142,33 @@ public class ComplexCombinationGenerator<T> extends
 		sb.append("(");
 		for (int i = 0; i < vector.getSize(); i++) {
 			sb.append(vector.getValue(i).getVector().toString());
+			if (i != vector.getSize() - 1)
+				sb.append(",");
+		}
+		sb.append(")");
+		return sb.toString();
+
+	}
+	
+	/**
+	 * This method converts a composition into a string
+	 * 
+	 * @param vector
+	 *            The vector
+	 * @return A string representation of the given vector
+	 */
+	public static <T> String convertIndexes2String(T[] elements,
+			ICombinatoricsVector<ICombinatoricsVector<Integer>> vector) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("(");
+		for (int i = 0; i < vector.getSize(); i++) {
+			sb.append("[");
+			for (int j = 0; j < vector.getValue(i).getVector().size(); j++)	{
+				sb.append(elements[vector.getValue(i).getValue(j)]);
+				if (j != vector.getValue(i).getVector().size() - 1)
+					sb.append(",");
+			}
+			sb.append("]");
 			if (i != vector.getSize() - 1)
 				sb.append(",");
 		}

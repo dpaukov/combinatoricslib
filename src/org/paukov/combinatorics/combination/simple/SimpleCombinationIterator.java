@@ -1,8 +1,9 @@
 package org.paukov.combinatorics.combination.simple;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * Iterator of simple combinations
@@ -13,7 +14,7 @@ import org.paukov.combinatorics.Iterator;
  * @param <T>
  *            Type of elements in a combination
  */
-public class SimpleCombinationIterator<T> extends
+public class SimpleCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
@@ -81,19 +82,11 @@ public class SimpleCombinationIterator<T> extends
 	}
 
 	/**
-	 * Returns the current combination
-	 */
-	@Override
-	public ICombinatoricsVector<T> getCurrentItem() {
-		return Factory.createVector(_currentSimpleCombination);
-	}
-
-	/**
 	 * Returns true if all combinations were iterated, otherwise false
 	 */
 	@Override
-	public boolean isDone() {
-		return (_endIndex == 0) || (_lengthK > _lengthN);
+	public boolean hasNext() {
+		return !((_endIndex == 0) || (_lengthK > _lengthN));
 	}
 
 	/**
@@ -123,7 +116,13 @@ public class SimpleCombinationIterator<T> extends
 			_bitVector[i] = _bitVector[i - 1] + 1;
 		}
 
-		return getCurrentItem();
+		// return the current combination
+		return Factory.createVector(_currentSimpleCombination);
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

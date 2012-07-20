@@ -1,8 +1,9 @@
 package org.paukov.combinatorics.combination.multi;
 
+import java.util.Iterator;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.Iterator;
 
 /**
  * Multi-combinations iterator to enumerate combinations with repetitions
@@ -13,7 +14,7 @@ import org.paukov.combinatorics.Iterator;
  * @param <T>
  *            Type of elements in a combination
  */
-public class MultiCombinationIterator<T> extends
+public class MultiCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
@@ -80,19 +81,11 @@ public class MultiCombinationIterator<T> extends
 	}
 
 	/**
-	 * Returns the current combination
-	 */
-	@Override
-	public ICombinatoricsVector<T> getCurrentItem() {
-		return Factory.createVector(_currentCombination);
-	}
-
-	/**
 	 * Returns true if all combinations were iterated, otherwise false
 	 */
 	@Override
-	public boolean isDone() {
-		return (_end == true);
+	public boolean hasNext() {
+		return (_end != true);
 	}
 
 	/**
@@ -140,7 +133,13 @@ public class MultiCombinationIterator<T> extends
 			_end = true;
 		}
 
-		return getCurrentItem();
+		// return the current combination
+		return Factory.createVector(_currentCombination);
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
