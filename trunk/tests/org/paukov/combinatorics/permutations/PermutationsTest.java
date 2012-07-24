@@ -118,4 +118,39 @@ public class PermutationsTest {
 
 		assertEquals(0, list.size());
 	}
+	
+	@Test
+	public void abcPermutation() {
+
+		ICombinatoricsVector<String> originalVector = Factory
+				.createVector(new String[] { "a", "b", "c" });
+		Generator<String> generator = Factory.createPermutationGenerator(
+				originalVector);
+
+		System.out.println("Number of permutations is: "
+				+ generator.getNumberOfGeneratedObjects());
+		assertEquals(6, generator.getNumberOfGeneratedObjects());
+
+		for (ICombinatoricsVector<String> perm : generator)	{
+				System.out.println(perm);
+		}
+
+		List<ICombinatoricsVector<String>> list = generator
+				.generateAllObjects();
+
+		assertEquals(6, list.size());
+
+		assertEquals("CombinatoricsVector=([a, b, c], size=3)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, c, b], size=3)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([c, a, b], size=3)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([c, b, a], size=3)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, c, a], size=3)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, a, c], size=3)", list.get(5)
+				.toString());
+	}
 }

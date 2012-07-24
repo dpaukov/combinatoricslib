@@ -85,11 +85,24 @@ public abstract class Generator<T> implements Iterable<ICombinatoricsVector<T>> 
 	 * @return List of all generated objects/vectors
 	 */
 	public List<ICombinatoricsVector<T>> generateAllObjects() {
+		return generateFilteredObjects(null);
+	}
+
+	/**
+	 * Returns the generated vectors filtered by a filter
+	 * 
+	 * @param filter
+	 *            The filter to be applied to the generated result
+	 * @return The list of the filtered vectors
+	 */
+	public List<ICombinatoricsVector<T>> generateFilteredObjects(
+			IFilter<ICombinatoricsVector<T>> filter) {
 		List<ICombinatoricsVector<T>> list = new ArrayList<ICombinatoricsVector<T>>();
-		Iterator<ICombinatoricsVector<T>> iterator = iterator();
-		while (iterator.hasNext()) {
-			ICombinatoricsVector<T> vector = iterator.next();
-			list.add(vector);
+		long index = 0;
+		for (ICombinatoricsVector<T> vector : this) {
+			if (filter == null || filter.accepted(index, vector))
+				list.add(vector);
+			index++;
 		}
 		return list;
 	}
@@ -104,7 +117,7 @@ public abstract class Generator<T> implements Iterable<ICombinatoricsVector<T>> 
 			int stopIndex) {
 		assert (startIndex <= stopIndex);
 		List<ICombinatoricsVector<T>> list = new ArrayList<ICombinatoricsVector<T>>();
-		Iterator<ICombinatoricsVector<T>> iterator = iterator();
+		Iterator<ICombinatoricsVector<T>> iterator = this.iterator();
 		int index = 1;
 		while (iterator.hasNext()) {
 			if (index >= startIndex && index <= stopIndex) {
