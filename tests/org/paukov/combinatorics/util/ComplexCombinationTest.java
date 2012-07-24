@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
+import org.paukov.combinatorics.IFilter;
 
 /**
  * @author Dmytro Paukov
@@ -456,8 +457,7 @@ public class ComplexCombinationTest {
 		assertEquals("([a])",
 				ComplexCombinationGenerator.convert2String(list.get(0)));
 	}
-	
-	
+
 	@Test
 	public void foreachTest() {
 
@@ -511,4 +511,42 @@ public class ComplexCombinationTest {
 				ComplexCombinationGenerator.convert2String(list.get(15)));
 	}
 
+	@Test
+	public void subSetPartition() {
+
+		// create a combinatorics vector (a, b, c, d, e, f)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "c", "d", "e", "f" });
+
+		// Create a complex-combination generator and iterator
+		Generator<ICombinatoricsVector<String>> complexGenerator = new ComplexCombinationGenerator<String>(
+				initialVector, 3, false, true);
+
+		for (ICombinatoricsVector<ICombinatoricsVector<String>> element : complexGenerator)
+			System.out.println("subSetPartition: " + element);
+
+		List<ICombinatoricsVector<ICombinatoricsVector<String>>> list = complexGenerator
+				.generateFilteredObjects(new IFilter<ICombinatoricsVector<ICombinatoricsVector<String>>>() {
+
+					@Override
+					public boolean accepted(
+							long index,
+							ICombinatoricsVector<ICombinatoricsVector<String>> value) {
+						ICombinatoricsVector<Integer> sizes = Factory
+								.createVector();
+
+						for (ICombinatoricsVector<String> elements : value
+								.getVector())
+							sizes.addValue(elements.getSize());
+
+						return sizes.isAllElementsEqual()
+								&& sizes.getValue(0) == 2;
+					}
+				});
+
+		assertEquals(15, list.size());
+
+		assertEquals("([a, b],[c, d],[e, f])",
+				ComplexCombinationGenerator.convert2String(list.get(0)));
+	}
 }
