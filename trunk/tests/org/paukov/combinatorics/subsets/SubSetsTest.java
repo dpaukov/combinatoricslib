@@ -296,4 +296,52 @@ public class SubSetsTest {
 	}
 
 	
+	@Test
+	public void treatAsDistinctSubsetTest() {
+
+		// create a combinatorics vector (a, b, c, d)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "b", "b" });
+
+		// create a sub-set generator and don't treat the identical elements as identical
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector, false);
+
+		List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+
+		assertEquals(16, list.size());
+
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([a], size=1)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([b], size=1)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([b], size=1)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(5)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(6)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(7)
+				.toString());
+		assertEquals("CombinatoricsVector=([b], size=1)", list.get(8)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(9)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(10)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(11)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(12)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(13)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, b, b], size=3)", list.get(14)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, b, b], size=4)", list.get(15)
+				.toString());
+	}
+	
 }
