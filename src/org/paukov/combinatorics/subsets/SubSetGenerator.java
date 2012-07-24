@@ -99,6 +99,7 @@ import org.paukov.combinatorics.util.Util;
 public class SubSetGenerator<T> extends Generator<T> {
 
 	protected final boolean _hasDuplicates;
+	protected final boolean _treatAsIdentical;
 
 	/**
 	 * Core set
@@ -112,8 +113,21 @@ public class SubSetGenerator<T> extends Generator<T> {
 	 *            Original vector/set
 	 */
 	public SubSetGenerator(ICombinatoricsVector<T> originalVector) {
-
 		_hasDuplicates = originalVector.hasDuplicates();
+		_treatAsIdentical = true;
+		_originalVector = Factory.createVector(originalVector);
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param originalVector
+	 *            Original vector/set
+	 */
+	public SubSetGenerator(ICombinatoricsVector<T> originalVector,
+			boolean treatAsIdentical) {
+		_hasDuplicates = originalVector.hasDuplicates();
+		_treatAsIdentical = treatAsIdentical;
 		_originalVector = Factory.createVector(originalVector);
 	}
 
@@ -130,7 +144,7 @@ public class SubSetGenerator<T> extends Generator<T> {
 	 */
 	public long getNumberOfGeneratedObjects() {
 
-		if (_hasDuplicates)
+		if (isSubList())
 			throw new RuntimeException("The initial vector has duplicates: "
 					+ _originalVector);
 
@@ -142,10 +156,14 @@ public class SubSetGenerator<T> extends Generator<T> {
 	 */
 	@Override
 	public Iterator<ICombinatoricsVector<T>> iterator() {
-		if (_hasDuplicates)
+		if (isSubList())
 			return new SubListIterator<T>(this);
 		else
 			return new SubSetIterator<T>(this);
+	}
+
+	protected boolean isSubList() {
+		return (_treatAsIdentical && _hasDuplicates);
 	}
 
 }

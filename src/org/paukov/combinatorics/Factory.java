@@ -156,6 +156,16 @@ public class Factory {
 			ICombinatoricsVector<T> originalVector) {
 		return new SubSetGenerator<T>(originalVector);
 	}
+	
+	/**
+	 * Creates a sub-set generator
+	 * 
+	 * @param originalVector
+	 */
+	public static <T> Generator<T> createSubSetGenerator(
+			ICombinatoricsVector<T> originalVector, boolean treatAsIdentical) {
+		return new SubSetGenerator<T>(originalVector, treatAsIdentical);
+	}
 
 	/**
 	 * Creates a composition generator
