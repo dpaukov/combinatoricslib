@@ -153,4 +153,39 @@ public class PermutationsTest {
 		assertEquals("CombinatoricsVector=([b, a, c], size=3)", list.get(5)
 				.toString());
 	}
+	
+	@Test
+	public void anyExpressionPermutation() {
+
+		ICombinatoricsVector<String> originalVector = Factory
+				.createVector(new String[] { "x", "x^2", "x+1" });
+		Generator<String> generator = Factory.createPermutationGenerator(
+				originalVector);
+
+		System.out.println("Number of permutations is: "
+				+ generator.getNumberOfGeneratedObjects());
+		assertEquals(6, generator.getNumberOfGeneratedObjects());
+
+		for (ICombinatoricsVector<String> perm : generator)	{
+				System.out.println(perm);
+		}
+
+		List<ICombinatoricsVector<String>> list = generator
+				.generateAllObjects();
+
+		assertEquals(6, list.size());
+
+		assertEquals("CombinatoricsVector=([x, x^2, x+1], size=3)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([x, x+1, x^2], size=3)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([x+1, x, x^2], size=3)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([x+1, x^2, x], size=3)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([x^2, x+1, x], size=3)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([x^2, x, x+1], size=3)", list.get(5)
+				.toString());
+	}
 }
