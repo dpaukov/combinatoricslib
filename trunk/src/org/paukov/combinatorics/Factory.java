@@ -14,6 +14,7 @@ public class Factory {
 
 	/**
 	 * Creates an empty vector instance
+	 * 
 	 * @return The empty vector
 	 */
 	public static <T> ICombinatoricsVector<T> createVector() {
@@ -22,7 +23,9 @@ public class Factory {
 
 	/**
 	 * Creates a combinatorics vector from an array
-	 * @param array The array
+	 * 
+	 * @param array
+	 *            The array
 	 * @return The combinatorics vector
 	 */
 	public static <T> ICombinatoricsVector<T> createVector(T[] array) {
@@ -30,8 +33,10 @@ public class Factory {
 	}
 
 	/**
-	 * Creates a combinatorics vector from a collection 
-	 * @param collection The collection
+	 * Creates a combinatorics vector from a collection
+	 * 
+	 * @param collection
+	 *            The collection
 	 * @return The combinatorics vector
 	 */
 	public static <T> ICombinatoricsVector<T> createVector(
@@ -41,7 +46,9 @@ public class Factory {
 
 	/**
 	 * Creates a copy of the given combinatorics vector
-	 * @param vector The combinatorics vector to be copied
+	 * 
+	 * @param vector
+	 *            The combinatorics vector to be copied
 	 * @return The copy of the given vector
 	 */
 	public static <T> ICombinatoricsVector<T> createVector(
@@ -50,8 +57,53 @@ public class Factory {
 	}
 
 	/**
+	 * This method creates a combinatorics vector of (1, 2,.., n)
+	 * 
+	 * @param n
+	 *            The value of the number of the elements
+	 * @return The vector
+	 */
+	public static ICombinatoricsVector<Integer> range(int n) {
+		if (n < 0)
+			throw new IllegalArgumentException(
+					"Range value must be more or equal to 0");
+
+		// If range is zero return an empty vector
+		if (n == 0)
+			return new CombinatoricsVector<Integer>();
+
+		Integer[] array = new Integer[n];
+		for (int i = 0; i < n; i++)
+			array[i] = i + 1;
+
+		return new CombinatoricsVector<Integer>(array);
+	}
+
+	/**
+	 * This method creates a combinatorics vector of (from, from + 1,.., to-1,
+	 * to)
+	 * 
+	 * @param from
+	 *            The first value
+	 * @param to
+	 *            The second value
+	 * @return The vector
+	 */
+	public static ICombinatoricsVector<Integer> range(int from, int to) {
+		if (from > to)
+			throw new IllegalArgumentException(
+					"From parameter must be less then To parameter");
+
+		Integer[] array = new Integer[to - from + 1];
+		for (int i = 0; i < to - from + 1; i++)
+			array[i] = new Integer(i + from);
+
+		return new CombinatoricsVector<Integer>(array);
+	}
+
+	/**
 	 * Creates a simple combination generator
-	 *  
+	 * 
 	 * @param originalVector
 	 * @param combinationsLength
 	 */
@@ -94,8 +146,7 @@ public class Factory {
 		return new PermutationWithRepetitionGenerator<T>(originalVector,
 				permutationLength);
 	}
-	
-	
+
 	/**
 	 * Creates a sub-set generator
 	 * 
@@ -105,17 +156,16 @@ public class Factory {
 			ICombinatoricsVector<T> originalVector) {
 		return new SubSetGenerator<T>(originalVector);
 	}
-	
-	
+
 	/**
 	 * Creates a composition generator
+	 * 
 	 * @param n
 	 */
 	public static Generator<Integer> createCompositionGenerator(Integer n) {
 		return new CompositionGenerator(n);
-	} 
-	
-	
+	}
+
 	/**
 	 * Creates a partition generator
 	 * 
@@ -123,5 +173,5 @@ public class Factory {
 	 */
 	public static Generator<Integer> createPartitionGenerator(Integer n) {
 		return new PartitionGenerator(n);
-	} 
+	}
 }
