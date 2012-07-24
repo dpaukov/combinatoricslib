@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
+import org.paukov.combinatorics.IFilter;
 
 public class SubSetsTest {
 
@@ -215,5 +216,84 @@ public class SubSetsTest {
 		assertEquals("CombinatoricsVector=([A, A, A], size=3)", list.get(3)
 				.toString());
 	}
+	
+	@Test
+	public void upToTwoElementsSubsetTest() {
 
+		// create a combinatorics vector (a, b, c, d)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "c", "d" });
+
+		// create a sub-set generator
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
+
+		List<ICombinatoricsVector<String>> list = gen.generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
+			
+			@Override
+			public boolean accepted(long index, ICombinatoricsVector<String> value) {
+				return value.getSize() <= 2;
+			}
+		});
+
+		assertEquals(11, list.size());
+
+		assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+		assertEquals("CombinatoricsVector=([a], size=1)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([b], size=1)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([c], size=1)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, c], size=2)", list.get(5)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, c], size=2)", list.get(6)
+				.toString());
+		assertEquals("CombinatoricsVector=([d], size=1)", list.get(7)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, d], size=2)", list.get(8)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, d], size=2)", list.get(9)
+				.toString());
+		assertEquals("CombinatoricsVector=([c, d], size=2)", list.get(10)
+				.toString());
+	}
+
+	
+	@Test
+	public void exactlyTwoElementsSubsetTest() {
+
+		// create a combinatorics vector (a, b, c, d)
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "b", "c", "d" });
+
+		// create a sub-set generator
+		Generator<String> gen = Factory.createSubSetGenerator(initialVector);
+
+		List<ICombinatoricsVector<String>> list = gen.generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
+			
+			@Override
+			public boolean accepted(long index, ICombinatoricsVector<String> value) {
+				return value.getSize() == 2;
+			}
+		});
+
+		assertEquals(6, list.size());
+
+		assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, c], size=2)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, c], size=2)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, d], size=2)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, d], size=2)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([c, d], size=2)", list.get(5)
+				.toString());
+	}
+
+	
 }
