@@ -548,5 +548,34 @@ public class ComplexCombinationTest {
 
 		assertEquals("([a, b],[c, d],[e, f])",
 				ComplexCombinationGenerator.convert2String(list.get(0)));
+		assertEquals("([a, b],[c, e],[d, f])",
+				ComplexCombinationGenerator.convert2String(list.get(1)));
+		assertEquals("([a, b],[d, e],[c, f])",
+				ComplexCombinationGenerator.convert2String(list.get(2)));
+		assertEquals("([a, c],[b, d],[e, f])",
+				ComplexCombinationGenerator.convert2String(list.get(3)));
+		assertEquals("([a, c],[b, e],[d, f])",
+				ComplexCombinationGenerator.convert2String(list.get(4)));
+		assertEquals("([a, c],[d, e],[b, f])",
+				ComplexCombinationGenerator.convert2String(list.get(5)));
+		assertEquals("([b, c],[a, d],[e, f])",
+				ComplexCombinationGenerator.convert2String(list.get(6)));
+		assertEquals("([b, c],[a, e],[d, f])",
+				ComplexCombinationGenerator.convert2String(list.get(7)));
+		assertEquals("([b, c],[d, e],[a, f])",
+				ComplexCombinationGenerator.convert2String(list.get(8)));
+		assertEquals("([a, d],[b, e],[c, f])",
+				ComplexCombinationGenerator.convert2String(list.get(9)));
+		assertEquals("([a, d],[c, e],[b, f])",
+				ComplexCombinationGenerator.convert2String(list.get(10)));
+		assertEquals("([b, d],[a, e],[c, f])",
+				ComplexCombinationGenerator.convert2String(list.get(11)));
+		assertEquals("([b, d],[c, e],[a, f])",
+				ComplexCombinationGenerator.convert2String(list.get(12)));
+		assertEquals("([c, d],[a, e],[b, f])",
+				ComplexCombinationGenerator.convert2String(list.get(13)));
+		assertEquals("([c, d],[b, e],[a, f])",
+				ComplexCombinationGenerator.convert2String(list.get(14)));
+		
 	}
 }
