@@ -18,6 +18,7 @@ public class CombinatoricsVectorTest {
 
 		assertEquals(3, vector1.getSize());
 		assertEquals(false, vector1.hasDuplicates());
+		assertEquals(false, vector1.isAllElementsEqual());
 
 		List<String> array2 = new ArrayList<String>();
 		array2.add("a");
@@ -85,6 +86,19 @@ public class CombinatoricsVectorTest {
 
 		assertEquals(4, vector.getSize());
 		assertEquals(true, vector.hasDuplicates());
+		assertEquals(false, vector.isAllElementsEqual());
+	}
+	
+	@Test
+	public void testAllElementsEqualVectors() {
+
+		// create a combinatorics vector (a, a, a, a)
+		ICombinatoricsVector<String> vector = Factory
+				.createVector(new String[] { "a", "a", "a", "a" });
+
+		assertEquals(4, vector.getSize());
+		assertEquals(true, vector.hasDuplicates());
+		assertEquals(true, vector.isAllElementsEqual());
 	}
 
 	@Test
@@ -152,6 +166,7 @@ public class CombinatoricsVectorTest {
 
 		assertEquals(3, vector3.getSize());
 		assertEquals(true, vector3.hasDuplicates());
+		assertEquals(true, vector3.isAllElementsEqual());
 
 		ICombinatoricsVector<String> vector2 = Factory.createVector(array2);
 

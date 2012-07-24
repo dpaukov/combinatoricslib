@@ -36,7 +36,7 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 		_vector = new ArrayList<T>(vector.size());
 		_vector.addAll(vector);
 	}
-	
+
 	/**
 	 * Constructor from array
 	 * 
@@ -49,7 +49,6 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 			_vector.add(array[i]);
 		}
 	}
-	
 
 	/**
 	 * Copy constructor
@@ -61,8 +60,7 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 		_vector = new ArrayList<T>(vector.getSize());
 		_vector.addAll(vector.getVector());
 	}
-	
-	
+
 	/**
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#setValue(int, T)
 	 */
@@ -112,6 +110,15 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#isAllElementsEqual()
+	 */
+	@Override
+	public boolean isAllElementsEqual() {
+		Set<T> set = new HashSet<T>(_vector);
+		return set.size() == 1;
+	}
+
+	/**
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#getVector()
 	 */
 	@Override
@@ -153,8 +160,7 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 			return false;
 		return true;
 	}
-	
-	
+
 	/**
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#clearVector()
 	 */
@@ -162,7 +168,6 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	public void clearVector() {
 		_vector.clear();
 	}
-	
 
 	/**
 	 * Returns vector as a string
@@ -173,6 +178,5 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	public String toString() {
 		return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
 	}
-	
 
 }
