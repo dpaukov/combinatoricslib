@@ -105,6 +105,9 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	 */
 	@Override
 	public boolean hasDuplicates() {
+		if (_vector.size() <= 1) {
+			return false;
+		}
 		Set<T> set = new HashSet<T>(_vector);
 		return set.size() < _vector.size();
 	}
@@ -114,6 +117,12 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	 */
 	@Override
 	public boolean isAllElementsEqual() {
+		if (_vector.size() == 0) {
+			return false;
+		}
+		if (_vector.size() == 1) {
+			return true;
+		}
 		Set<T> set = new HashSet<T>(_vector);
 		return set.size() == 1;
 	}

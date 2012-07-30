@@ -42,27 +42,14 @@ import java.util.List;
  * @param <T>
  *            Type of the elements in the generated vectors
  */
-public abstract class Generator<T> implements
-		IGenerator<ICombinatoricsVector<T>> {
-
-	/**
-	 * Creates an iterator for enumerating all generated objects/vectors
-	 * 
-	 * @return The iterator over the generated objects/vectors
-	 * @deprecated This method will removed in the near future. Use the method
-	 *             <code>iterator()</code> instead of this method
-	 */
-	@Deprecated
-	public Iterator<ICombinatoricsVector<T>> createIterator() {
-		return iterator();
-	}
+public abstract class IntegerGenerator implements IGenerator<IntegerVector> {
 
 	/**
 	 * Returns all generated vectors as a list
 	 * 
 	 * @return List of all generated objects/vectors
 	 */
-	public List<ICombinatoricsVector<T>> generateAllObjects() {
+	public List<IntegerVector> generateAllObjects() {
 		return generateFilteredObjects(null);
 	}
 
@@ -73,11 +60,11 @@ public abstract class Generator<T> implements
 	 *            The filter to be applied to the generated result
 	 * @return The list of the filtered vectors
 	 */
-	public List<ICombinatoricsVector<T>> generateFilteredObjects(
-			IFilter<ICombinatoricsVector<T>> filter) {
-		List<ICombinatoricsVector<T>> list = new ArrayList<ICombinatoricsVector<T>>();
+	public List<IntegerVector> generateFilteredObjects(
+			IFilter<IntegerVector> filter) {
+		List<IntegerVector> list = new ArrayList<IntegerVector>();
 		long index = 0;
-		for (ICombinatoricsVector<T> vector : this) {
+		for (IntegerVector vector : this) {
 			if (filter == null || filter.accepted(index, vector))
 				list.add(vector);
 			index++;
@@ -91,11 +78,11 @@ public abstract class Generator<T> implements
 	 * 
 	 * @return List of the generated objects/vectors
 	 */
-	public List<ICombinatoricsVector<T>> generateObjectsRange(int startIndex,
+	public List<IntegerVector> generateObjectsRange(int startIndex,
 			int stopIndex) {
 		assert (startIndex <= stopIndex);
-		List<ICombinatoricsVector<T>> list = new ArrayList<ICombinatoricsVector<T>>();
-		Iterator<ICombinatoricsVector<T>> iterator = this.iterator();
+		List<IntegerVector> list = new ArrayList<IntegerVector>();
+		Iterator<IntegerVector> iterator = this.iterator();
 		int index = 1;
 		while (iterator.hasNext()) {
 			if (index >= startIndex && index <= stopIndex) {
