@@ -1,6 +1,6 @@
 #summary combinatoricslib 2.0
 
-<b>Combinatoricslib 2.0</b> is a Java library to resolve some combinatorics issues such as generating combinatorial objects of any types (permutations, partitions, compositions, subsets, combinations and etc).
+* [http://code.google.com/p/combinatoricslib/downloads/list CombinatoricsLib 2.0]* is a Java library for generating combinatorial objects of any types.
 
 = Features =
 
@@ -14,7 +14,7 @@ This library can generate the combinatorial objects such as:
  # *[#7._Compositions Compositions]*
 
 
-* [http://code.google.com/p/combinatoricslib/downloads/list CombinatoricsLib 2.0]* allows generating vectors of any items. You have to specify the type of your elements as a parameter of vectors and generators. All generators implements the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
+<b>CombinatoricsLib 2.0</b> allows generating vectors of any items. You should to specify the type of your elements as a parameter of vectors and generators. All generators implements the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
 
 You can use the next table to select a generator
 
