@@ -5,31 +5,20 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Base class for all generators
+ * This is a special abstract class for all integer generators
  * <p>
- * This is a library written on Java to resolve some combinatorics issues such
- * as generating combinatorial objects (permutations, partitions, compositions,
- * subsets, combinations and etc).
- * <p>
- * Type of the items should be specified as type parameter of generator and
- * vector.
- * <p>
- * There is a general pattern how to use the generators <blockquote>
+ * There is a general pattern how to use the integer generators <blockquote>
  * 
  * <pre>
- * // create combinatorics vector
- * CombinatoricsVector&lt;T&gt; vector = new CombinatoricsVector&lt;T&gt;(array);
+ * // create an integer vector
+ * IntegerVector vector = new IntegerVector(new int[] { elements });
  * 
- * // create a concrete generator
- * Generator&lt;T&gt; generator = new&lt;Concrete&gt; Generator&lt;T&gt;(vector);
+ * // create a concrete integer generator
+ * IntegerGenerator generator = IntegerFactory.create &lt; Concrete &gt; Generator(vector);
  * 
- * // create an iterator
- * Iterator&lt;CombinatoricsVector&lt;T&gt;&gt; iterator = generator.createIterator();
- * 
- * // iterate the generated objects
- * while (iterator.hasNext()) {
- * 	CombinatoricsVector&lt;T&gt; item = iterator.next();
- * 	System.out.println(item);
+ * // Iterate the generated objects
+ * for (IntegerVector v : generator) {
+ * 	System.out.println(v);
  * }
  * </pre>
  * 
@@ -38,7 +27,8 @@ import java.util.List;
  * 
  * @author Dmytro Paukov
  * @see IntegerVector
- * @see Iterator
+ * @see IntegerFactory
+ * @see IGenerator
  * @version 2.0
  */
 public abstract class IntegerGenerator implements IGenerator<IntegerVector> {
@@ -58,6 +48,7 @@ public abstract class IntegerGenerator implements IGenerator<IntegerVector> {
 	 * @param filter
 	 *            The filter to be applied to the generated result
 	 * @return The list of the filtered vectors
+	 * @see IFilter
 	 */
 	public List<IntegerVector> generateFilteredObjects(
 			IFilter<IntegerVector> filter) {

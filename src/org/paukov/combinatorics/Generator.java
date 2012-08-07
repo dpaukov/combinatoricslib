@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Base class for all generators
+ * Abstract base class for all generic generators of the library
  * <p>
  * This is a library written on Java to resolve some combinatorics issues such
  * as generating combinatorial objects (permutations, partitions, compositions,
@@ -18,7 +18,7 @@ import java.util.List;
  * 
  * <pre>
  * // create the initial vector or set
- * ICombinatoricsVector&lt;T&gt; vector = Factory.createVector(new &lt;T&gt;{ elements } );
+ * ICombinatoricsVector&lt;T&gt; vector = Factory.createVector(new &lt;T&gt;[]{ elements } );
  * 
  * // create a concrete generator
  * Generator&lt;T&gt; generator = Factory.create&lt;Concrete&gt;Generator(vector);

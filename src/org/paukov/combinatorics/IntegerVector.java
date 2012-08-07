@@ -2,7 +2,6 @@ package org.paukov.combinatorics;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Set;
  * 
  * @author Dmytro Paukov
  * @see IntegerGenerator
- * @see Iterator
+ * @see IntegerFactory
  * @version 2.0
  */
 public class IntegerVector {
@@ -32,7 +31,7 @@ public class IntegerVector {
 	}
 
 	/**
-	 * Constructor from array
+	 * Constructor from an array
 	 * 
 	 * @param array
 	 *            Initial array to initialize the created vector
@@ -42,6 +41,11 @@ public class IntegerVector {
 		System.arraycopy(array, 0, _vector, 0, len);
 	}
 
+	/**
+	 * Constructor from an integer array
+	 * 
+	 * @param array
+	 */
 	IntegerVector(int[] array) {
 		this(array, array.length);
 	}
@@ -65,6 +69,8 @@ public class IntegerVector {
 	}
 
 	/**
+	 * Gets the value of the given index
+	 * 
 	 * @return The value of the <code>index</code> element
 	 */
 	public int getValue(int index) {
@@ -72,7 +78,9 @@ public class IntegerVector {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#getSize()
+	 * Returns the size of the vector
+	 * 
+	 * @return The size of the vector
 	 */
 	public int getSize() {
 		if (_vector == null) {
@@ -82,7 +90,10 @@ public class IntegerVector {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#hasDuplicates()
+	 * This method detects duplicates in the vector
+	 * 
+	 * @return <code>true</code> if the vector has duplicates, otherwise
+	 *         <code>false</code>
 	 */
 	public boolean hasDuplicates() {
 		if (_vector.length <= 1) {
@@ -96,7 +107,11 @@ public class IntegerVector {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#isAllElementsEqual()
+	 * This method detects if the vector's elements are equal. For example, this
+	 * method returns true for a vector (a, a, a) and false for a vector (a, b,
+	 * a)
+	 * 
+	 * @return <code>True</code> if the vector's elements are equal
 	 */
 	public boolean isAllElementsEqual() {
 		if (_vector.length == 0) {
@@ -114,7 +129,9 @@ public class IntegerVector {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#getVector()
+	 * Returns vector as a list of elements
+	 * 
+	 * @return List of all elements
 	 */
 	public int[] getVector() {
 		return _vector;

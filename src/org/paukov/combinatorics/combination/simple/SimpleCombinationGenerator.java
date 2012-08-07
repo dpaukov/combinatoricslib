@@ -18,36 +18,23 @@ import org.paukov.combinatorics.util.Util;
  * 52-card deck: the 5 cards of the hand are all distinct, and the order of the
  * cards in the hand does not matter.
  * <p>
- * Example. Generate 3-combination of the set {red, black, white, green, blue}.
+ * Example. Generate 3-combination of the set (red, black, white, green, blue).
  * <p>
  * <blockquote>
  * 
  * <pre>
- * // create array of initial items
- * ArrayList&lt;String&gt; array = new ArrayList&lt;String&gt;();
- * array.add(&quot;red&quot;);
- * array.add(&quot;black&quot;);
- * array.add(&quot;white&quot;);
- * array.add(&quot;green&quot;);
- * array.add(&quot;blue&quot;);
  * 
- * // create combinatorics vector
- * CombinatoricsVector&lt;String&gt; initialVector = new CombinatoricsVector&lt;String&gt;(
- * 		array);
+ * // Create the initial vector
+ * ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+ * 		&quot;red&quot;, &quot;black&quot;, &quot;white&quot;, &quot;green&quot;, &quot;blue&quot; });
  * 
- * // create simple combination generator to generate 3-combination
- * Generator&lt;String&gt; gen = new SimpleCombinationGenerator&lt;String&gt;(initialVector, 3);
+ * // Create a simple combination generator to generate 3-combinations of the
+ * // initial vector
+ * Generator&lt;String&gt; gen = Factory.createSimpleCombinationGenerator(initialVector,
+ * 		3);
  * 
- * // create iterator
- * Iterator&lt;CombinatoricsVector&lt;String&gt;&gt; itr = gen.createIterator();
- * 
- * // print the number of combinations
- * System.out.println(&quot;Number of combinations is: &quot;
- * 		+ gen.getNumberOfGeneratedObjects());
- * 
- * // go through the iterator
- * while (itr.hasNext()) {
- * 	CombinatoricsVector&lt;String&gt; combination = itr.next();
+ * // Print all possible combinations
+ * for (ICombinatoricsVector&lt;String&gt; combination : gen) {
  * 	System.out.println(combination);
  * }
  * </pre>
