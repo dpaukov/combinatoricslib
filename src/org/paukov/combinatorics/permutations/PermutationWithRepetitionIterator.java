@@ -8,14 +8,14 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * Iterator of permutation with repetitions
+ * Iterator for the permutation with repetitions
  * 
  * @author Dmytro.Paukov
  * @see ICombinatoricsVector
  * @see PermutationWithRepetitionGenerator
  * 
  * @param <T>
- *            Type of elements in the permutation
+ *            Type of the elements in the permutations
  */
 public class PermutationWithRepetitionIterator<T extends Object> implements
 		Iterator<ICombinatoricsVector<T>> {
@@ -89,7 +89,7 @@ public class PermutationWithRepetitionIterator<T extends Object> implements
 	/**
 	 * Returns true if all permutations have been iterated
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#isDone()
+	 * @see Iterator#hasNext()
 	 */
 	@Override
 	public boolean hasNext() {
@@ -99,7 +99,7 @@ public class PermutationWithRepetitionIterator<T extends Object> implements
 	/**
 	 * Moves to the next permutation
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#next()
+	 * @see Iterator#next()
 	 */
 	@Override
 	public ICombinatoricsVector<T> next() {

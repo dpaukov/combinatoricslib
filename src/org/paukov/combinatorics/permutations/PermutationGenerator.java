@@ -8,42 +8,32 @@ import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.util.Util;
 
 /**
- * This generator generates all permutations of specified core vector
+ * This generator generates all possible permutations of the specified initial
+ * vector
  * <p>
  * A permutation is an ordering of a set in the context of all possible
  * orderings. For example, the set containing the first three digits, 123, has
  * six permutations: 123, 132, 213, 231, 312, and 321.
  * <p>
- * This is a example of permutation of 3 string items:
+ * This is an example of the permutations of 3 string items (apple, orange,
+ * cherry):
  * <p>
  * <blockquote>
  * 
  * <pre>
- * // create array of initial items
- * ArrayList&lt;String&gt; array = new ArrayList&lt;String&gt;();
- * array.add(&quot;one&quot;);
- * array.add(&quot;two&quot;);
- * array.add(&quot;three&quot;);
  * 
- * // create combinatorics vector
- * CombinatoricsVector&lt;String&gt; initialVector = new CombinatoricsVector&lt;String&gt;(
- * 		array);
+ * // Create the initial vector of 3 elements (apple, orange, cherry)
+ * ICombinatoricsVector&lt;String&gt; originalVector = Factory
+ * 		.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot;, &quot;cherry&quot; });
  * 
- * // create permutation generator
- * Generator&lt;String&gt; generator = new PermutationGenerator&lt;String&gt;(initialVector);
+ * // Create the permutation generator by calling the appropriate method in the
+ * // Factory class
+ * Generator&lt;String&gt; gen = Factory.createPermutationGenerator(originalVector);
  * 
- * // print the number of generated permutations
- * System.out.println(&quot;Number of permutations is: &quot;
- * 		+ generator.getNumberOfGeneratedObjects());
+ * // Print the result
+ * for (ICombinatoricsVector&lt;String&gt; perm : gen)
+ * 	System.out.println(perm);
  * 
- * // create iterator
- * Iterator&lt;CombinatoricsVector&lt;String&gt;&gt; itr = generator.createIterator();
- * 
- * // go through the iterator
- * while (itr.hasNext()) {
- * 	CombinatoricsVector&lt;String&gt; permutation = itr.next();
- * 	System.out.println(permutation);
- * }
  * </pre>
  * 
  * </blockquote>
@@ -53,28 +43,28 @@ import org.paukov.combinatorics.util.Util;
  * <blockquote>
  * 
  * <pre>
- *    Number of permutations is: 6
- *    CombinatoricsVector=[[one, two, three]], size=3]
- *    CombinatoricsVector=[[one, three, two]], size=3]
- *    CombinatoricsVector=[[three, one, two]], size=3]
- *    CombinatoricsVector=[[three, two, one]], size=3]
- *    CombinatoricsVector=[[two, three, one]], size=3]
- *    CombinatoricsVector=[[two, one, three]], size=3]
+ *   CombinatoricsVector=([apple, orange, cherry], size=3)
+ *   CombinatoricsVector=([apple, cherry, orange], size=3)
+ *   CombinatoricsVector=([cherry, apple, orange], size=3)
+ *   CombinatoricsVector=([cherry, orange, apple], size=3)
+ *   CombinatoricsVector=([orange, cherry, apple], size=3)
+ *   CombinatoricsVector=([orange, apple, cherry], size=3)
  * </pre>
  * 
  * </blockquote>
  * <p>
  * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see PermutationIterator
+ * @see Factory
  * @param <T>
- *            Type of elements in permutation
+ *            Type of the elements in the permutations
  */
 public class PermutationGenerator<T> extends Generator<T> {
 
 	/**
-	 * Core vector
+	 * Initial vector
 	 */
 	protected final ICombinatoricsVector<T> _originalVector;
 

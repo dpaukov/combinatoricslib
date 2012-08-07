@@ -2,17 +2,16 @@ package org.paukov.combinatorics.composition;
 
 import java.util.Iterator;
 
-import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.IntegerFactory;
 import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
 
 /**
- * Iterator for enumeration of all compositions
+ * Iterator for enumerating all possible compositions
  * 
  * @author Dmytro Paukov
- * @see ICombinatoricsVector
- * @see CompositionGenerator
+ * @see IntegerVector
+ * @see IntegerCompositionGenerator
  */
 public class IntegerCompositionIterator implements Iterator<IntegerVector> {
 
@@ -47,9 +46,9 @@ public class IntegerCompositionIterator implements Iterator<IntegerVector> {
 	protected IntegerVector _currentSubset = null;
 
 	/**
-	 * Constructor of an iterator
+	 * Constructor of the iterator
 	 * 
-	 * @param _generator
+	 * @param generator	The composition generator
 	 */
 	public IntegerCompositionIterator(IntegerCompositionGenerator generator) {
 		super();

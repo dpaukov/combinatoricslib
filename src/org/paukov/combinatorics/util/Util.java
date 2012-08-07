@@ -42,7 +42,6 @@ public class Util {
 	 * Calculates 2 in power of integer value <code>x</code>
 	 * 
 	 * @param x
-	 * @return
 	 */
 	public static long pow2(long x) {
 		long result = 1;

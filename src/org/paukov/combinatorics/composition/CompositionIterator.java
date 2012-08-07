@@ -48,9 +48,9 @@ public class CompositionIterator implements
 	protected ICombinatoricsVector<Integer> _currentSubset = null;
 
 	/**
-	 * Constructor of an iterator
+	 * Constructor of the iterator
 	 * 
-	 * @param _generator
+	 * @param generator The Composition generator
 	 */
 	public CompositionIterator(CompositionGenerator generator) {
 		super();

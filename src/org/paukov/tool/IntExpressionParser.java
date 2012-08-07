@@ -6,7 +6,7 @@ package org.paukov.tool;
 import java.util.LinkedList;
 
 /**
- * @author dpaukov
+ * @author Dmytro Paukov
  * 
  */
 public class IntExpressionParser {

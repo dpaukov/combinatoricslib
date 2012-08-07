@@ -7,45 +7,30 @@ import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * This generator generates permutation with repetitions from specified vector
- * by specified length
+ * This generator generates permutations with repetitions from the specified
+ * vector by specified length
  * <p>
  * The permutation may have more elements than slots. For example, the three
  * possible permutation of 12 in three slots are: 111, 211, 121, 221, 112, 212,
  * 122, and 222.
  * <p>
- * This is a code:
+ * Let's generate all possible permutations with repetitions of 3 elements from
+ * the set of apple and orange:
  * <p>
  * <blockquote>
  * 
  * <pre>
- * // create array of initial items
- * ArrayList&lt;String&gt; array = new ArrayList&lt;String&gt;();
- * array.add(&quot;one&quot;);
- * array.add(&quot;two&quot;);
  * 
- * // create combinatorics vector
- * CombinatoricsVector&lt;String&gt; initialVector = new CombinatoricsVector&lt;String&gt;(
- * 		array);
- * 
- * // create permutation with repetition generator, second parameter is a number of
- * // slots
- * Generator&lt;String&gt; gen = new PermutationWithRepetitionGenerator&lt;String&gt;(
- * 		initialVector, 3);
- * 
- * // create iterator
- * Iterator&lt;CombinatoricsVector&lt;String&gt;&gt; itr = gen.createIterator();
- * 
- * // print the number of generated permutations
- * System.out.println(&quot;Number of permutationWithRepetition is: &quot;
- * 		+ gen.getNumberOfGeneratedObjects());
- * 
- * // go through the iterator
- * while (itr.hasNext()) {
- * 	CombinatoricsVector&lt;String&gt; permutation = itr.next();
- * 	System.out.println(itr);
- * 	System.out.println(permutation);
- * }
+ * // Create the initial vector of 2 elements (apple, orange)
+ * ICombinatoricsVector&lt;String&gt; originalVector = Factory.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot; });
+ *
+ * // Create the generator by calling the appropriate method in the Factory class. 
+ * // Set the second parameter as 3, since we will generate 3-elemets permutations
+ * Generator&lt;String&gt; gen = Factory.createPermutationWithRepetitionGenerator(originalVector, 3);
+ *
+ * // Print the result
+ * for (ICombinatoricsVector&lt;String&gt; perm : gen)
+ *    System.out.println( perm );
  * </pre>
  * 
  * </blockquote>
@@ -55,26 +40,26 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * <blockquote>
  * 
  * <pre>
- *    Number of permutationWithRepetition is: 8
- *    PermutationWithRepetitionIterator=[#1, CombinatoricsVector=[[one, one, one]], size=3]]
- *    PermutationWithRepetitionIterator=[#2, CombinatoricsVector=[[two, one, one]], size=3]]
- *    PermutationWithRepetitionIterator=[#3, CombinatoricsVector=[[one, two, one]], size=3]]
- *    PermutationWithRepetitionIterator=[#4, CombinatoricsVector=[[two, two, one]], size=3]]
- *    PermutationWithRepetitionIterator=[#5, CombinatoricsVector=[[one, one, two]], size=3]]
- *    PermutationWithRepetitionIterator=[#6, CombinatoricsVector=[[two, one, two]], size=3]]
- *    PermutationWithRepetitionIterator=[#7, CombinatoricsVector=[[one, two, two]], size=3]]
- *    PermutationWithRepetitionIterator=[#8, CombinatoricsVector=[[two, two, two]], size=3]]
+ *   CombinatoricsVector=([apple, apple, apple], size=3)
+ *   CombinatoricsVector=([orange, apple, apple], size=3)
+ *   CombinatoricsVector=([apple, orange, apple], size=3)
+ *   CombinatoricsVector=([orange, orange, apple], size=3)
+ *   CombinatoricsVector=([apple, apple, orange], size=3)
+ *   CombinatoricsVector=([orange, apple, orange], size=3)
+ *   CombinatoricsVector=([apple, orange, orange], size=3)
+ *   CombinatoricsVector=([orange, orange, orange], size=3)
  * </pre>
  * 
  * </blockquote>
  * <p>
  * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see PermutationWithRepetitionIterator
+ * @see Factory
  * 
  * @param <T>
- *            Type of elements in the permutations
+ *            Type of the elements in the permutations
  */
 public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 
@@ -127,7 +112,7 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	}
 
 	/**
-	 * Returns number of elements in the generated permutations
+	 * Returns the number of elements in the generated permutations
 	 */
 	public int getPermutationLength() {
 		return _permutationLength;

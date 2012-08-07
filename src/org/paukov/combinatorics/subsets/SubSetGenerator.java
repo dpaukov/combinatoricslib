@@ -91,10 +91,10 @@ import org.paukov.combinatorics.util.Util;
  * of the sub sets/lists
  * 
  * @author Dmytro.Paukov
- * @see CombinatoricsVector
+ * @see ICombinatoricsVector
  * @see SubSetIterator
  * @param <T>
- *            Type of elements in the set
+ *            Type of the elements in the set
  */
 public class SubSetGenerator<T> extends Generator<T> {
 

@@ -37,10 +37,9 @@ import java.util.List;
  * <p>
  * 
  * @author Dmytro Paukov
- * @see ICombinatoricsVector
+ * @see IntegerVector
  * @see Iterator
- * @param <T>
- *            Type of the elements in the generated vectors
+ * @version 2.0
  */
 public abstract class IntegerGenerator implements IGenerator<IntegerVector> {
 

@@ -11,25 +11,21 @@ import java.util.List;
  * as generating combinatorial objects (permutations, partitions, compositions,
  * subsets, combinations and etc).
  * <p>
- * Type of the items should be specified as type parameter of generator and
- * vector.
+ * Type of the items should be specified as a parameter of generators and
+ * vectors.
  * <p>
  * There is a general pattern how to use the generators <blockquote>
  * 
  * <pre>
- * // create combinatorics vector
- * CombinatoricsVector&lt;T&gt; vector = new CombinatoricsVector&lt;T&gt;(array);
+ * // create the initial vector or set
+ * ICombinatoricsVector&lt;T&gt; vector = Factory.createVector(new &lt;T&gt;{ elements } );
  * 
  * // create a concrete generator
- * Generator&lt;T&gt; generator = new&lt;Concrete&gt; Generator&lt;T&gt;(vector);
- * 
- * // create an iterator
- * Iterator&lt;CombinatoricsVector&lt;T&gt;&gt; iterator = generator.createIterator();
+ * Generator&lt;T&gt; generator = Factory.create&lt;Concrete&gt;Generator(vector);
  * 
  * // iterate the generated objects
- * while (iterator.hasNext()) {
- * 	CombinatoricsVector&lt;T&gt; item = iterator.next();
- * 	System.out.println(item);
+ * for (ICombinatoricsVector&lt;T&gt; v : generator) {
+ * 	System.out.println( v );
  * }
  * </pre>
  * 
@@ -39,6 +35,7 @@ import java.util.List;
  * @author Dmytro Paukov
  * @see ICombinatoricsVector
  * @see Iterator
+ * @see Factory
  * @param <T>
  *            Type of the elements in the generated vectors
  */

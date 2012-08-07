@@ -6,6 +6,8 @@ import java.util.List;
  * This is an interface for combinatorics vector of element's type<code>T</code>
  * 
  * @author Dmytro Paukov
+ * @see Factory
+ * @version 2.0
  * @param <T>
  *            Type of the elements
  */
@@ -49,7 +51,7 @@ public interface ICombinatoricsVector<T> {
 	/**
 	 * This method detects duplicates in the vector
 	 * 
-	 * @return
+	 * @return <code>true</code> if the vector has duplicates, otherwise <code>false</code>
 	 */
 	public abstract boolean hasDuplicates();
 
