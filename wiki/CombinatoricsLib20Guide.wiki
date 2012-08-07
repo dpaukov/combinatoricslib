@@ -44,7 +44,7 @@ This is an example of the permutations of 3 string items (apple, orange, cherry)
       System.out.println(perm);
 }}}
 
-The result
+The result of 6 permutations
 {{{
    CombinatoricsVector=([apple, orange, cherry], size=3)
    CombinatoricsVector=([apple, cherry, orange], size=3)
@@ -73,7 +73,7 @@ Let's generate all possible permutations with repetitions of 3 elements from the
       System.out.println( perm );
 }}}
 
-And the result 
+And the result of 8 permutations
 {{{
    CombinatoricsVector=([apple, apple, apple], size=3)
    CombinatoricsVector=([orange, apple, apple], size=3)
@@ -89,48 +89,34 @@ And the result
 
 A simple k-combination of a finite set S is a subset of k distinct elements of S. Specifying a subset does not arrange them in a particular order. As an example, a poker hand can be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct, and the order of the cards in the hand does not matter.
 
-Example. Generate 3-combination of the set {red, black, white, green, blue}.
+Example. Generate 3-combination of the set (red, black, white, green, blue).
 {{{
-    // create array of initial items
-    ArrayList<String> array = new ArrayList<String>();
-    array.add("red");
-    array.add("black");
-    array.add("white");
-    array.add("green");
-    array.add("blue");
+   // Create the initial vector
+   ICombinatoricsVector<String> initialVector = Factory.createVector(
+      new String[] { "red", "black", "white", "green", "blue" } );
 
-    // create combinatorics vector
-    CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(array);
+   // Create a simple combination generator to generate 3-combinations of the initial vector
+   Generator<String> gen = Factory.createSimpleCombinationGenerator(
+      initialVector, 3);
 
-    // create simple combination generator to generate 3-combination
-    Generator<String> gen = new SimpleCombinationGenerator<String>(initialVector , 3);
-    
-    // create iterator
-    Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
-    
-    // print the number of combinations
-    System.out.println("Number of combinations is: " + gen.getNumberOfGeneratedObjects());
-    
-    // go through the iterator
-    while (itr.hasNext()) {
-      CombinatoricsVector<String> combination = itr.next();
+   // Print all possible combinations
+   for (ICombinatoricsVector<String> combination : gen) {
       System.out.println(combination);
-    }
+   }
 }}}
 
-And the result
+And the result of 10 combinations
 {{{
-   Number of combinations is: 10
-   SimpleCombinationIterator=[#1, CombinatoricsVector=[[red, black, white]], size=3]]
-   SimpleCombinationIterator=[#2, CombinatoricsVector=[[red, black, green]], size=3]]
-   SimpleCombinationIterator=[#3, CombinatoricsVector=[[red, black, blue]], size=3]]
-   SimpleCombinationIterator=[#4, CombinatoricsVector=[[red, white, green]], size=3]]
-   SimpleCombinationIterator=[#5, CombinatoricsVector=[[red, white, blue]], size=3]]
-   SimpleCombinationIterator=[#6, CombinatoricsVector=[[red, green, blue]], size=3]]
-   SimpleCombinationIterator=[#7, CombinatoricsVector=[[black, white, green]], size=3]]
-   SimpleCombinationIterator=[#8, CombinatoricsVector=[[black, white, blue]], size=3]]
-   SimpleCombinationIterator=[#9, CombinatoricsVector=[[black, green, blue]], size=3]]
-   SimpleCombinationIterator=[#10, CombinatoricsVector=[[white, green, blue]], size=3]]
+   CombinatoricsVector=([red, black, white], size=3)
+   CombinatoricsVector=([red, black, green], size=3)
+   CombinatoricsVector=([red, black, blue], size=3)
+   CombinatoricsVector=([red, white, green], size=3)
+   CombinatoricsVector=([red, white, blue], size=3)
+   CombinatoricsVector=([red, green, blue], size=3)
+   CombinatoricsVector=([black, white, green], size=3)
+   CombinatoricsVector=([black, white, blue], size=3)
+   CombinatoricsVector=([black, green, blue], size=3)
+   CombinatoricsVector=([white, green, blue], size=3)
 }}}
 
 = 4. Combinations with repetitions =
