@@ -96,8 +96,7 @@ Example. Generate 3-combination of the set (red, black, white, green, blue).
       new String[] { "red", "black", "white", "green", "blue" } );
 
    // Create a simple combination generator to generate 3-combinations of the initial vector
-   Generator<String> gen = Factory.createSimpleCombinationGenerator(
-      initialVector, 3);
+   Generator<String> gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
 
    // Print all possible combinations
    for (ICombinatoricsVector<String> combination : gen) {
@@ -137,7 +136,7 @@ Example. Generate 3-combinations with repetitions of the set (apple, orange).
 
    // Create a multi-combination generator to generate 3-combinations of
    // the initial vector
-   Generator<String> gen = Factory.createMultiCombinationGenerator(	initialVector, 3);
+   Generator<String> gen = Factory.createMultiCombinationGenerator(initialVector, 3);
 
    // Print all possible combinations
    for (ICombinatoricsVector<String> combination : gen) {
