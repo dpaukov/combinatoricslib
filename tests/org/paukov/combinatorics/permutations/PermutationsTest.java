@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
@@ -117,6 +118,41 @@ public class PermutationsTest {
 				.generateAllObjects();
 
 		assertEquals(0, list.size());
+	}
+	
+	
+	@Test
+	@Ignore("Permutation generator doesn't treat repeated elements as identical yet")
+	public void identicalPermutation() {
+
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a", "b" });
+		Generator<String> generator = Factory.createPermutationGenerator(
+				initialVector);
+
+		System.out.println("Number of permutations is: "
+				+ generator.getNumberOfGeneratedObjects());
+		assertEquals(3, generator.getNumberOfGeneratedObjects());
+
+		Iterator<ICombinatoricsVector<String>> iterator = generator
+				.iterator();
+
+		while (iterator.hasNext()) {
+			iterator.next();
+			System.out.println(iterator);
+		}
+
+		List<ICombinatoricsVector<String>> list = generator
+				.generateAllObjects();
+
+		assertEquals(3, list.size());
+
+		assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(2)
+				.toString());
 	}
 	
 	@Test
