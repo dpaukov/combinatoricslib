@@ -124,44 +124,33 @@ And the result of 10 combinations
 A k-multicombination or k-combination with repetition of a finite set S is given by a sequence of k not necessarily distinct elements of S, where order is not taken into account.
 
 As an example. Suppose there are 2 types of fruits (apple and orange) at a grocery store, and you want to buy 3 pieces of fruit. You could select
- # {apple, apple, apple}
- # {apple, apple, orange}
- # {apple, orange, orange}
- # {orange, orange, orange}
+ # (apple, apple, apple)
+ # (apple, apple, orange)
+ # (apple, orange, orange)
+ # (orange, orange, orange)
 
-Example. Generate 3-combinations with repetitions of the set {apple, orange}.
+Example. Generate 3-combinations with repetitions of the set (apple, orange).
 {{{
-    // create array of initial items
-    ArrayList<String> array = new ArrayList<String>();
-    array.add("apple");
-    array.add("orange");
+   // Create the initial vector of (apple, orange)
+   ICombinatoricsVector<String> initialVector = Factory.createVector(
+      new String[] { "apple", "orange" } );
 
-    // create combinatorics vector
-    CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(array);
+   // Create a multi-combination generator to generate 3-combinations of
+   // the initial vector
+   Generator<String> gen = Factory.createMultiCombinationGenerator(	initialVector, 3);
 
-    // create multi-combination generator to generate 3-combination
-    Generator<String> gen = new MultiCombinationGenerator<String>(initialVector , 3);
-    
-    // create iterator
-    Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
-    
-    // print the number of combinations
-    System.out.println("Number of combinations is: " + gen.getNumberOfGeneratedObjects());
-    
-    // go through the iterator
-    while (itr.hasNext()) {
-      CombinatoricsVector<String> combination = itr.next();
+   // Print all possible combinations
+   for (ICombinatoricsVector<String> combination : gen) {
       System.out.println(combination);
-    }
+   }
 }}}
 
-And the result
+And the result of 4 combinations
 {{{
-   Number of combinations is: 4
-   MultiCombinationIterator=[#1, CombinatoricsVector=[[apple, apple, apple]], size=3]]
-   MultiCombinationIterator=[#2, CombinatoricsVector=[[apple, apple, orange]], size=3]]
-   MultiCombinationIterator=[#3, CombinatoricsVector=[[apple, orange, orange]], size=3]]
-   MultiCombinationIterator=[#4, CombinatoricsVector=[[orange, orange, orange]], size=3]]
+   CombinatoricsVector=([apple, apple, apple], size=3)
+   CombinatoricsVector=([apple, apple, orange], size=3)
+   CombinatoricsVector=([apple, orange, orange], size=3)
+   CombinatoricsVector=([orange, orange, orange], size=3)
 }}}
 
 = 5. Partitions =
