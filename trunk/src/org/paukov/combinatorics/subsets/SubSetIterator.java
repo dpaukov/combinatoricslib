@@ -73,7 +73,7 @@ public class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#isDone()
+	 * @see Iterator#hasNext()
 	 */
 	@Override
 	public boolean hasNext() {
@@ -83,7 +83,7 @@ public class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 	/**
 	 * Returns the next subset if it is available
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#next()
+	 * @see Iterator#next()
 	 */
 	@Override
 	public ICombinatoricsVector<T> next() {

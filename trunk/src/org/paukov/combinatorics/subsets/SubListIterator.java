@@ -79,7 +79,7 @@ public class SubListIterator<T> implements
 	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#isDone()
+	 * @see Iterator#hasNext()
 	 */
 	@Override
 	public boolean hasNext() {
@@ -89,7 +89,7 @@ public class SubListIterator<T> implements
 	/**
 	 * Returns the next sublist if it is available
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#next()
+	 * @see Iterator#next()
 	 */
 	@Override
 	public ICombinatoricsVector<T> next() {

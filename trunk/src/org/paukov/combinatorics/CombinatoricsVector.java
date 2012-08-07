@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This class represents a simple vector of elements of type <code>T</code>
+ * This class represents a simple vector of element's type <code>T</code>
  * 
  * @author Dmytro Paukov
  * @see Generator
  * @see Iterator
+ * @see Factory
  * @param <T>
  *            Type of the elements
  */

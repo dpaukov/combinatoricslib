@@ -3,7 +3,16 @@ package org.paukov.combinatorics;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * This is the interface for all generators in the library
+ * 
+ * @author Dmytro Paukov
+ * @version 2.0
+ * @param <T>
+ *            The type of the elements
+ */
 public interface IGenerator<T> extends Iterable<T> {
+
 	/**
 	 * Returns core/original vector. This is a main vector which is used for
 	 * generating other objects
@@ -40,6 +49,7 @@ public interface IGenerator<T> extends Iterable<T> {
 	 * @param filter
 	 *            The filter to be applied to the generated result
 	 * @return The list of the filtered vectors
+	 * @see IFilter
 	 */
 	public List<T> generateFilteredObjects(IFilter<T> filter);
 

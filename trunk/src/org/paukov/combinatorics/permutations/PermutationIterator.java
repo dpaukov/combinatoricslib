@@ -7,13 +7,13 @@ import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * Iterator of permutation generator
+ * Iterator for the permutation generator
  * 
  * @author Dmytro.Paukov
  * @see ICombinatoricsVector
  * @see PermutationGenerator
  * @param <T>
- *            Type of elements of permutations
+ *            Type of elements in the permutations
  */
 public class PermutationIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 

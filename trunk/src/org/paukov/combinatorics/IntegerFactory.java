@@ -3,6 +3,14 @@ package org.paukov.combinatorics;
 import org.paukov.combinatorics.composition.IntegerCompositionGenerator;
 import org.paukov.combinatorics.subsets.IntegerSubSetGenerator;
 
+/**
+ * This is a special factory to create integer vectors and generators like
+ * 
+ * @author Dmytro Paukov
+ * @version 2.0
+ * @see IntegerVector
+ * @see IntegerGenerator
+ */
 public class IntegerFactory {
 
 	/**
@@ -23,10 +31,27 @@ public class IntegerFactory {
 		return new IntegerVector(size);
 	}
 
+	/**
+	 * Creates an integer vector from the given integer array
+	 * 
+	 * @param array
+	 *            The array
+	 * @return The integer vector
+	 */
 	public static IntegerVector createIntegerVector(int[] array) {
 		return new IntegerVector(array);
 	}
 
+	/**
+	 * Creates an integer vector from the given integer array by the length
+	 * <code>len</code>
+	 * 
+	 * @param array
+	 *            The array
+	 * @param len
+	 *            the length
+	 * @return The integer vector
+	 */
 	public static IntegerVector createIntegerVector(int[] array, int len) {
 		return new IntegerVector(array, len);
 	}
@@ -34,7 +59,7 @@ public class IntegerFactory {
 	/**
 	 * Creates a sub-set generator
 	 * 
-	 * @param originalVector
+	 * @param originalVector The initial vector
 	 */
 	public static IntegerGenerator createIntegerSubSetGenerator(
 			IntegerVector originalVector) {
@@ -44,7 +69,7 @@ public class IntegerFactory {
 	/**
 	 * Creates a composition generator
 	 * 
-	 * @param n
+	 * @param n The initial value
 	 */
 	public static IntegerGenerator createIntegerCompositionGenerator(Integer n) {
 		return new IntegerCompositionGenerator(n);

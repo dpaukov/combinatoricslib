@@ -4,19 +4,16 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
 
 /**
- * Iterator over the all sublists (with duplicates)
+ * Iterator over the all sublists (with duplicates) of integer values
  * 
  * @author Dmytro Paukov
- * @see ICombinatoricsVector
- * @see SubSetGenerator
+ * @see IntegerVector
+ * @see IntegerSubSetGenerator
  * 
- * @param <T>
- *            Type of the elements in the lists
  */
 public class IntegerSubListIterator implements Iterator<IntegerVector> {
 
@@ -79,7 +76,7 @@ public class IntegerSubListIterator implements Iterator<IntegerVector> {
 	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#isDone()
+	 * @see Iterator#hasNext()
 	 */
 	@Override
 	public boolean hasNext() {
@@ -89,7 +86,7 @@ public class IntegerSubListIterator implements Iterator<IntegerVector> {
 	/**
 	 * Returns the next sublist if it is available
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#next()
+	 * @see Iterator#next()
 	 */
 	@Override
 	public IntegerVector next() {

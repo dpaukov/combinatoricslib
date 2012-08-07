@@ -2,7 +2,6 @@ package org.paukov.combinatorics.subsets;
 
 import java.util.Iterator;
 
-import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.IntegerFactory;
 import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
@@ -11,11 +10,9 @@ import org.paukov.combinatorics.IntegerVector;
  * Iterator over the all subsets
  * 
  * @author Dmytro.Paukov
- * @see ICombinatoricsVector
- * @see SubSetGenerator
+ * @see IntegerVector
+ * @see IntegerSubSetGenerator
  * 
- * @param <T>
- *            Type of elements of subset
  */
 public class IntegerSubSetIterator implements Iterator<IntegerVector> {
 
@@ -74,7 +71,7 @@ public class IntegerSubSetIterator implements Iterator<IntegerVector> {
 	/**
 	 * Returns true if iteration is done, otherwise false
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#isDone()
+	 * @see Iterator#hasNext()
 	 */
 	@Override
 	public boolean hasNext() {
@@ -84,7 +81,7 @@ public class IntegerSubSetIterator implements Iterator<IntegerVector> {
 	/**
 	 * Returns the next subset if it is available
 	 * 
-	 * @see org.paukov.combinatorics.Iterator#next()
+	 * @see Iterator#next()
 	 */
 	@Override
 	public IntegerVector next() {

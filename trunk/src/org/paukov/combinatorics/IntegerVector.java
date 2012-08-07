@@ -9,8 +9,9 @@ import java.util.Set;
  * This class represents a simple vector of elements of type <code>int</code>
  * 
  * @author Dmytro Paukov
- * @see Generator
+ * @see IntegerGenerator
  * @see Iterator
+ * @version 2.0
  */
 public class IntegerVector {
 
@@ -57,14 +58,14 @@ public class IntegerVector {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#setValue(int, T)
+	 * Sets the value of the <code>index</code>-element
 	 */
 	public void setValue(int index, int value) {
 		_vector[index] = value;
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#getValue(int)
+	 * @return The value of the <code>index</code> element
 	 */
 	public int getValue(int index) {
 		return _vector[index];

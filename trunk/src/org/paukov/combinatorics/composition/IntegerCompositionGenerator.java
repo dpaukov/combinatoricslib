@@ -95,7 +95,8 @@ import org.paukov.combinatorics.util.Util;
  * <p>
  * 
  * @author Dmytro.Paukov
- * @see CompositionIterator
+ * @see IntegerCompositionIterator
+ * @version 2.0
  * 
  */
 public class IntegerCompositionGenerator extends IntegerGenerator {

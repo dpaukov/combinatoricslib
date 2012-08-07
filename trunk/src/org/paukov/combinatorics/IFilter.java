@@ -1,11 +1,13 @@
 package org.paukov.combinatorics;
 
 /**
- * This is an interface for filtering the generated combinatorial vectors
+ * This is the interface for filtering the generated combinatorial vectors
  * 
  * @author Dmytro Paukov
- * 
+ * @version 2.0
  * @param <T>
+ *            Type of the elements
+ * @see IGenerator#generateFilteredObjects
  */
 public interface IFilter<T> {
 

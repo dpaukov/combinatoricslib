@@ -10,10 +10,19 @@ import org.paukov.combinatorics.permutations.PermutationGenerator;
 import org.paukov.combinatorics.permutations.PermutationWithRepetitionGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
 
+/**
+ * This is the factory class to create combinatorics vectors and generators
+ * 
+ * @author Dmytro Paukov
+ * @version 2.0
+ * @see ICombinatoricsVector
+ * @see IGenerator
+ * 
+ */
 public class Factory {
 
 	/**
-	 * Creates an empty vector instance
+	 * Creates the empty vector instance
 	 * 
 	 * @return The empty vector
 	 */
@@ -105,7 +114,9 @@ public class Factory {
 	 * Creates a simple combination generator
 	 * 
 	 * @param originalVector
+	 *            The original vector
 	 * @param combinationsLength
+	 *            The combinations length
 	 */
 	public static <T> Generator<T> createSimpleCombinationGenerator(
 			ICombinatoricsVector<T> originalVector, int combinationsLength) {
@@ -117,7 +128,9 @@ public class Factory {
 	 * Creates a multi-combination generator
 	 * 
 	 * @param originalVector
+	 *            The original vector
 	 * @param combinationsLength
+	 *            The combination length
 	 */
 	public static <T> Generator<T> createMultiCombinationGenerator(
 			ICombinatoricsVector<T> originalVector, int combinationsLength) {
@@ -129,6 +142,7 @@ public class Factory {
 	 * Creates a permutation generator
 	 * 
 	 * @param originalVector
+	 *            The original vector
 	 */
 	public static <T> Generator<T> createPermutationGenerator(
 			ICombinatoricsVector<T> originalVector) {
@@ -139,7 +153,9 @@ public class Factory {
 	 * Creates a permutation with repetitions generator
 	 * 
 	 * @param originalVector
+	 *            The original vector
 	 * @param permutationLength
+	 *            The length
 	 */
 	public static <T> Generator<T> createPermutationWithRepetitionGenerator(
 			ICombinatoricsVector<T> originalVector, int permutationLength) {
@@ -151,16 +167,21 @@ public class Factory {
 	 * Creates a sub-set generator
 	 * 
 	 * @param originalVector
+	 *            The original vector
 	 */
 	public static <T> Generator<T> createSubSetGenerator(
 			ICombinatoricsVector<T> originalVector) {
 		return new SubSetGenerator<T>(originalVector);
 	}
-	
+
 	/**
 	 * Creates a sub-set generator
 	 * 
 	 * @param originalVector
+	 *            The initial vector
+	 * @param treatAsIdentical
+	 *            <code>true</code> if the sub sets have to be treated as
+	 *            identical
 	 */
 	public static <T> Generator<T> createSubSetGenerator(
 			ICombinatoricsVector<T> originalVector, boolean treatAsIdentical) {
@@ -171,6 +192,7 @@ public class Factory {
 	 * Creates a composition generator
 	 * 
 	 * @param n
+	 *            The initial value
 	 */
 	public static Generator<Integer> createCompositionGenerator(Integer n) {
 		return new CompositionGenerator(n);
@@ -180,6 +202,7 @@ public class Factory {
 	 * Creates a partition generator
 	 * 
 	 * @param n
+	 *            The initial value
 	 */
 	public static Generator<Integer> createPartitionGenerator(Integer n) {
 		return new PartitionGenerator(n);
