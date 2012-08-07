@@ -64,7 +64,8 @@ Let's generate all possible permutations with repetitions of 3 elements from the
    // Create the initial vector of 2 elements (apple, orange)
    ICombinatoricsVector<String> originalVector = Factory.createVector(new String[] { "apple", "orange" });
 
-   // Create the generator by calling the appropriate method in the Factory class. Set the second parameter as 3, since we will generate 3-elemets permutations
+   // Create the generator by calling the appropriate method in the Factory class. 
+   // Set the second parameter as 3, since we will generate 3-elemets permutations
    Generator<String> gen = Factory.createPermutationWithRepetitionGenerator(originalVector, 3);
 
    // Print the result
