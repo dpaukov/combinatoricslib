@@ -27,7 +27,7 @@ You can use the next table to select a generator
 How to download and use the library in Eclipse, please read this page HowToUseLibInEclipse   
 
 
-= 1. Permutations without repetitions =
+= 1. Simple permutations (without repetition) =
 
 A permutation is an ordering of a set in the context of all possible orderings. For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
@@ -55,7 +55,7 @@ The result
 }}}
 
 
-= 2. Permutations with repetitions =
+= 2. Permutations with repetitions (Tuples) =
 
 The permutation may have more elements than slots.  For example, the three possible permutation of 12 in three slots are: 111, 211, 121, 221, 112, 212, 122, and 222.
 
@@ -85,7 +85,7 @@ And the result
    CombinatoricsVector=([orange, orange, orange], size=3)
 }}}
 
-= 3. Combinations without repetitions =
+= 3. Simple combinations (without repetitions) =
 
 A simple k-combination of a finite set S is a subset of k distinct elements of S. Specifying a subset does not arrange them in a particular order. As an example, a poker hand can be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct, and the order of the cards in the hand does not matter.
 
