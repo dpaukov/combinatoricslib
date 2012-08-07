@@ -3,7 +3,8 @@ package org.paukov.combinatorics;
 import java.util.List;
 
 /**
- * This is an interface for combinatorics vector of element's type<code>T</code>
+ * This interface is implemented by all generic combinatorics vectors of the
+ * library
  * 
  * @author Dmytro Paukov
  * @see Factory
@@ -20,7 +21,7 @@ public interface ICombinatoricsVector<T> {
 	 * @param index
 	 *            Position of element
 	 * @param value
-	 *            Value of element
+	 *            Value of the element to be set
 	 */
 	public abstract void setValue(int index, T value);
 
@@ -28,7 +29,7 @@ public interface ICombinatoricsVector<T> {
 	 * Adds value to the vector.
 	 * 
 	 * @param value
-	 *            Value of element
+	 *            Value of the element to be added
 	 */
 	public abstract boolean addValue(T value);
 
@@ -51,7 +52,8 @@ public interface ICombinatoricsVector<T> {
 	/**
 	 * This method detects duplicates in the vector
 	 * 
-	 * @return <code>true</code> if the vector has duplicates, otherwise <code>false</code>
+	 * @return <code>true</code> if the vector has duplicates, otherwise
+	 *         <code>false</code>
 	 */
 	public abstract boolean hasDuplicates();
 

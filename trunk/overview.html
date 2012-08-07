@@ -2,9 +2,10 @@
 <head>
 </head>
 <body>
+
 Combinatoricslib 2.0 is a Java library for generating combinatorial objects of any types 
 
-<h2> Features </h2>
+<h2>Main features</h2>
 <ol>
 	<li>Library contains generic vectors and generators. So it may generate combinatorial objects of any types. Type of the elements has to be specified as a parameter</li>
 	<li>Library can generate the following combinatorial objects:
@@ -98,6 +99,96 @@ And the result
 </blockquote>
 <p>
 
+<h3> 3. Simple combinations</h3>
+<p>
+A simple k-combination of a finite set S is a subset of k distinct elements
+of S. Specifying a subset does not arrange them in a particular order. As an
+example, a poker hand can be described as a 5-combination of cards from a
+52-card deck: the 5 cards of the hand are all distinct, and the order of the
+cards in the hand does not matter.
+<p>
+For example, let's generate 3-combination of the set (red, black, white, green, blue).
+<p>
+<blockquote>
+<pre>
+// Create the initial vector
+ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+		&quot;red&quot;, &quot;black&quot;, &quot;white&quot;, &quot;green&quot;, &quot;blue&quot; });
+
+// Create a simple combination generator to generate 3-combinations of the
+// initial vector
+Generator&lt;String&gt; gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
+
+// Print all possible combinations
+for (ICombinatoricsVector&lt;String&gt; combination : gen) {
+	System.out.println(combination);
+}
+</pre>
+</blockquote>
+<p>
+And the result of 10 combinations
+<p>
+<blockquote>
+<pre>
+   CombinatoricsVector=([red, black, white], size=3)
+   CombinatoricsVector=([red, black, green], size=3)
+   CombinatoricsVector=([red, black, blue], size=3)
+   CombinatoricsVector=([red, white, green], size=3)
+   CombinatoricsVector=([red, white, blue], size=3)
+   CombinatoricsVector=([red, green, blue], size=3)
+   CombinatoricsVector=([black, white, green], size=3)
+   CombinatoricsVector=([black, white, blue], size=3)
+   CombinatoricsVector=([black, green, blue], size=3)
+   CombinatoricsVector=([white, green, blue], size=3)
+</pre>
+</blockquote>
+<p>
+
+<h3> 4. Multi-combinations</h3>
+A k-multicombination or k-combination with repetition of a finite set S is
+given by a sequence of k not necessarily distinct elements of S, where order
+is not taken into account.
+<p>
+As an example. Suppose there are 2 types of fruits (apple and orange) at a
+grocery store, and you want to buy 3 pieces of fruit. You could select
+<ul>
+<li>(apple, apple, apple)
+<li>(apple, apple, orange)
+<li>(apple, orange, orange)
+<li>(orange, orange, orange)
+</ul>
+<p>
+Generate 3-combinations with repetitions of the set (apple, orange).
+<p>
+<p>
+<blockquote>
+<pre>
+// Create the initial vector of (apple, orange)
+ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+		&quot;apple&quot;, &quot;orange&quot; });
+
+// Create a multi-combination generator to generate 3-combinations of
+// the initial vector
+Generator&lt;String&gt; gen = Factory.createMultiCombinationGenerator(initialVector,3);
+ 
+// Print all possible combinations
+for (ICombinatoricsVector&lt;String&gt; combination : gen) {
+	System.out.println(combination);
+}
+</pre>
+</blockquote>
+<p>
+And the result of 4 multi-combinations
+<p>
+<blockquote>
+<pre>
+   CombinatoricsVector=([apple, apple, apple], size=3)
+   CombinatoricsVector=([apple, apple, orange], size=3)
+   CombinatoricsVector=([apple, orange, orange], size=3)
+   CombinatoricsVector=([orange, orange, orange], size=3)
+</pre>
+</blockquote>
+<p>
 
 </body>
 </html>

@@ -6,13 +6,13 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * Iterator of simple combinations
+ * Iterator for the simple combination generator
  * 
  * @author Dmytro Paukov
  * @see ICombinatoricsVector
  * @see SimpleCombinationGenerator
  * @param <T>
- *            Type of elements in a combination
+ *            Type of the elements in the combinations
  */
 public class SimpleCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {

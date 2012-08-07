@@ -6,13 +6,13 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * Multi-combinations iterator to enumerate combinations with repetitions
+ * Multi-combinations iterator for enumerating combinations with repetitions
  * 
  * @author Dmytro Paukov
  * @see ICombinatoricsVector
  * @see MultiCombinationGenerator
  * @param <T>
- *            Type of elements in a combination
+ *            Type of the elements in the combinations
  */
 public class MultiCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {

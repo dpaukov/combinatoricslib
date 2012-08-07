@@ -19,7 +19,7 @@ public interface IFilter<T> {
 	 *            The index of the value
 	 * @param value
 	 *            The value to be tested
-	 * @return <code>true</code> if the value has to be accepted, otherwise
+	 * @return <code>true</code> if the value is accepted, otherwise
 	 *         <code>false</code>
 	 */
 	boolean accepted(long index, T value);

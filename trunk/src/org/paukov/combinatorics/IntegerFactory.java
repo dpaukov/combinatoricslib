@@ -4,7 +4,7 @@ import org.paukov.combinatorics.composition.IntegerCompositionGenerator;
 import org.paukov.combinatorics.subsets.IntegerSubSetGenerator;
 
 /**
- * This is a special factory to create integer vectors and generators like
+ * This is a special factory to create integer vectors and generators
  * 
  * @author Dmytro Paukov
  * @version 2.0

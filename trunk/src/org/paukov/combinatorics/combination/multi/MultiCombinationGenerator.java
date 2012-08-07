@@ -19,41 +19,30 @@ import org.paukov.combinatorics.util.Util;
  * As an example. Suppose there are 2 types of fruits (apple and orange) at a
  * grocery store, and you want to buy 3 pieces of fruit. You could select
  * <ul>
- * <li>{apple, apple, apple}
- * <li>{apple, apple, orange}
- * <li>{apple, orange, orange}
- * <li>{orange, orange, orange}
+ * <li>(apple, apple, apple)
+ * <li>(apple, apple, orange)
+ * <li>(apple, orange, orange)
+ * <li>(orange, orange, orange)
  * </ul>
  * <p>
- * Example. Generate 3-combinations with repetitions of the set {apple, orange}.
+ * Generate 3-combinations with repetitions of the set (apple, orange).
  * <p>
  * <p>
  * <blockquote>
  * 
  * <pre>
  * 
- * // create array of initial items
- * ArrayList&lt;String&gt; array = new ArrayList&lt;String&gt;();
- * array.add(&quot;apple&quot;);
- * array.add(&quot;orange&quot;);
+ * // Create the initial vector of (apple, orange)
+ * ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+ * 		&quot;apple&quot;, &quot;orange&quot; });
  * 
- * // create combinatorics vector
- * CombinatoricsVector&lt;String&gt; initialVector = new CombinatoricsVector&lt;String&gt;(
- * 		array);
+ * // Create a multi-combination generator to generate 3-combinations of
+ * // the initial vector
+ * Generator&lt;String&gt; gen = Factory.createMultiCombinationGenerator(initialVector,
+ * 		3);
  * 
- * // create multi-combination generator to generate 3-combination
- * Generator&lt;String&gt; gen = new MultiCombinationGenerator&lt;String&gt;(initialVector, 3);
- * 
- * // create iterator
- * Iterator&lt;CombinatoricsVector&lt;String&gt;&gt; itr = gen.createIterator();
- * 
- * // print the number of combinations
- * System.out.println(&quot;Number of combinations is: &quot;
- * 		+ gen.getNumberOfGeneratedObjects());
- * 
- * // go through the iterator
- * while (itr.hasNext()) {
- * 	CombinatoricsVector&lt;String&gt; combination = itr.next();
+ * // Print all possible combinations
+ * for (ICombinatoricsVector&lt;String&gt; combination : gen) {
  * 	System.out.println(combination);
  * }
  * </pre>
@@ -75,7 +64,8 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * Constructor
 	 * 
 	 * @param originalVector
-	 *            Original/initial vector which is used for combination generation
+	 *            Original/initial vector which is used for combination
+	 *            generation
 	 * @param combinationsLength
 	 *            Length of combination to generate
 	 */
@@ -110,9 +100,8 @@ public class MultiCombinationGenerator<T> extends Generator<T> {
 	 * Returns number of generated combinations with repetitions
 	 */
 	public long getNumberOfGeneratedObjects() {
-		return Util.combination(
-				_originalVector.getSize() + _combinationLength - 1,
-				_combinationLength);
+		return Util.combination(_originalVector.getSize() + _combinationLength
+				- 1, _combinationLength);
 	}
 
 	/**

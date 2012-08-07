@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * This is the interface for all generators in the library
+ * This interface is implemented by all generic generators in the library
  * 
  * @author Dmytro Paukov
  * @version 2.0
