@@ -31,7 +31,7 @@ How to download and use the library in Eclipse, please read this page HowToUseLi
 
 A permutation is an ordering of a set in the context of all possible orderings. For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
-This is an example of permutation of 3 string items (apple, orange, cherry):
+This is an example of the permutations of 3 string items (apple, orange, cherry):
 {{{
    // Create the initial vector of 3 elements (apple, orange, cherry)
    ICombinatoricsVector<String> originalVector = Factory.createVector(new String[] { "apple", "orange", "cherry" });
