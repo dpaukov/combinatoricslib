@@ -144,7 +144,7 @@ Example. Generate 3-combinations with repetitions of the set (apple, orange).
    }
 }}}
 
-And the result of 4 combinations
+And the result of 4 multi-combinations
 {{{
    CombinatoricsVector=([apple, apple, apple], size=3)
    CombinatoricsVector=([apple, apple, orange], size=3)
