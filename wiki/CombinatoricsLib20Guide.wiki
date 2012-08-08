@@ -232,7 +232,7 @@ The partitions of 5 are listed below:
 
 The number of partitions of n is given by the partition function p(n). In number theory, the partition function p(n) represents the number of possible partitions of a natural number n, which is to say the number of distinct (and order independent) ways of representing n as a sum of natural numbers.
 
-This is a code:
+Let's generate all possible partitions of 5:
 {{{
    // Create an instance of the partition generator to generate all
    // possible partitions of 5
