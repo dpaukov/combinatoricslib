@@ -8,13 +8,14 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * Iterator for enumeration of all partitions
+ * Iterator for enumerating the all possible integer partitions
  * 
  * @author Dmytro Paukov
  * @see ICombinatoricsVector
  * @see PartitionGenerator
  */
-public class PartitionIterator implements Iterator<ICombinatoricsVector<Integer>> {
+public class PartitionIterator implements
+		Iterator<ICombinatoricsVector<Integer>> {
 
 	/**
 	 * Generator
@@ -78,7 +79,6 @@ public class PartitionIterator implements Iterator<ICombinatoricsVector<Integer>
 		setInternalVectorValue(1, _mVector, _generator._initialValue);
 	}
 
-
 	/**
 	 * Returns true if all partitions were enumerated
 	 */
@@ -117,7 +117,7 @@ public class PartitionIterator implements Iterator<ICombinatoricsVector<Integer>
 					- getInternalVectorValue(_kIndex, _zVector));
 			_kIndex++;
 		}
-		
+
 		// return the current partition
 		return _currentPartition;
 	}
@@ -142,7 +142,7 @@ public class PartitionIterator implements Iterator<ICombinatoricsVector<Integer>
 	private final void setInternalVectorValue(int index, int[] vector, int value) {
 		vector[index + 1] = value;
 	}
-	
+
 	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
