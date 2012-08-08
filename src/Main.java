@@ -15,6 +15,9 @@ public class Main {
 
 		simpleCombinations();
 		multiCombinations();
+		
+		simpleSubSets();
+		duplicateSubSets();
 
 		complexCombinationExample();
 	}
@@ -24,8 +27,9 @@ public class Main {
 		System.out.println("simpleCombinations");
 
 		// Create the initial vector
-		ICombinatoricsVector<String> initialVector = Factory.createVector(
-				new String[] { "red", "black", "white", "green", "blue" } );
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "red", "black", "white", "green",
+						"blue" });
 
 		// Create a simple combination generator to generate 3-combinations of
 		// the initial vector
@@ -38,14 +42,14 @@ public class Main {
 		}
 
 	}
-	
+
 	static void multiCombinations() {
 
 		System.out.println("multiCombinations");
 
 		// Create the initial vector of (apple, orange)
-		ICombinatoricsVector<String> initialVector = Factory.createVector(
-				new String[] { "apple", "orange" } );
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "apple", "orange" });
 
 		// Create a multi-combination generator to generate 3-combinations of
 		// the initial vector
@@ -119,6 +123,40 @@ public class Main {
 					elements, combination);
 
 			System.out.println(str);
+		}
+	}
+
+	static void simpleSubSets() {
+		
+		System.out.println("simpleSubSets");
+
+		// Create an initial vector/set
+		ICombinatoricsVector<String> initialSet = Factory
+				.createVector(new String[] { "one", "two", "three" });
+
+		// Create an instance of the subset generator
+		Generator<String> gen = Factory.createSubSetGenerator(initialSet);
+
+		// Print the subsets
+		for (ICombinatoricsVector<String> subSet : gen) {
+			System.out.println(subSet);
+		}
+	}
+	
+	static void duplicateSubSets() {
+		
+		System.out.println("duplicateSubSets");
+
+		// Create an initial vector/set (a, b, a, c)
+		ICombinatoricsVector<String> initialSet = Factory
+				.createVector(new String[] { "a", "b", "a", "c" });
+
+		// Create an instance of the subset generator
+		Generator<String> gen = Factory.createSubSetGenerator(initialSet, false);
+
+		// Print the subsets
+		for (ICombinatoricsVector<String> subSet : gen) {
+			System.out.println(subSet);
 		}
 	}
 
