@@ -214,7 +214,7 @@ Version 2.0 of the combinatoricslib supports sets with duplicates. For example, 
  # (b, a, c)
  # (a, b, a, c)
 
-If you still would like to treat the set with duplicates as not identical, you should set the second parameter of the method {{{Factory.createSubSetGenerator()}} as {{{false}}}. In this case all 16 subsets will be generated.
+If you still would like to treat the set with duplicates as not identical, you should create a generator and set the second parameter of the method {{{Factory.createSubSetGenerator()}}} as {{{false}}}. In this case all 16 subsets will be generated.
 
 
 = 6. Integer partitions =
