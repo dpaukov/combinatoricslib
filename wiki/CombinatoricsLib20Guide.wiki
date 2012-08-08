@@ -174,41 +174,28 @@ All subsets of (1, 2, 3) are:
 
 And code which generates all subsets of (one, two, three)
 {{{
-    // create array of initial items
-    ArrayList<String> array = new ArrayList<String>();
-    array.add("one");
-    array.add("two");
-    array.add("three");
+   // Create an initial vector/set
+   ICombinatoricsVector<String> initialSet = Factory.createVector(new String[] { "one", "two", "three" });
 
-    // create combinatorics vector
-    CombinatoricsVector<String> initialVector = new CombinatoricsVector<String>(array);
-    
-    // create subset generator
-    Generator<String> gen = new SubSetGenerator<String>(initialVector);
+   // Create an instance of the subset generator
+   Generator<String> gen = Factory.createSubSetGenerator(initialSet);
 
-    // create iterator
-    Iterator<CombinatoricsVector<String>> itr = gen.createIterator();
-    // print the number of subsets
-    System.out.println("Number of subsets is: " + gen.getNumberOfGeneratedObjects());
-
-    // go through the iterator 
-    while (itr.hasNext()) {
-      CombinatoricsVector<String> subSet = itr.next();
+   // Print the subsets
+   for (ICombinatoricsVector<String> subSet : gen) {
       System.out.println(subSet);
-    }    
+   }
 }}}
 
-And the result 
+And the result of all possible 8 subsets
 {{{
-   Number of subsets is: 8
-   SubSetIterator=[#1, CombinatoricsVector=[[]], size=0]]
-   SubSetIterator=[#2, CombinatoricsVector=[[one]], size=1]]
-   SubSetIterator=[#3, CombinatoricsVector=[[two]], size=1]]
-   SubSetIterator=[#4, CombinatoricsVector=[[one, two]], size=2]]
-   SubSetIterator=[#5, CombinatoricsVector=[[three]], size=1]]
-   SubSetIterator=[#6, CombinatoricsVector=[[one, three]], size=2]]
-   SubSetIterator=[#7, CombinatoricsVector=[[two, three]], size=2]]
-   SubSetIterator=[#8, CombinatoricsVector=[[one, two, three]], size=3]]
+   CombinatoricsVector=([], size=0)
+   CombinatoricsVector=([one], size=1)
+   CombinatoricsVector=([two], size=1)
+   CombinatoricsVector=([one, two], size=2)
+   CombinatoricsVector=([three], size=1)
+   CombinatoricsVector=([one, three], size=2)
+   CombinatoricsVector=([two, three], size=2)
+   CombinatoricsVector=([one, two, three], size=3)
 }}}
 
 
