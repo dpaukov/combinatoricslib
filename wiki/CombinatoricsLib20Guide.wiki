@@ -1,20 +1,20 @@
-#summary combinatoricslib 2.0
+#summary A Guide to the combinatoricslib 2.0
 
 * [http://code.google.com/p/combinatoricslib/downloads/list CombinatoricsLib 2.0]* is a Java library for generating combinatorial objects of any types.
 
 = Main features =
 
 This library can generate the combinatorial objects such as: 
- # *[#1._Simple_permutations_(without_repetitions) Simple permutations]*
- # *[#2._Permutations_with_repetitions_(Tuples) Permutations with repetitions]*
- # *[#3._Simple_combinations_(without_repetitions) Simple combinations]*
- # *[#4._Combinations_with_repetitions Combinations with repetitions]*
- # *[#5._Subsets Subsets]*
- # *[#6._Integer_Partitions Integer Partitions]*
- # *[#7._Integer_Compositions Integer Compositions]*
+ # [#1._Simple_permutations_(without_repetitions) Simple permutations]
+ # [#2._Permutations_with_repetitions_(Tuples) Permutations with repetitions]
+ # [#3._Simple_combinations_(without_repetitions) Simple combinations]
+ # [#4._Combinations_with_repetitions Combinations with repetitions]
+ # [#5._Subsets Subsets]
+ # [#6._Integer_Partitions Integer Partitions]
+ # [#7._Integer_Compositions Integer Compositions]
 
 
-<b>CombinatoricsLib 2.0</b> allows generating vectors of any items. You should to specify the type of your elements as a parameter of vectors and generators. All generators implements the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
+<b>Combinatoricslib 2.0</b> allows generating vectors of any items. You should to specify the type of your elements as a parameter of vectors and generators. All generators implements the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
 
 You can use the next table to select a generator
 
@@ -217,7 +217,7 @@ Version 2.0 of the combinatoricslib supports sets with duplicates. For example, 
 If you still would like to treat the set with duplicates as not identical, you should create a generator and set the second parameter of the method {{{Factory.createSubSetGenerator()}}} as {{{false}}}. In this case all 16 subsets will be generated.
 
 
-= 6. Integer partitions =
+= 6. Integer Partitions =
 
 In number theory, a partition of a positive integer n is a way of writing n as a sum of positive integers. Two sums that differ only in the order of their summands are considered to be the same partition; if order matters then the sum becomes a composition. A summand in a partition is also called a part.
 
