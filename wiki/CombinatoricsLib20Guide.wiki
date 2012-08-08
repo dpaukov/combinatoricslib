@@ -198,7 +198,23 @@ And the result of all possible 8 subsets
    CombinatoricsVector=([one, two, three], size=3)
 }}}
 
+Version 2.0 of the combinatoricslib supports sets with duplicates. For example, if the original vector contains duplicates like (a, b, a, c), then the result will contain 14 subsets (instead of 16):
+ # ()
+ # (a)
+ # (b)
+ # (a, b)
+ # (a, a)
+ # (b, a)
+ # (a, b, a)
+ # (c)
+ # (a, c)
+ # (b, c)
+ # (a, b, c)
+ # (a, a, c)
+ # (b, a, c)
+ # (a, b, a, c)
 
+If you still would like to treat the set with duplicates as not identical, you should set the second parameter of the method {{{Factory.createSubSetGenerator()}} as {{{false}}}. In this case all 16 subsets will be generated.
 
 
 = 6. Integer partitions =
