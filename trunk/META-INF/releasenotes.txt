@@ -1,29 +1,34 @@
 RELEASE NOTES
 
---------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------
 CombinatoricsLib 2.0 (August 2012)
-- Representation of the combinatorics vectors as strings has been changed to format: "CombinatoricsVector=( [elements], size=value)"
-- Added the "complex" combination generator and iterator to generate combinations in relation with permutations
+- Representation of the combinatorics vectors as strings has been 
+  changed to format: "CombinatoricsVector=( [elements], size=value)"
+- Added the "complex" combination generator and iterator to generate 
+  combinations in relation with permutations
 - Add a method to detect if a vector contains duplicated elements 
-- SubSetGenerattor has been updated to support duplicates in the original vector which represents the original set. 
-  To do that a new iterator called "SubListIterator" has been introduced
-- A new general interface ICombinatoricsVector<T> has been introduced. All code has been re-factored to use this interface.
-- Added a constructor to create a combinatorics vector from an array of type T[].
+- SubSetGenerattor has been updated to support duplicates in the original 
+  vector which represents the original set. To do that a new iterator 
+  called "SubListIterator" has been introduced
+- A new general interface ICombinatoricsVector<T> has been introduced. 
+  All code has been re-factored to use this interface.
+- Added a constructor to create a combinatorics vector from an array 
+  of type T[].
 - Added a factory class to make the library more flexible
+- Test coverage is about 83% of all methods and 87% of all lines
 
-
---------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------
 CombinatoricsLib 1.0 (December 2011)
  - Added combinations with repetitions
  - Added more unit tests
 
 
---------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------
  CombinatoricsLib 0.2 (July 2010)
  - Added compositions
 
 
---------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------
  CombinatoricsLib 0.1 (January 2010)
  - Permutations (with and without repetitions)
  - Partitions

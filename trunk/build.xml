@@ -39,7 +39,14 @@
 	</target>
 
 	<target name="build" depends="compile" description="Create jar-file">
-		<jar jarfile="${dist}/combinatoricslib-${version}.jar" basedir="${buildSrc}" manifest="META-INF/manifest.mf" />
+		<jar jarfile="${dist}/combinatoricslib-${version}.jar" basedir="${buildSrc}" manifest="META-INF/manifest.mf">
+			 <zipfileset dir="." 
+			                includes="META-INF/releasenotes.txt"
+			                fullpath="META-INF/releasenotes.txt"/>
+			<zipfileset dir="." 
+						    includes="META-INF/LICENSE.txt"
+						    fullpath="META-INF/LICENSE.txt"/>
+		</jar>
 	</target>
 
 
@@ -61,7 +68,7 @@
 	<target name="packsrc" description="Make sources zip-archive">
 		<zip destfile="combinatoricslib-${version}_src.zip">
 			<fileset dir="." includes="**/*.java, **/*.MF,
-                 **/*.xml, **/*.jar, **/*.html, **/*.css, **/*.gif, **/*.png"  />
+                 **/*.xml, **/*.jar, **/*.html, **/*.css, **/*.gif, **/*.png, **/*.txt"  />
 		</zip>
 	</target>
 
