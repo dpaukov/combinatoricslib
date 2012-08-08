@@ -14,7 +14,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @see SubSetGenerator
  * 
  * @param <T>
- *            Type of elements of subset
+ *            Type of the elements of the subsets
  */
 public class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 

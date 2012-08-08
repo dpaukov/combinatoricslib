@@ -59,7 +59,8 @@ public class IntegerFactory {
 	/**
 	 * Creates a sub-set generator
 	 * 
-	 * @param originalVector The initial vector
+	 * @param originalVector
+	 *            The initial vector
 	 */
 	public static IntegerGenerator createIntegerSubSetGenerator(
 			IntegerVector originalVector) {
@@ -67,9 +68,26 @@ public class IntegerFactory {
 	}
 
 	/**
+	 * Creates a sub-set generator
+	 * 
+	 * @param originalVector
+	 *            The initial vector
+	 * @param treatAsIdentical
+	 *            <code>true</code> if the sub sets have to be treated as
+	 *            identical
+	 * @return An instance of the generator
+	 * @see IntegerSubSetGenerator
+	 */
+	public static IntegerGenerator createIntegerSubSetGenerator(
+			IntegerVector originalVector, boolean treatAsIdentical) {
+		return new IntegerSubSetGenerator(originalVector, treatAsIdentical);
+	}
+
+	/**
 	 * Creates a composition generator
 	 * 
-	 * @param n The initial value
+	 * @param n
+	 *            The initial value
 	 */
 	public static IntegerGenerator createIntegerCompositionGenerator(Integer n) {
 		return new IntegerCompositionGenerator(n);
