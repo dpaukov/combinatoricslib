@@ -5,7 +5,7 @@
 = Features =
 
 This library can generate the combinatorial objects such as: 
- # *[#1._Permutations_without_repetitions Permutations without repetitions]*
+ # *[#1._Simple_permutations_(without_repetitions) Simple permutations (without repetitions)]*
  # *[#2._Permutations_with_repetitions Permutations with repetitions]*
  # *[#3._Combinations_without_repetitions Combinations without repetitions]*
  # *[#4._Combinations_with_repetitions Combinations with repetitions]*
@@ -27,7 +27,7 @@ You can use the next table to select a generator
 How to download and use the library in Eclipse, please read this page HowToUseLibInEclipse   
 
 
-= 1. Simple permutations (without repetition) =
+= 1. Simple permutations (without repetitions) =
 
 A permutation is an ordering of a set in the context of all possible orderings. For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
