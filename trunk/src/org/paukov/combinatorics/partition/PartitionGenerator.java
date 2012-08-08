@@ -32,38 +32,36 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * partitions of a natural number n, which is to say the number of distinct (and
  * order independent) ways of representing n as a sum of natural numbers.
  * <p>
- * This is a code:
+ * Let's generate all possible partitions of 5:
  * <p>
  * <blockquote>
  * 
  * <pre>
- * // create partition generator of 5
- * Generator&lt;Integer&gt; gen = new PartitionGenerator(5);
+ * // Create an instance of the partition generator to generate all
+ * // possible partitions of 5
+ * Generator&lt;Integer&gt; gen = Factory.createPartitionGenerator(5);
  * 
- * // create iterator
- * Iterator&lt;CombinatoricsVector&lt;Integer&gt;&gt; itr = gen.createIterator();
- * 
- * // go through the iterator
- * while (itr.hasNext()) {
- * 	CombinatoricsVector&lt;Integer&gt; partition = itr.next();
- * 	System.out.println(partition);
+ * // Print the partitions
+ * for (ICombinatoricsVector&lt;Integer&gt; p : gen) {
+ * 	System.out.println(p);
  * }
+ * 
  * </pre>
  * 
  * </blockquote>
  * <p>
- * And the result
+ * And the result of all 7 integer possible partitions
  * <p>
  * <blockquote>
  * 
  * <pre>
- *    PartitionIterator=[#1, CombinatoricsVector=[[1, 1, 1, 1, 1]], size=5]]
- *    PartitionIterator=[#2, CombinatoricsVector=[[2, 1, 1, 1]], size=4]]
- *    PartitionIterator=[#3, CombinatoricsVector=[[2, 2, 1]], size=3]]
- *    PartitionIterator=[#4, CombinatoricsVector=[[3, 1, 1]], size=3]]
- *    PartitionIterator=[#5, CombinatoricsVector=[[3, 2]], size=2]]
- *    PartitionIterator=[#6, CombinatoricsVector=[[4, 1]], size=2]]
- *    PartitionIterator=[#7, CombinatoricsVector=[[5]], size=1]]
+ *   CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
+ *   CombinatoricsVector=([2, 1, 1, 1], size=4)
+ *   CombinatoricsVector=([2, 2, 1], size=3)
+ *   CombinatoricsVector=([3, 1, 1], size=3)
+ *   CombinatoricsVector=([3, 2], size=2)
+ *   CombinatoricsVector=([4, 1], size=2)
+ *   CombinatoricsVector=([5], size=1)
  * </pre>
  * 
  * </blockquote>
@@ -100,7 +98,7 @@ public class PartitionGenerator extends Generator<Integer> {
 
 	/**
 	 * Returns value which is used to generate all partitions. This value
-	 * returned as a element of vector. Vector has length of 1
+	 * returned as a vector, which has only one element.
 	 */
 	@Override
 	public ICombinatoricsVector<Integer> getOriginalVector() {
@@ -108,10 +106,11 @@ public class PartitionGenerator extends Generator<Integer> {
 	}
 
 	/**
-	 * Returns approximated number of partitions for given positive value. Exact
-	 * value of number of partitions can be obtained from actual generated list
-	 * of partitions. WARNING. Be careful because number of all partitions can
-	 * be very high even for not great given N.
+	 * Returns approximated number of partitions for given positive value.
+	 * <b>Note.</b>Exact value of number of partitions can be obtained from
+	 * actual generated list of partitions. <b>WARNING!</b> Be careful because
+	 * number of all partitions can be very high even for not great given value
+	 * of N.
 	 */
 	@Override
 	public long getNumberOfGeneratedObjects() {
@@ -125,7 +124,7 @@ public class PartitionGenerator extends Generator<Integer> {
 			result /= 4.0 * _initialValue * Math.sqrt(3);
 			return (long) result;
 		}
-		
+
 		throw new RuntimeException(
 				"Unable to calculate the number of the pertitions for the value N="
 						+ _initialValue);

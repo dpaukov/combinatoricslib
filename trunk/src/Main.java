@@ -15,9 +15,11 @@ public class Main {
 
 		simpleCombinations();
 		multiCombinations();
-		
+
 		simpleSubSets();
 		duplicateSubSets();
+
+		integerPartition();
 
 		complexCombinationExample();
 	}
@@ -127,7 +129,7 @@ public class Main {
 	}
 
 	static void simpleSubSets() {
-		
+
 		System.out.println("simpleSubSets");
 
 		// Create an initial vector/set
@@ -142,9 +144,9 @@ public class Main {
 			System.out.println(subSet);
 		}
 	}
-	
+
 	static void duplicateSubSets() {
-		
+
 		System.out.println("duplicateSubSets");
 
 		// Create an initial vector/set (a, b, a, c)
@@ -152,11 +154,26 @@ public class Main {
 				.createVector(new String[] { "a", "b", "a", "c" });
 
 		// Create an instance of the subset generator
-		Generator<String> gen = Factory.createSubSetGenerator(initialSet, false);
+		Generator<String> gen = Factory
+				.createSubSetGenerator(initialSet, false);
 
 		// Print the subsets
 		for (ICombinatoricsVector<String> subSet : gen) {
 			System.out.println(subSet);
+		}
+	}
+
+	static void integerPartition() {
+
+		System.out.println("integerPartition");
+
+		// Create an instance of the partition generator to generate all
+		// possible partitions of 5
+		Generator<Integer> gen = Factory.createPartitionGenerator(5);
+
+		// Print the partitions
+		for (ICombinatoricsVector<Integer> p : gen) {
+			System.out.println(p);
 		}
 	}
 
