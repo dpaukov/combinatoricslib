@@ -27,7 +27,7 @@ You can use the next table to select a generator
 How to download and use the library in Eclipse, please read this page HowToUseLibInEclipse   
 
 
-= 1. Simple permutations (without repetitions) =
+== 1. Simple permutations (without repetitions) ==
 
 A permutation is an ordering of a set in the context of all possible orderings. For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
@@ -55,7 +55,7 @@ The result of 6 permutations
 }}}
 
 
-= 2. Permutations with repetitions (Tuples) =
+== 2. Permutations with repetitions (Tuples) ==
 
 The permutation may have more elements than slots.  For example, the three possible permutation of 12 in three slots are: 111, 211, 121, 221, 112, 212, 122, and 222.
 
@@ -85,7 +85,7 @@ And the result of 8 permutations
    CombinatoricsVector=([orange, orange, orange], size=3)
 }}}
 
-= 3. Simple combinations (without repetitions) =
+== 3. Simple combinations (without repetitions) ==
 
 A simple k-combination of a finite set S is a subset of k distinct elements of S. Specifying a subset does not arrange them in a particular order. As an example, a poker hand can be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct, and the order of the cards in the hand does not matter.
 
@@ -118,7 +118,7 @@ And the result of 10 combinations
    CombinatoricsVector=([white, green, blue], size=3)
 }}}
 
-= 4. Combinations with repetitions =
+== 4. Combinations with repetitions ==
 
 A k-multicombination or k-combination with repetition of a finite set S is given by a sequence of k not necessarily distinct elements of S, where order is not taken into account.
 
@@ -153,7 +153,7 @@ And the result of 4 multi-combinations
 }}}
 
 
-= 5. Subsets =
+== 5. Subsets ==
 
 A set A is a subset of a set B if A is "contained" inside B. A and B may coincide. The relationship of one set being a subset of another is called inclusion or sometimes containment.
 
@@ -217,7 +217,7 @@ Version 2.0 of the combinatoricslib supports sets with duplicates. For example, 
 If you still would like to treat the set with duplicates as not identical, you should create a generator and set the second parameter of the method {{{Factory.createSubSetGenerator()}}} as {{{false}}}. In this case all 16 subsets will be generated.
 
 
-= 6. Integer Partitions =
+== 6. Integer Partitions ==
 
 In number theory, a partition of a positive integer n is a way of writing n as a sum of positive integers. Two sums that differ only in the order of their summands are considered to be the same partition; if order matters then the sum becomes a composition. A summand in a partition is also called a part.
 
@@ -256,7 +256,7 @@ And the result of all 7 integer possible partitions
 }}}
 
 
-= 7. Integer Compositions =
+== 7. Integer Compositions ==
 
 A composition of an integer n is a way of writing n as the sum of a sequence of (strictly) positive integers. Two sequences that differ in the order of their terms define different compositions of their sum, while they are considered to define the same partition of that number (see. [#5._Partitions partitions] above).
 
