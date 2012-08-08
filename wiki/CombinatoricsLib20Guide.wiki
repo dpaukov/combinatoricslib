@@ -234,28 +234,25 @@ The number of partitions of n is given by the partition function p(n). In number
 
 This is a code:
 {{{
-    // create partition generator of 5
-    Generator<Integer> gen = new PartitionGenerator(5);
+   // Create an instance of the partition generator to generate all
+   // possible partitions of 5
+   Generator<Integer> gen = Factory.createPartitionGenerator(5);
 
-    // create iterator
-    Iterator<CombinatoricsVector<Integer>> itr = gen.createIterator();
-    
-    // go through the iterator 
-    while (itr.hasNext()) {
-      CombinatoricsVector<Integer> partition = itr.next();
-      System.out.println(partition);
-    }
+   // Print the partitions
+   for (ICombinatoricsVector<Integer> p : gen) {
+      System.out.println(p);
+   }
 }}}
 
-And the result 
+And the result of all 7 integer possible partitions
 {{{
-   PartitionIterator=[#1, CombinatoricsVector=[[1, 1, 1, 1, 1]], size=5]]
-   PartitionIterator=[#2, CombinatoricsVector=[[2, 1, 1, 1]], size=4]]
-   PartitionIterator=[#3, CombinatoricsVector=[[2, 2, 1]], size=3]]
-   PartitionIterator=[#4, CombinatoricsVector=[[3, 1, 1]], size=3]]
-   PartitionIterator=[#5, CombinatoricsVector=[[3, 2]], size=2]]
-   PartitionIterator=[#6, CombinatoricsVector=[[4, 1]], size=2]]
-   PartitionIterator=[#7, CombinatoricsVector=[[5]], size=1]]
+   CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
+   CombinatoricsVector=([2, 1, 1, 1], size=4)
+   CombinatoricsVector=([2, 2, 1], size=3)
+   CombinatoricsVector=([3, 1, 1], size=3)
+   CombinatoricsVector=([3, 2], size=2)
+   CombinatoricsVector=([4, 1], size=2)
+   CombinatoricsVector=([5], size=1)
 }}}
 
 
