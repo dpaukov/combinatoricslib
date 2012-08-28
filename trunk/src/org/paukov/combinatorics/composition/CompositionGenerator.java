@@ -48,22 +48,18 @@ import org.paukov.combinatorics.util.Util;
  * <li>1+1+1+1+1.
  * </ol>
  * <p>
- * Example. Generate compositions of 5.
+ * Example. Generate compositions all possible integer compositions of 5.
  * <p>
  * <blockquote>
  * 
  * <pre>
- * // create composition generator of 5
- * Generator&lt;Integer&gt; gen = new CompositionGenerator(5);
- * 
- * // create iterator
- * Iterator&lt;CombinatoricsVector&lt;Integer&gt;&gt; itr = gen.createIterator();
- * 
- * // go through the iterator
- * while (itr.hasNext()) {
- * 	CombinatoricsVector&lt;Integer&gt; composition = itr.next();
- * 	System.out.println(itr);
- * }
+ *   // Create an instance of the integer composition generator to generate all possible compositions of 5
+ *   Generator&lt;Integer&gt; gen = Factory.createCompositionGenerator(5);
+ *
+ *   // Print the compositions
+ *   for (ICombinatoricsVector&lt;Integer&gt; p : gen) {
+ *      System.out.println(p);
+ *   }
  * </pre>
  * 
  * </blockquote>
@@ -73,22 +69,22 @@ import org.paukov.combinatorics.util.Util;
  * <blockquote>
  * 
  * <pre>
- *    CompositionIterator=[#1, CombinatoricsVector=[[5]], size=1]]
- *    CompositionIterator=[#2, CombinatoricsVector=[[1, 4]], size=2]]
- *    CompositionIterator=[#3, CombinatoricsVector=[[2, 3]], size=2]]
- *    CompositionIterator=[#4, CombinatoricsVector=[[1, 1, 3]], size=3]]
- *    CompositionIterator=[#5, CombinatoricsVector=[[3, 2]], size=2]]
- *    CompositionIterator=[#6, CombinatoricsVector=[[1, 2, 2]], size=3]]
- *    CompositionIterator=[#7, CombinatoricsVector=[[2, 1, 2]], size=3]]
- *    CompositionIterator=[#8, CombinatoricsVector=[[1, 1, 1, 2]], size=4]]
- *    CompositionIterator=[#9, CombinatoricsVector=[[4, 1]], size=2]]
- *    CompositionIterator=[#10, CombinatoricsVector=[[1, 3, 1]], size=3]]
- *    CompositionIterator=[#11, CombinatoricsVector=[[2, 2, 1]], size=3]]
- *    CompositionIterator=[#12, CombinatoricsVector=[[1, 1, 2, 1]], size=4]]
- *    CompositionIterator=[#13, CombinatoricsVector=[[3, 1, 1]], size=3]]
- *    CompositionIterator=[#14, CombinatoricsVector=[[1, 2, 1, 1]], size=4]]
- *    CompositionIterator=[#15, CombinatoricsVector=[[2, 1, 1, 1]], size=4]]
- *    CompositionIterator=[#16, CombinatoricsVector=[[1, 1, 1, 1, 1]], size=5]]
+ *    CombinatoricsVector=([5], size=1)
+ *    CombinatoricsVector=([1, 4], size=2)
+ *    CombinatoricsVector=([2, 3], size=2)
+ *    CombinatoricsVector=([1, 1, 3], size=3)
+ *    CombinatoricsVector=([3, 2], size=2)
+ *    CombinatoricsVector=([1, 2, 2], size=3)
+ *    CombinatoricsVector=([2, 1, 2], size=3)
+ *    CombinatoricsVector=([1, 1, 1, 2], size=4)
+ *    CombinatoricsVector=([4, 1], size=2)
+ *    CombinatoricsVector=([1, 3, 1], size=3)
+ *    CombinatoricsVector=([2, 2, 1], size=3)
+ *    CombinatoricsVector=([1, 1, 2, 1], size=4)
+ *    CombinatoricsVector=([3, 1, 1], size=3)
+ *    CombinatoricsVector=([1, 2, 1, 1], size=4)
+ *    CombinatoricsVector=([2, 1, 1, 1], size=4)
+ *    CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
  * </pre>
  * 
  * </blockquote>

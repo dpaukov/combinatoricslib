@@ -88,7 +88,8 @@ public class PermutationWithRepetitionGenerator<T> extends Generator<T> {
 	}
 
 	/**
-	 * Creates iterator
+	 * Creates an iterator
+	 * @see org.paukov.combinatorics.Generator#iterator()
 	 */
 	@Override
 	public Iterator<ICombinatoricsVector<T>> iterator() {
