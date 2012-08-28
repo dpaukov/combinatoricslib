@@ -20,6 +20,8 @@ public class Main {
 		duplicateSubSets();
 
 		integerPartition();
+		
+		integerComposition();
 
 		complexCombinationExample();
 	}
@@ -172,6 +174,20 @@ public class Main {
 		Generator<Integer> gen = Factory.createPartitionGenerator(5);
 
 		// Print the partitions
+		for (ICombinatoricsVector<Integer> p : gen) {
+			System.out.println(p);
+		}
+	}
+	
+	static void integerComposition() {
+
+		System.out.println("integerComposition");
+
+		// Create an instance of the integer composition generator to generate all
+		// possible compositions of 5
+		Generator<Integer> gen = Factory.createCompositionGenerator(5);
+
+		// Print the compositions
 		for (ICombinatoricsVector<Integer> p : gen) {
 			System.out.println(p);
 		}
