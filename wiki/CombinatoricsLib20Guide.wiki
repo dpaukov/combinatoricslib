@@ -198,24 +198,6 @@ And the result of all possible 8 subsets
    CombinatoricsVector=([one, two, three], size=3)
 }}}
 
-Version 2.0 of the combinatoricslib supports sets with duplicates. For example, if the original vector contains duplicates like (a, b, a, c), then the result will contain 14 subsets (instead of 16):
- # ()
- # (a)
- # (b)
- # (a, b)
- # (a, a)
- # (b, a)
- # (a, b, a)
- # (c)
- # (a, c)
- # (b, c)
- # (a, b, c)
- # (a, a, c)
- # (b, a, c)
- # (a, b, a, c)
-
-If you still would like to treat the set with duplicates as not identical, you should create a generator and set the second parameter of the method {{{Factory.createSubSetGenerator()}}} as {{{false}}}. In this case all 16 subsets will be generated.
-
 
 == 6. Integer Partitions ==
 
@@ -258,7 +240,7 @@ And the result of all 7 integer possible partitions
 
 == 7. Integer Compositions ==
 
-A composition of an integer n is a way of writing n as the sum of a sequence of (strictly) positive integers. Two sequences that differ in the order of their terms define different compositions of their sum, while they are considered to define the same partition of that number (see. [#5._Partitions partitions] above).
+A composition of an integer n is a way of writing n as the sum of a sequence of (strictly) positive integers. Two sequences that differ in the order of their terms define different compositions of their sum, while they are considered to define the same partition of that number (see. [#6._Integer_Partitions Integer Partitions] above).
 
 The sixteen compositions of 5 are:
  # 5
@@ -278,7 +260,7 @@ The sixteen compositions of 5 are:
  # 1+1+1+2
  # 1+1+1+1+1.
 
-Compare this with the seven partitions of 5 (see [#5._Partitions partitions] above):
+Compare this with the seven partitions of 5 (see [#6._Integer_Partitions Integer Partitions] above):
  # 5
  # 4+1
  # 3+2
