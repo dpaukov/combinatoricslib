@@ -6,3 +6,4 @@ org.paukov.combinatorics.partition
 org.paukov.combinatorics.permutations
 org.paukov.combinatorics.subsets
 org.paukov.combinatorics.util
+org.paukov.tool
