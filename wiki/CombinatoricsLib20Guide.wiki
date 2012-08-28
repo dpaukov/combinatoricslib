@@ -269,39 +269,35 @@ Compare this with the seven partitions of 5 (see [#6._Integer_Partitions Integer
  # 2+1+1+1
  # 1+1+1+1+1.
 
-Example. Generate compositions of 5.
+Example. Generate all possible integer compositions of 5.
 {{{
-    // create composition generator of 5
-    Generator<Integer> gen = new CompositionGenerator(5);
+   // Create an instance of the integer composition generator to generate all possible compositions of 5
+   Generator<Integer> gen = Factory.createCompositionGenerator(5);
 
-    // create iterator
-    Iterator<CombinatoricsVector<Integer>> itr = gen.createIterator();
-    
-    // go through the iterator 
-    while (itr.hasNext()) {
-      CombinatoricsVector<Integer> composition = itr.next();
-      System.out.println(composition);
-    }
+   // Print the compositions
+   for (ICombinatoricsVector<Integer> p : gen) {
+      System.out.println(p);
+   }
 }}}
 
 And the result 
 {{{
-   CompositionIterator=[#1, CombinatoricsVector=[[5]], size=1]]
-   CompositionIterator=[#2, CombinatoricsVector=[[1, 4]], size=2]]
-   CompositionIterator=[#3, CombinatoricsVector=[[2, 3]], size=2]]
-   CompositionIterator=[#4, CombinatoricsVector=[[1, 1, 3]], size=3]]
-   CompositionIterator=[#5, CombinatoricsVector=[[3, 2]], size=2]]
-   CompositionIterator=[#6, CombinatoricsVector=[[1, 2, 2]], size=3]]
-   CompositionIterator=[#7, CombinatoricsVector=[[2, 1, 2]], size=3]]
-   CompositionIterator=[#8, CombinatoricsVector=[[1, 1, 1, 2]], size=4]]
-   CompositionIterator=[#9, CombinatoricsVector=[[4, 1]], size=2]]
-   CompositionIterator=[#10, CombinatoricsVector=[[1, 3, 1]], size=3]]
-   CompositionIterator=[#11, CombinatoricsVector=[[2, 2, 1]], size=3]]
-   CompositionIterator=[#12, CombinatoricsVector=[[1, 1, 2, 1]], size=4]]
-   CompositionIterator=[#13, CombinatoricsVector=[[3, 1, 1]], size=3]]
-   CompositionIterator=[#14, CombinatoricsVector=[[1, 2, 1, 1]], size=4]]
-   CompositionIterator=[#15, CombinatoricsVector=[[2, 1, 1, 1]], size=4]]
-   CompositionIterator=[#16, CombinatoricsVector=[[1, 1, 1, 1, 1]], size=5]]
+   CombinatoricsVector=([5], size=1)
+   CombinatoricsVector=([1, 4], size=2)
+   CombinatoricsVector=([2, 3], size=2)
+   CombinatoricsVector=([1, 1, 3], size=3)
+   CombinatoricsVector=([3, 2], size=2)
+   CombinatoricsVector=([1, 2, 2], size=3)
+   CombinatoricsVector=([2, 1, 2], size=3)
+   CombinatoricsVector=([1, 1, 1, 2], size=4)
+   CombinatoricsVector=([4, 1], size=2)
+   CombinatoricsVector=([1, 3, 1], size=3)
+   CombinatoricsVector=([2, 2, 1], size=3)
+   CombinatoricsVector=([1, 1, 2, 1], size=4)
+   CombinatoricsVector=([3, 1, 1], size=3)
+   CombinatoricsVector=([1, 2, 1, 1], size=4)
+   CombinatoricsVector=([2, 1, 1, 1], size=4)
+   CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
 }}}
 
 <g:plusone size="medium"></g:plusone>
