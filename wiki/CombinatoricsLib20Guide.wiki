@@ -2,7 +2,7 @@
 
 * [http://code.google.com/p/combinatoricslib/downloads/list CombinatoricsLib 2.0]* is a Java library for generating combinatorial objects of any types.
 
-= Main features =
+= Features =
 
 This library can generate the combinatorial objects such as: 
  # [#1._Simple_permutations_(without_repetitions) Simple permutations]
