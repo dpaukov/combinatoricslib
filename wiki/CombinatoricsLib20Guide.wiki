@@ -12,7 +12,7 @@ This library can generate the combinatorial objects such as:
  # [#5._Subsets Subsets]
  # [#6._Integer_Partitions Integer Partitions]
  # [#7._Integer_Compositions Integer Compositions]
-
+ # [#8._List_Partitions List Partitions]
 
 <b>Combinatoricslib 2.0</b> allows generating vectors of any items. You should specify the type of your elements as a parameter of the vectors and the generators. All generators implement the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
 
@@ -298,6 +298,50 @@ And the result
    CombinatoricsVector=([1, 2, 1, 1], size=4)
    CombinatoricsVector=([2, 1, 1, 1], size=4)
    CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
+}}}
+
+== 8. List Partitions ==
+
+It is possible to generate non-overlapping sublists of length {{{n}}} of a given {{{list}}}
+
+For example, if a list is {{{(A, B, B, C)}}}, then the non-overlapping sublists of length 2 will be:
+ # ( (A), (B, B, C) )
+ # ( (B, B, C), (A) )
+ # ( (B), (A, B, C) )
+ # ( (A, B, C), (B) )
+ # ( (A, B), (B, C) )
+ # ( (B, C), (A, B) )
+ # ( (B, B), (A, C) )
+ # ( (A, C), (B, B) )
+ # ( (A, B, B), (C) )
+ # ( (C), (A, B, B) )
+
+To do that you should use an instance of the complex combination generator
+{{{
+   // create a vector (A, B, B, C)
+   ICombinatoricsVector<String> vector = Factory.createVector(new String[] { "A", "B", "B", "C" });
+
+   // Create a complex-combination generator
+   Generator<ICombinatoricsVector<String>> gen = new ComplexCombinationGenerator<String>(vector, 2);
+
+   // Iterate the combinations
+   for (ICombinatoricsVector<ICombinatoricsVector<String>> comb : gen) {
+      System.out.println(ComplexCombinationGenerator.convert2String(comb) + " - " + comb);
+   }
+}}}
+
+And the result 
+{{{
+   ([A],[B, B, C]) - CombinatoricsVector=([CombinatoricsVector=([A], size=1), CombinatoricsVector=([B, B, C], size=3)], size=2)
+   ([B, B, C],[A]) - CombinatoricsVector=([CombinatoricsVector=([B, B, C], size=3), CombinatoricsVector=([A], size=1)], size=2)
+   ([B],[A, B, C]) - CombinatoricsVector=([CombinatoricsVector=([B], size=1), CombinatoricsVector=([A, B, C], size=3)], size=2)
+   ([A, B, C],[B]) - CombinatoricsVector=([CombinatoricsVector=([A, B, C], size=3), CombinatoricsVector=([B], size=1)], size=2)
+   ([A, B],[B, C]) - CombinatoricsVector=([CombinatoricsVector=([A, B], size=2), CombinatoricsVector=([B, C], size=2)], size=2)
+   ([B, C],[A, B]) - CombinatoricsVector=([CombinatoricsVector=([B, C], size=2), CombinatoricsVector=([A, B], size=2)], size=2)
+   ([B, B],[A, C]) - CombinatoricsVector=([CombinatoricsVector=([B, B], size=2), CombinatoricsVector=([A, C], size=2)], size=2)
+   ([A, C],[B, B]) - CombinatoricsVector=([CombinatoricsVector=([A, C], size=2), CombinatoricsVector=([B, B], size=2)], size=2)
+   ([A, B, B],[C]) - CombinatoricsVector=([CombinatoricsVector=([A, B, B], size=3), CombinatoricsVector=([C], size=1)], size=2)
+   ([C],[A, B, B]) - CombinatoricsVector=([CombinatoricsVector=([C], size=1), CombinatoricsVector=([A, B, B], size=3)], size=2)
 }}}
 
 <g:plusone size="medium"></g:plusone>
