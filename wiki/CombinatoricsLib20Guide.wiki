@@ -14,7 +14,7 @@ This library can generate the combinatorial objects such as:
  # [#7._Integer_Compositions Integer Compositions]
 
 
-<b>Combinatoricslib 2.0</b> allows generating vectors of any items. You should to specify the type of your elements as a parameter of vectors and generators. All generators implements the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
+<b>Combinatoricslib 2.0</b> allows generating vectors of any items. You should specify the type of your elements as a parameter of the vectors and the generators. All generators implement the java interface {{{Iterable}}}, so they can be used in the "foreach" statement.
 
 You can use the next table to select a generator
 
