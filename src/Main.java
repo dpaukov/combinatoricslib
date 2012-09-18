@@ -20,10 +20,12 @@ public class Main {
 		duplicateSubSets();
 
 		integerPartition();
-		
+
 		integerComposition();
 
+		complexCombinationIndexesExample();
 		complexCombinationExample();
+		
 	}
 
 	static void simpleCombinations() {
@@ -105,9 +107,9 @@ public class Main {
 
 	}
 
-	static void complexCombinationExample() {
+	static void complexCombinationIndexesExample() {
 
-		System.out.println("permutationWithoutRepetitions");
+		System.out.println("complexCombinationIndexesExample");
 
 		// A list of elements
 		String[] elements = new String[] { "A", "B", "B", "C" };
@@ -127,6 +129,24 @@ public class Main {
 					elements, combination);
 
 			System.out.println(str);
+		}
+	}
+
+	static void complexCombinationExample() {
+
+		System.out.println("complexCombinationExample");
+
+		// create a combinatorics vector (A, B, B, C)
+		ICombinatoricsVector<String> vector = Factory
+				.createVector(new String[] { "A", "B", "B", "C" });
+
+		// Create a complex-combination generator
+		Generator<ICombinatoricsVector<String>> gen = new ComplexCombinationGenerator<String>(
+				vector, 2);
+
+		// Iterate the combinations
+		for (ICombinatoricsVector<ICombinatoricsVector<String>> comb : gen) {
+			System.out.println(ComplexCombinationGenerator.convert2String(comb) + " - " + comb);
 		}
 	}
 
@@ -178,12 +198,13 @@ public class Main {
 			System.out.println(p);
 		}
 	}
-	
+
 	static void integerComposition() {
 
 		System.out.println("integerComposition");
 
-		// Create an instance of the integer composition generator to generate all
+		// Create an instance of the integer composition generator to generate
+		// all
 		// possible compositions of 5
 		Generator<Integer> gen = Factory.createCompositionGenerator(5);
 

@@ -11,8 +11,10 @@ import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * @author Dmytro Paukov
+ * Iterator over the all complex combinations
  * 
+ * @author Dmytro Paukov
+ * @see ComplexCombinationGenerator
  */
 public class ComplexCombinationIterator<T>
 		implements
