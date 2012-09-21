@@ -3,6 +3,7 @@ package org.paukov.combinatorics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -114,6 +115,30 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#countElements()
+	 */
+	@Override
+	public int countElements(T value) {
+		if (_vector.size() == 0)
+			return 0;
+
+		int count = 0;
+		for (T element : _vector) {
+			if (element.equals(value))
+				count++;
+		}
+		return count;
+	}
+
+	/**
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#countElements()
+	 */
+	@Override
+	public boolean contains(T value) {
+		return _vector.contains(value);
+	}
+
+	/**
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#isAllElementsEqual()
 	 */
 	@Override
@@ -179,6 +204,11 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 		_vector.clear();
 	}
 
+	@Override
+	public Iterator<T> iterator() {
+		return _vector.iterator();
+	}
+	
 	/**
 	 * Returns vector as a string
 	 * 
@@ -188,5 +218,7 @@ class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	public String toString() {
 		return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
 	}
+
+	
 
 }
