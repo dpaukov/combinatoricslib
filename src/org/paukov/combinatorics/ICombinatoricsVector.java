@@ -12,7 +12,7 @@ import java.util.List;
  * @param <T>
  *            Type of the elements
  */
-public interface ICombinatoricsVector<T> {
+public interface ICombinatoricsVector<T> extends Iterable<T> {
 
 	/**
 	 * Sets value to position <code>index</code>. If the index is out of bounds
@@ -56,6 +56,21 @@ public interface ICombinatoricsVector<T> {
 	 *         <code>false</code>
 	 */
 	public abstract boolean hasDuplicates();
+
+	/**
+	 * This method calculates the count of duplicates of a given value
+	 * 
+	 * @return Number of the duplicates within the vector
+	 */
+	public abstract int countElements(T value);
+
+	/**
+	 * This method detects if the victor contains a given value
+	 * 
+	 * @return <code>true</code> if the vector contains the value, otherwise
+	 *         <code>false</code>
+	 */
+	public abstract boolean contains(T value);
 
 	/**
 	 * This method detects if the vector's elements are equal. For example, this

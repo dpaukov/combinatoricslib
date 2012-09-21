@@ -95,6 +95,11 @@ public class PermutationGenerator<T> extends Generator<T> {
 	public long getNumberOfGeneratedObjects() {
 		if (_originalVector.getSize() == 0)
 			return 0;
+
+		if (_originalVector.hasDuplicates())
+			throw new RuntimeException("The initial vector has duplicates: "
+					+ _originalVector);
+
 		return Util.factorial(_originalVector.getSize());
 	}
 
@@ -105,7 +110,11 @@ public class PermutationGenerator<T> extends Generator<T> {
 	 */
 	@Override
 	public Iterator<ICombinatoricsVector<T>> iterator() {
-		return new PermutationIterator<T>(this);
+		if (_originalVector.hasDuplicates())
+			return new DuplicatedPermutationIterator<T>(this);
+		else
+			return new PermutationIterator<T>(this);
+
 	}
 
 }
