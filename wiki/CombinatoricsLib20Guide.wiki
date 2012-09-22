@@ -20,9 +20,9 @@ You can use the next table to select a generator
 
 || *Description* || *Is Order Important?* || *Is Repetition Allowed?* || *Method* ||
 || [#2._Permutations_with_repetitions Permutations with repetitions] || Yes || Yes || {{{Factory.createPermutationWithRepetitionGenerator()}}} ||
-|| [#1._Permutations_without_repetitions Permutations without repetitions] || Yes || No || {{{Factory.createPermutationGenerator()}}} ||
+|| [#1._Simple_permutations Simple permutations] || Yes || No || {{{Factory.createPermutationGenerator()}}} ||
 || [#4._Combinations_with_repetitions Combinations with repetitions] || No || Yes || {{{Factory.createMultiCombinationGenerator()}}} ||
-|| [#3._Combinations_without_repetitions Combinations without repetitions] || No || No || {{{Factory.createSimpleCombinationGenerator()}}} ||
+|| [#3._Simple_combinations Combinations without repetitions] || No || No || {{{Factory.createSimpleCombinationGenerator()}}} ||
 
 How to download and use the library in Eclipse, please read this page HowToUseLibInEclipse   
 
