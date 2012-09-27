@@ -168,6 +168,74 @@ public class PermutationsTest {
 		assertEquals("CombinatoricsVector=([a, a, a], size=3)", list.get(0)
 				.toString());
 	}
+	
+	@Test
+	public void identicalPermutationTreatAsIdentical() {
+
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "a", "a", "b" });
+		
+		Generator<String> generator = Factory
+				.createPermutationGenerator(initialVector, true);
+
+		for(ICombinatoricsVector<String> perm : generator)
+		{
+			System.out.println(perm);
+		}
+
+		List<ICombinatoricsVector<String>> list = generator
+				.generateAllObjects();
+
+		assertEquals(6, list.size());
+
+		assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(5)
+				.toString());
+	}
+	
+	
+	@Test
+	public void allIdenticalPermutationTreatAsIdentical() {
+
+		ICombinatoricsVector<String> initialVector = Factory
+				.createVector(new String[] { "x", "x" ,"x"});
+		Generator<String> generator = Factory
+				.createPermutationGenerator(initialVector, true);
+
+		Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
+
+		while (iterator.hasNext()) {
+			iterator.next();
+			System.out.println(iterator);
+		}
+
+		List<ICombinatoricsVector<String>> list = generator
+				.generateAllObjects();
+
+		assertEquals(6, list.size());
+
+		assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(5)
+				.toString());
+	}
 
 	@Test
 	public void abcPermutation() {

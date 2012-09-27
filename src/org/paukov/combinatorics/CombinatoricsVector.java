@@ -17,7 +17,7 @@ import java.util.Set;
  * @param <T>
  *            Type of the elements
  */
-class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
+public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
 	protected final List<T> _vector;
 
