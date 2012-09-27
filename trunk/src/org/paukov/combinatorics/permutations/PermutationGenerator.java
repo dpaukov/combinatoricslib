@@ -63,6 +63,9 @@ import org.paukov.combinatorics.util.Util;
  */
 public class PermutationGenerator<T> extends Generator<T> {
 
+	protected final boolean _hasDuplicates;
+	protected final boolean _treatAsIdentical;
+
 	/**
 	 * Initial vector
 	 */
@@ -75,6 +78,23 @@ public class PermutationGenerator<T> extends Generator<T> {
 	 *            Vector which is used for permutation generation
 	 */
 	public PermutationGenerator(ICombinatoricsVector<T> originalVector) {
+		_hasDuplicates = originalVector.hasDuplicates();
+		_treatAsIdentical = false;
+		_originalVector = Factory.createVector(originalVector);
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param originalVector
+	 *            Vector which is used for permutation generation
+	 * @param treatAsIdentical
+	 *            True if the generator should treat the vector as identical
+	 */
+	public PermutationGenerator(ICombinatoricsVector<T> originalVector,
+			boolean treatAsIdentical) {
+		_hasDuplicates = originalVector.hasDuplicates();
+		_treatAsIdentical = treatAsIdentical;
 		_originalVector = Factory.createVector(originalVector);
 	}
 
@@ -96,7 +116,7 @@ public class PermutationGenerator<T> extends Generator<T> {
 		if (_originalVector.getSize() == 0)
 			return 0;
 
-		if (_originalVector.hasDuplicates())
+		if (isDuplicateIterator())
 			throw new RuntimeException("The initial vector has duplicates: "
 					+ _originalVector);
 
@@ -110,11 +130,15 @@ public class PermutationGenerator<T> extends Generator<T> {
 	 */
 	@Override
 	public Iterator<ICombinatoricsVector<T>> iterator() {
-		if (_originalVector.hasDuplicates())
+		if (isDuplicateIterator())
 			return new DuplicatedPermutationIterator<T>(this);
 		else
 			return new PermutationIterator<T>(this);
 
+	}
+
+	protected boolean isDuplicateIterator() {
+		return (!_treatAsIdentical && _hasDuplicates);
 	}
 
 }

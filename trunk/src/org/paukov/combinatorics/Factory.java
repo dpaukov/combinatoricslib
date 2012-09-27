@@ -157,6 +157,21 @@ public class Factory {
 	}
 
 	/**
+	 * Creates a permutation generator
+	 * 
+	 * @param originalVector
+	 *            The original vector
+	 * @param treatAsIdentical
+	 *            True if the generator should treat the vector as identical
+	 * @return An instance of the simple permutation generator
+	 * @see PermutationGenerator
+	 */
+	public static <T> Generator<T> createPermutationGenerator(
+			ICombinatoricsVector<T> originalVector, boolean treatAsIdentical) {
+		return new PermutationGenerator<T>(originalVector, treatAsIdentical);
+	}
+
+	/**
 	 * Creates a permutation with repetitions generator
 	 * 
 	 * @param originalVector
@@ -225,4 +240,5 @@ public class Factory {
 	public static Generator<Integer> createPartitionGenerator(Integer n) {
 		return new PartitionGenerator(n);
 	}
+
 }

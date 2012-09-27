@@ -25,11 +25,11 @@ public class Main {
 
 		complexCombinationIndexesExample();
 		complexCombinationExample();
-		
+
 		simpleWithEqualElementsPermutation();
-		
+
 	}
-	
+
 	static void simpleCombinations() {
 
 		System.out.println("simpleCombinations");
@@ -148,7 +148,8 @@ public class Main {
 
 		// Iterate the combinations
 		for (ICombinatoricsVector<ICombinatoricsVector<String>> comb : gen) {
-			System.out.println(ComplexCombinationGenerator.convert2String(comb) + " - " + comb);
+			System.out.println(ComplexCombinationGenerator.convert2String(comb)
+					+ " - " + comb);
 		}
 	}
 
@@ -215,16 +216,18 @@ public class Main {
 			System.out.println(p);
 		}
 	}
-	
-	static void simpleWithEqualElementsPermutation() {
-		
-		System.out.println("simpleWithEqualElementsPermutation");
-		
-		ICombinatoricsVector<Integer> corePermutation = Factory
-				.createVector(new Integer[] { 2, 3, 2, 1 });
 
+	static void simpleWithEqualElementsPermutation() {
+
+		System.out.println("simpleWithEqualElementsPermutation");
+
+		// Create the initial vector
+		ICombinatoricsVector<Integer> initialVector = Factory
+				.createVector(new Integer[] { 1, 1, 2, 2 });
+
+		// Create the generator
 		Generator<Integer> generator = Factory
-				.createPermutationGenerator(corePermutation);
+				.createPermutationGenerator(initialVector);
 
 		for (ICombinatoricsVector<Integer> perm : generator) {
 			System.out.println(perm);
