@@ -1,6 +1,12 @@
+import java.util.List;
+
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
+import org.paukov.combinatorics.IFilter;
+import org.paukov.combinatorics.IntegerFactory;
+import org.paukov.combinatorics.IntegerGenerator;
+import org.paukov.combinatorics.IntegerVector;
 import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
 public class Main {
@@ -10,6 +16,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
+		/**
+		 * Examples
+		 */
 		permutationWithoutRepetitions();
 		permutationWithRepetitions();
 
@@ -27,6 +36,16 @@ public class Main {
 		complexCombinationExample();
 
 		simpleWithEqualElementsPermutation();
+
+		/**
+		 * Examples of the integer vectors
+		 */
+		simpleFiveIntegerCompositionRange();
+
+		/**
+		 * Filters
+		 */
+		filteredCombinations();
 
 	}
 
@@ -232,6 +251,58 @@ public class Main {
 		for (ICombinatoricsVector<Integer> perm : generator) {
 			System.out.println(perm);
 		}
+	}
+
+	static void simpleFiveIntegerCompositionRange() {
+
+		System.out.println("simpleFiveIntegerCompositionRange");
+
+		IntegerGenerator compositionGenerator = IntegerFactory
+				.createIntegerCompositionGenerator(5);
+
+		List<IntegerVector> list = compositionGenerator.generateObjectsRange(5,
+				7);
+
+		for (IntegerVector vector : list) {
+			System.out.println(vector);
+		}
+	}
+
+	/**
+	 * Print all 3-combinations of the set (apple, orange, cherry, melon) which
+	 * contains orange
+	 */
+	static void filteredCombinations() {
+
+		System.out.println("filteredCombinations");
+
+		// Create the initial set/vector of 3 elements (apple, orange, cherry,
+		// melon)
+		ICombinatoricsVector<String> originalVector = Factory
+				.createVector(new String[] { "apple", "orange", "cherry",
+						"melon" });
+
+		// Create the combination generator by calling the appropriate method in
+		// the Factory class
+		Generator<String> gen = Factory.createSimpleCombinationGenerator(
+				originalVector, 3);
+
+		// Create a filter and generate the results
+		List<ICombinatoricsVector<String>> result = gen
+				.generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
+
+					// returns true if the value is accepted
+					public boolean accepted(long index,
+							ICombinatoricsVector<String> value) {
+						return value.contains("orange");
+					}
+
+				});
+
+		// Print the result
+		for (ICombinatoricsVector<String> perm : result)
+			System.out.println(perm);
+
 	}
 
 }

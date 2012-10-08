@@ -8,6 +8,15 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
+/**
+ * Iterator for the permutation generator which contains duplicates
+ * 
+ * @author Dmytro.Paukov
+ * @see ICombinatoricsVector
+ * @see PermutationGenerator
+ * @param <T>
+ *            Type of elements in the permutations
+ */
 public class DuplicatedPermutationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
 
