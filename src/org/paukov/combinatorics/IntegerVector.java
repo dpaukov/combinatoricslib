@@ -17,46 +17,75 @@ public class IntegerVector {
 	protected final int[] _vector;
 
 	/**
-	 * Default constructor creates the empty vector
+	 * Default constructor creates an empty vector
+	 * <p>
+	 * Notes: Use the factory method
+	 * <code>IntegerFactory.createIntegerVector()</code> to create an empty
+	 * vector
+	 * 
+	 * @see IntegerFactory
 	 */
-	IntegerVector() {
+	public IntegerVector() {
 		this(0);
 	}
 
 	/**
 	 * Default constructor creates the empty vector
+	 * <p>
+	 * Notes: Use the factory method
+	 * <code>IntegerFactory.createIntegerVector()</code> to create an empty
+	 * vector
+	 * 
+	 * @see IntegerFactory
 	 */
-	IntegerVector(int size) {
+	public IntegerVector(int size) {
 		_vector = new int[size];
 	}
 
 	/**
 	 * Constructor from an array
+	 * <p>
+	 * Notes: Use the factory method
+	 * <code>IntegerFactory.createIntegerVector()</code> to create a vector from
+	 * an array
+	 * 
+	 * @see IntegerFactory
 	 * 
 	 * @param array
 	 *            Initial array to initialize the created vector
 	 */
-	IntegerVector(int[] array, int len) {
+	public IntegerVector(int[] array, int len) {
 		_vector = new int[len];
 		System.arraycopy(array, 0, _vector, 0, len);
 	}
 
 	/**
 	 * Constructor from an integer array
+	 * <p>
+	 * Notes: Use the factory method
+	 * <code>IntegerFactory.createIntegerVector()</code> to create a vector from
+	 * an array
+	 * 
+	 * @see IntegerFactory
 	 * 
 	 * @param array
+	 *            Initial array to initialize the created vector
 	 */
-	IntegerVector(int[] array) {
+	public IntegerVector(int[] array) {
 		this(array, array.length);
 	}
 
 	/**
 	 * Copy constructor
+	 * <p>
+	 * Notes: Use the factory method
+	 * <code>IntegerFactory.createIntegerVector()</code> to create a vector from
+	 * another vector
 	 * 
 	 * @param vector
 	 *            Initial vector to initialize the created vector
 	 */
-	IntegerVector(IntegerVector vector) {
+	public IntegerVector(IntegerVector vector) {
 		_vector = new int[vector.getSize()];
 		System.arraycopy(vector._vector, 0, _vector, 0, vector.getSize());
 	}

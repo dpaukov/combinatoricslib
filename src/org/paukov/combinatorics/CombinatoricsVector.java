@@ -23,29 +23,42 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
 	/**
 	 * Default constructor creates the empty vector
+	 * <p>
+	 * Notes: Use the factory method <code>Factory.createVector()</code> to
+	 * create an empty vector
+	 * 
+	 * @see org.paukov.combinatorics.Factory#createVector()
 	 */
-	CombinatoricsVector() {
+	public CombinatoricsVector() {
 		_vector = new ArrayList<T>();
 	}
 
 	/**
-	 * Constructor from collection
+	 * Constructor from a collection
+	 * <p>
+	 * Notes: Use the factory method <code>Factory.createVector()</code> to
+	 * create a vector from a collection
 	 * 
 	 * @param vector
 	 *            Initial collection to initialize the created vector
+	 * @see org.paukov.combinatorics.Factory#createVector(Collection)
 	 */
-	CombinatoricsVector(Collection<? extends T> vector) {
+	public CombinatoricsVector(Collection<? extends T> vector) {
 		_vector = new ArrayList<T>(vector.size());
 		_vector.addAll(vector);
 	}
 
 	/**
-	 * Constructor from array
+	 * Constructor from an array
+	 * <p>
+	 * Notes: Use the factory method <code>Factory.createVector()</code> to
+	 * create a vector from an array
 	 * 
 	 * @param array
 	 *            Initial array to initialize the created vector
+	 * @see org.paukov.combinatorics.Factory#createVector(T[])
 	 */
-	CombinatoricsVector(T[] array) {
+	public CombinatoricsVector(T[] array) {
 		_vector = new ArrayList<T>(array.length);
 		for (int i = 0; i < array.length; i++) {
 			_vector.add(array[i]);
@@ -55,10 +68,15 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	/**
 	 * Copy constructor
 	 * 
+	 * <p>
+	 * Notes: Use the factory method <code>Factory.createVector()</code> to
+	 * create a vector from another vector
+	 * 
 	 * @param vector
-	 *            Initial vector to initialize the created vector
+	 *            Initial combinatorics vector to initialize the created vector
+	 * @see org.paukov.combinatorics.Factory#createVector(ICombinatoricsVector)
 	 */
-	CombinatoricsVector(ICombinatoricsVector<T> vector) {
+	public CombinatoricsVector(ICombinatoricsVector<T> vector) {
 		_vector = new ArrayList<T>(vector.getSize());
 		_vector.addAll(vector.getVector());
 	}
@@ -83,7 +101,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
-	 * Adds value to the vector.
+	 * Adds value to this vector.
 	 * 
 	 * @param value
 	 *            Value of the element to be added
@@ -95,6 +113,11 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * Returns value of the <code>index</code>-element
+	 * 
+	 * @param index
+	 *            The position of the element (Index of the element)
+	 * @return Value of the element
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#getValue(int)
 	 */
 	@Override
@@ -103,6 +126,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * Returns the size of the vector
+	 * 
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#getSize()
 	 */
 	@Override
@@ -114,6 +139,10 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * This method detects duplicates in the vector
+	 * 
+	 * @return <code>true</code> if the vector has duplicates, otherwise
+	 *         <code>false</code>
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#hasDuplicates()
 	 */
 	@Override
@@ -157,6 +186,11 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * This method detects if the vector's elements are equal. For example, this
+	 * method returns true for a vector (a, a, a) and false for a vector (a, b,
+	 * a)
+	 * 
+	 * @return <code>True</code> if the vector's elements are equal
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#isAllElementsEqual()
 	 */
 	@Override
@@ -172,6 +206,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * Returns this vector as a list
+	 * 
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#getVector()
 	 */
 	@Override
@@ -180,7 +216,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
-	 * Hash code of the vector
+	 * Hash code of the current vector
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -193,7 +229,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
-	 * Equals
+	 * Indicates whether some other object is "equal to" this one.
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -215,6 +251,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * Clear the elements
+	 * 
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#clearVector()
 	 */
 	@Override
@@ -222,6 +260,11 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 		_vector.clear();
 	}
 
+	/**
+	 * Returns an iterator over the current vector
+	 * 
+	 * @return an Iterator.
+	 */
 	@Override
 	public Iterator<T> iterator() {
 		return _vector.iterator();
