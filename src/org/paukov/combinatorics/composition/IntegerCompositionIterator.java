@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.composition;
 
 import java.util.Iterator;
@@ -12,6 +16,7 @@ import org.paukov.combinatorics.IntegerVector;
  * @author Dmytro Paukov
  * @see IntegerVector
  * @see IntegerCompositionGenerator
+ * @version 2.0
  */
 public class IntegerCompositionIterator implements Iterator<IntegerVector> {
 

@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.subsets;
 
 import java.util.Iterator;
@@ -11,6 +15,7 @@ import org.paukov.combinatorics.IntegerVector;
  * Iterator over the all sublists (with duplicates) of integer values
  * 
  * @author Dmytro Paukov
+ * @version 2.0
  * @see IntegerVector
  * @see IntegerSubSetGenerator
  * 

@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.util;
 
 import java.math.BigDecimal;
@@ -6,7 +10,8 @@ import java.math.BigDecimal;
 /**
  * Utility class for combinatorial package
  * 
- * @author Dmytro.Paukov
+ * @author Dmytro Paukov
+ * @version 2.0
  */
 public class Util {
 

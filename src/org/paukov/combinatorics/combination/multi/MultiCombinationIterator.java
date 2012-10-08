@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.combination.multi;
 
 import java.util.Iterator;
@@ -13,6 +17,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @see MultiCombinationGenerator
  * @param <T>
  *            Type of the elements in the combinations
+ * @version 2.0
  */
 public class MultiCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
@@ -136,7 +141,7 @@ public class MultiCombinationIterator<T> implements
 		// return the current combination
 		return Factory.createVector(_currentCombination);
 	}
-	
+
 	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();

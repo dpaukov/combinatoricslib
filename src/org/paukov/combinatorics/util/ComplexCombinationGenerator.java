@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.util;
 
 import java.util.Iterator;
@@ -64,6 +68,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  *
  *</blockquote>
  * @author Dmytro Paukov
+ * @version 2.0
  * @see ComplexCombinationIterator
  */
 public class ComplexCombinationGenerator<T> extends

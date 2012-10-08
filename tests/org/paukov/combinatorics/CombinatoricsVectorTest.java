@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics;
 
 import static org.junit.Assert.*;
@@ -7,6 +11,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * 
+ * @author Dmytro Paukov
+ *
+ */
 public class CombinatoricsVectorTest {
 
 	@Test

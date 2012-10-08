@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.subsets;
 
 import java.util.Iterator;
@@ -103,7 +107,8 @@ import org.paukov.combinatorics.util.Util;
  * <code>getNumberOfGeneratedObjects</code> won't be able to return the number
  * of the sub sets/lists. It will throw a runtime exception
  * 
- * @author Dmytro.Paukov
+ * @author Dmytro Paukov
+ * @version 2.0
  * @see ICombinatoricsVector
  * @see SubSetIterator
  * @param <T>

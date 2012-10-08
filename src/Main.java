@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 import java.util.List;
 
 import org.paukov.combinatorics.Factory;
@@ -9,6 +13,11 @@ import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
 import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
+/**
+ * This class contains various examples of using the combinatoricslib
+ * 
+ * @author Dmytro Paukov
+ */
 public class Main {
 
 	/**

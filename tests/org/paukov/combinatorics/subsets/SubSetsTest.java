@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.subsets;
 
 import static org.junit.Assert.assertEquals;
@@ -11,6 +15,10 @@ import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.IFilter;
 
+/**
+ * @author Dmytro Paukov
+ * 
+ */
 public class SubSetsTest {
 
 	@Test

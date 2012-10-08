@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.combination.simple;
 
 import static org.junit.Assert.assertEquals;
@@ -11,6 +15,10 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
+/**
+ * @author Dmytro Paukov
+ * 
+ */
 public class SimpleCombinationTest {
 
 	@Test

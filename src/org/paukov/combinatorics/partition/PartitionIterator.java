@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.partition;
 
 import java.util.ArrayList;
@@ -13,6 +17,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @author Dmytro Paukov
  * @see ICombinatoricsVector
  * @see PartitionGenerator
+ * @version 2.0
  */
 public class PartitionIterator implements
 		Iterator<ICombinatoricsVector<Integer>> {

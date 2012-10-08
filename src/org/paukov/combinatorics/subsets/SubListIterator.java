@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.subsets;
 
 import java.util.Iterator;
@@ -11,14 +15,14 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * Iterator over the all sublists (with duplicates)
  * 
  * @author Dmytro Paukov
+ * @version 2.0
  * @see ICombinatoricsVector
  * @see SubSetGenerator
  * 
  * @param <T>
  *            Type of the elements in the lists
  */
-public class SubListIterator<T> implements
-		Iterator<ICombinatoricsVector<T>> {
+public class SubListIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
@@ -71,7 +75,7 @@ public class SubListIterator<T> implements
 		_currentIndex = 0;
 		while (_subSetsIterator.hasNext()) {
 			ICombinatoricsVector<T> subVector = _subSetsIterator.next();
-			_result.add( subVector );
+			_result.add(subVector);
 		}
 		_resultIterator = _result.iterator();
 	}
@@ -97,7 +101,7 @@ public class SubListIterator<T> implements
 		_currentSubList = _resultIterator.next();
 		return _currentSubList;
 	}
-	
+
 	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
