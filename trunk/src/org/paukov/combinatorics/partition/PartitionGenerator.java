@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.partition;
 
 import java.util.Iterator;
@@ -70,6 +74,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @author Dmytro.Paukov
  * @see ICombinatoricsVector
  * @see PartitionIterator
+ * @version 2.0
  * 
  */
 public class PartitionGenerator extends Generator<Integer> {
@@ -107,10 +112,12 @@ public class PartitionGenerator extends Generator<Integer> {
 
 	/**
 	 * Returns approximated number of partitions for given positive value.
+	 * <p>
 	 * <b>Note.</b>Exact value of number of partitions can be obtained from
-	 * actual generated list of partitions. <b>WARNING!</b> Be careful because
-	 * number of all partitions can be very high even for not great given value
-	 * of N.
+	 * actual generated list of partitions.
+	 * <p>
+	 * <b>WARNING!</b> Be careful because number of all partitions can be very
+	 * high even for not great given value of N.
 	 */
 	@Override
 	public long getNumberOfGeneratedObjects() {

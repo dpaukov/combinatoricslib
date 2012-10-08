@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.permutations;
 
 import java.util.Iterator;
@@ -54,7 +58,8 @@ import org.paukov.combinatorics.util.Util;
  * </blockquote>
  * <p>
  * 
- * @author Dmytro.Paukov
+ * @author Dmytro Paukov
+ * @version 2.0
  * @see ICombinatoricsVector
  * @see PermutationIterator
  * @see Factory

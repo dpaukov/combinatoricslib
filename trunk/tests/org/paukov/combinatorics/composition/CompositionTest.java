@@ -1,5 +1,6 @@
 /**
- * 
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
 package org.paukov.combinatorics.composition;
 
@@ -14,7 +15,7 @@ import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
- * @author Dmytro.Paukov
+ * @author Dmytro Paukov
  * 
  */
 public class CompositionTest {

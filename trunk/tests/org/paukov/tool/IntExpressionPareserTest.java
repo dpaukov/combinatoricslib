@@ -1,5 +1,6 @@
 /**
- * 
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
 package org.paukov.tool;
 
@@ -9,7 +10,7 @@ import org.junit.Test;
 import org.paukov.tool.IntExpressionParser;
 
 /**
- * @author dpaukov
+ * @author Dmytro Paukov
  * 
  */
 public class IntExpressionPareserTest {

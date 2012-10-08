@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.composition;
 
 import java.util.Iterator;
@@ -90,7 +94,8 @@ import org.paukov.combinatorics.util.Util;
  * </blockquote>
  * <p>
  * 
- * @author Dmytro.Paukov
+ * @author Dmytro Paukov
+ * @version 2.0
  * @see CompositionIterator
  * 
  */

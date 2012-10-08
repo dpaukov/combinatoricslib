@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.util;
 
 import static org.junit.Assert.assertEquals;
@@ -7,6 +11,10 @@ import java.math.BigDecimal;
 import org.junit.Test;
 import org.paukov.combinatorics.util.Util;
 
+/**
+ * @author Dmytro Paukov
+ * 
+ */
 public class UtilTest {
 
 	private static BigDecimal[][] toBigDecimal(double[][] a) {

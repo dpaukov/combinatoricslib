@@ -1,5 +1,6 @@
 /**
- * 
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
 package org.paukov.tool;
 
@@ -7,6 +8,7 @@ import java.util.LinkedList;
 
 /**
  * @author Dmytro Paukov
+ * @version 2.0
  * 
  */
 public class IntExpressionParser {

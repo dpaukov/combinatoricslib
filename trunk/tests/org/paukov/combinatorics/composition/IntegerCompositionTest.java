@@ -1,5 +1,6 @@
 /**
- * 
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
 package org.paukov.combinatorics.composition;
 
@@ -16,7 +17,7 @@ import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
 
 /**
- * @author Dmytro.Paukov
+ * @author Dmytro Paukov
  * 
  */
 public class IntegerCompositionTest {

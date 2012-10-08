@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics;
 
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ import java.util.List;
  * @see ICombinatoricsVector
  * @see Iterator
  * @see Factory
+ * @version 2.0
  * @param <T>
  *            Type of the elements in the generated vectors
  */

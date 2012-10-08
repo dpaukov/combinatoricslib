@@ -1,9 +1,17 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ * @author Dmytro Paukov
+ * 
+ */
 public class IntegerFactoryTest {
 
 	@Test

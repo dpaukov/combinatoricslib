@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.combination.simple;
 
 import java.util.Iterator;
@@ -9,6 +13,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * Iterator for the simple combination generator
  * 
  * @author Dmytro Paukov
+ * @version 2.0
  * @see ICombinatoricsVector
  * @see SimpleCombinationGenerator
  * @param <T>

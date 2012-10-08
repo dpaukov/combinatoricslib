@@ -1,3 +1,7 @@
+/**
+ * Combinatorics Library
+ * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ */
 package org.paukov.combinatorics.combination.multi;
 
 import java.util.Iterator;
@@ -51,6 +55,7 @@ import org.paukov.combinatorics.util.Util;
  * <p>
  * 
  * @author Dmytro Paukov
+ * @version 2.0
  * @see MultiCombinationIterator
  * @param <T>
  *            Type of elements in the combination
