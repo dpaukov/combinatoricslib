@@ -64,6 +64,13 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * Sets value to position <code>index</code>. If the index is out of bounds
+	 * the value will be added at the end of the vector
+	 * 
+	 * @param index
+	 *            Position of element
+	 * @param value
+	 *            Value of the element to be set
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#setValue(int, T)
 	 */
 	@Override
@@ -76,6 +83,10 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
+	 * Adds value to the vector.
+	 * 
+	 * @param value
+	 *            Value of the element to be added
 	 * @see org.paukov.combinatorics.ICombinatoricsVector#addValue(T)
 	 */
 	@Override
@@ -115,7 +126,10 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#countElements()
+	 * This method calculates the count of duplicates of a given value
+	 * 
+	 * @return Number of the duplicates within the vector
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#countElements(T)
 	 */
 	@Override
 	public int countElements(T value) {
@@ -131,7 +145,11 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	}
 
 	/**
-	 * @see org.paukov.combinatorics.ICombinatoricsVector#countElements()
+	 * This method detects if the victor contains a given value
+	 * 
+	 * @return <code>true</code> if the vector contains the value, otherwise
+	 *         <code>false</code>
+	 * @see org.paukov.combinatorics.ICombinatoricsVector#contains()
 	 */
 	@Override
 	public boolean contains(T value) {
@@ -208,7 +226,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	public Iterator<T> iterator() {
 		return _vector.iterator();
 	}
-	
+
 	/**
 	 * Returns vector as a string
 	 * 
@@ -218,7 +236,5 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	public String toString() {
 		return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
 	}
-
-	
 
 }
