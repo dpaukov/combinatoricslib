@@ -68,7 +68,14 @@
 	<target name="packsrc" description="Make sources zip-archive">
 		<zip destfile="combinatoricslib-${version}_src.zip">
 			<fileset dir="." includes="**/*.java, **/*.MF,
-                 **/*.xml, **/*.jar, **/*.html, **/*.css, **/*.gif, **/*.png, **/*.txt"  />
+                 **/*.xml, **/*.jar, **/*.html, **/*.css, **/*.gif, **/*.png, **/*.txt"  >
+				<exclude name="bin/**"/>
+				<exclude name="build/**"/>
+				<exclude name="doc/**"/>
+				<exclude name="dist/**"/>
+				<exclude name="instr/**"/>
+				<exclude name="coverage/**"/>
+			</fileset>
 		</zip>
 	</target>
 
