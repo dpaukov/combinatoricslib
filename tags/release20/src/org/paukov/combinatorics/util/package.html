@@ -1,0 +1,62 @@
+<html>
+<head>
+</head>
+<body>
+This package contains the utility classes and tools.
+
+<p>
+It is possible to generate non-overlapping sublists of length <b>n</b> of a given <b>list</b>
+<p>
+For example, if a list is (A, B, B, C), then the non-overlapping sublists of length 2 will be: 
+<ol>
+<li>( (A), (B, B, C) )
+<li>( (B, B, C), (A) )
+<li>( (B), (A, B, C) )
+<li>( (A, B, C), (B) )
+<li>( (A, B), (B, C) )
+<li>( (B, C), (A, B) )
+<li>( (B, B), (A, C) )
+<li>( (A, C), (B, B) )
+<li>( (A, B, B), (C) )
+<li>( (C), (A, B, B) ) 
+</ol>
+<p>
+To do that you should use an instance of the complex combination generator 
+<p>
+<blockquote>
+<pre>
+  // create a vector (A, B, B, C)
+  ICombinatoricsVector&lt;String&gt; vector = Factory.createVector(new String[] { "A", "B", "B", "C" });
+
+  // Create a complex-combination generator
+  Generator&lt;ICombinatoricsVector&lt;String&gt;&gt; gen = new ComplexCombinationGenerator&lt;String&gt;(vector, 2);
+
+  // Iterate the combinations
+  for (ICombinatoricsVector&lt;ICombinatoricsVector&lt;String&gt;&gt; comb : gen) {
+     System.out.println(ComplexCombinationGenerator.convert2String(comb) + " - " + comb);
+  }
+</pre>
+
+</blockquote>
+<p>
+And the result
+<p>
+<blockquote>
+
+<pre>
+ ([A],[B, B, C]) - CombinatoricsVector=([CombinatoricsVector=([A], size=1), CombinatoricsVector=([B, B, C], size=3)], size=2)
+ ([B, B, C],[A]) - CombinatoricsVector=([CombinatoricsVector=([B, B, C], size=3), CombinatoricsVector=([A], size=1)], size=2)
+ ([B],[A, B, C]) - CombinatoricsVector=([CombinatoricsVector=([B], size=1), CombinatoricsVector=([A, B, C], size=3)], size=2)
+ ([A, B, C],[B]) - CombinatoricsVector=([CombinatoricsVector=([A, B, C], size=3), CombinatoricsVector=([B], size=1)], size=2)
+ ([A, B],[B, C]) - CombinatoricsVector=([CombinatoricsVector=([A, B], size=2), CombinatoricsVector=([B, C], size=2)], size=2)
+ ([B, C],[A, B]) - CombinatoricsVector=([CombinatoricsVector=([B, C], size=2), CombinatoricsVector=([A, B], size=2)], size=2)
+ ([B, B],[A, C]) - CombinatoricsVector=([CombinatoricsVector=([B, B], size=2), CombinatoricsVector=([A, C], size=2)], size=2)
+ ([A, C],[B, B]) - CombinatoricsVector=([CombinatoricsVector=([A, C], size=2), CombinatoricsVector=([B, B], size=2)], size=2)
+ ([A, B, B],[C]) - CombinatoricsVector=([CombinatoricsVector=([A, B, B], size=3), CombinatoricsVector=([C], size=1)], size=2)
+ ([C],[A, B, B]) - CombinatoricsVector=([CombinatoricsVector=([C], size=1), CombinatoricsVector=([A, B, B], size=3)], size=2)
+</pre>
+
+</blockquote>
+
+</body>
+</html>

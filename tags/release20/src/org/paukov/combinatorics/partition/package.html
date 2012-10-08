@@ -1,0 +1,66 @@
+<html>
+<head>
+</head>
+<body>
+This package contains the integer partitions generator.
+
+<p> 
+In number theory, a partition of a positive integer n is a way of writing n
+as a sum of positive integers. Two sums that differ only in the order of
+their summands are considered to be the same partition; if order matters then
+the sum becomes a composition. A summand in a partition is also called a
+part.
+<p>
+<b>WARNING!</b> Be careful because number of all partitions can be very high even
+for not great given N.
+<p>
+The partitions of 5 are listed below:
+<ol>
+<li>1 + 1 + 1 + 1 + 1
+<li>2 + 1 + 1 + 1
+<li>2 + 2 + 1
+<li>3 + 1 + 1
+<li>3 + 2
+<li>4 + 1
+<li>5
+</ol>
+<p>
+The number of partitions of n is given by the partition function p(n). In
+number theory, the partition function p(n) represents the number of possible
+partitions of a natural number n, which is to say the number of distinct (and
+order independent) ways of representing n as a sum of natural numbers.
+<p>
+Let's generate all possible partitions of 5:
+<p>
+<blockquote>
+
+<pre>
+// Create an instance of the partition generator to generate all
+// possible partitions of 5
+Generator&lt;Integer&gt; gen = Factory.createPartitionGenerator(5);
+
+// Print the partitions
+for (ICombinatoricsVector&lt;Integer&gt; p : gen) {
+	System.out.println(p);
+}
+</pre>
+
+</blockquote>
+<p>
+And the result of all 7 integer possible partitions
+<p>
+<blockquote>
+<pre>
+  CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
+  CombinatoricsVector=([2, 1, 1, 1], size=4)
+  CombinatoricsVector=([2, 2, 1], size=3)
+  CombinatoricsVector=([3, 1, 1], size=3)
+  CombinatoricsVector=([3, 2], size=2)
+  CombinatoricsVector=([4, 1], size=2)
+  CombinatoricsVector=([5], size=1)
+</pre>
+</blockquote>
+<p>
+
+</body>
+</html>

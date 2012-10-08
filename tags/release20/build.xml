@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="combinatoricslib" basedir="." default="build">
+
+	<property name="version" value="2.0" />
+	<property name="src" location="src" />
+	<property name="lib" location="lib" />
+	<property name="buildSrc" location="build/classes" />
+	<property name="buildTest" location="build/tests" />
+	<property name="dist" location="dist" />
+	<property name="test" location="tests" />
+
+	<property name="coverage.dir" location="${basedir}/coverage" />
+	<property name="instr.dir" location="${basedir}/instr" />
+
+	<property name="emma.dir" location="lib" />
+
+	<path id="emma.lib">
+		<pathelement path="${emma.dir}/emma.jar" />
+		<pathelement path="${emma.dir}/emma_ant.jar" />
+	</path>
+
+	<taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+
+	<target name="init" depends="clean">
+		<mkdir dir="${buildSrc}" />
+		<mkdir dir="${buildTest}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+
+	<target name="compile" depends="init" description="Compile sources">
+		<javac srcdir="${src}" destdir="${buildSrc}" />
+		<javac srcdir="${test}" destdir="${buildTest}">
+			<classpath>
+				<pathelement path="${lib}/junit-4.8.2.jar" />
+				<pathelement path="${buildSrc}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="build" depends="compile" description="Create jar-file">
+		<jar jarfile="${dist}/combinatoricslib-${version}.jar" basedir="${buildSrc}" manifest="META-INF/manifest.mf">
+			 <zipfileset dir="." 
+			                includes="META-INF/releasenotes.txt"
+			                fullpath="META-INF/releasenotes.txt"/>
+			<zipfileset dir="." 
+						    includes="META-INF/LICENSE.txt"
+						    fullpath="META-INF/LICENSE.txt"/>
+		</jar>
+	</target>
+
+
+	<target name="runtests" depends="compile" description="Run jUnit tests">
+		<junit fork="yes" haltonfailure="yes">
+			<classpath>
+				<pathelement path="${lib}/junit-4.8.2.jar" />
+				<pathelement location="${buildTest}" />
+				<pathelement location="${buildSrc}" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<batchtest todir=".">
+				<fileset dir="${buildTest}" includes="**/*Test.class" />
+			</batchtest>
+		</junit>
+	</target>
+
+
+	<target name="packsrc" description="Make sources zip-archive">
+		<zip destfile="combinatoricslib-${version}_src.zip">
+			<fileset dir="." includes="**/*.java, **/*.MF,
+                 **/*.xml, **/*.jar, **/*.html, **/*.css, **/*.gif, **/*.png, **/*.txt"  >
+				<exclude name="bin/**"/>
+				<exclude name="build/**"/>
+				<exclude name="doc/**"/>
+				<exclude name="dist/**"/>
+				<exclude name="instr/**"/>
+				<exclude name="coverage/**"/>
+			</fileset>
+		</zip>
+	</target>
+
+
+
+	<target name="clean">
+		<delete dir="${buildSrc}" />
+		<delete dir="${buildTest}" />
+		<delete dir="${dist}" />
+		<delete dir="${build}" />
+		<delete dir="${instr.dir}" />
+		<delete dir="${coverage.dir}" />
+		<delete file="combinatoricslib-${version}_src.zip" />
+	</target>
+
+
+	<!-- EMMA Section -->
+
+
+	<path id="build.classpath">
+		<pathelement path="${buildSrc}" />
+		<pathelement path="${buildTest}" />
+	</path>
+
+	<path id="run.classpath">
+		<path refid="build.classpath" />
+		<pathelement path="${lib}/junit-4.8.2.jar" />
+		<pathelement path="${lib}/emma.jar" />
+		<pathelement path="${lib}/emma_ant.jar" />
+	</path>
+
+	<target name="emmainit">
+		<mkdir dir="${buildSrc}" />
+		<mkdir dir="${buildTest}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+
+	<target name="emmacompile" depends="emmainit" description="Compile sources">
+		<javac srcdir="${src}" destdir="${buildSrc}" debug="on"/>
+		<javac srcdir="${test}" destdir="${buildTest}" debug="on">
+			<classpath>
+				<pathelement path="${lib}/junit-4.8.2.jar" />
+				<pathelement path="${buildSrc}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="emma" description="turns on EMMA instrumentation/reporting">
+		<property name="emma.enabled" value="true" />
+		<property name="out.instr.dir" value="${instr.dir}" />
+		<mkdir dir="${out.instr.dir}" />
+		<mkdir dir="${coverage.dir}" />
+	</target>
+
+	<target name="runemma" depends="clean, emma, emmacompile" description="runs the emma coverage">
+		<emma enabled="${emma.enabled}">
+			<instr instrpathref="run.classpath" destdir="${out.instr.dir}" metadatafile="${coverage.dir}/metadata.emma" merge="true">
+				<filter includes="org.paukov.*" excludes="*Test*" />
+			</instr>
+		</emma>
+
+		<junit fork="yes" haltonfailure="yes">
+			<classpath>
+				<pathelement location="${out.instr.dir}" />
+				<path refid="run.classpath" />
+				<path refid="emma.lib" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<batchtest todir=".">
+				<fileset dir="${buildTest}" includes="**/*Test.class" />
+			</batchtest>
+			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma" />
+			<jvmarg value="-Demma.coverage.out.merge=true" />
+		</junit>
+
+		<emma enabled="${emma.enabled}">
+			<report sourcepath="${src}">
+				<fileset dir="${coverage.dir}">
+					<include name="*.emma" />
+				</fileset>
+
+				<txt outfile="${coverage.dir}/coverage.txt" />
+				<html outfile="${coverage.dir}/coverage.html" />
+			</report>
+		</emma>
+	</target>
+
+
+</project>

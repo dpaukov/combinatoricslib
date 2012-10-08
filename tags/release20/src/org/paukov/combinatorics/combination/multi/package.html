@@ -1,0 +1,56 @@
+<html>
+<head>
+</head>
+<body>
+This package contains the multicombinations generator (combinations with repetitions).
+
+
+<h3> Multi-combinations</h3>
+
+A k-multicombination or k-combination with repetition of a finite set S is
+given by a sequence of k not necessarily distinct elements of S, where order
+is not taken into account.
+<p>
+As an example. Suppose there are 2 types of fruits (apple and orange) at a
+grocery store, and you want to buy 3 pieces of fruit. You could select
+<ul>
+<li>(apple, apple, apple)
+<li>(apple, apple, orange)
+<li>(apple, orange, orange)
+<li>(orange, orange, orange)
+</ul>
+<p>
+Generate 3-combinations with repetitions of the set (apple, orange).
+<p>
+<p>
+<blockquote>
+<pre>
+// Create the initial vector of (apple, orange)
+ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+		&quot;apple&quot;, &quot;orange&quot; });
+
+// Create a multi-combination generator to generate 3-combinations of
+// the initial vector
+Generator&lt;String&gt; gen = Factory.createMultiCombinationGenerator(initialVector,3);
+ 
+// Print all possible combinations
+for (ICombinatoricsVector&lt;String&gt; combination : gen) {
+	System.out.println(combination);
+}
+</pre>
+</blockquote>
+<p>
+And the result of 4 multi-combinations
+<p>
+<blockquote>
+<pre>
+   CombinatoricsVector=([apple, apple, apple], size=3)
+   CombinatoricsVector=([apple, apple, orange], size=3)
+   CombinatoricsVector=([apple, orange, orange], size=3)
+   CombinatoricsVector=([orange, orange, orange], size=3)
+</pre>
+</blockquote>
+<p>
+
+</body>
+</html>
