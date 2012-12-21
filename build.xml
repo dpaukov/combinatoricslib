@@ -2,12 +2,12 @@
 <project name="combinatoricslib" basedir="." default="build">
 
 	<property name="version" value="2.1" />
-	<property name="src" location="src" />
+	<property name="src" location="src/main/java" />
 	<property name="lib" location="lib" />
 	<property name="buildSrc" location="build/classes" />
 	<property name="buildTest" location="build/tests" />
 	<property name="dist" location="dist" />
-	<property name="test" location="tests" />
+	<property name="test" location="src/test/java" />
 
 	<property name="coverage.dir" location="${basedir}/coverage" />
 	<property name="instr.dir" location="${basedir}/instr" />

@@ -2,6 +2,7 @@
  * Combinatorics Library
  * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
+package org.paukov.examples;
 import java.util.List;
 
 import org.paukov.combinatorics.Factory;
