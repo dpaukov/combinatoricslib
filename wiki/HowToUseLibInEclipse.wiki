@@ -1,5 +1,5 @@
 #summary This document describes how to use the combinatoricslib in Eclipse Projects.
-#labels combinatoricslib,eclipse
+#labels Featured,Phase-Deploy,Eclipse
 
 = How to use combinatoricslib in Eclipse Projects =
 
