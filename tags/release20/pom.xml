@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<name>combinatoricsLib</name>
+	<url>http://code.google.com/p/combinatoricslib/</url>
+	
+	<groupId>com.googlecode.combinatoricslib</groupId>
+	<artifactId>combinatoricsLib</artifactId>
+	<version>2.0</version>
+	<packaging>jar</packaging>
+	
+	<licenses>
+		<license>
+			<name>LGPL v3.0</name>
+			<distribution>repo</distribution>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+		</license>
+	</licenses>
+	
+	<scm>
+		<url>http://combinatoricslib.googlecode.com/svn/tags/release20</url>
+		<connection>scm:svn:http://combinatoricslib.googlecode.com/svn/tags/release20/</connection>
+		<developerConnection>scm:svn:https://combinatoricslib.googlecode.com/svn/tags/release20/</developerConnection>
+	</scm>
+	
+	<issueManagement>
+		<system>code.google.com</system>
+		<url>http://code.google.com/p/combinatoricslib/issues/list</url>
+	</issueManagement>
+	
+	<developers>
+		<developer>
+			<id>d.paukov</id>
+			<name>Dmytro Paukov</name>
+			<email>d.paukov@gmail.com</email>
+		</developer>
+	</developers>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.5</version>
+			<scope>test</scope>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
+	
+</project>
