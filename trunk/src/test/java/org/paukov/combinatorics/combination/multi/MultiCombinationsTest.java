@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
+import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
 /**
  * @author Dmytro Paukov
@@ -71,6 +72,70 @@ public class MultiCombinationsTest {
 				.toString());
 	}
 
+	@Test
+	public void multiCombinationVectorsTest() {
+	
+		ICombinatoricsVector<String> vectorA = Factory
+				.createVector(new String[] { "A1", "A2", "A3" });
+		
+		ICombinatoricsVector<String> vectorB = Factory
+				.createVector(new String[] { "B1", "B2", "B3" });
+		
+		ICombinatoricsVector<String> vectorC = Factory
+				.createVector(new String[] { "C1", "C2", "C3" });
+		
+		// create combinatorics vector
+		ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = Factory.createVector();
+		initialVector.addValue(vectorA);
+		initialVector.addValue(vectorB);
+		initialVector.addValue(vectorC);
+
+		// create multi-combination generator to generate 3-combination
+		Generator<ICombinatoricsVector<String>> gen = Factory.createMultiCombinationGenerator(
+				initialVector, 3);
+
+		// create iterator
+		Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = gen.iterator();
+
+		// print the number of combinations
+		assertEquals(10, gen.getNumberOfGeneratedObjects());
+
+		// go through the iterator
+		while (itr.hasNext()) {
+			ICombinatoricsVector<ICombinatoricsVector<String>> combination = itr.next();
+			
+			String str = ComplexCombinationGenerator
+					.<String> convert2String(combination);
+			System.out.println(str + " = " + itr);
+		}
+
+		List<ICombinatoricsVector<ICombinatoricsVector<String>>> list = gen.generateAllObjects();
+
+		assertEquals(10, list.size());
+
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([A1, A2, A3], size=3)], size=3)", list.get(0)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([B1, B2, B3], size=3)], size=3)", list.get(1)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=3)", list.get(2)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([B1, B2, B3], size=3)], size=3)", list.get(3)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=3)", list.get(4)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([C1, C2, C3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=3)", list.get(5)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([B1, B2, B3], size=3)], size=3)", list.get(6)
+				.toString());
+
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=3)", list.get(7)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([C1, C2, C3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=3)", list.get(8)
+				.toString());
+		assertEquals("CombinatoricsVector=([CombinatoricsVector=([C1, C2, C3], size=3), CombinatoricsVector=([C1, C2, C3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=3)", list.get(9)
+				.toString());
+	}
+	
 	@Test
 	public void multiCombinationOneTest() {
 
