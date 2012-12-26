@@ -1,5 +1,5 @@
 #summary Maven POM configuration for combinatoricslib.
-#labels Phase-Deploy,Maven
+#labels Phase-Deploy,Maven,Featured
 
 = Introduction =
 
