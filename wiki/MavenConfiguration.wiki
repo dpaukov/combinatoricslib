@@ -3,7 +3,7 @@
 
 = Introduction =
 
-combinatoricslib is available through maven as well. 
+combinatoricslib is available through The Maven Central Repository. 
 
 = Details =
 
