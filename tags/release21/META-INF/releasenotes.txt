@@ -2,6 +2,11 @@
              CombinatoricsLib - release notes
                    by Dmytro Paukov
 
+CombinatoricsLib 2.1 (June 2014)
+- Fixed an issue with the Maven Central Repository (Issue 8) and
+  incorrect name of the <artifactId>combinatoricsLib</artifactId>
+
+
 -----------------------------------------------------------------
 CombinatoricsLib 2.0 (October 2012)
 - A new general interface ICombinatoricsVector<T> has been introduced. 
