@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.googlecode.combinatoricslib</groupId>
+  <artifactId>combinatoricslib</artifactId>
+  <version>2.1</version>
+  <name>CombinatoricsLib</name>
+  <description>Very simple java library to generate permutations, combinations and other combinatorial sequences</description>
+  <licenses>
+		<license>
+			<name>LGPL v3.0</name>
+			<distribution>repo</distribution>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+		</license>
+	</licenses>
+	
+	<issueManagement>
+		<system>code.google.com</system>
+		<url>http://code.gooogle.com/p/combinatoricslib/issues/list</url>
+	</issueManagement>
+	
+	<developers>
+		<developer>
+			<id>d.paukov</id>
+			<name>Dmytro Paukov</name>
+			<email>d.paukov@gmail.com</email>
+		</developer>
+	</developers>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <url>http://code.google.com/p/combinatoricslib/</url>
+  <inceptionYear>2012</inceptionYear>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.5</version>
+  		<scope>test</scope>
+  	</dependency>
+  </dependencies>
+</project>

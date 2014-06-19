@@ -1,0 +1,53 @@
+<html>
+<head>
+</head>
+<body>
+This package contains the simple combinations generator.
+
+<h3> Simple combinations</h3>
+<p>
+A simple k-combination of a finite set S is a subset of k distinct elements
+of S. Specifying a subset does not arrange them in a particular order. As an
+example, a poker hand can be described as a 5-combination of cards from a
+52-card deck: the 5 cards of the hand are all distinct, and the order of the
+cards in the hand does not matter.
+<p>
+For example, let's generate 3-combination of the set (red, black, white, green, blue).
+<p>
+<blockquote>
+<pre>
+// Create the initial vector
+ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+		&quot;red&quot;, &quot;black&quot;, &quot;white&quot;, &quot;green&quot;, &quot;blue&quot; });
+
+// Create a simple combination generator to generate 3-combinations of the
+// initial vector
+Generator&lt;String&gt; gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
+
+// Print all possible combinations
+for (ICombinatoricsVector&lt;String&gt; combination : gen) {
+	System.out.println(combination);
+}
+</pre>
+</blockquote>
+<p>
+And the result of 10 combinations
+<p>
+<blockquote>
+<pre>
+   CombinatoricsVector=([red, black, white], size=3)
+   CombinatoricsVector=([red, black, green], size=3)
+   CombinatoricsVector=([red, black, blue], size=3)
+   CombinatoricsVector=([red, white, green], size=3)
+   CombinatoricsVector=([red, white, blue], size=3)
+   CombinatoricsVector=([red, green, blue], size=3)
+   CombinatoricsVector=([black, white, green], size=3)
+   CombinatoricsVector=([black, white, blue], size=3)
+   CombinatoricsVector=([black, green, blue], size=3)
+   CombinatoricsVector=([white, green, blue], size=3)
+</pre>
+</blockquote>
+<p>
+
+</body>
+</html>
