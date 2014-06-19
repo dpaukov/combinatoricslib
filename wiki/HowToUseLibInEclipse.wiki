@@ -12,7 +12,7 @@
  * Download the latest version of the combinatoricslib [https://googledrive.com/host/0BxImlmdcF-rYYkZjY1hMTWR0Ujg here]. Put the downloaded jar-file into the created folder "lib" and refresh the project by pressing the key *F5*
  http://combinatoricslib.googlecode.com/svn/trunk/img/eclipse3.png
  
- * Open the properties of the project and select the tab “Libraries”. Click the button “Add JARs…” and select the file *combinatoricslib-2.0.jar* to be added to the build path.
+ * Open the properties of the project and select the tab “Libraries”. Click the button “Add JARs…” and select the file *combinatoricslib-2.1.jar* to be added to the build path.
  http://combinatoricslib.googlecode.com/svn/trunk/img/eclipse4.png
 
  * Press the button *OK* and refresh the project
