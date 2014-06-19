@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="combinatoricslib" basedir="." default="build">
 
-	<property name="version" value="2.1" />
+	<property name="version" value="2.2" />
 	<property name="src" location="src/main/java" />
 	<property name="lib" location="lib" />
 	<property name="buildSrc" location="build/classes" />

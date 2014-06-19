@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode.combinatoricslib</groupId>
   <artifactId>combinatoricslib</artifactId>
-  <version>2.1</version>
+  <version>2.2</version>
   <name>CombinatoricsLib</name>
   <description>Very simple java library to generate permutations, combinations and other combinatorial sequences</description>
   <licenses>
