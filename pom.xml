@@ -70,8 +70,69 @@
                     <show>public</show>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <instrumentation>
+                        <ignoreTrivial>true</ignoreTrivial>
+                        <ignores>
+                            <ignore>org.paukov.examples.*</ignore>
+                        </ignores>
+                        <excludes>
+                            <exclude>org/paukov/examples/*.class</exclude>
+                        </excludes>
+                    </instrumentation>
+                    <check/>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <!-- Normally, we take off the dependency report, saves time. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <instrumentation>
+                        <ignoreTrivial>true</ignoreTrivial>
+                        <ignores>
+                            <ignore>org.paukov.examples.*</ignore>
+                        </ignores>
+                        <excludes>
+                            <exclude>org/paukov/examples/*.class</exclude>
+                        </excludes>
+                    </instrumentation>
+                    <check/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <url>http://code.google.com/p/combinatoricslib/</url>
     <inceptionYear>2014</inceptionYear>
