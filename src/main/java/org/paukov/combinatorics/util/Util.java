@@ -43,17 +43,30 @@ public class Util {
 		return result;
 	}
 
+    /**
+     * Calculates factorial of the given integer value <code>x</code>
+     *
+     * @param x
+     *            Integer value
+     */
+    public static BigDecimal bigFactorial(long x) {
+        BigDecimal result = BigDecimal.valueOf(1);
+        for (long i = 2; i <= x; i++) {
+            result=result.multiply(BigDecimal.valueOf(i));
+        }
+        return result;
+    }
+
 	/**
 	 * Calculates 2 in power of integer value <code>x</code>
 	 * 
 	 * @param x
 	 */
 	public static long pow2(long x) {
-		long result = 1;
-		for (long i = 1; i <= x; i++) {
-			result *= 2;
-		}
-		return result;
+        if (x<0){
+            return 1;
+        }
+		return 1<<x;
 	}
 
 	/**
@@ -194,7 +207,6 @@ public class Util {
 	 * Calculates the determinant of the matrix a
 	 */
 	public static BigDecimal detCrout(BigDecimal a[][], int n) {
-		try {
 			for (int i = 0; i < n; i++) {
 				boolean nonzero = false;
 				for (int j = 0; j < n; j++)
@@ -269,9 +281,5 @@ public class Util {
 				result = result.multiply(a[i][i]);
 
 			return result;
-
-		} catch (Exception e) {
-			return BigDecimal.ZERO;
-		}
 	}
 }
