@@ -1,5 +1,5 @@
-combinatoricslib
-================
+combinatoricslib 2.2
+====================
 
 Very simple java library to generate permutations, combinations and other combinatorial sequences
 
@@ -8,7 +8,7 @@ A permutation is an ordering of a set in the context of all possible orderings. 
 
 This is an example of the permutations of 3 string items (apple, orange, cherry):
 
-```
+```java
    // Create the initial vector of 3 elements (apple, orange, cherry)
    ICombinatoricsVector<String> originalVector = Factory.createVector(new String[] { "apple", "orange", "cherry" });
 
@@ -30,7 +30,7 @@ The result of 6 permutations
    CombinatoricsVector=([orange, apple, cherry], size=3)
 ```
 The generator can produce the permutations even if the initial vector has duplicates. For example, generate all permutations of (1,1,2,2):
-```
+```java
    // Create the initial vector
    ICombinatoricsVector<Integer> initialVector = Factory.createVector(new Integer[] { 1, 1, 2, 2 });
 
@@ -85,7 +85,7 @@ And the result of 8 permutations
 A simple k-combination of a finite set S is a subset of k distinct elements of S. Specifying a subset does not arrange them in a particular order. As an example, a poker hand can be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct, and the order of the cards in the hand does not matter.
 
 Example. Generate 3-combination of the set (red, black, white, green, blue).
-```
+```java
    // Create the initial vector
    ICombinatoricsVector<String> initialVector = Factory.createVector(
       new String[] { "red", "black", "white", "green", "blue" } );
@@ -122,7 +122,7 @@ As an example. Suppose there are 2 types of fruits (apple and orange) at a groce
 - (orange, orange, orange)
 
 Example. Generate 3-combinations with repetitions of the set (apple, orange).
-```
+```java
    // Create the initial vector of (apple, orange)
    ICombinatoricsVector<String> initialVector = Factory.createVector(
       new String[] { "apple", "orange" } );
@@ -165,7 +165,7 @@ All subsets of (1, 2, 3) are:
 
 And code which generates all subsets of (one, two, three)
 
-```
+```java
    // Create an initial vector/set
    ICombinatoricsVector<String> initialSet = Factory.createVector(new String[] { "one", "two", "three" });
 
@@ -205,7 +205,7 @@ The partitions of 5 are listed below:
 The number of partitions of n is given by the partition function p(n). In number theory, the partition function p(n) represents the number of possible partitions of a natural number n, which is to say the number of distinct (and order independent) ways of representing n as a sum of natural numbers.
 
 Let's generate all possible partitions of 5:
-```
+```java
    // Create an instance of the partition generator to generate all
    // possible partitions of 5
    Generator<Integer> gen = Factory.createPartitionGenerator(5);
@@ -243,7 +243,7 @@ For example, if a list is (A, B, B, C), then the non-overlapping sublists of len
 - ( (C), (A, B, B) )
 
 To do that you should use an instance of the complex combination generator
-```
+```java
    // create a vector (A, B, B, C)
    ICombinatoricsVector<String> vector = Factory.createVector(new String[] { "A", "B", "B", "C" });
 
@@ -301,7 +301,7 @@ Compare this with the seven partitions of 5 (see Integer Partitions above):
 - 1+1+1+1+1.
 
 Example. Generate all possible integer compositions of 5.
-```
+```java
    // Create an instance of the integer composition generator to generate all possible compositions of 5
    Generator<Integer> gen = Factory.createCompositionGenerator(5);
 
@@ -328,4 +328,18 @@ And the result
    CombinatoricsVector=([1, 2, 1, 1], size=4)
    CombinatoricsVector=([2, 1, 1, 1], size=4)
    CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
+```
+
+### The latest release
+
+The latest release of the library is available through The Maven Central Repository [here](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22)
+Include the following section into your `pom.xml` file.
+
+```xml
+<dependency>
+  <groupId>com.googlecode.combinatoricslib</groupId>
+  <artifactId>combinatoricslib</artifactId>
+  <version>2.1</version>
+  <scope>compile</scope>
+</dependency>
 ```
