@@ -4,7 +4,7 @@
 
 
 CombinatoricsLib 3.0 (2014)
--
+- Added a method for calculating factorials using BigDecimal (Issue 10)
 
 
 -----------------------------------------------------------------
