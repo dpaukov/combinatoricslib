@@ -68,6 +68,11 @@ public class Main {
          */
         filtered_combinations();
 
+        /**
+         * Complex examples
+         */
+        all_permutations_of_all_combination();
+
     }
 
     static void simple_combinations() {
@@ -323,6 +328,34 @@ public class Main {
         for (ICombinatoricsVector<String> perm : result)
             System.out.println(perm);
 
+    }
+
+    /**
+     * This example recreates the issue 14.
+     * https://code.google.com/p/combinatoricslib/issues/detail?id=14
+     *
+     * It generates all permutations of a given length where repetition is NOT allowed,
+     * from a larger set of elements.
+     */
+    static void all_permutations_of_all_combination() {
+
+        System.out.println("===== All permutations of all combination: =====");
+
+        // Create the initial vector of 4 elements (apple, orange, cherry, raspberry)
+        ICombinatoricsVector<String> originalVector = Factory.createVector(
+                new String[] { "apple", "orange", "cherry", "raspberry" }
+        );
+
+        // Create the combination generator by calling the appropriate method in the Factory class
+        Generator<String> combinations = Factory.createSimpleCombinationGenerator(originalVector, 3);
+
+        // Print all permutations for all simple 3-combinations
+        for (ICombinatoricsVector<String> comb : combinations){
+            Generator<String> permutations = Factory.createPermutationGenerator(comb);
+            for(ICombinatoricsVector<String> perm : permutations){
+                System.out.println(perm);
+            }
+        }
     }
 
 }
