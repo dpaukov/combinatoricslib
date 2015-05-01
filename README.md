@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/dpaukov/combinatoricslib.png)](http://travis-ci.org/dpaukov/combinatoricslib)
+
 combinatoricslib 2.2
 ====================
 
