@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/dpaukov/combinatoricslib.png)](http://travis-ci.org/dpaukov/combinatoricslib) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.googlecode.combinatoricslib/combinatoricslib/badge.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22)
+[![Build Status](https://secure.travis-ci.org/dpaukov/combinatoricslib.png)](http://travis-ci.org/dpaukov/combinatoricslib) [![Coverage Status](https://coveralls.io/repos/dpaukov/combinatoricslib/badge.svg?branch=master)](https://coveralls.io/r/dpaukov/combinatoricslib?branch=master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.googlecode.combinatoricslib/combinatoricslib/badge.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22)
 
 combinatoricslib 2.2
 ====================
