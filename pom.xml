@@ -75,6 +75,8 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
+                    <format>xml</format>
+                    <maxmem>256m</maxmem>
                     <aggregate>true</aggregate>
                     <instrumentation>
                         <ignoreTrivial>true</ignoreTrivial>
@@ -87,13 +89,6 @@
                     </instrumentation>
                     <check/>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
@@ -118,32 +113,11 @@
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <instrumentation>
-                        <ignoreTrivial>true</ignoreTrivial>
-                        <ignores>
-                            <ignore>org.paukov.examples.*</ignore>
-                        </ignores>
-                        <excludes>
-                            <exclude>org/paukov/examples/*.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                    <check/>
-                </configuration>
-            </plugin>
         </plugins>
     </reporting>
 
     <url>http://code.google.com/p/combinatoricslib/</url>
-    <inceptionYear>2014</inceptionYear>
+    <inceptionYear>2015</inceptionYear>
 
     <dependencies>
         <dependency>
