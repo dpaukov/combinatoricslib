@@ -19,45 +19,42 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @see ICombinatoricsVector
  * @see CompositionGenerator
  */
-public class CompositionIterator implements
+class CompositionIterator implements
 		Iterator<ICombinatoricsVector<Integer>> {
 
-	/**
-	 * Generator
-	 */
-	protected final CompositionGenerator _generator;
+	final CompositionGenerator _generator;
 
 	/**
 	 * Current composition
 	 */
-	protected ICombinatoricsVector<Integer> _currentComposition = null;
+	ICombinatoricsVector<Integer> _currentComposition = null;
 
 	/**
 	 * Current index of the weak composition
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Subset generator
 	 */
-	protected final Generator<Integer> _subsetGenerator;
+	final Generator<Integer> _subsetGenerator;
 
 	/**
 	 * Subset iterator
 	 */
-	protected final Iterator<ICombinatoricsVector<Integer>> _subsetIterator;
+	final Iterator<ICombinatoricsVector<Integer>> _subsetIterator;
 
 	/**
 	 * Current subset
 	 */
-	protected ICombinatoricsVector<Integer> _currentSubset = null;
+	ICombinatoricsVector<Integer> _currentSubset = null;
 
 	/**
 	 * Constructor of the iterator
 	 * 
 	 * @param generator The Composition generator
 	 */
-	public CompositionIterator(CompositionGenerator generator) {
+	CompositionIterator(CompositionGenerator generator) {
 		super();
 		_generator = generator;
 
@@ -92,7 +89,7 @@ public class CompositionIterator implements
 	/**
 	 * Returns current composition
 	 */
-	protected ICombinatoricsVector<Integer> getCurrentItem() {
+	private ICombinatoricsVector<Integer> getCurrentItem() {
 
 		_currentComposition = Factory.<Integer> createVector();
 

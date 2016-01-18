@@ -22,35 +22,35 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of elements in the permutations
  */
-public class DuplicatedPermutationIterator<T> implements
+class DuplicatedPermutationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
 	 */
-	protected final Generator<T> _generator;
+	final Generator<T> _generator;
 
 	/**
 	 * Current permutation
 	 */
-	protected ICombinatoricsVector<T> _currentPermutation;
+	ICombinatoricsVector<T> _currentPermutation;
 
 	/**
 	 * Current index of current permutation
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Number of elements in the permutations
 	 */
-	protected final int _length;
+	final int _length;
 
 	/**
 	 * Internal data
 	 */
 	private int _data[] = null;
 	private boolean _firstIteration = true;
-	protected ICombinatoricsVector<T> _initialOrderedPermutation;
+	ICombinatoricsVector<T> _initialOrderedPermutation;
 
 	/**
 	 * Constructor
@@ -58,7 +58,7 @@ public class DuplicatedPermutationIterator<T> implements
 	 * @param generator
 	 *            Permutation generator
 	 */
-	public DuplicatedPermutationIterator(Generator<T> generator) {
+	DuplicatedPermutationIterator(Generator<T> generator) {
 		_generator = generator;
 		_length = generator.getOriginalVector().getSize();
 		_data = new int[_length];

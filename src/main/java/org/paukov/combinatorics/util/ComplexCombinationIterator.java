@@ -21,34 +21,34 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @version 2.0
  * @see ComplexCombinationGenerator
  */
-public class ComplexCombinationIterator<T>
+class ComplexCombinationIterator<T>
 		implements
 		Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> {
 
 	/**
 	 * Generator
 	 */
-	protected final ComplexCombinationGenerator<T> _generator;
+	final ComplexCombinationGenerator<T> _generator;
 
 	/**
 	 * Current combination
 	 */
-	protected ICombinatoricsVector<ICombinatoricsVector<T>> _currentComplexCombination = null;
+	ICombinatoricsVector<ICombinatoricsVector<T>> _currentComplexCombination = null;
 
 	/**
 	 * Current index of the combination
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * The set of the generated combinations
 	 */
-	protected Set<ICombinatoricsVector<ICombinatoricsVector<T>>> _resultSet = new LinkedHashSet<ICombinatoricsVector<ICombinatoricsVector<T>>>();
+	Set<ICombinatoricsVector<ICombinatoricsVector<T>>> _resultSet = new LinkedHashSet<ICombinatoricsVector<ICombinatoricsVector<T>>>();
 
 	/**
 	 * The iterator over the result combinations
 	 */
-	protected Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> _resultIterator = null;
+	Iterator<ICombinatoricsVector<ICombinatoricsVector<T>>> _resultIterator = null;
 
 	/**
 	 * Constructor

@@ -21,27 +21,27 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of the elements of the subsets
  */
-public class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
+class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
 	 */
-	protected final Generator<T> _generator;
+	final Generator<T> _generator;
 
 	/**
 	 * Current subset
 	 */
-	protected ICombinatoricsVector<T> _currentSubSet = null;
+	ICombinatoricsVector<T> _currentSubSet = null;
 
 	/**
 	 * Index of the current subset
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Size of the subset
 	 */
-	protected final int _length;
+	final int _length;
 
 	/**
 	 * internal bit vector, representing the subset
@@ -54,7 +54,7 @@ public class SubSetIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 	 * @param generator
 	 *            The subset generator
 	 */
-	public SubSetIterator(Generator<T> generator) {
+	SubSetIterator(Generator<T> generator) {
 		_generator = generator;
 		_length = generator.getOriginalVector().getSize();
 		_currentSubSet = Factory.<T>createVector();

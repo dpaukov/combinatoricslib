@@ -18,44 +18,44 @@ import org.paukov.combinatorics.IntegerVector;
  * @see IntegerCompositionGenerator
  * @version 2.0
  */
-public class IntegerCompositionIterator implements Iterator<IntegerVector> {
+class IntegerCompositionIterator implements Iterator<IntegerVector> {
 
 	/**
 	 * Generator
 	 */
-	protected final IntegerCompositionGenerator _generator;
+	final IntegerCompositionGenerator _generator;
 
 	/**
 	 * Current composition
 	 */
-	protected IntegerVector _currentComposition = null;
+	IntegerVector _currentComposition = null;
 
 	/**
 	 * Current index of the weak composition
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Subset generator
 	 */
-	protected final IntegerGenerator _subsetGenerator;
+	final IntegerGenerator _subsetGenerator;
 
 	/**
 	 * Subset iterator
 	 */
-	protected final Iterator<IntegerVector> _subsetIterator;
+	final Iterator<IntegerVector> _subsetIterator;
 
 	/**
 	 * Current subset
 	 */
-	protected IntegerVector _currentSubset = null;
+	IntegerVector _currentSubset = null;
 
 	/**
 	 * Constructor of the iterator
 	 * 
 	 * @param generator	The composition generator
 	 */
-	public IntegerCompositionIterator(IntegerCompositionGenerator generator) {
+	IntegerCompositionIterator(IntegerCompositionGenerator generator) {
 		super();
 		_generator = generator;
 
@@ -96,7 +96,7 @@ public class IntegerCompositionIterator implements Iterator<IntegerVector> {
 	/**
 	 * Returns current composition
 	 */
-	protected IntegerVector getCurrentItem() {
+	private IntegerVector getCurrentItem() {
 
 		int[] vector = _currentSubset.getVector();
 		_currentComposition = IntegerFactory

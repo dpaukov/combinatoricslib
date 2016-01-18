@@ -19,33 +19,33 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  *            Type of the elements in the combinations
  * @version 2.0
  */
-public class MultiCombinationIterator<T> implements
+class MultiCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
 	 */
-	protected final MultiCombinationGenerator<T> _generator;
+	final MultiCombinationGenerator<T> _generator;
 
 	/**
 	 * Current combination
 	 */
-	protected ICombinatoricsVector<T> _currentCombination = null;
+	ICombinatoricsVector<T> _currentCombination = null;
 
 	/**
 	 * Index of the current combination
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Size of the original vector/set
 	 */
-	protected final int _lengthN;
+	final int _lengthN;
 
 	/**
 	 * Size of the combinations (number of elements) to generate
 	 */
-	protected final int _lengthK;
+	final int _lengthK;
 
 	/**
 	 * A helper array
@@ -63,7 +63,7 @@ public class MultiCombinationIterator<T> implements
 	 * @param generator
 	 *            Multi-combinations generator
 	 */
-	public MultiCombinationIterator(MultiCombinationGenerator<T> generator) {
+	MultiCombinationIterator(MultiCombinationGenerator<T> generator) {
 		_generator = generator;
 		_lengthN = generator.getOriginalVector().getSize();
 		_currentCombination = Factory.createVector();
