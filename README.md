@@ -5,6 +5,17 @@ combinatoricslib 2.2
 
 Very simple java library to generate permutations, combinations and other combinatorial sequences
 
+1. [Simple permutations](#1-simple-permutations)
+2. [Permutations with repetitions](#2-permutations-with-repetitions)
+3. [Simple combinations](#3-simple-combinations)
+4. [Combinations with repetitions](#4-combinations-with-repetitions)
+5. [Subsets](#5-subsets)
+6. [Integer Partitions](#6-integer-partitions)
+7. [List Partitions](#7-list-partitions)
+8. [Integer Compositions](#8-integer-compositions)
+9. [The latest release](#the-latest-release)
+
+
 ###1. Simple permutations
 A permutation is an ordering of a set in the context of all possible orderings. For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
