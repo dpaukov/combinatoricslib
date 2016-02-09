@@ -351,4 +351,55 @@ public class PermutationsTest {
 		assertEquals("CombinatoricsVector=([3, 2, 2, 1], size=4)", list.get(11)
 				.toString());
 	}
+
+    /**
+     * This test generates anagrams for aabc:
+     * aabc, aacb, abac, abca, acab, acba, baac, baca, bcaa, caab, caba, cbaa
+     */
+    @Test
+    public void test_anagram_generation() {
+
+        ICombinatoricsVector<String> initialVector = Factory
+                .createVector(new String[] { "a", "a", "b", "c" });
+        Generator<String> generator = Factory
+                .createPermutationGenerator(initialVector);
+
+        Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
+
+        while (iterator.hasNext()) {
+            iterator.next();
+            System.out.println(iterator);
+        }
+
+        List<ICombinatoricsVector<String>> list = generator
+                .generateAllObjects();
+
+        assertEquals(12, list.size());
+
+        assertEquals("CombinatoricsVector=([a, a, b, c], size=4)", list.get(0)
+                .toString());
+        assertEquals("CombinatoricsVector=([a, a, c, b], size=4)", list.get(1)
+                .toString());
+        assertEquals("CombinatoricsVector=([a, b, a, c], size=4)", list.get(2)
+                .toString());
+        assertEquals("CombinatoricsVector=([a, b, c, a], size=4)", list.get(3)
+                .toString());
+        assertEquals("CombinatoricsVector=([a, c, a, b], size=4)", list.get(4)
+                .toString());
+        assertEquals("CombinatoricsVector=([a, c, b, a], size=4)", list.get(5)
+                .toString());
+        assertEquals("CombinatoricsVector=([b, a, a, c], size=4)", list.get(6)
+                .toString());
+        assertEquals("CombinatoricsVector=([b, a, c, a], size=4)", list.get(7)
+                .toString());
+        assertEquals("CombinatoricsVector=([b, c, a, a], size=4)", list.get(8)
+                .toString());
+        assertEquals("CombinatoricsVector=([c, a, a, b], size=4)", list.get(9)
+                .toString());
+        assertEquals("CombinatoricsVector=([c, a, b, a], size=4)", list.get(10)
+                .toString());
+        assertEquals("CombinatoricsVector=([c, b, a, a], size=4)", list.get(11)
+                .toString());
+
+    }
 }
