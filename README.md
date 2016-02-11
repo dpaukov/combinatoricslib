@@ -15,6 +15,7 @@ Very simple java library to generate permutations, combinations and other combin
 8. [Integer Compositions](#8-integer-compositions)
 9. [The latest release](#the-latest-release)
 
+You can use the following table to select a generator:
 
 | Description                      | Is Order Important? | Is Repetition Allowed? | Method  |
 |----------------------------------|:-------------------:|:----------------------:|---------| 
