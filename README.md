@@ -16,6 +16,14 @@ Very simple java library to generate permutations, combinations and other combin
 9. [The latest release](#the-latest-release)
 
 
+| Description                      | Is Order Important? | Is Repetition Allowed? | Method  |
+|----------------------------------|:-------------------:|:----------------------:|---------| 
+| [Permutations with repetitions](#2-permutations-with-repetitions) | Yes | Yes | Factory.createPermutationWithRepetitionGenerator() |
+| [Simple permutations](#1-simple-permutations) | Yes | No | Factory.createPermutationGenerator() |
+| [Combinations with repetitions](#4-combinations-with-repetitions) | No | Yes | Factory.createMultiCombinationGenerator()|
+| [Simple combinations](#3-simple-combinations) | No | No | Factory.createSimpleCombinationGenerator() |
+
+
 ###1. Simple permutations
 A permutation is an ordering of a set in the context of all possible orderings. For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
