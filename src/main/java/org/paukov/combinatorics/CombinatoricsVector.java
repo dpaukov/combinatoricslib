@@ -98,9 +98,9 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 	 */
 	@Override
 	public void setValue(int index, T value) {
-		try {
+		if (index < _vector.size()) {
 			_vector.set(index, value);
-		} catch (IndexOutOfBoundsException ex) {
+		} else {
 			_vector.add(index, value);
 		}
 	}
