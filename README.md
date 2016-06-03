@@ -6,6 +6,7 @@ combinatoricslib 2.2
 ====================
 
 Very simple java library to generate permutations, combinations and other combinatorial sequences
+New version of the library for java 8 can be found [here](https://github.com/dpaukov/combinatoricslib3)
 
 1. [Simple permutations](#1-simple-permutations)
 2. [Permutations with repetitions](#2-permutations-with-repetitions)
