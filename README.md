@@ -28,7 +28,7 @@ You can use the following table to select a generator:
 | [Simple combinations](#3-simple-combinations) | No | No | Factory.createSimpleCombinationGenerator() |
 
 
-###1. Simple permutations
+### 1. Simple permutations
 A permutation is an ordering of a set in the context of all possible orderings. 
 For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
@@ -71,7 +71,7 @@ The result of all possible permutations
    CombinatoricsVector=([2, 2, 1, 1], size=4)
 ```
 
-###2. Permutations with repetitions
+### 2. Permutations with repetitions
 The permutation may have more elements than slots. For example, all possible permutation of '12' 
 in three slots are: 111, 211, 121, 221, 112, 212, 122, and 222.
 
@@ -96,7 +96,7 @@ And the result of 8 permutations
    CombinatoricsVector=([orange, orange, orange], size=3)
 ```
 
-###3. Simple combinations
+### 3. Simple combinations
 A simple k-combination of a finite set S is a subset of k distinct elements of S. 
 Specifying a subset does not arrange them in a particular order. As an example, a poker hand can 
 be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct, 
@@ -127,7 +127,7 @@ And the result of 10 combinations
    CombinatoricsVector=([white, green, blue], size=3)
 ```
 
-###4. Combinations with repetitions
+### 4. Combinations with repetitions
 A k-multicombination or k-combination with repetition of a finite set S is given by a sequence of 
 k not necessarily distinct elements of S, where order is not taken into account.
 
@@ -156,7 +156,7 @@ And the result of 4 multi-combinations
    CombinatoricsVector=([orange, orange, orange], size=3)
 ```
 
-###5. Subsets
+### 5. Subsets
 A set A is a subset of a set B if A is "contained" inside B. A and B may coincide. 
 The relationship of one set being a subset of another is called inclusion or sometimes containment.
 
@@ -197,7 +197,7 @@ And the result of all possible 8 subsets
    CombinatoricsVector=([one, two, three], size=3)
 ```
 
-###6. Integer Partitions
+### 6. Integer Partitions
 In number theory, a partition of a positive integer n is a way of writing n as a sum of positive integers. 
 Two sums that differ only in the order of their summands are considered to be the same partition; 
 if order matters then the sum becomes a composition. A summand in a partition is also called a part.
@@ -235,7 +235,7 @@ And the result of all 7 integer possible partitions
    CombinatoricsVector=([5], size=1)
 ```
 
-###7. List Partitions
+### 7. List Partitions
 It is possible to generate non-overlapping sublists of length n of a given list
 
 For example, if a list is (A, B, B, C), then the non-overlapping sublists of length 2 will be:
@@ -277,7 +277,7 @@ And the result
    ([A, B, B],[C]) - CombinatoricsVector=([CombinatoricsVector=([A, B, B], size=3), CombinatoricsVector=([C], size=1)], size=2)
    ([C],[A, B, B]) - CombinatoricsVector=([CombinatoricsVector=([C], size=1), CombinatoricsVector=([A, B, B], size=3)], size=2)
 ```
-###8. Integer Compositions
+### 8. Integer Compositions
 A composition of an integer n is a way of writing n as the sum of a sequence of (strictly) positive integers. Two sequences that differ in the order of their terms define different compositions of their sum, while they are considered to define the same partition of that number (see. Integer Partitions above).
 
 The 16 compositions of 5 are:
