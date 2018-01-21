@@ -125,7 +125,7 @@ public class ComplexCombinationGenerator<T> extends
 			int combinationsLength, boolean isOrderImportant,
 			boolean excludeEmptySet) {
 
-		if (combinationsLength > originalVector.getSize())
+		if (excludeEmptySet && combinationsLength > originalVector.getSize())
 			throw new RuntimeException(
 					"Unable to generate complex combinations, the requested combination length is more then the size of the original vector, length: "
 							+ combinationsLength

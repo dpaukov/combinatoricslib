@@ -172,7 +172,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
 		int count = 0;
 		for (T element : _vector) {
-			if (element.equals(value))
+			if (element == value || (element != null && element.equals(value)))
 				count++;
 		}
 		return count;
