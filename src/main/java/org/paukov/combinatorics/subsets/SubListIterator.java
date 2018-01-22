@@ -22,37 +22,37 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of the elements in the lists
  */
-public class SubListIterator<T> implements Iterator<ICombinatoricsVector<T>> {
+class SubListIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Subset generator
 	 */
-	protected final Generator<T> _generator;
+	final Generator<T> _generator;
 
 	/**
 	 * Current sublist
 	 */
-	protected ICombinatoricsVector<T> _currentSubList = null;
+	ICombinatoricsVector<T> _currentSubList = null;
 
 	/**
 	 * Index of the current sub-list
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Sub set iterator
 	 */
-	protected final SubSetIterator<T> _subSetsIterator;
+	final SubSetIterator<T> _subSetsIterator;
 
 	/**
 	 * Set of the result vectors (with duplicates)
 	 */
-	protected final Set<ICombinatoricsVector<T>> _result = new LinkedHashSet<ICombinatoricsVector<T>>();
+	final Set<ICombinatoricsVector<T>> _result = new LinkedHashSet<ICombinatoricsVector<T>>();
 
 	/**
 	 * Iterator over the result vectors
 	 */
-	protected Iterator<ICombinatoricsVector<T>> _resultIterator = null;
+	Iterator<ICombinatoricsVector<T>> _resultIterator = null;
 
 	/**
 	 * Constructor
@@ -60,7 +60,7 @@ public class SubListIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 	 * @param generator
 	 *            The subset generator
 	 */
-	public SubListIterator(Generator<T> generator) {
+	SubListIterator(Generator<T> generator) {
 		_generator = generator;
 		_subSetsIterator = new SubSetIterator<T>(generator);
 		init();

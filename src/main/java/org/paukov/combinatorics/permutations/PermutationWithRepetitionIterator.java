@@ -22,33 +22,33 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of the elements in the permutations
  */
-public class PermutationWithRepetitionIterator<T extends Object> implements
+class PermutationWithRepetitionIterator<T extends Object> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
 	 */
-	protected final PermutationWithRepetitionGenerator<T> _generator;
+	final PermutationWithRepetitionGenerator<T> _generator;
 
 	/**
 	 * Current permutation
 	 */
-	protected ICombinatoricsVector<T> _currentPermutation = null;
+	ICombinatoricsVector<T> _currentPermutation = null;
 
 	/**
 	 * Index of the current permutation
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Number of elements in the core vector
 	 */
-	protected final int _n;
+	final int _n;
 
 	/**
 	 * Number of elements in the generated permutations
 	 */
-	protected final int _k;
+	final int _k;
 
 	/**
 	 * Internal data
@@ -61,7 +61,7 @@ public class PermutationWithRepetitionIterator<T extends Object> implements
 	 * @param generator
 	 *            Generator
 	 */
-	public PermutationWithRepetitionIterator(
+	PermutationWithRepetitionIterator(
 			PermutationWithRepetitionGenerator<T> generator) {
 		_generator = generator;
 		_n = generator.getOriginalVector().getSize();

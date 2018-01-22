@@ -20,37 +20,37 @@ import org.paukov.combinatorics.IntegerVector;
  * @see IntegerSubSetGenerator
  * 
  */
-public class IntegerSubListIterator implements Iterator<IntegerVector> {
+class IntegerSubListIterator implements Iterator<IntegerVector> {
 
 	/**
 	 * Subset generator
 	 */
-	protected final IntegerGenerator _generator;
+	final IntegerGenerator _generator;
 
 	/**
 	 * Current sublist
 	 */
-	protected IntegerVector _currentSubList = null;
+	IntegerVector _currentSubList = null;
 
 	/**
 	 * Index of the current sub-list
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Sub set iterator
 	 */
-	protected final IntegerSubSetIterator _subSetsIterator;
+	final IntegerSubSetIterator _subSetsIterator;
 
 	/**
 	 * Set of the result vectors (with duplicates)
 	 */
-	protected final Set<IntegerVector> _result = new LinkedHashSet<IntegerVector>();
+	final Set<IntegerVector> _result = new LinkedHashSet<IntegerVector>();
 
 	/**
 	 * Iterator over the result vectors
 	 */
-	protected Iterator<IntegerVector> _resultIterator = null;
+	Iterator<IntegerVector> _resultIterator = null;
 
 	/**
 	 * Constructor
@@ -58,7 +58,7 @@ public class IntegerSubListIterator implements Iterator<IntegerVector> {
 	 * @param generator
 	 *            The subset generator
 	 */
-	public IntegerSubListIterator(IntegerGenerator generator) {
+	IntegerSubListIterator(IntegerGenerator generator) {
 		_generator = generator;
 		_subSetsIterator = new IntegerSubSetIterator(generator);
 		init();

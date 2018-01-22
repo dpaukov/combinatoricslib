@@ -19,33 +19,33 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of the elements in the combinations
  */
-public class SimpleCombinationIterator<T> implements
+class SimpleCombinationIterator<T> implements
 		Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
 	 */
-	protected final SimpleCombinationGenerator<T> _generator;
+	final SimpleCombinationGenerator<T> _generator;
 
 	/**
 	 * Current simple combination
 	 */
-	protected ICombinatoricsVector<T> _currentSimpleCombination = null;
+	ICombinatoricsVector<T> _currentSimpleCombination = null;
 
 	/**
 	 * Index of the current combination
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Size of the original vector/set
 	 */
-	protected final int _lengthN;
+	final int _lengthN;
 
 	/**
 	 * Size of the generated combination.
 	 */
-	protected final int _lengthK;
+	final int _lengthK;
 
 	/**
 	 * Helper array
@@ -63,7 +63,7 @@ public class SimpleCombinationIterator<T> implements
 	 * @param generator
 	 *            Generator of the simple combinations
 	 */
-	public SimpleCombinationIterator(SimpleCombinationGenerator<T> generator) {
+	SimpleCombinationIterator(SimpleCombinationGenerator<T> generator) {
 		_generator = generator;
 		_lengthN = generator.getOriginalVector().getSize();
 		_lengthK = generator.getCombinationLength();

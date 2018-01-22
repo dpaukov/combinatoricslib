@@ -20,27 +20,27 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @param <T>
  *            Type of elements in the permutations
  */
-public class PermutationIterator<T> implements Iterator<ICombinatoricsVector<T>> {
+class PermutationIterator<T> implements Iterator<ICombinatoricsVector<T>> {
 
 	/**
 	 * Generator
 	 */
-	protected final Generator<T> _generator;
+	final Generator<T> _generator;
 
 	/**
 	 * Current permutation
 	 */
-	protected ICombinatoricsVector<T> _currentPermutation;
+	ICombinatoricsVector<T> _currentPermutation;
 
 	/**
 	 * Current index of current permutation
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Number of elements in the permutations
 	 */
-	protected final int _length;
+	final int _length;
 
 	/**
 	 * Internal data
@@ -60,7 +60,7 @@ public class PermutationIterator<T> implements Iterator<ICombinatoricsVector<T>>
 	 * @param generator
 	 *            Permutation generator
 	 */
-	public PermutationIterator(Generator<T> generator) {
+	PermutationIterator(Generator<T> generator) {
 		_generator = generator;
 		_length = generator.getOriginalVector().getSize();
 		_currentPermutation = Factory.createVector(generator

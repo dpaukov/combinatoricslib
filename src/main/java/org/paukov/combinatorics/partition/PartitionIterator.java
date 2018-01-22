@@ -19,23 +19,23 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * @see PartitionGenerator
  * @version 2.0
  */
-public class PartitionIterator implements
+class PartitionIterator implements
 		Iterator<ICombinatoricsVector<Integer>> {
 
 	/**
 	 * Generator
 	 */
-	protected final PartitionGenerator _generator;
+	final PartitionGenerator _generator;
 
 	/**
 	 * Current partition
 	 */
-	protected ICombinatoricsVector<Integer> _currentPartition = null;
+	ICombinatoricsVector<Integer> _currentPartition = null;
 
 	/**
 	 * Index of the current partition
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Helper vectors
@@ -54,7 +54,7 @@ public class PartitionIterator implements
 	 * @param generator
 	 *            Generator
 	 */
-	public PartitionIterator(PartitionGenerator generator) {
+	PartitionIterator(PartitionGenerator generator) {
 		_generator = generator;
 		_mVector = new int[generator._initialValue + 2];
 		_zVector = new int[generator._initialValue + 2];
@@ -140,11 +140,11 @@ public class PartitionIterator implements
 		_currentPartition = Factory.createVector(list);
 	}
 
-	private final int getInternalVectorValue(int index, int[] vector) {
+	private int getInternalVectorValue(int index, int[] vector) {
 		return vector[index + 1];
 	}
 
-	private final void setInternalVectorValue(int index, int[] vector, int value) {
+	private void setInternalVectorValue(int index, int[] vector, int value) {
 		vector[index + 1] = value;
 	}
 

@@ -19,27 +19,27 @@ import org.paukov.combinatorics.IntegerVector;
  * @see IntegerSubSetGenerator
  * 
  */
-public class IntegerSubSetIterator implements Iterator<IntegerVector> {
+class IntegerSubSetIterator implements Iterator<IntegerVector> {
 
 	/**
 	 * Subset generator
 	 */
-	protected final IntegerGenerator _generator;
+	final IntegerGenerator _generator;
 
 	/**
 	 * Current subset
 	 */
-	protected IntegerVector _currentSubSet = null;
+	IntegerVector _currentSubSet = null;
 
 	/**
 	 * Index of the current subset
 	 */
-	protected long _currentIndex = 0;
+	long _currentIndex = 0;
 
 	/**
 	 * Size of the subset
 	 */
-	protected final int _length;
+	final int _length;
 
 	/**
 	 * internal bit vector, representing the subset
@@ -52,7 +52,7 @@ public class IntegerSubSetIterator implements Iterator<IntegerVector> {
 	 * @param generator
 	 *            The subset generator
 	 */
-	public IntegerSubSetIterator(IntegerGenerator generator) {
+	IntegerSubSetIterator(IntegerGenerator generator) {
 		_generator = generator;
 		_length = generator.getOriginalVector().getSize();
 		_currentSubSet = IntegerFactory.createIntegerVector(0);
