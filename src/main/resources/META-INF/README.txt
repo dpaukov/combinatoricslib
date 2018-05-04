@@ -3,7 +3,7 @@
                    by Dmytro Paukov
 
 
-CombinatoricsLib 3.0 (2014)
+CombinatoricsLib 2.2 (May 2018)
 - Added a method for calculating factorials using BigDecimal (Issue 10)
 
 

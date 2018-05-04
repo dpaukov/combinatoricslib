@@ -24,28 +24,28 @@ public interface IGenerator<T> extends Iterable<T> {
 	 * @return The original vector which was passed into a constructor as an
 	 *         initializing parameter
 	 */
-	public abstract T getOriginalVector();
+	T getOriginalVector();
 
 	/**
 	 * Returns the number of the the generated objects/vectors
 	 * 
 	 * @return Number of the generated vectors
 	 */
-	public abstract long getNumberOfGeneratedObjects();
+	long getNumberOfGeneratedObjects();
 
 	/**
 	 * Creates an iterator for enumerating all generated objects/vectors
 	 * 
 	 * @return The iterator over the generated objects/vectors
 	 */
-	public abstract Iterator<T> iterator();
+	Iterator<T> iterator();
 
 	/**
 	 * Returns all generated vectors as a list
 	 * 
 	 * @return List of all generated objects/vectors
 	 */
-	public abstract List<T> generateAllObjects();
+	List<T> generateAllObjects();
 
 	/**
 	 * Returns the generated vectors filtered by a filter
@@ -55,7 +55,7 @@ public interface IGenerator<T> extends Iterable<T> {
 	 * @return The list of the filtered vectors
 	 * @see IFilter
 	 */
-	public List<T> generateFilteredObjects(IFilter<T> filter);
+	List<T> generateFilteredObjects(IFilter<T> filter);
 
 	/**
 	 * Returns vectors as a list for specified range of indexes (from the
@@ -63,6 +63,5 @@ public interface IGenerator<T> extends Iterable<T> {
 	 * 
 	 * @return List of the generated objects/vectors
 	 */
-	public List<T> generateObjectsRange(int startIndex, int stopIndex);
-
+	List<T> generateObjectsRange(int startIndex, int stopIndex);
 }
