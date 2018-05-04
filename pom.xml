@@ -14,9 +14,14 @@
         </license>
     </licenses>
 
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/dpaukov/combinatoricslib</url>
+    </ciManagement>
+
     <issueManagement>
-        <system>code.google.com</system>
-        <url>http://code.gooogle.com/p/combinatoricslib/issues/list</url>
+        <system>GitHub Issues</system>
+        <url>https://github.com/dpaukov/combinatoricslib</url>
     </issueManagement>
 
     <developers>
