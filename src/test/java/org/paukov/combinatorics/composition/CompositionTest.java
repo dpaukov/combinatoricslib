@@ -5,6 +5,7 @@
 package org.paukov.combinatorics.composition;
 
 import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.Factory.createCompositionGenerator;
 
 import java.util.Iterator;
 import java.util.List;
@@ -23,8 +24,7 @@ public class CompositionTest {
 	@Test
 	public void simpleFiveComposition() {
 
-		Generator<Integer> compositionGenerator = Factory
-				.createCompositionGenerator(5);
+		Generator<Integer> compositionGenerator = createCompositionGenerator(5);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.iterator();
 
@@ -81,8 +81,7 @@ public class CompositionTest {
 	@Test
 	public void simpleFiveCompositionRange() {
 
-		Generator<Integer> compositionGenerator = Factory
-				.createCompositionGenerator(5);
+		Generator<Integer> compositionGenerator = createCompositionGenerator(5);
 
 		System.out.println("Number of compositions is: "
 				+ compositionGenerator.getNumberOfGeneratedObjects());
@@ -104,8 +103,7 @@ public class CompositionTest {
 	@Test
 	public void simpleOneComposition() {
 
-		Generator<Integer> compositionGenerator = Factory
-				.createCompositionGenerator(1);
+		Generator<Integer> compositionGenerator = createCompositionGenerator(1);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.iterator();
 
@@ -131,8 +129,7 @@ public class CompositionTest {
 	@Test
 	public void simpleTwoComposition() {
 
-		Generator<Integer> compositionGenerator = Factory
-				.createCompositionGenerator(2);
+		Generator<Integer> compositionGenerator = createCompositionGenerator(2);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.iterator();
 
@@ -160,8 +157,7 @@ public class CompositionTest {
 	@Test
 	public void simpleZeroComposition() {
 
-		Generator<Integer> compositionGenerator = Factory
-				.createCompositionGenerator(0);
+		Generator<Integer> compositionGenerator = createCompositionGenerator(0);
 		Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
 				.iterator();
 

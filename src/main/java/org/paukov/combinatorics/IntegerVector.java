@@ -234,7 +234,7 @@ public class IntegerVector {
 				sb.append(", ");
 			}
 		}
-		sb.append("], size=" + getSize() + ")");
+		sb.append("], size=").append(getSize()).append(")");
 		return sb.toString();
 	}
 

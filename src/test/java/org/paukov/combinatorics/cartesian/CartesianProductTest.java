@@ -19,14 +19,13 @@ public class CartesianProductTest {
     @Test
     public void test_cartesian_product() {
 
-        ICombinatoricsVector<String> set01 = createVector(new String[]{"a", "b"});
-        ICombinatoricsVector<String> set02 = createVector(new String[]{"x", "y"});
+        ICombinatoricsVector<String> set01 = createVector("a", "b");
+        ICombinatoricsVector<String> set02 = createVector("x", "y");
 
-        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector();
-        initialVector.addValue(set01);
-        initialVector.addValue(set02);
+        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector(set01, set02);
 
-        Generator<String> cartesianProduct = new CartesianProductGenerator<String>(
+
+        Generator<String> cartesianProduct = new CartesianProductGenerator<>(
                 initialVector);
 
         Iterator<ICombinatoricsVector<String>> itr = cartesianProduct
@@ -44,23 +43,21 @@ public class CartesianProductTest {
         assertEquals(4, list.size());
         assertEquals(4, cartesianProduct.getNumberOfGeneratedObjects());
 
-        assertEquals(list.get(0), createVector(new String[]{"a", "x"}));
-        assertEquals(list.get(1), createVector(new String[]{"a", "y"}));
-        assertEquals(list.get(2), createVector(new String[]{"b", "x"}));
-        assertEquals(list.get(3), createVector(new String[]{"b", "y"}));
+        assertEquals(list.get(0), createVector("a", "x"));
+        assertEquals(list.get(1), createVector("a", "y"));
+        assertEquals(list.get(2), createVector("b", "x"));
+        assertEquals(list.get(3), createVector("b", "y"));
     }
 
     @Test
     public void test_cartesian_product_one_set_is_empty() {
 
-        ICombinatoricsVector<String> set01 = createVector(new String[]{"a", "b"});
+        ICombinatoricsVector<String> set01 = createVector("a", "b");
         ICombinatoricsVector<String> set02 = createVector();
 
-        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector();
-        initialVector.addValue(set01);
-        initialVector.addValue(set02);
+        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector(set01, set02);
 
-        Generator<String> cartesianProduct = new CartesianProductGenerator<String>(
+        Generator<String> cartesianProduct = new CartesianProductGenerator<>(
                 initialVector);
 
         Iterator<ICombinatoricsVector<String>> itr = cartesianProduct
@@ -82,7 +79,7 @@ public class CartesianProductTest {
     @Test
     public void test_cartesian_product_empty() {
 
-        Generator<String> cartesianProduct = new CartesianProductGenerator<String>(
+        Generator<String> cartesianProduct = new CartesianProductGenerator<>(
                 Factory.<ICombinatoricsVector<String>>createVector());
 
         Iterator<ICombinatoricsVector<String>> itr = cartesianProduct

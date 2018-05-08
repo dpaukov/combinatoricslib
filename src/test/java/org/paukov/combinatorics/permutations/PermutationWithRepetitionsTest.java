@@ -5,6 +5,7 @@
 package org.paukov.combinatorics.permutations;
 
 import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.Factory.createVector;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,8 +26,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleTreeTwoPermutationWithRepetition() {
 
-		ICombinatoricsVector<Integer> coreVector = Factory
-				.createVector(new Integer[] { 1, 2, 3 });
+		ICombinatoricsVector<Integer> coreVector = createVector(1, 2, 3);
 
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 2);
@@ -73,12 +73,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleTreeOnePermutationWithRepetition() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-		array.add(2);
-		array.add(3);
-
-		ICombinatoricsVector<Integer> coreVector = Factory.createVector(array);
+		ICombinatoricsVector<Integer> coreVector = createVector(1,2,3);
 
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 1);
@@ -113,8 +108,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleThreeZeroPermutationWithRepetition() {
 
-		ICombinatoricsVector<Integer> coreVector = Factory
-				.createVector(new Integer[] { 1, 2, 3 });
+		ICombinatoricsVector<Integer> coreVector = createVector(1, 2, 3);
 
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 0);
@@ -144,8 +138,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleOneOnePermutationWithRepetition() {
 
-		ICombinatoricsVector<Integer> coreVector = Factory
-				.createVector(new Integer[] { 1 });
+		ICombinatoricsVector<Integer> coreVector = createVector(1);
 
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 1);
@@ -176,10 +169,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleOneTwoPermutationWithRepetition() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-
-		ICombinatoricsVector<Integer> coreVector = Factory.createVector(array);
+	    ICombinatoricsVector<Integer> coreVector = createVector(1);
 
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 2);
@@ -210,10 +200,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void simpleOneZeroPermutationWithRepetition() {
 
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		array.add(1);
-
-		ICombinatoricsVector<Integer> coreVector = Factory.createVector(array);
+	    ICombinatoricsVector<Integer> coreVector = createVector(1);
 
 		Generator<Integer> permutationWithRepetitionGenerator = Factory.createPermutationWithRepetitionGenerator(
 				coreVector, 0);
@@ -243,8 +230,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void sizeofThreePermutations() {
 
-		ICombinatoricsVector<String> originalVector = Factory
-				.createVector(new String[] { "a", "b", "c", "d" });
+		ICombinatoricsVector<String> originalVector = createVector("a", "b", "c", "d");
 		Generator<String> generator = Factory.createPermutationWithRepetitionGenerator(
 				originalVector, 3);
 
@@ -319,8 +305,7 @@ public class PermutationWithRepetitionsTest {
 	@Test
 	public void threeTuplesOfTwoElements() {
 
-		ICombinatoricsVector<Integer> originalVector = Factory
-				.createVector(new Integer[] { 0, 1 });
+		ICombinatoricsVector<Integer> originalVector = createVector(0, 1);
 		Generator<Integer> generator = Factory.createPermutationWithRepetitionGenerator(
 				originalVector, 3);
 

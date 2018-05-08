@@ -56,7 +56,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
      *
      * @param array Initial array to initialize the created vector
      */
-    public CombinatoricsVector(T[] array) {
+    public CombinatoricsVector(T... array) {
         _vector = new ArrayList<T>(array.length);
         for (int i = 0; i < array.length; i++) {
             _vector.add(array[i]);

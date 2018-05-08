@@ -137,7 +137,7 @@ public class IntegerFactory {
 
 		int[] array = new int[to - from + 1];
 		for (int i = 0; i < to - from + 1; i++)
-			array[i] = new Integer(i + from);
+			array[i] = i + from;
 
 		return new IntegerVector(array);
 	}
