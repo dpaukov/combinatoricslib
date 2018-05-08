@@ -5,7 +5,7 @@
 combinatoricslib 2.2
 ====================
 
-Very simple java library to generate permutations, combinations and other combinatorial sequences
+Very simple java library to generate permutations, combinations and other combinatorial sequences for java 7.
 New version of the library for java 8 can be found [here](https://github.com/dpaukov/combinatoricslib3)
 
 1. [Simple permutations](#1-simple-permutations)
@@ -35,11 +35,11 @@ For example, the set containing the first three digits, 123, has six permutation
 This is an example of the permutations of 3 string items (apple, orange, cherry):
 
 ```java
-   ICombinatoricsVector<String> originalVector = Factory.createVector(new String[] { "apple", "orange", "cherry" });
-   Generator<String> gen = Factory.createPermutationGenerator(originalVector);
-   // Print the result
-   for (ICombinatoricsVector<String> perm : gen)
+   ICombinatoricsVector<String> vector = Factory.createVector("apple", "orange", "cherry");
+   Generator<String> gen = Factory.createPermutationGenerator(vector);
+   for (ICombinatoricsVector<String> perm : gen) {
       System.out.println(perm);
+   }
 ```
 
 The result:
@@ -54,8 +54,8 @@ The result:
 The generator can produce the permutations even if the initial vector has duplicates. 
 For example, all permutations of (1,1,2,2) are:
 ```java
-   ICombinatoricsVector<Integer> initialVector = Factory.createVector(new Integer[] { 1, 1, 2, 2 });
-   Generator<Integer> generator = Factory.createPermutationGenerator(initialVector);
+   ICombinatoricsVector<Integer> vector = Factory.createVector(1, 1, 2, 2);
+   Generator<Integer> generator = Factory.createPermutationGenerator(vector);
    for (ICombinatoricsVector<Integer> perm : generator) {
       System.out.println(perm);
    }
@@ -79,8 +79,8 @@ Let's generate all possible permutations with repetitions of 3 elements from the
 
 ```java
    // Create an initial vector of 2 elements (apple, orange)
-   ICombinatoricsVector<String> originalVector = Factory.createVector(new String[] { "apple", "orange" });
-   Generator<String> gen = Factory.createPermutationWithRepetitionGenerator(originalVector, 3);
+   ICombinatoricsVector<String> vector = Factory.createVector("apple", "orange");
+   Generator<String> gen = Factory.createPermutationWithRepetitionGenerator(vector, 3);
    for (ICombinatoricsVector<String> perm : gen)
       System.out.println( perm );
 ```
@@ -104,11 +104,9 @@ and the order of the cards in the hand does not matter.
 
 Let's generate all 3-combination of the set of 5 colors (red, black, white, green, blue).
 ```java
-   ICombinatoricsVector<String> initialVector = Factory.createVector(
-      new String[] { "red", "black", "white", "green", "blue" } );
-
-   // Create a simple combination generator to generate 3-combinations of the initial vector
-   Generator<String> gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
+   ICombinatoricsVector<String> vector = Factory.createVector(
+      "red", "black", "white", "green", "blue");
+   Generator<String> gen = Factory.createSimpleCombinationGenerator(vector, 3);
    for (ICombinatoricsVector<String> combination : gen) {
       System.out.println(combination);
    }
@@ -140,10 +138,8 @@ and you want to buy 3 pieces of fruit. You could select
 
 Let's generate all 3-combinations with repetitions of the set (apple, orange).
 ```java
-   ICombinatoricsVector<String> initialVector = Factory.createVector(
-      new String[] { "apple", "orange" } );
-   Generator<String> gen = Factory.createMultiCombinationGenerator(initialVector, 3);
-   // Print all possible combinations
+   ICombinatoricsVector<String> vector = Factory.createVector("apple", "orange");
+   Generator<String> gen = Factory.createMultiCombinationGenerator(vector, 3);
    for (ICombinatoricsVector<String> combination : gen) {
       System.out.println(combination);
    }
@@ -179,8 +175,8 @@ All subsets of (1, 2, 3) are:
 And code which generates all subsets of (one, two, three)
 
 ```java
-   ICombinatoricsVector<String> initialSet = Factory.createVector(new String[] { "one", "two", "three" });
-   Generator<String> gen = Factory.createSubSetGenerator(initialSet);
+   ICombinatoricsVector<String> set = Factory.createVector( "one", "two", "three");
+   Generator<String> gen = Factory.createSubSetGenerator(set);
    for (ICombinatoricsVector<String> subSet : gen) {
       System.out.println(subSet);
    }
@@ -218,9 +214,8 @@ which is to say the number of distinct (and order independent) ways of represent
 
 Let's generate all possible partitions of 5:
 ```java
-   Generator<Integer> gen = Factory.createPartitionGenerator(5);
-   // Print the partitions
-   for (ICombinatoricsVector<Integer> p : gen) {
+   Generator<Integer> partitions = Factory.createPartitionGenerator(5);
+   for (ICombinatoricsVector<Integer> p : partitions) {
       System.out.println(p);
    }
 ```
@@ -253,13 +248,8 @@ For example, if a list is (A, B, B, C), then the non-overlapping sublists of len
 
 To do that you should use an instance of the complex combination generator
 ```java
-   // Create a vector (A, B, B, C)
-   ICombinatoricsVector<String> vector = Factory.createVector(new String[] { "A", "B", "B", "C" });
-
-   // Create a complex-combination generator
+   ICombinatoricsVector<String> vector = Factory.createVector "A", "B", "B", "C");
    Generator<ICombinatoricsVector<String>> gen = new ComplexCombinationGenerator<String>(vector, 2);
-
-   // Iterate the combinations
    for (ICombinatoricsVector<ICombinatoricsVector<String>> comb : gen) {
       System.out.println(ComplexCombinationGenerator.convert2String(comb) + " - " + comb);
    }
@@ -313,8 +303,6 @@ Example. Generate all possible integer compositions of 5.
 ```java
    // Create an instance of the integer composition generator to generate all possible compositions of 5
    Generator<Integer> gen = Factory.createCompositionGenerator(5);
-
-   // Print the compositions
    for (ICombinatoricsVector<Integer> p : gen) {
       System.out.println(p);
    }
