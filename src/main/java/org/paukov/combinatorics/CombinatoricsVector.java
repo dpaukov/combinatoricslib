@@ -4,12 +4,7 @@
  */
 package org.paukov.combinatorics;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * This class represents a simple vector of element's type <code>T</code>
@@ -32,7 +27,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
      * create an empty vector
      */
     public CombinatoricsVector() {
-        _vector = new ArrayList<T>();
+        _vector = new ArrayList<>();
     }
 
     /**
@@ -44,7 +39,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
      * @param vector Initial collection to initialize the created vector
      */
     public CombinatoricsVector(Collection<? extends T> vector) {
-        _vector = new ArrayList<T>(vector.size());
+        _vector = new ArrayList<>(vector.size());
         _vector.addAll(vector);
     }
 
@@ -57,10 +52,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
      * @param array Initial array to initialize the created vector
      */
     public CombinatoricsVector(T... array) {
-        _vector = new ArrayList<T>(array.length);
-        for (int i = 0; i < array.length; i++) {
-            _vector.add(array[i]);
-        }
+        _vector = new ArrayList<>(array.length);
+        Collections.addAll(_vector, array);
     }
 
     /**
@@ -73,7 +66,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
      * @param vector Initial combinatorics vector to initialize the created vector
      */
     public CombinatoricsVector(ICombinatoricsVector<T> vector) {
-        _vector = new ArrayList<T>(vector.getSize());
+        _vector = new ArrayList<>(vector.getSize());
         _vector.addAll(vector.getVector());
     }
 
@@ -136,7 +129,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
         if (_vector.size() <= 1) {
             return false;
         }
-        Set<T> set = new HashSet<T>(_vector);
+        Set<T> set = new HashSet<>(_vector);
         return set.size() < _vector.size();
     }
 

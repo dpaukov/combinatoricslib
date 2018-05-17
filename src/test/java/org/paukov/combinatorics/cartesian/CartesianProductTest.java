@@ -22,14 +22,9 @@ public class CartesianProductTest {
         ICombinatoricsVector<String> set01 = createVector("a", "b");
         ICombinatoricsVector<String> set02 = createVector("x", "y");
 
-        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector(set01, set02);
+        Generator<String> cartesianProduct = new CartesianProductGenerator<>(createVector(set01, set02));
 
-
-        Generator<String> cartesianProduct = new CartesianProductGenerator<>(
-                initialVector);
-
-        Iterator<ICombinatoricsVector<String>> itr = cartesianProduct
-                .iterator();
+        Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
 
         while (itr.hasNext()) {
             ICombinatoricsVector<String> combination = itr
@@ -55,10 +50,7 @@ public class CartesianProductTest {
         ICombinatoricsVector<String> set01 = createVector("a", "b");
         ICombinatoricsVector<String> set02 = createVector();
 
-        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector(set01, set02);
-
-        Generator<String> cartesianProduct = new CartesianProductGenerator<>(
-                initialVector);
+        Generator<String> cartesianProduct = new CartesianProductGenerator<>(createVector(set01, set02));
 
         Iterator<ICombinatoricsVector<String>> itr = cartesianProduct
                 .iterator();

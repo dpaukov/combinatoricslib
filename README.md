@@ -32,7 +32,7 @@ You can use the following table to select a generator:
 A permutation is an ordering of a set in the context of all possible orderings. 
 For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
-This is an example of the permutations of 3 string items (apple, orange, cherry):
+This is an example of the permutations of 3 (apple, orange, cherry):
 
 ```java
    ICombinatoricsVector<String> vector = Factory.createVector("apple", "orange", "cherry");
@@ -42,7 +42,7 @@ This is an example of the permutations of 3 string items (apple, orange, cherry)
    }
 ```
 
-The result:
+All possible permutations:
 ```
    CombinatoricsVector=([apple, orange, cherry], size=3)
    CombinatoricsVector=([apple, cherry, orange], size=3)
