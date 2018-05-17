@@ -16,7 +16,8 @@ New version of the library for java 8 can be found [here](https://github.com/dpa
 6. [Integer Partitions](#6-integer-partitions)
 7. [List Partitions](#7-list-partitions)
 8. [Integer Compositions](#8-integer-compositions)
-9. [The latest release](#the-latest-release)
+9. [Cartesian Product](#9-cartesian-product)
+10. [The latest release](#the-latest-release)
 
 You can use the following table to select a generator:
 
@@ -325,6 +326,28 @@ And the result
    CombinatoricsVector=([1, 2, 1, 1], size=4)
    CombinatoricsVector=([2, 1, 1, 1], size=4)
    CombinatoricsVector=([1, 1, 1, 1, 1], size=5)
+```
+
+### 9. Cartesian Product
+
+This generator generates Cartesian product from a number of lists.
+Set of lists is specified in the constructor of generator to generate k-element Cartesian product,
+where k is the size of the set of lists.
+
+A simple k-element Cartesian product of a finite sets S(1), S(2)...S(k) is a set
+of all ordered pairs (x(1), x(2)...x(k), where x(1) ∈ S(1), x(2) ∈ S(2) ... x(k) ∈ S(k)
+
+Example. Generate 3-element Cartesian product from (1, 2, 3), (4, 5, 6), (7, 8, 9).
+
+```java
+   ICombinatoricsVector<Integer> set01 = createVector(1, 2, 3);
+   ICombinatoricsVector<Integer> set02 = createVector(4, 5, 6);
+   ICombinatoricsVector<Integer> set03 = createVector(7, 8, 9);
+
+   Generator<Integer> generator = new CartesianProductGenerator<Integer>(createVector(set01, set02, set03));
+   for (ICombinatoricsVector<Integer> catresianProduct : generator) {
+      System.out.println(catresianProduct);
+   }
 ```
 
 ### The latest release
