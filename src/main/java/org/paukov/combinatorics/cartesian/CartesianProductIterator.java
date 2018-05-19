@@ -13,7 +13,7 @@ import java.util.Iterator;
  * @version 2.2
  * @see CartesianProductGenerator
  */
-public class CartesianProductIterator<T> implements
+class CartesianProductIterator<T> implements
         Iterator<ICombinatoricsVector<T>> {
 
     private ICombinatoricsVector<ICombinatoricsVector<T>> vector;
