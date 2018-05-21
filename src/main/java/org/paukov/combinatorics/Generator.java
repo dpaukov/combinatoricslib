@@ -91,12 +91,12 @@ public abstract class Generator<T> implements
      *
      * @return List of the generated objects/vectors
      */
-    public List<ICombinatoricsVector<T>> generateObjectsRange(int startIndex,
-                                                              int stopIndex) {
+    public List<ICombinatoricsVector<T>> generateObjectsRange(long startIndex,
+                                                              long stopIndex) {
         assert (startIndex <= stopIndex);
         List<ICombinatoricsVector<T>> list = new ArrayList<>();
         Iterator<ICombinatoricsVector<T>> iterator = this.iterator();
-        int index = 1;
+        long index = 1;
         while (iterator.hasNext()) {
             if (index >= startIndex && index <= stopIndex) {
                 list.add(iterator.next());

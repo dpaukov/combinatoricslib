@@ -63,5 +63,5 @@ public interface IGenerator<T> extends Iterable<T> {
 	 * 
 	 * @return List of the generated objects/vectors
 	 */
-	List<T> generateObjectsRange(int startIndex, int stopIndex);
+	List<T> generateObjectsRange(long startIndex, long stopIndex);
 }
