@@ -102,6 +102,9 @@ public class UtilTest {
     assertEquals(6, Util.gcd(12, 18));
     assertEquals(1, Util.gcd(103, 45));
     assertEquals(2, Util.gcd(64, 34));
+
+    assertEquals(45, Util.gcd(0, 45));
+    assertEquals(64, Util.gcd(64, 0));
   }
 
   @Test
@@ -116,5 +119,8 @@ public class UtilTest {
     assertEquals(1, Util.levenshteinDistance("hello", "helo"));
     assertEquals(2, Util.levenshteinDistance("america", "amerigo"));
     assertEquals(4, Util.levenshteinDistance("abba", "abcadaba"));
+
+    assertEquals(5, Util.levenshteinDistance("hello", ""));
+    assertEquals(5, Util.levenshteinDistance("", "hello"));
   }
 }
