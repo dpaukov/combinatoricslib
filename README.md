@@ -8,10 +8,10 @@ combinatoricslib 2.2
 Very simple java library to generate permutations, combinations and other combinatorial sequences for java 7.
 New version of the library for java 8 can be found [here](https://github.com/dpaukov/combinatoricslib3)
 
-1. [Simple permutations](#1-simple-permutations)
-2. [Permutations with repetitions](#2-permutations-with-repetitions)
-3. [Simple combinations](#3-simple-combinations)
-4. [Combinations with repetitions (multicombination)](#4-combinations-with-repetitions)
+1. [Simple combinations](#1-simple-combinations)
+2. [Combinations with repetitions (multicombination)](#2-combinations-with-repetitions)
+3. [Simple permutations](#3-simple-permutations)
+4. [Permutations with repetitions](#4-permutations-with-repetitions)
 5. [Subsets](#5-subsets)
 6. [Integer Partitions](#6-integer-partitions)
 7. [List Partitions](#7-list-partitions)
@@ -23,13 +23,67 @@ You can use the following table to select a generator:
 
 | Description                      | Is Order Important? | Is Repetition Allowed? | CombinatoricsFactory Method  |
 |----------------------------------|:-------------------:|:----------------------:|---------| 
-| [Simple combinations](#3-simple-combinations) | No | No | createSimpleCombinationGenerator() |
-| [Combinations with repetitions](#4-combinations-with-repetitions) | No | Yes | createMultiCombinationGenerator()|
-| [Simple permutations](#1-simple-permutations) | Yes | No | createPermutationGenerator() |
-| [Permutations with repetitions](#2-permutations-with-repetitions) | Yes | Yes | createPermutationWithRepetitionGenerator() |
+| [Simple combinations](#1-simple-combinations) | No | No | createSimpleCombinationGenerator() |
+| [Combinations with repetitions](#2-combinations-with-repetitions) | No | Yes | createMultiCombinationGenerator()|
+| [Simple permutations](#3-simple-permutations) | Yes | No | createPermutationGenerator() |
+| [Permutations with repetitions](#4-permutations-with-repetitions) | Yes | Yes | createPermutationWithRepetitionGenerator() |
 
+### 1. Simple combinations
+A simple k-combination of a finite set S is a subset of k distinct elements of S.
+Specifying a subset does not arrange them in a particular order. As an example, a poker hand can
+be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct,
+and the order of the cards in the hand does not matter.
 
-### 1. Simple permutations
+Let's generate all 3-combination of the set of 5 colors (red, black, white, green, blue).
+```java
+   ICombinatoricsVector<String> vector = createVector("red", "black", "white", "green", "blue");
+   Generator<String> gen = createSimpleCombinationGenerator(vector, 3);
+   for (ICombinatoricsVector<String> combination : gen) {
+      System.out.println(combination);
+   }
+```
+And the result of 10 combinations
+```
+   CombinatoricsVector=([red, black, white], size=3)
+   CombinatoricsVector=([red, black, green], size=3)
+   CombinatoricsVector=([red, black, blue], size=3)
+   CombinatoricsVector=([red, white, green], size=3)
+   CombinatoricsVector=([red, white, blue], size=3)
+   CombinatoricsVector=([red, green, blue], size=3)
+   CombinatoricsVector=([black, white, green], size=3)
+   CombinatoricsVector=([black, white, blue], size=3)
+   CombinatoricsVector=([black, green, blue], size=3)
+   CombinatoricsVector=([white, green, blue], size=3)
+```
+
+### 2. Combinations with repetitions
+A k-multicombination or k-combination with repetition of a finite set S is given by a sequence of
+k not necessarily distinct elements of S, where order is not taken into account.
+
+As an example. Suppose there are 2 types of fruits (apple and orange) at a grocery store,
+and you want to buy 3 pieces of fruit. You could select
+- (apple, apple, apple)
+- (apple, apple, orange)
+- (apple, orange, orange)
+- (orange, orange, orange)
+
+Let's generate all 3-combinations with repetitions of the set (apple, orange).
+```java
+   ICombinatoricsVector<String> vector = createVector("apple", "orange");
+   Generator<String> gen = createMultiCombinationGenerator(vector, 3);
+   for (ICombinatoricsVector<String> combination : gen) {
+      System.out.println(combination);
+   }
+```
+And the result of 4 multi-combinations
+```
+   CombinatoricsVector=([apple, apple, apple], size=3)
+   CombinatoricsVector=([apple, apple, orange], size=3)
+   CombinatoricsVector=([apple, orange, orange], size=3)
+   CombinatoricsVector=([orange, orange, orange], size=3)
+```
+
+### 3. Simple permutations
 A permutation is an ordering of a set in the context of all possible orderings. 
 For example, the set containing the first three digits, 123, has six permutations: 123, 132, 213, 231, 312, and 321.
 
@@ -72,7 +126,7 @@ The result of all possible permutations
    CombinatoricsVector=([2, 2, 1, 1], size=4)
 ```
 
-### 2. Permutations with repetitions
+### 4. Permutations with repetitions
 The permutation may have more elements than slots. For example, all possible permutation of '12' 
 in three slots are: 111, 211, 121, 221, 112, 212, 122, and 222.
 
@@ -94,61 +148,6 @@ And the result of 8 permutations
    CombinatoricsVector=([orange, orange, apple], size=3)
    CombinatoricsVector=([apple, apple, orange], size=3)
    CombinatoricsVector=([orange, apple, orange], size=3)
-   CombinatoricsVector=([apple, orange, orange], size=3)
-   CombinatoricsVector=([orange, orange, orange], size=3)
-```
-
-### 3. Simple combinations
-A simple k-combination of a finite set S is a subset of k distinct elements of S. 
-Specifying a subset does not arrange them in a particular order. As an example, a poker hand can 
-be described as a 5-combination of cards from a 52-card deck: the 5 cards of the hand are all distinct, 
-and the order of the cards in the hand does not matter.
-
-Let's generate all 3-combination of the set of 5 colors (red, black, white, green, blue).
-```java
-   ICombinatoricsVector<String> vector = createVector("red", "black", "white", "green", "blue");
-   Generator<String> gen = createSimpleCombinationGenerator(vector, 3);
-   for (ICombinatoricsVector<String> combination : gen) {
-      System.out.println(combination);
-   }
-```
-And the result of 10 combinations
-```
-   CombinatoricsVector=([red, black, white], size=3)
-   CombinatoricsVector=([red, black, green], size=3)
-   CombinatoricsVector=([red, black, blue], size=3)
-   CombinatoricsVector=([red, white, green], size=3)
-   CombinatoricsVector=([red, white, blue], size=3)
-   CombinatoricsVector=([red, green, blue], size=3)
-   CombinatoricsVector=([black, white, green], size=3)
-   CombinatoricsVector=([black, white, blue], size=3)
-   CombinatoricsVector=([black, green, blue], size=3)
-   CombinatoricsVector=([white, green, blue], size=3)
-```
-
-### 4. Combinations with repetitions
-A k-multicombination or k-combination with repetition of a finite set S is given by a sequence of 
-k not necessarily distinct elements of S, where order is not taken into account.
-
-As an example. Suppose there are 2 types of fruits (apple and orange) at a grocery store, 
-and you want to buy 3 pieces of fruit. You could select
-- (apple, apple, apple)
-- (apple, apple, orange)
-- (apple, orange, orange)
-- (orange, orange, orange)
-
-Let's generate all 3-combinations with repetitions of the set (apple, orange).
-```java
-   ICombinatoricsVector<String> vector = createVector("apple", "orange");
-   Generator<String> gen = createMultiCombinationGenerator(vector, 3);
-   for (ICombinatoricsVector<String> combination : gen) {
-      System.out.println(combination);
-   }
-```
-And the result of 4 multi-combinations
-```
-   CombinatoricsVector=([apple, apple, apple], size=3)
-   CombinatoricsVector=([apple, apple, orange], size=3)
    CombinatoricsVector=([apple, orange, orange], size=3)
    CombinatoricsVector=([orange, orange, orange], size=3)
 ```
