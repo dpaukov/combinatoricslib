@@ -17,7 +17,7 @@ import org.paukov.combinatorics.IFilter;
 /**
  * @author Dmytro Paukov
  */
-public class PartitionsTest {
+public final class PartitionsTest {
 
   @Test
   public void simplePartition() {
@@ -35,6 +35,8 @@ public class PartitionsTest {
     }
 
     List<ICombinatoricsVector<Integer>> list = partitionGenerator.generateAllObjects();
+
+    assertEquals(5, partitionGenerator.getOriginalVector().getValue(0).intValue());
 
     assertEquals(7, list.size());
 
@@ -188,5 +190,11 @@ public class PartitionsTest {
         .toString());
     assertEquals("CombinatoricsVector=([6, 1, 1], size=3)", list.get(4)
         .toString());
+  }
+
+  @Test(expected = RuntimeException.class)
+  public void getNumberOfGeneratedObjects_initialValue_too_big() {
+    Generator<Integer> partitionGenerator = createPartitionGenerator(101);
+    partitionGenerator.getNumberOfGeneratedObjects();
   }
 }

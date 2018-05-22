@@ -100,12 +100,12 @@ public class PartitionGenerator extends Generator<Integer> {
   }
 
   /**
-   * Returns value which is used to generate all partitions. This value
-   * returned as a vector, which has only one element.
+   * Returns the value which is used for generating the partitions. This value is
+   * returned as a vector, that has only one element.
    */
   @Override
   public ICombinatoricsVector<Integer> getOriginalVector() {
-    return createVector(new Integer[]{_initialValue});
+    return createVector(_initialValue);
   }
 
   /**
@@ -132,7 +132,7 @@ public class PartitionGenerator extends Generator<Integer> {
     }
 
     throw new RuntimeException(
-        "Unable to calculate the number of the pertitions for the value N=" + _initialValue);
+        "Unable to calculate the number of the partitions for the value N=" + _initialValue);
   }
 
 }
