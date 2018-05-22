@@ -35,10 +35,10 @@ six permutations: 123, 132, 213, 231, 312, and 321.
 <blockquote>
 <pre>
 // Create the initial vector of 3 elements (apple, orange, cherry)
-ICombinatoricsVector&lt;String&gt; originalVector = Factory.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot;, &quot;cherry&quot; });
+ICombinatoricsVector&lt;String&gt; originalVector = CombinatoricsFactory.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot;, &quot;cherry&quot; });
 
 // Create the permutation generator by calling the appropriate method of the Factory class
-Generator&lt;String&gt; gen = Factory.createPermutationGenerator(originalVector);
+Generator&lt;String&gt; gen = CombinatoricsFactory.createPermutationGenerator(originalVector);
 
 // Print the result
 for (ICombinatoricsVector&lt;String&gt; perm : gen)
@@ -73,11 +73,11 @@ for (ICombinatoricsVector&lt;String&gt; perm : gen)
 <blockquote>
 <pre>
 // Create the initial vector of 2 elements (apple, orange)
-ICombinatoricsVector&lt;String&gt; originalVector = Factory.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot; });
+ICombinatoricsVector&lt;String&gt; originalVector = CombinatoricsFactory.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot; });
 
 // Create the generator by calling the appropriate method in the Factory class. 
 // Set the second parameter as 3, since we will generate 3-elemets permutations
-Generator&lt;String&gt; gen = Factory.createPermutationWithRepetitionGenerator(originalVector, 3);
+Generator&lt;String&gt; gen = CombinatoricsFactory.createPermutationWithRepetitionGenerator(originalVector, 3);
 
 // Print the result
 for (ICombinatoricsVector&lt;String&gt; perm : gen)
@@ -114,12 +114,12 @@ for (ICombinatoricsVector&lt;String&gt; perm : gen)
 <blockquote>
 <pre>
 // Create the initial vector
-ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+ICombinatoricsVector&lt;String&gt; initialVector = CombinatoricsFactory.createVector(new String[] {
 		&quot;red&quot;, &quot;black&quot;, &quot;white&quot;, &quot;green&quot;, &quot;blue&quot; });
 
 // Create a simple combination generator to generate 3-combinations of the
 // initial vector
-Generator&lt;String&gt; gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
+Generator&lt;String&gt; gen = CombinatoricsFactory.createSimpleCombinationGenerator(initialVector, 3);
 
 // Print all possible combinations
 for (ICombinatoricsVector&lt;String&gt; combination : gen) {
@@ -167,12 +167,12 @@ is not taken into account.
 <blockquote>
 <pre>
 // Create the initial vector of (apple, orange)
-ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+ICombinatoricsVector&lt;String&gt; initialVector = CombinatoricsFactory.createVector(new String[] {
 		&quot;apple&quot;, &quot;orange&quot; });
 
 // Create a multi-combination generator to generate 3-combinations of
 // the initial vector
-Generator&lt;String&gt; gen = Factory.createMultiCombinationGenerator(initialVector,3);
+Generator&lt;String&gt; gen = CombinatoricsFactory.createMultiCombinationGenerator(initialVector,3);
  
 // Print all possible combinations
 for (ICombinatoricsVector&lt;String&gt; combination : gen) {
@@ -223,11 +223,11 @@ for (ICombinatoricsVector&lt;String&gt; combination : gen) {
 <blockquote>
 <pre>
 // Create an initial vector/set
-ICombinatoricsVector&lt;String&gt; initialSet = Factory.createVector(new String[] {
+ICombinatoricsVector&lt;String&gt; initialSet = CombinatoricsFactory.createVector(new String[] {
 		&quot;one&quot;, &quot;two&quot;, &quot;three&quot; });
 
 // Create an instance of the subset generator
-Generator&lt;String&gt; gen = Factory.createSubSetGenerator(initialSet);
+Generator&lt;String&gt; gen = CombinatoricsFactory.createSubSetGenerator(initialSet);
 
 // Print the subsets
 for (ICombinatoricsVector&lt;String&gt; subSet : gen) {
@@ -279,7 +279,7 @@ for (ICombinatoricsVector&lt;String&gt; subSet : gen) {
 <p>
   If you still would like to treat the set with duplicates as not identical,
   you should create a generator and set the second parameter of the method
-  <code>Factory.createSubSetGenerator()</code> as <code>false</code>. In this
+  <code>CombinatoricsFactory.createSubSetGenerator()</code> as <code>false</code>. In this
   case all 16 subsets will be generated.
 <p>
   <b>Note.</b> If the initial vector contains duplicates then the method
@@ -321,7 +321,7 @@ for (ICombinatoricsVector&lt;String&gt; subSet : gen) {
 <pre>
 // Create an instance of the partition generator to generate all
 // possible partitions of 5
-Generator&lt;Integer&gt; gen = Factory.createPartitionGenerator(5);
+Generator&lt;Integer&gt; gen = CombinatoricsFactory.createPartitionGenerator(5);
 
 // Print the partitions
 for (ICombinatoricsVector&lt;Integer&gt; p : gen) {
@@ -393,7 +393,7 @@ positive integer value.
 
 <pre>
   // Create an instance of the integer composition generator to generate all possible compositions of 5
-  Generator&lt;Integer&gt; gen = Factory.createCompositionGenerator(5);
+  Generator&lt;Integer&gt; gen = CombinatoricsFactory.createCompositionGenerator(5);
 
   // Print the compositions
   for (ICombinatoricsVector&lt;Integer&gt; p : gen) {
@@ -452,7 +452,7 @@ positive integer value.
 <blockquote>
 <pre>
   // create a vector (A, B, B, C)
-  ICombinatoricsVector&lt;String&gt; vector = Factory.createVector(new String[] { "A", "B", "B", "C" });
+  ICombinatoricsVector&lt;String&gt; vector = CombinatoricsFactory.createVector(new String[] { "A", "B", "B", "C" });
 
   // Create a complex-combination generator
   Generator&lt;ICombinatoricsVector&lt;String&gt;&gt; gen = new ComplexCombinationGenerator&lt;String&gt;(vector, 2);
@@ -497,9 +497,9 @@ positive integer value.
 <p>
 <blockquote>
 <pre>
- ICombinatoricsVector&lt;Integer&gt; set01 = createVector(new Integer[] { 1, 2, 3 });
- ICombinatoricsVector&lt;Integer&gt; set02 = createVector(new Integer[] { 4, 5, 6 });
- ICombinatoricsVector&lt;Integer&gt; set03 = createVector(new Integer[] { 7, 8, 9 });
+ ICombinatoricsVector&lt;Integer&gt; set01 = CombinatoricsFactory.createVector(1, 2, 3);
+ ICombinatoricsVector&lt;Integer&gt; set02 = CombinatoricsFactory.createVector(4, 5, 6);
+ ICombinatoricsVector&lt;Integer&gt; set03 = CombinatoricsFactory.createVector(7, 8, 9);
 
  ICombinatoricsVector&lt;ICombinatoricsVector&lt;Integer&gt;&gt; initialVector = createVector();
  initialVector.addValue(set01);

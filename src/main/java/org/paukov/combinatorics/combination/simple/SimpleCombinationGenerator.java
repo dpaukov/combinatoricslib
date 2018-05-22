@@ -29,13 +29,14 @@ import org.paukov.combinatorics.util.Util;
  * <pre>
  *
  * // Create the initial vector
- * ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
- * 		&quot;red&quot;, &quot;black&quot;, &quot;white&quot;, &quot;green&quot;, &quot;blue&quot; });
+ * ICombinatoricsVector&lt;String&gt; initialVector = CombinatoricsFactory.createVector(
+ *   new String[]{
+ *     &quot;red&quot;, &quot;black&quot;, &quot;white&quot;, &quot;green&quot;, &quot;blue&quot; });
  *
  * // Create a simple combination generator to generate 3-combinations of the
  * // initial vector
- * Generator&lt;String&gt; gen = Factory.createSimpleCombinationGenerator(initialVector,
- * 		3);
+ * Generator&lt;String&gt; gen = CombinatoricsFactory.createSimpleCombinationGenerator(
+ *   initialVector, 3);
  *
  * // Print all possible combinations
  * for (ICombinatoricsVector&lt;String&gt; combination : gen) {

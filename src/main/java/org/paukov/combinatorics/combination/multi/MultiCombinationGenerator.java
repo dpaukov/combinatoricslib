@@ -37,13 +37,12 @@ import org.paukov.combinatorics.util.Util;
  * <pre>
  *
  * // Create the initial vector of (apple, orange)
- * ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
+ * ICombinatoricsVector&lt;String&gt; initialVector = CombinatoricsFactory.createVector(new String[] {
  * 		&quot;apple&quot;, &quot;orange&quot; });
  *
  * // Create a multi-combination generator to generate 3-combinations of
  * // the initial vector
- * Generator&lt;String&gt; gen = Factory.createMultiCombinationGenerator(initialVector,
- * 		3);
+ * Generator&lt;String&gt; gen = CombinatoricsFactory.createMultiCombinationGenerator(initialVector, 3);
  *
  * // Print all possible combinations
  * for (ICombinatoricsVector&lt;String&gt; combination : gen) {

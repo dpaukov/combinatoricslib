@@ -28,12 +28,12 @@ import org.paukov.combinatorics.util.Util;
  * <pre>
  *
  * // Create the initial vector of 3 elements (apple, orange, cherry)
- * ICombinatoricsVector&lt;String&gt; originalVector = Factory
+ * ICombinatoricsVector&lt;String&gt; originalVector = CombinatoricsFactory
  * 		.createVector(new String[] { &quot;apple&quot;, &quot;orange&quot;, &quot;cherry&quot; });
  *
  * // Create the permutation generator by calling the appropriate method in the
  * // Factory class
- * Generator&lt;String&gt; gen = Factory.createPermutationGenerator(originalVector);
+ * Generator&lt;String&gt; gen = CombinatoricsFactory.createPermutationGenerator(originalVector);
  *
  * // Print the result
  * for (ICombinatoricsVector&lt;String&gt; perm : gen)

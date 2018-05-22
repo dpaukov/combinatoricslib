@@ -48,7 +48,7 @@ import org.paukov.combinatorics.util.Util;
  * <pre>
  *   // Create an instance of the integer composition generator to generate all possible
  * compositions of 5
- *   Generator&lt;Integer&gt; gen = Factory.createCompositionGenerator(5);
+ *   Generator&lt;Integer&gt; gen = CombinatoricsFactory.createCompositionGenerator(5);
  *
  *   // Print the compositions
  *   for (ICombinatoricsVector&lt;Integer&gt; p : gen) {

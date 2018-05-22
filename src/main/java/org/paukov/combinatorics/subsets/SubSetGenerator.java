@@ -44,11 +44,11 @@ import org.paukov.combinatorics.util.Util;
  *
  * <pre>
  * // Create an initial vector/set
- * ICombinatoricsVector&lt;String&gt; initialSet = Factory.createVector(new String[] {
+ * ICombinatoricsVector&lt;String&gt; initialSet = CombinatoricsFactory.createVector(new String[] {
  * 		&quot;one&quot;, &quot;two&quot;, &quot;three&quot; });
  *
  * // Create an instance of the subset generator
- * Generator&lt;String&gt; gen = Factory.createSubSetGenerator(initialSet);
+ * Generator&lt;String&gt; gen = CombinatoricsFactory.createSubSetGenerator(initialSet);
  *
  * // Print the subsets
  * for (ICombinatoricsVector&lt;String&gt; subSet : gen) {

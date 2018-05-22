@@ -21,10 +21,10 @@ import java.util.List;
  * There is a general pattern how to use the generators
  * <pre>
  * // create the initial vector or set
- * ICombinatoricsVector&lt;T&gt; vector = Factory.createVector(new &lt;T&gt;[]{ elements } );
+ * ICombinatoricsVector&lt;T&gt; vector = CombinatoricsFactory.createVector(new &lt;T&gt;[]{ elements } );
  *
  * // create a concrete generator
- * Generator&lt;T&gt; generator = Factory.create&lt;Concrete&gt;Generator(vector);
+ * Generator&lt;T&gt; generator = CombinatoricsFactory.create&lt;Concrete&gt;Generator(vector);
  *
  * // iterate the generated objects
  * for (ICombinatoricsVector&lt;T&gt; v : generator) {

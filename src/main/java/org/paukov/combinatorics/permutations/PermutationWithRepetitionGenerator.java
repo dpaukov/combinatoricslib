@@ -24,12 +24,12 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * <pre>
  *
  * // Create the initial vector of 2 elements (apple, orange)
- * ICombinatoricsVector&lt;String&gt; originalVector = Factory.createVector(new String[] {
+ * ICombinatoricsVector&lt;String&gt; originalVector = CombinatoricsFactory.createVector(new String[] {
  * &quot;apple&quot;, &quot;orange&quot; });
  *
  * // Create the generator by calling the appropriate method in the Factory class.
  * // Set the second parameter as 3, since we will generate 3-elemets permutations
- * Generator&lt;String&gt; gen = Factory.createPermutationWithRepetitionGenerator(originalVector,
+ * Generator&lt;String&gt; gen = CombinatoricsFactory.createPermutationWithRepetitionGenerator(originalVector,
  * 3);
  *
  * // Print the result

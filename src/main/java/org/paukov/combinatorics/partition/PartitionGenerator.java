@@ -43,7 +43,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * <pre>
  * // Create an instance of the partition generator to generate all
  * // possible partitions of 5
- * Generator&lt;Integer&gt; gen = Factory.createPartitionGenerator(5);
+ * Generator&lt;Integer&gt; gen = CombinatoricsFactory.createPartitionGenerator(5);
  *
  * // Print the partitions
  * for (ICombinatoricsVector&lt;Integer&gt; p : gen) {
