@@ -4,365 +4,364 @@
  */
 package org.paukov.combinatorics.permutations;
 
-import org.junit.Test;
-import org.paukov.combinatorics.Factory;
-import org.paukov.combinatorics.Generator;
-import org.paukov.combinatorics.ICombinatoricsVector;
+import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.CombinatoricsFactory.createPermutationGenerator;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
 import java.util.Iterator;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.paukov.combinatorics.Factory.createVector;
+import org.junit.Test;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * @author Dmytro Paukov
  */
 public class PermutationsTest {
 
-    @Test
-    public void simplePermutation() {
+  @Test
+  public void simplePermutation() {
 
-        ICombinatoricsVector<Integer> corePermutation = createVector(1, 2, 3);
-        Generator<Integer> generator = Factory.createPermutationGenerator(corePermutation);
+    ICombinatoricsVector<Integer> corePermutation = createVector(1, 2, 3);
+    Generator<Integer> generator = createPermutationGenerator(corePermutation);
 
-        System.out.println("Number of permutations is: "
-                + generator.getNumberOfGeneratedObjects());
-        assertEquals(6, generator.getNumberOfGeneratedObjects());
+    System.out.println("Number of permutations is: "
+        + generator.getNumberOfGeneratedObjects());
+    assertEquals(6, generator.getNumberOfGeneratedObjects());
 
-        Iterator<ICombinatoricsVector<Integer>> iterator = generator.iterator();
+    Iterator<ICombinatoricsVector<Integer>> iterator = generator.iterator();
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
-
-        List<ICombinatoricsVector<Integer>> list = generator.generateAllObjects();
-
-        assertEquals(6, list.size());
-
-        assertEquals("CombinatoricsVector=([1, 2, 3], size=3)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([1, 3, 2], size=3)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([3, 1, 2], size=3)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([3, 2, 1], size=3)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 3, 1], size=3)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 1, 3], size=3)", list.get(5)
-                .toString());
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
 
-    @Test
-    public void simpleOnePermutation() {
+    List<ICombinatoricsVector<Integer>> list = generator.generateAllObjects();
 
-        ICombinatoricsVector<Integer> corePermutation = createVector(1);
-        Generator<Integer> generator = Factory.createPermutationGenerator(corePermutation);
+    assertEquals(6, list.size());
 
-        System.out.println("Number of permutations is: "
-                + generator.getNumberOfGeneratedObjects());
-        assertEquals(1, generator.getNumberOfGeneratedObjects());
+    assertEquals("CombinatoricsVector=([1, 2, 3], size=3)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([1, 3, 2], size=3)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([3, 1, 2], size=3)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([3, 2, 1], size=3)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 3, 1], size=3)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 1, 3], size=3)", list.get(5)
+        .toString());
+  }
 
-        Iterator<ICombinatoricsVector<Integer>> iterator = generator.iterator();
+  @Test
+  public void simpleOnePermutation() {
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
+    ICombinatoricsVector<Integer> corePermutation = createVector(1);
+    Generator<Integer> generator = createPermutationGenerator(corePermutation);
 
-        List<ICombinatoricsVector<Integer>> list = generator
-                .generateAllObjects();
+    System.out.println("Number of permutations is: "
+        + generator.getNumberOfGeneratedObjects());
+    assertEquals(1, generator.getNumberOfGeneratedObjects());
 
-        assertEquals(1, list.size());
+    Iterator<ICombinatoricsVector<Integer>> iterator = generator.iterator();
 
-        assertEquals("CombinatoricsVector=([1], size=1)", list.get(0)
-                .toString());
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
 
-    @Test
-    public void simpleEmptyPermutation() {
+    List<ICombinatoricsVector<Integer>> list = generator
+        .generateAllObjects();
 
-        ICombinatoricsVector<Integer> corePermutation = createVector();
-        Generator<Integer> generator = Factory.createPermutationGenerator(corePermutation);
+    assertEquals(1, list.size());
 
-        System.out.println("Number of permutations is: "
-                + generator.getNumberOfGeneratedObjects());
-        assertEquals(0, generator.getNumberOfGeneratedObjects());
+    assertEquals("CombinatoricsVector=([1], size=1)", list.get(0)
+        .toString());
+  }
 
-        Iterator<ICombinatoricsVector<Integer>> iterator = generator.iterator();
+  @Test
+  public void simpleEmptyPermutation() {
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
+    ICombinatoricsVector<Integer> corePermutation = createVector();
+    Generator<Integer> generator = createPermutationGenerator(corePermutation);
 
-        List<ICombinatoricsVector<Integer>> list = generator
-                .generateAllObjects();
+    System.out.println("Number of permutations is: "
+        + generator.getNumberOfGeneratedObjects());
+    assertEquals(0, generator.getNumberOfGeneratedObjects());
 
-        assertEquals(0, list.size());
+    Iterator<ICombinatoricsVector<Integer>> iterator = generator.iterator();
+
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
 
-    @Test
-    public void identicalPermutation() {
+    List<ICombinatoricsVector<Integer>> list = generator
+        .generateAllObjects();
 
-        ICombinatoricsVector<String> initialVector = createVector("a", "a", "b");
-        Generator<String> generator = Factory.createPermutationGenerator(initialVector);
+    assertEquals(0, list.size());
+  }
 
-        Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
+  @Test
+  public void identicalPermutation() {
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
+    ICombinatoricsVector<String> initialVector = createVector("a", "a", "b");
+    Generator<String> generator = createPermutationGenerator(initialVector);
 
-        List<ICombinatoricsVector<String>> list = generator
-                .generateAllObjects();
+    Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
 
-        assertEquals(3, list.size());
-
-        assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(2)
-                .toString());
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
 
+    List<ICombinatoricsVector<String>> list = generator
+        .generateAllObjects();
 
-    @Test
-    public void allIdenticalPermutation() {
+    assertEquals(3, list.size());
 
-        ICombinatoricsVector<String> initialVector = createVector("a", "a", "a");
-        Generator<String> generator = Factory.createPermutationGenerator(initialVector);
+    assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(2)
+        .toString());
+  }
 
-        Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
+  @Test
+  public void allIdenticalPermutation() {
 
-        List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+    ICombinatoricsVector<String> initialVector = createVector("a", "a", "a");
+    Generator<String> generator = createPermutationGenerator(initialVector);
 
-        assertEquals(1, list.size());
+    Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
 
-        assertEquals("CombinatoricsVector=([a, a, a], size=3)", list.get(0)
-                .toString());
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
 
-    @Test
-    public void identicalPermutationTreatAsIdentical() {
+    List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
 
-        ICombinatoricsVector<String> initialVector = createVector("a", "a", "b");
+    assertEquals(1, list.size());
 
-        Generator<String> generator = Factory.createPermutationGenerator(initialVector, true);
+    assertEquals("CombinatoricsVector=([a, a, a], size=3)", list.get(0)
+        .toString());
+  }
 
-        for (ICombinatoricsVector<String> perm : generator) {
-            System.out.println(perm);
-        }
+  @Test
+  public void identicalPermutationTreatAsIdentical() {
 
-        List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+    ICombinatoricsVector<String> initialVector = createVector("a", "a", "b");
 
-        assertEquals(6, list.size());
+    Generator<String> generator = createPermutationGenerator(initialVector, true);
 
-        assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(5)
-                .toString());
+    for (ICombinatoricsVector<String> perm : generator) {
+      System.out.println(perm);
     }
 
+    List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
 
-    @Test
-    public void allIdenticalPermutationTreatAsIdentical() {
+    assertEquals(6, list.size());
 
-        ICombinatoricsVector<String> initialVector = createVector("x", "x", "x");
-        Generator<String> generator = Factory.createPermutationGenerator(initialVector, true);
+    assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, a, a], size=3)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, a], size=3)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, a, b], size=3)", list.get(5)
+        .toString());
+  }
 
-        Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
+  @Test
+  public void allIdenticalPermutationTreatAsIdentical() {
 
-        List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+    ICombinatoricsVector<String> initialVector = createVector("x", "x", "x");
+    Generator<String> generator = createPermutationGenerator(initialVector, true);
 
-        assertEquals(6, list.size());
+    Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
 
-        assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(5)
-                .toString());
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
 
-    @Test
-    public void abcPermutation() {
+    List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
 
-        ICombinatoricsVector<String> originalVector = createVector("a", "b", "c");
-        Generator<String> generator = Factory.createPermutationGenerator(originalVector);
+    assertEquals(6, list.size());
 
-        System.out.println("Number of permutations is: "
-                + generator.getNumberOfGeneratedObjects());
-        assertEquals(6, generator.getNumberOfGeneratedObjects());
+    assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([x, x, x], size=3)", list.get(5)
+        .toString());
+  }
 
-        for (ICombinatoricsVector<String> perm : generator) {
-            System.out.println(perm);
-        }
+  @Test
+  public void abcPermutation() {
 
-        List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+    ICombinatoricsVector<String> originalVector = createVector("a", "b", "c");
+    Generator<String> generator = createPermutationGenerator(originalVector);
 
-        assertEquals(6, list.size());
+    System.out.println("Number of permutations is: "
+        + generator.getNumberOfGeneratedObjects());
+    assertEquals(6, generator.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([a, b, c], size=3)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, c, b], size=3)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, a, b], size=3)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, b, a], size=3)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, c, a], size=3)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, a, c], size=3)", list.get(5)
-                .toString());
+    for (ICombinatoricsVector<String> perm : generator) {
+      System.out.println(perm);
     }
 
-    @Test
-    public void anyExpressionPermutation() {
+    List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
 
-        ICombinatoricsVector<String> originalVector = createVector("x", "x^2", "x+1");
-        Generator<String> generator = Factory.createPermutationGenerator(originalVector);
+    assertEquals(6, list.size());
 
-        System.out.println("Number of permutations is: "
-                + generator.getNumberOfGeneratedObjects());
-        assertEquals(6, generator.getNumberOfGeneratedObjects());
+    assertEquals("CombinatoricsVector=([a, b, c], size=3)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, c, b], size=3)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, a, b], size=3)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, b, a], size=3)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, c, a], size=3)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, a, c], size=3)", list.get(5)
+        .toString());
+  }
 
-        for (ICombinatoricsVector<String> perm : generator) {
-            System.out.println(perm);
-        }
+  @Test
+  public void anyExpressionPermutation() {
 
-        List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+    ICombinatoricsVector<String> originalVector = createVector("x", "x^2", "x+1");
+    Generator<String> generator = createPermutationGenerator(originalVector);
 
-        assertEquals(6, list.size());
+    System.out.println("Number of permutations is: "
+        + generator.getNumberOfGeneratedObjects());
+    assertEquals(6, generator.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([x, x^2, x+1], size=3)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([x, x+1, x^2], size=3)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([x+1, x, x^2], size=3)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([x+1, x^2, x], size=3)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([x^2, x+1, x], size=3)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([x^2, x, x+1], size=3)", list.get(5)
-                .toString());
+    for (ICombinatoricsVector<String> perm : generator) {
+      System.out.println(perm);
     }
 
-    @Test
-    public void simpleWithEqualElementsPermutation() {
+    List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
 
-        ICombinatoricsVector<Integer> corePermutation = createVector(1, 2, 2, 3);
+    assertEquals(6, list.size());
 
-        Generator<Integer> generator = Factory.createPermutationGenerator(corePermutation);
+    assertEquals("CombinatoricsVector=([x, x^2, x+1], size=3)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([x, x+1, x^2], size=3)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([x+1, x, x^2], size=3)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([x+1, x^2, x], size=3)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([x^2, x+1, x], size=3)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([x^2, x, x+1], size=3)", list.get(5)
+        .toString());
+  }
 
-        for (ICombinatoricsVector<Integer> perm : generator) {
-            System.out.println(perm);
-        }
+  @Test
+  public void simpleWithEqualElementsPermutation() {
 
-        List<ICombinatoricsVector<Integer>> list = generator.generateAllObjects();
+    ICombinatoricsVector<Integer> corePermutation = createVector(1, 2, 2, 3);
 
-        assertEquals(12, list.size());
+    Generator<Integer> generator = createPermutationGenerator(corePermutation);
 
-        assertEquals("CombinatoricsVector=([1, 2, 2, 3], size=4)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([1, 2, 3, 2], size=4)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([1, 3, 2, 2], size=4)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 1, 2, 3], size=4)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 1, 3, 2], size=4)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 2, 1, 3], size=4)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 2, 3, 1], size=4)", list.get(6)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 3, 1, 2], size=4)", list.get(7)
-                .toString());
-        assertEquals("CombinatoricsVector=([2, 3, 2, 1], size=4)", list.get(8)
-                .toString());
-        assertEquals("CombinatoricsVector=([3, 1, 2, 2], size=4)", list.get(9)
-                .toString());
-        assertEquals("CombinatoricsVector=([3, 2, 1, 2], size=4)", list.get(10)
-                .toString());
-        assertEquals("CombinatoricsVector=([3, 2, 2, 1], size=4)", list.get(11)
-                .toString());
+    for (ICombinatoricsVector<Integer> perm : generator) {
+      System.out.println(perm);
     }
 
-    /**
-     * This test generates anagrams for aabc:
-     * aabc, aacb, abac, abca, acab, acba, baac, baca, bcaa, caab, caba, cbaa
-     */
-    @Test
-    public void test_anagram_generation() {
+    List<ICombinatoricsVector<Integer>> list = generator.generateAllObjects();
 
-        ICombinatoricsVector<String> initialVector = createVector("a", "a", "b", "c");
-        Generator<String> generator = Factory.createPermutationGenerator(initialVector);
+    assertEquals(12, list.size());
 
-        Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
+    assertEquals("CombinatoricsVector=([1, 2, 2, 3], size=4)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([1, 2, 3, 2], size=4)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([1, 3, 2, 2], size=4)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 1, 2, 3], size=4)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 1, 3, 2], size=4)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 2, 1, 3], size=4)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 2, 3, 1], size=4)", list.get(6)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 3, 1, 2], size=4)", list.get(7)
+        .toString());
+    assertEquals("CombinatoricsVector=([2, 3, 2, 1], size=4)", list.get(8)
+        .toString());
+    assertEquals("CombinatoricsVector=([3, 1, 2, 2], size=4)", list.get(9)
+        .toString());
+    assertEquals("CombinatoricsVector=([3, 2, 1, 2], size=4)", list.get(10)
+        .toString());
+    assertEquals("CombinatoricsVector=([3, 2, 2, 1], size=4)", list.get(11)
+        .toString());
+  }
 
-        while (iterator.hasNext()) {
-            iterator.next();
-            System.out.println(iterator);
-        }
+  /**
+   * This test generates anagrams for aabc:
+   * aabc, aacb, abac, abca, acab, acba, baac, baca, bcaa, caab, caba, cbaa
+   */
+  @Test
+  public void test_anagram_generation() {
 
-        List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+    ICombinatoricsVector<String> initialVector = createVector("a", "a", "b", "c");
+    Generator<String> generator = createPermutationGenerator(initialVector);
 
-        assertEquals(12, list.size());
+    Iterator<ICombinatoricsVector<String>> iterator = generator.iterator();
 
-        assertEquals("CombinatoricsVector=([a, a, b, c], size=4)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, a, c, b], size=4)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, a, c], size=4)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, c, a], size=4)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, c, a, b], size=4)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, c, b, a], size=4)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, a, a, c], size=4)", list.get(6)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, a, c, a], size=4)", list.get(7)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, c, a, a], size=4)", list.get(8)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, a, a, b], size=4)", list.get(9)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, a, b, a], size=4)", list.get(10)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, b, a, a], size=4)", list.get(11)
-                .toString());
-
+    while (iterator.hasNext()) {
+      iterator.next();
+      System.out.println(iterator);
     }
+
+    List<ICombinatoricsVector<String>> list = generator.generateAllObjects();
+
+    assertEquals(12, list.size());
+
+    assertEquals("CombinatoricsVector=([a, a, b, c], size=4)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, a, c, b], size=4)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, a, c], size=4)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, c, a], size=4)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, c, a, b], size=4)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, c, b, a], size=4)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, a, a, c], size=4)", list.get(6)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, a, c, a], size=4)", list.get(7)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, c, a, a], size=4)", list.get(8)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, a, a, b], size=4)", list.get(9)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, a, b, a], size=4)", list.get(10)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, b, a, a], size=4)", list.get(11)
+        .toString());
+
+  }
 }

@@ -1,15 +1,14 @@
 package org.paukov.combinatorics.cartesian;
 
-import org.junit.Test;
-import org.paukov.combinatorics.Factory;
-import org.paukov.combinatorics.Generator;
-import org.paukov.combinatorics.ICombinatoricsVector;
+import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
 import java.util.Iterator;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.paukov.combinatorics.Factory.createVector;
+import org.junit.Test;
+import org.paukov.combinatorics.CombinatoricsFactory;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * Created by dpaukov on 5/3/18.
@@ -67,7 +66,7 @@ public class CartesianProductTest {
     public void test_cartesian_product_empty() {
 
         Generator<String> cartesianProduct = new CartesianProductGenerator<>(
-                Factory.<ICombinatoricsVector<String>>createVector());
+            CombinatoricsFactory.<ICombinatoricsVector<String>>createVector());
 
         Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
 

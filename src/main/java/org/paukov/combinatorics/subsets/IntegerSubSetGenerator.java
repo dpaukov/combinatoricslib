@@ -5,7 +5,6 @@
 package org.paukov.combinatorics.subsets;
 
 import java.util.Iterator;
-
 import org.paukov.combinatorics.IntegerFactory;
 import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
@@ -41,27 +40,27 @@ import org.paukov.combinatorics.util.Util;
  * And code which generates all subsets of (1, 2, 3)
  * <p>
  * <blockquote>
- * 
+ *
  * <pre>
  * // Create an initial vector/set
  * IntegerVector initialSet = IntegerFactory.createIntegerVector(new int[] { 1, 2,
  * 		3 });
- * 
+ *
  * // Create an instance of the integer subset generator
  * IntegerGenerator gen = IntegerFactory.createIntegerSubSetGenerator(initialSet);
- * 
+ *
  * // Print the subsets
  * for (IntegerVector subSet : gen) {
  * 	System.out.println(subSet);
  * }
  * </pre>
- * 
+ *
  * </blockquote>
  * <p>
  * And the result of all 8 possible subsets
  * <p>
  * <blockquote>
- * 
+ *
  * <pre>
  *  IntegerVector=([], size=0)
  *  IntegerVector=([1], size=1)
@@ -72,13 +71,13 @@ import org.paukov.combinatorics.util.Util;
  *  IntegerVector=([2, 3], size=2)
  *  IntegerVector=([1, 2, 3], size=3)
  * </pre>
- * 
+ *
  * </blockquote>
  * <p>
  * Version 2.0 of the combinatoricslib supports sets with duplicates. For
  * example, if the original vector contains duplicates like (1, 2, 1, 3), then
  * the result will contain 14 subsets (instead of 16): <blockquote>
- * 
+ *
  * <pre>
  * ()
  * (1)
@@ -95,7 +94,7 @@ import org.paukov.combinatorics.util.Util;
  * (2, 1, 3)
  * (1, 2, 1, 3)
  * </pre>
- * 
+ *
  * </blockquote>
  * <p>
  * If you still would like to treat the set with duplicates as not identical,
@@ -106,7 +105,7 @@ import org.paukov.combinatorics.util.Util;
  * <b>Note.</b> If the initial vector contains duplicates then the method
  * <code>getNumberOfGeneratedObjects</code> won't be able to return the number
  * of the sub sets/lists. It will throw a runtime exception
- * 
+ *
  * @author DmytroPaukov
  * @version 2.0
  * @see IntegerVector
@@ -114,73 +113,73 @@ import org.paukov.combinatorics.util.Util;
  */
 public class IntegerSubSetGenerator extends IntegerGenerator {
 
-	protected final boolean _hasDuplicates;
-	protected final boolean _treatAsIdentical;
+  protected final boolean _hasDuplicates;
+  protected final boolean _treatAsIdentical;
 
-	/**
-	 * Core set
-	 */
-	protected final IntegerVector _originalVector;
+  /**
+   * Core set
+   */
+  protected final IntegerVector _originalVector;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param originalVector
-	 *            Original vector/set
-	 */
-	public IntegerSubSetGenerator(IntegerVector originalVector) {
-		_hasDuplicates = originalVector.hasDuplicates();
-		_treatAsIdentical = true;
-		_originalVector = IntegerFactory.createIntegerVector(originalVector
-				.getVector());
-	}
+  /**
+   * Constructor
+   *
+   * @param originalVector Original vector/set
+   */
+  public IntegerSubSetGenerator(IntegerVector originalVector) {
+    _hasDuplicates = originalVector.hasDuplicates();
+    _treatAsIdentical = true;
+    _originalVector = IntegerFactory.createIntegerVector(originalVector
+        .getVector());
+  }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param originalVector
-	 *            Original vector/set
-	 */
-	public IntegerSubSetGenerator(IntegerVector originalVector,
-			boolean treatAsIdentical) {
-		_hasDuplicates = originalVector.hasDuplicates();
-		_treatAsIdentical = treatAsIdentical;
-		_originalVector = IntegerFactory.createIntegerVector(originalVector
-				.getVector());
-	}
+  /**
+   * Constructor
+   *
+   * @param originalVector Original vector/set
+   */
+  public IntegerSubSetGenerator(IntegerVector originalVector,
+      boolean treatAsIdentical) {
+    _hasDuplicates = originalVector.hasDuplicates();
+    _treatAsIdentical = treatAsIdentical;
+    _originalVector = IntegerFactory.createIntegerVector(originalVector
+        .getVector());
+  }
 
-	/**
-	 * Returns the core set
-	 */
-	public IntegerVector getOriginalVector() {
-		return _originalVector;
-	}
+  /**
+   * Returns the core set
+   */
+  public IntegerVector getOriginalVector() {
+    return _originalVector;
+  }
 
-	/**
-	 * Returns the number of the subsets. If the original set contains
-	 * duplicates this method will throw a runtime exception.
-	 */
-	public long getNumberOfGeneratedObjects() {
+  /**
+   * Returns the number of the subsets. If the original set contains
+   * duplicates this method will throw a runtime exception.
+   */
+  public long getNumberOfGeneratedObjects() {
 
-		if (isSubList())
-			throw new RuntimeException("The initial vector has duplicates: "
-					+ _originalVector);
+    if (isSubList()) {
+      throw new RuntimeException("The initial vector has duplicates: "
+          + _originalVector);
+    }
 
-		return Util.pow2(_originalVector.getSize());
-	}
+    return Util.pow2(_originalVector.getSize());
+  }
 
-	/**
-	 * Creates the iterator over the all subsets
-	 */
-	public Iterator<IntegerVector> iterator() {
-		if (isSubList())
-			return new IntegerSubListIterator(this);
-		else
-			return new IntegerSubSetIterator(this);
-	}
+  /**
+   * Creates the iterator over the all subsets
+   */
+  public Iterator<IntegerVector> iterator() {
+    if (isSubList()) {
+      return new IntegerSubListIterator(this);
+    } else {
+      return new IntegerSubSetIterator(this);
+    }
+  }
 
-	protected boolean isSubList() {
-		return (_treatAsIdentical && _hasDuplicates);
-	}
+  protected boolean isSubList() {
+    return (_treatAsIdentical && _hasDuplicates);
+  }
 
 }

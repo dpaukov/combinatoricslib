@@ -4,435 +4,440 @@
  */
 package org.paukov.combinatorics.combination.simple;
 
-import org.junit.Test;
-import org.paukov.combinatorics.Factory;
-import org.paukov.combinatorics.Generator;
-import org.paukov.combinatorics.ICombinatoricsVector;
-import org.paukov.combinatorics.util.ComplexCombinationGenerator;
+import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.CombinatoricsFactory.createSimpleCombinationGenerator;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.paukov.combinatorics.Factory.createVector;
+import org.junit.Test;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
+import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
 /**
  * @author Dmytro Paukov
  */
 public class SimpleCombinationTest {
 
-    @Test
-    public void simpleCombination1Test() {
+  @Test
+  public void simpleCombination1Test() {
 
-        // create combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector("red", "black", "white", "green", "blue");
+    // create combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector("red", "black", "white", "green",
+        "blue");
 
-        // create simple combination generator to generate 3-combination
-        Generator<String> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 3);
+    // create simple combination generator to generate 3-combination
+    Generator<String> gen = createSimpleCombinationGenerator(
+        initialVector, 3);
 
-        // create iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+    // create iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        // print the number of combinations
-        assertEquals(10, gen.getNumberOfGeneratedObjects());
+    // print the number of combinations
+    assertEquals(10, gen.getNumberOfGeneratedObjects());
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
-
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
-
-        assertEquals(10, list.size());
-
-        assertEquals("CombinatoricsVector=([red, black, white], size=3)", list
-                .get(0).toString());
-        assertEquals("CombinatoricsVector=([red, black, green], size=3)", list
-                .get(1).toString());
-        assertEquals("CombinatoricsVector=([red, black, blue], size=3)", list
-                .get(2).toString());
-        assertEquals("CombinatoricsVector=([red, white, green], size=3)", list
-                .get(3).toString());
-        assertEquals("CombinatoricsVector=([red, white, blue], size=3)", list
-                .get(4).toString());
-        assertEquals("CombinatoricsVector=([red, green, blue], size=3)", list
-                .get(5).toString());
-        assertEquals("CombinatoricsVector=([black, white, green], size=3)",
-                list.get(6).toString());
-
-        assertEquals("CombinatoricsVector=([black, white, blue], size=3)", list
-                .get(7).toString());
-        assertEquals("CombinatoricsVector=([black, green, blue], size=3)", list
-                .get(8).toString());
-        assertEquals("CombinatoricsVector=([white, green, blue], size=3)", list
-                .get(9).toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void simpleCombination2Test() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create combinatorics vector
-        ICombinatoricsVector<Integer> initialVector = createVector(1, 2, 3, 4, 5);
+    assertEquals(10, list.size());
 
-        // create simple combination generator to generate 3-combination
-        Generator<Integer> gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
+    assertEquals("CombinatoricsVector=([red, black, white], size=3)", list
+        .get(0).toString());
+    assertEquals("CombinatoricsVector=([red, black, green], size=3)", list
+        .get(1).toString());
+    assertEquals("CombinatoricsVector=([red, black, blue], size=3)", list
+        .get(2).toString());
+    assertEquals("CombinatoricsVector=([red, white, green], size=3)", list
+        .get(3).toString());
+    assertEquals("CombinatoricsVector=([red, white, blue], size=3)", list
+        .get(4).toString());
+    assertEquals("CombinatoricsVector=([red, green, blue], size=3)", list
+        .get(5).toString());
+    assertEquals("CombinatoricsVector=([black, white, green], size=3)",
+        list.get(6).toString());
 
-        // create iterator
-        Iterator<ICombinatoricsVector<Integer>> itr = gen.iterator();
+    assertEquals("CombinatoricsVector=([black, white, blue], size=3)", list
+        .get(7).toString());
+    assertEquals("CombinatoricsVector=([black, green, blue], size=3)", list
+        .get(8).toString());
+    assertEquals("CombinatoricsVector=([white, green, blue], size=3)", list
+        .get(9).toString());
+  }
 
-        // print the number of combinations
-        assertEquals(10, gen.getNumberOfGeneratedObjects());
+  @Test
+  public void simpleCombination2Test() {
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<Integer> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create combinatorics vector
+    ICombinatoricsVector<Integer> initialVector = createVector(1, 2, 3, 4, 5);
 
-        List<ICombinatoricsVector<Integer>> list = gen.generateAllObjects();
+    // create simple combination generator to generate 3-combination
+    Generator<Integer> gen = createSimpleCombinationGenerator(initialVector, 3);
 
-        assertEquals(10, list.size());
+    // create iterator
+    Iterator<ICombinatoricsVector<Integer>> itr = gen.iterator();
 
-        assertEquals("CombinatoricsVector=([1, 2, 3], size=3)", list
-                .get(0).toString());
-        assertEquals("CombinatoricsVector=([1, 2, 4], size=3)", list
-                .get(1).toString());
-        assertEquals("CombinatoricsVector=([1, 2, 5], size=3)", list
-                .get(2).toString());
-        assertEquals("CombinatoricsVector=([1, 3, 4], size=3)", list
-                .get(3).toString());
-        assertEquals("CombinatoricsVector=([1, 3, 5], size=3)", list
-                .get(4).toString());
-        assertEquals("CombinatoricsVector=([1, 4, 5], size=3)", list
-                .get(5).toString());
-        assertEquals("CombinatoricsVector=([2, 3, 4], size=3)",
-                list.get(6).toString());
+    // print the number of combinations
+    assertEquals(10, gen.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([2, 3, 5], size=3)", list
-                .get(7).toString());
-        assertEquals("CombinatoricsVector=([2, 4, 5], size=3)", list
-                .get(8).toString());
-        assertEquals("CombinatoricsVector=([3, 4, 5], size=3)", list
-                .get(9).toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<Integer> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void simpleCombinationOfVectorsTest() {
+    List<ICombinatoricsVector<Integer>> list = gen.generateAllObjects();
 
-        // create combinatorics vector
-        ICombinatoricsVector<String> vectorA = createVector("A1", "A2", "A3");
-        ICombinatoricsVector<String> vectorB = createVector("B1", "B2", "B3");
-        ICombinatoricsVector<String> vectorC = createVector("C1", "C2", "C3");
+    assertEquals(10, list.size());
 
-        // create combinatorics vector
-        ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector(vectorA, vectorB, vectorC);
+    assertEquals("CombinatoricsVector=([1, 2, 3], size=3)", list
+        .get(0).toString());
+    assertEquals("CombinatoricsVector=([1, 2, 4], size=3)", list
+        .get(1).toString());
+    assertEquals("CombinatoricsVector=([1, 2, 5], size=3)", list
+        .get(2).toString());
+    assertEquals("CombinatoricsVector=([1, 3, 4], size=3)", list
+        .get(3).toString());
+    assertEquals("CombinatoricsVector=([1, 3, 5], size=3)", list
+        .get(4).toString());
+    assertEquals("CombinatoricsVector=([1, 4, 5], size=3)", list
+        .get(5).toString());
+    assertEquals("CombinatoricsVector=([2, 3, 4], size=3)",
+        list.get(6).toString());
 
-        // create simple combination generator to generate 3-combination
-        Generator<ICombinatoricsVector<String>> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 2);
+    assertEquals("CombinatoricsVector=([2, 3, 5], size=3)", list
+        .get(7).toString());
+    assertEquals("CombinatoricsVector=([2, 4, 5], size=3)", list
+        .get(8).toString());
+    assertEquals("CombinatoricsVector=([3, 4, 5], size=3)", list
+        .get(9).toString());
+  }
 
-        // create iterator
-        Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = gen.iterator();
+  @Test
+  public void simpleCombinationOfVectorsTest() {
 
-        // print the number of combinations
-        assertEquals(3, gen.getNumberOfGeneratedObjects());
+    // create combinatorics vector
+    ICombinatoricsVector<String> vectorA = createVector("A1", "A2", "A3");
+    ICombinatoricsVector<String> vectorB = createVector("B1", "B2", "B3");
+    ICombinatoricsVector<String> vectorC = createVector("C1", "C2", "C3");
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<ICombinatoricsVector<String>> combination = itr.next();
+    // create combinatorics vector
+    ICombinatoricsVector<ICombinatoricsVector<String>> initialVector = createVector(vectorA,
+        vectorB, vectorC);
 
-            String str = ComplexCombinationGenerator
-                    .convert2String(combination);
-            System.out.println(str + " = " + itr);
-        }
+    // create simple combination generator to generate 3-combination
+    Generator<ICombinatoricsVector<String>> gen = createSimpleCombinationGenerator(
+        initialVector, 2);
 
-        List<ICombinatoricsVector<ICombinatoricsVector<String>>> list = gen.generateAllObjects();
+    // create iterator
+    Iterator<ICombinatoricsVector<ICombinatoricsVector<String>>> itr = gen.iterator();
 
-        assertEquals(3, list.size());
+    // print the number of combinations
+    assertEquals(3, gen.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([B1, B2, B3], size=3)], size=2)", list
-                .get(0).toString());
-        assertEquals("CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=2)", list
-                .get(1).toString());
-        assertEquals("CombinatoricsVector=([CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=2)", list
-                .get(2).toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<ICombinatoricsVector<String>> combination = itr.next();
+
+      String str = ComplexCombinationGenerator
+          .convert2String(combination);
+      System.out.println(str + " = " + itr);
     }
 
-    @Test
-    public void simpleCombination1IteratorTest() {
+    List<ICombinatoricsVector<ICombinatoricsVector<String>>> list = gen.generateAllObjects();
 
-        // create combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector("red", "black", "white", "green", "blue");
+    assertEquals(3, list.size());
 
-        // create simple combination generator to generate 3-combination
-        Generator<String> gen = Factory.createSimpleCombinationGenerator(initialVector, 3);
+    assertEquals(
+        "CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([B1, B2, B3], size=3)], size=2)",
+        list
+            .get(0).toString());
+    assertEquals(
+        "CombinatoricsVector=([CombinatoricsVector=([A1, A2, A3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=2)",
+        list
+            .get(1).toString());
+    assertEquals(
+        "CombinatoricsVector=([CombinatoricsVector=([B1, B2, B3], size=3), CombinatoricsVector=([C1, C2, C3], size=3)], size=2)",
+        list
+            .get(2).toString());
+  }
 
-        // create iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+  @Test
+  public void simpleCombination1IteratorTest() {
 
-        // print the number of combinations
-        assertEquals(10, gen.getNumberOfGeneratedObjects());
+    // create combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector("red", "black", "white", "green",
+        "blue");
 
-        List<ICombinatoricsVector<String>> list = new ArrayList<ICombinatoricsVector<String>>();
+    // create simple combination generator to generate 3-combination
+    Generator<String> gen = createSimpleCombinationGenerator(initialVector, 3);
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-            list.add(createVector(combination));
-        }
+    // create iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        assertEquals(10, list.size());
+    // print the number of combinations
+    assertEquals(10, gen.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([red, black, white], size=3)", list
-                .get(0).toString());
-        assertEquals("CombinatoricsVector=([red, black, green], size=3)", list
-                .get(1).toString());
-        assertEquals("CombinatoricsVector=([red, black, blue], size=3)", list
-                .get(2).toString());
-        assertEquals("CombinatoricsVector=([red, white, green], size=3)", list
-                .get(3).toString());
-        assertEquals("CombinatoricsVector=([red, white, blue], size=3)", list
-                .get(4).toString());
-        assertEquals("CombinatoricsVector=([red, green, blue], size=3)", list
-                .get(5).toString());
-        assertEquals("CombinatoricsVector=([black, white, green], size=3)",
-                list.get(6).toString());
+    List<ICombinatoricsVector<String>> list = new ArrayList<ICombinatoricsVector<String>>();
 
-        assertEquals("CombinatoricsVector=([black, white, blue], size=3)", list
-                .get(7).toString());
-        assertEquals("CombinatoricsVector=([black, green, blue], size=3)", list
-                .get(8).toString());
-        assertEquals("CombinatoricsVector=([white, green, blue], size=3)", list
-                .get(9).toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
+      list.add(createVector(combination));
     }
 
-    @Test
-    public void simpleEmptyCombinationTest() {
+    assertEquals(10, list.size());
 
-        // create combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector("red");
+    assertEquals("CombinatoricsVector=([red, black, white], size=3)", list
+        .get(0).toString());
+    assertEquals("CombinatoricsVector=([red, black, green], size=3)", list
+        .get(1).toString());
+    assertEquals("CombinatoricsVector=([red, black, blue], size=3)", list
+        .get(2).toString());
+    assertEquals("CombinatoricsVector=([red, white, green], size=3)", list
+        .get(3).toString());
+    assertEquals("CombinatoricsVector=([red, white, blue], size=3)", list
+        .get(4).toString());
+    assertEquals("CombinatoricsVector=([red, green, blue], size=3)", list
+        .get(5).toString());
+    assertEquals("CombinatoricsVector=([black, white, green], size=3)",
+        list.get(6).toString());
 
-        // create simple combination generator to generate 0-combination
-        Generator<String> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 0);
+    assertEquals("CombinatoricsVector=([black, white, blue], size=3)", list
+        .get(7).toString());
+    assertEquals("CombinatoricsVector=([black, green, blue], size=3)", list
+        .get(8).toString());
+    assertEquals("CombinatoricsVector=([white, green, blue], size=3)", list
+        .get(9).toString());
+  }
 
-        // create iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+  @Test
+  public void simpleEmptyCombinationTest() {
 
-        // print the number of combinations
-        assertEquals(1, gen.getNumberOfGeneratedObjects());
+    // create combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector("red");
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create simple combination generator to generate 0-combination
+    Generator<String> gen = createSimpleCombinationGenerator(initialVector, 0);
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        assertEquals(1, list.size());
+    // print the number of combinations
+    assertEquals(1, gen.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void simpleOneCombinationTest() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector("red");
+    assertEquals(1, list.size());
 
-        // create simple combination generator to generate 1-combination
-        Generator<String> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 1);
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+  }
 
-        // create iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+  @Test
+  public void simpleOneCombinationTest() {
 
-        // print the number of combinations
-        assertEquals(1, gen.getNumberOfGeneratedObjects());
+    // create combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector("red");
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create simple combination generator to generate 1-combination
+    Generator<String> gen = createSimpleCombinationGenerator(initialVector, 1);
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        assertEquals(1, list.size());
+    // print the number of combinations
+    assertEquals(1, gen.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([red], size=1)", list.get(0)
-                .toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void simpleOneTwoCombinationTest() {
-        // create combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector("red");
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create simple combination generator to generate 2-combination of 1
-        Generator<String> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 2);
+    assertEquals(1, list.size());
 
-        // create iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+    assertEquals("CombinatoricsVector=([red], size=1)", list.get(0)
+        .toString());
+  }
 
-        // print the number of combinations
-        assertEquals(0, gen.getNumberOfGeneratedObjects());
+  @Test
+  public void simpleOneTwoCombinationTest() {
+    // create combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector("red");
 
-        // go through the iterator
-        assertEquals(false, itr.hasNext());
+    // create simple combination generator to generate 2-combination of 1
+    Generator<String> gen = createSimpleCombinationGenerator(initialVector, 2);
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
-        assertEquals(0, list.size());
+    // create iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
+    // print the number of combinations
+    assertEquals(0, gen.getNumberOfGeneratedObjects());
+
+    // go through the iterator
+    assertEquals(false, itr.hasNext());
+
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    assertEquals(0, list.size());
+
+  }
+
+  @Test
+  public void simpleTwoTwoCombinationTest() {
+
+    // create combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector("red", "green");
+
+    // create simple combination generator to generate 2-combination of 2
+    Generator<String> gen = createSimpleCombinationGenerator(initialVector, 2);
+
+    // create iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+
+    // print the number of combinations
+    assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void simpleTwoTwoCombinationTest() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector("red", "green");
+    assertEquals(1, list.size());
 
-        // create simple combination generator to generate 2-combination of 2
-        Generator<String> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 2);
+    assertEquals("CombinatoricsVector=([red, green], size=2)", list.get(0)
+        .toString());
 
-        // create iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+  }
 
-        // print the number of combinations
-        assertEquals(1, gen.getNumberOfGeneratedObjects());
+  @Test
+  public void simpleObjectsCombinationTest() {
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create combinatorics vector with 3 apples
+    ICombinatoricsVector<Apple> initialVector = createVector(
+        new Apple("red"),
+        new Apple("green"),
+        new Apple("yellow"));
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create simple combination generator to generate 2-combination of 3 apples
+    Generator<Apple> gen = createSimpleCombinationGenerator(initialVector, 2);
 
-        assertEquals(1, list.size());
+    // create iterator
+    Iterator<ICombinatoricsVector<Apple>> itr = gen.iterator();
 
-        assertEquals("CombinatoricsVector=([red, green], size=2)", list.get(0)
-                .toString());
+    // print the number of combinations
+    assertEquals(3, gen.getNumberOfGeneratedObjects());
 
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<Apple> combination = itr.next();
+      System.out.println(combination);
     }
 
+    List<ICombinatoricsVector<Apple>> list = gen.generateAllObjects();
 
-    class Apple {
-        String color;
+    assertEquals(3, list.size());
 
-        Apple(String color) {
-            this.color = color;
-        }
+    assertEquals("CombinatoricsVector=([(Apple: red), (Apple: green)], size=2)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([(Apple: red), (Apple: yellow)], size=2)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([(Apple: green), (Apple: yellow)], size=2)", list.get(2)
+        .toString());
 
-        public String toString() {
-            return "(Apple: " + color + ")";
-        }
+  }
 
+  @Test
+  public void simpleObjectsModifiedCombinationTest() {
+
+    // create combinatorics vector
+    ICombinatoricsVector<Apple> initialVector = createVector();
+
+    Apple red = new Apple("red");
+    Apple green = new Apple("green");
+    Apple yellow = new Apple("yellow");
+
+    initialVector.addValue(red);
+    initialVector.addValue(green);
+    initialVector.addValue(yellow);
+
+    // create simple combination generator to generate 2-combination of 3
+    Generator<Apple> gen = createSimpleCombinationGenerator(initialVector, 2);
+
+    // create iterator
+    Iterator<ICombinatoricsVector<Apple>> itr = gen.iterator();
+
+    // print the number of combinations
+    assertEquals(3, gen.getNumberOfGeneratedObjects());
+
+    // Print the first combination
+    ICombinatoricsVector<Apple> combination = itr.next();
+    System.out.println(combination);
+    assertEquals("CombinatoricsVector=([(Apple: red), (Apple: green)], size=2)",
+        combination.toString());
+
+    // Modify the original red apple
+    red.color = "brawn";
+
+    // Print the next combination
+    combination = itr.next();
+    System.out.println(combination);
+    assertEquals("CombinatoricsVector=([(Apple: brawn), (Apple: yellow)], size=2)",
+        combination.toString());
+
+    // Modify the original green apple
+    green.color = "rose";
+
+    // Print the next combination
+    combination = itr.next();
+    System.out.println(combination);
+    assertEquals("CombinatoricsVector=([(Apple: rose), (Apple: yellow)], size=2)",
+        combination.toString());
+
+    // Modify the original yellow apple
+    yellow.color = "white";
+
+    List<ICombinatoricsVector<Apple>> list = gen.generateAllObjects();
+
+    assertEquals(3, list.size());
+
+    assertEquals("CombinatoricsVector=([(Apple: brawn), (Apple: rose)], size=2)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([(Apple: brawn), (Apple: white)], size=2)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([(Apple: rose), (Apple: white)], size=2)", list.get(2)
+        .toString());
+
+  }
+
+  class Apple {
+
+    String color;
+
+    Apple(String color) {
+      this.color = color;
     }
 
-    @Test
-    public void simpleObjectsCombinationTest() {
-
-        // create combinatorics vector with 3 apples
-        ICombinatoricsVector<Apple> initialVector = createVector(
-                new Apple("red"),
-                new Apple("green"),
-                new Apple("yellow"));
-
-        // create simple combination generator to generate 2-combination of 3 apples
-        Generator<Apple> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 2);
-
-        // create iterator
-        Iterator<ICombinatoricsVector<Apple>> itr = gen.iterator();
-
-        // print the number of combinations
-        assertEquals(3, gen.getNumberOfGeneratedObjects());
-
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<Apple> combination = itr.next();
-            System.out.println(combination);
-        }
-
-        List<ICombinatoricsVector<Apple>> list = gen.generateAllObjects();
-
-        assertEquals(3, list.size());
-
-        assertEquals("CombinatoricsVector=([(Apple: red), (Apple: green)], size=2)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([(Apple: red), (Apple: yellow)], size=2)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([(Apple: green), (Apple: yellow)], size=2)", list.get(2)
-                .toString());
-
+    public String toString() {
+      return "(Apple: " + color + ")";
     }
 
-    @Test
-    public void simpleObjectsModifiedCombinationTest() {
-
-        // create combinatorics vector
-        ICombinatoricsVector<Apple> initialVector = createVector();
-
-        Apple red = new Apple("red");
-        Apple green = new Apple("green");
-        Apple yellow = new Apple("yellow");
-
-        initialVector.addValue(red);
-        initialVector.addValue(green);
-        initialVector.addValue(yellow);
-
-        // create simple combination generator to generate 2-combination of 3
-        Generator<Apple> gen = Factory.createSimpleCombinationGenerator(
-                initialVector, 2);
-
-        // create iterator
-        Iterator<ICombinatoricsVector<Apple>> itr = gen.iterator();
-
-        // print the number of combinations
-        assertEquals(3, gen.getNumberOfGeneratedObjects());
-
-        // Print the first combination
-        ICombinatoricsVector<Apple> combination = itr.next();
-        System.out.println(combination);
-        assertEquals("CombinatoricsVector=([(Apple: red), (Apple: green)], size=2)", combination.toString());
-
-        // Modify the original red apple
-        red.color = "brawn";
-
-        // Print the next combination
-        combination = itr.next();
-        System.out.println(combination);
-        assertEquals("CombinatoricsVector=([(Apple: brawn), (Apple: yellow)], size=2)", combination.toString());
-
-        // Modify the original green apple
-        green.color = "rose";
-
-        // Print the next combination
-        combination = itr.next();
-        System.out.println(combination);
-        assertEquals("CombinatoricsVector=([(Apple: rose), (Apple: yellow)], size=2)", combination.toString());
-
-        // Modify the original yellow apple
-        yellow.color = "white";
-
-        List<ICombinatoricsVector<Apple>> list = gen.generateAllObjects();
-
-        assertEquals(3, list.size());
-
-        assertEquals("CombinatoricsVector=([(Apple: brawn), (Apple: rose)], size=2)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([(Apple: brawn), (Apple: white)], size=2)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([(Apple: rose), (Apple: white)], size=2)", list.get(2)
-                .toString());
-
-    }
+  }
 }

@@ -4,9 +4,9 @@
  */
 package org.paukov.combinatorics.combination.multi;
 
-import java.util.Iterator;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
-import org.paukov.combinatorics.Factory;
+import java.util.Iterator;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.util.Util;
@@ -33,87 +33,84 @@ import org.paukov.combinatorics.util.Util;
  * <p>
  * <p>
  * <blockquote>
- * 
+ *
  * <pre>
- * 
+ *
  * // Create the initial vector of (apple, orange)
  * ICombinatoricsVector&lt;String&gt; initialVector = Factory.createVector(new String[] {
  * 		&quot;apple&quot;, &quot;orange&quot; });
- * 
+ *
  * // Create a multi-combination generator to generate 3-combinations of
  * // the initial vector
  * Generator&lt;String&gt; gen = Factory.createMultiCombinationGenerator(initialVector,
  * 		3);
- * 
+ *
  * // Print all possible combinations
  * for (ICombinatoricsVector&lt;String&gt; combination : gen) {
  * 	System.out.println(combination);
  * }
  * </pre>
- * 
+ *
  * </blockquote>
  * <p>
- * 
+ *
+ * @param <T> Type of elements in the combination
  * @author Dmytro Paukov
  * @version 2.0
  * @see MultiCombinationIterator
- * @param <T>
- *            Type of elements in the combination
  */
 public class MultiCombinationGenerator<T> extends Generator<T> {
 
-	protected final ICombinatoricsVector<T> _originalVector;
-	protected final int _combinationLength;
+  protected final ICombinatoricsVector<T> _originalVector;
+  protected final int _combinationLength;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param originalVector
-	 *            Original/initial vector which is used for combination
-	 *            generation
-	 * @param combinationsLength
-	 *            Length of combination to generate
-	 */
-	public MultiCombinationGenerator(ICombinatoricsVector<T> originalVector,
-			int combinationsLength) {
-		_originalVector = Factory.createVector(originalVector);
-		if (combinationsLength < 0)
-			_combinationLength = 0;
-		else
-			_combinationLength = combinationsLength;
-	}
+  /**
+   * Constructor
+   *
+   * @param originalVector Original/initial vector which is used for combination generation
+   * @param combinationsLength Length of combination to generate
+   */
+  public MultiCombinationGenerator(ICombinatoricsVector<T> originalVector,
+      int combinationsLength) {
+    _originalVector = createVector(originalVector);
+    if (combinationsLength < 0) {
+      _combinationLength = 0;
+    } else {
+      _combinationLength = combinationsLength;
+    }
+  }
 
-	/**
-	 * Returns core set
-	 * 
-	 * @return Returns the _originalVector.
-	 */
-	public ICombinatoricsVector<T> getOriginalVector() {
-		return _originalVector;
-	}
+  /**
+   * Returns core set
+   *
+   * @return Returns the _originalVector.
+   */
+  public ICombinatoricsVector<T> getOriginalVector() {
+    return _originalVector;
+  }
 
-	/**
-	 * Returns length of combinations
-	 * 
-	 * @return Returns the _combinationLength.
-	 */
-	public int getCombinationLength() {
-		return _combinationLength;
-	}
+  /**
+   * Returns length of combinations
+   *
+   * @return Returns the _combinationLength.
+   */
+  public int getCombinationLength() {
+    return _combinationLength;
+  }
 
-	/**
-	 * Returns number of generated combinations with repetitions
-	 */
-	public long getNumberOfGeneratedObjects() {
-		return Util.combination(_originalVector.getSize() + _combinationLength
-				- 1, _combinationLength);
-	}
+  /**
+   * Returns number of generated combinations with repetitions
+   */
+  public long getNumberOfGeneratedObjects() {
+    return Util.combination(_originalVector.getSize() + _combinationLength
+        - 1, _combinationLength);
+  }
 
-	/**
-	 * Creates iterator of combinations with repetitions
-	 */
-	@Override
-	public Iterator<ICombinatoricsVector<T>> iterator() {
-		return new MultiCombinationIterator<T>(this);
-	}
+  /**
+   * Creates iterator of combinations with repetitions
+   */
+  @Override
+  public Iterator<ICombinatoricsVector<T>> iterator() {
+    return new MultiCombinationIterator<>(this);
+  }
 }

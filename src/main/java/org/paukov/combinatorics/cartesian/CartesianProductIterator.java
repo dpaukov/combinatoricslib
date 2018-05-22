@@ -1,9 +1,9 @@
 package org.paukov.combinatorics.cartesian;
 
-import org.paukov.combinatorics.Factory;
-import org.paukov.combinatorics.ICombinatoricsVector;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
 import java.util.Iterator;
+import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * Iterator for the cartesian product generator
@@ -14,99 +14,95 @@ import java.util.Iterator;
  * @see CartesianProductGenerator
  */
 class CartesianProductIterator<T> implements
-        Iterator<ICombinatoricsVector<T>> {
+    Iterator<ICombinatoricsVector<T>> {
 
-    private ICombinatoricsVector<ICombinatoricsVector<T>> vector;
+  private final int vectorSize;
+  private final int[] indices;
+  private ICombinatoricsVector<ICombinatoricsVector<T>> vector;
+  private int nextIndex;
+  private ICombinatoricsVector<T> current;
 
-    private final int vectorSize;
+  private int index = 0;
 
-    private int nextIndex;
+  private boolean hasEmptyList = false;
 
-    private final int[] indices;
+  CartesianProductIterator(CartesianProductGenerator<T> generator) {
+    vector = generator.originalVector;
+    vectorSize = generator.originalVector.getSize();
 
-    private ICombinatoricsVector<T> current;
+    // start from the last index
+    nextIndex = vectorSize - 1;
 
-    private int index = 0;
+    // for tracking the indices of the product
+    indices = new int[this.vectorSize];
 
-    private boolean hasEmptyList = false;
+    // for the tracking the lengths of the lists
+    for (int i = 0; i < vectorSize; i++) {
+      hasEmptyList = hasEmptyList || vector.getValue(i).getSize() == 0;
+    }
+  }
 
-    CartesianProductIterator(CartesianProductGenerator<T> generator) {
-        vector = generator.originalVector;
-        vectorSize = generator.originalVector.getSize();
+  /**
+   * Returns true if all cartesian products were iterated, otherwise false
+   */
+  @Override
+  public boolean hasNext() {
+    return !hasEmptyList && nextIndex >= 0;
+  }
 
-        // start from the last index
-        nextIndex = vectorSize - 1;
-
-        // for tracking the indices of the product
-        indices = new int[this.vectorSize];
-
-        // for the tracking the lengths of the lists
-        for (int i = 0; i < vectorSize; i++) {
-            hasEmptyList = hasEmptyList || vector.getValue(i).getSize() == 0;
-        }
+  /**
+   * Moves to the next Cartesian product
+   */
+  @Override
+  public ICombinatoricsVector<T> next() {
+    if (index == 0) {
+      return generateCartesianProduct();
     }
 
-    /**
-     * Returns true if all cartesian products were iterated, otherwise false
-     */
-    @Override
-    public boolean hasNext() {
-        return !hasEmptyList && nextIndex >= 0;
+    if (nextIndex < 0) {
+      throw new RuntimeException("No more cartesian product.");
     }
 
-    /**
-     * Moves to the next Cartesian product
-     */
-    @Override
-    public ICombinatoricsVector<T> next() {
-        if (index == 0) {
-            return generateCartesianProduct();
-        }
+    // Move to the next element
+    indices[nextIndex]++;
 
-        if (nextIndex < 0) {
-            throw new RuntimeException("No more cartesian product.");
-        }
-
-        // Move to the next element
-        indices[nextIndex]++;
-
-        for (int i = nextIndex + 1; i < vectorSize; i++) {
-            indices[i] = 0;
-        }
-
-        return generateCartesianProduct();
+    for (int i = nextIndex + 1; i < vectorSize; i++) {
+      indices[i] = 0;
     }
 
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
+    return generateCartesianProduct();
+  }
+
+  @Override
+  public void remove() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public String toString() {
+    return "CartesianProductIterator=[#" + index + ", " + current + "]";
+  }
+
+  private ICombinatoricsVector<T> generateCartesianProduct() {
+    current = createVector();
+    for (int i = 0; i < vectorSize; i++) {
+      current.addValue(vector.getValue(i).getValue(indices[i]));
     }
 
-    @Override
-    public String toString() {
-        return "CartesianProductIterator=[#" + index + ", " + current + "]";
+    // After generating the current, check if has still next cartesian product,
+    // this will be used by #hasNext function
+    checkIfHasNextCartesianProduct();
+    index++;
+
+    return current;
+  }
+
+  private void checkIfHasNextCartesianProduct() {
+    // Check if has still cartesian product by finding an array that has more elements left
+    nextIndex = vectorSize - 1;
+    while (nextIndex >= 0 &&
+        indices[nextIndex] + 1 >= vector.getValue(nextIndex).getSize()) {
+      nextIndex--;
     }
-
-    private ICombinatoricsVector<T> generateCartesianProduct() {
-        current = Factory.createVector();
-        for (int i = 0; i < vectorSize; i++) {
-            current.addValue(vector.getValue(i).getValue(indices[i]));
-        }
-
-        // After generating the current, check if has still next cartesian product,
-        // this will be used by #hasNext function
-        checkIfHasNextCartesianProduct();
-        index++;
-
-        return current;
-    }
-
-    private void checkIfHasNextCartesianProduct() {
-        // Check if has still cartesian product by finding an array that has more elements left
-        nextIndex = vectorSize - 1;
-        while (nextIndex >= 0 &&
-                indices[nextIndex] + 1 >= vector.getValue(nextIndex).getSize()) {
-            nextIndex--;
-        }
-    }
+  }
 }

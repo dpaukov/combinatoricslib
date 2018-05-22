@@ -4,343 +4,345 @@
  */
 package org.paukov.combinatorics.subsets;
 
+import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.CombinatoricsFactory.createSubSetGenerator;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
+
+import java.util.Iterator;
+import java.util.List;
 import org.junit.Test;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 import org.paukov.combinatorics.IFilter;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.paukov.combinatorics.Factory.createSubSetGenerator;
-import static org.paukov.combinatorics.Factory.createVector;
 
 /**
  * @author Dmytro Paukov
  */
 public class SubSetsTest {
 
-    @Test
-    public void simpleSubsetTest() {
+  @Test
+  public void simpleSubsetTest() {
 
-        // create a combinatorics vector (A, B, C)
-        ICombinatoricsVector<String> initialVector = createVector("A", "B", "C");
+    // create a combinatorics vector (A, B, C)
+    ICombinatoricsVector<String> initialVector = createVector("A", "B", "C");
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
 
-        // create an iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+    // create an iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        // verify the number of sunsets
-        assertEquals(8, gen.getNumberOfGeneratedObjects());
+    // verify the number of sunsets
+    assertEquals(8, gen.getNumberOfGeneratedObjects());
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
-
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
-
-        assertEquals(8, list.size());
-
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
-        assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([B], size=1)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([C], size=1)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(6)
-                .toString());
-
-        assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(7)
-                .toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void simpleSubsetFroEachTest() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create a combinatorics vector (A, B, C)
-        ICombinatoricsVector<String> initialVector = createVector("A", "B", "C");
+    assertEquals(8, list.size());
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([B], size=1)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([C], size=1)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(6)
+        .toString());
 
-        // verify the number of sunsets
-        assertEquals(8, gen.getNumberOfGeneratedObjects());
+    assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(7)
+        .toString());
+  }
 
-        for (ICombinatoricsVector<String> combination : gen)
-            System.out.println("For Each: " + combination);
+  @Test
+  public void simpleSubsetFroEachTest() {
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create a combinatorics vector (A, B, C)
+    ICombinatoricsVector<String> initialVector = createVector("A", "B", "C");
 
-        assertEquals(8, list.size());
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
-        assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([B], size=1)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([C], size=1)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(6)
-                .toString());
+    // verify the number of sunsets
+    assertEquals(8, gen.getNumberOfGeneratedObjects());
 
-        assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(7)
-                .toString());
+    for (ICombinatoricsVector<String> combination : gen) {
+      System.out.println("For Each: " + combination);
     }
 
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-    @Test
-    public void emptySubsetTest() {
+    assertEquals(8, list.size());
 
-        // create the empty combinatorics vector
-        ICombinatoricsVector<String> initialVector = createVector();
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([B], size=1)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([C], size=1)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(6)
+        .toString());
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(7)
+        .toString());
+  }
 
-        // create an iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        // verify the number of sunsets
-        assertEquals(1, gen.getNumberOfGeneratedObjects());
+  @Test
+  public void emptySubsetTest() {
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create the empty combinatorics vector
+    ICombinatoricsVector<String> initialVector = createVector();
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
 
-        assertEquals(1, list.size());
+    // create an iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    // verify the number of sunsets
+    assertEquals(1, gen.getNumberOfGeneratedObjects());
+
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void complexSubsetTest() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create a combinatorics vector (A, A, B, B, C)
-        ICombinatoricsVector<String> initialVector = createVector("A", "A", "B", "B", "C");
+    assertEquals(1, list.size());
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+  }
 
-        // create an iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+  @Test
+  public void complexSubsetTest() {
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create a combinatorics vector (A, A, B, B, C)
+    ICombinatoricsVector<String> initialVector = createVector("A", "A", "B", "B", "C");
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
 
-        assertEquals(18, list.size());
+    // create an iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
-        assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A], size=2)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([B], size=1)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A, B], size=3)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([B, B], size=2)", list.get(6)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, B, B], size=3)", list.get(7)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A, B, B], size=4)", list.get(8)
-                .toString());
-        assertEquals("CombinatoricsVector=([C], size=1)", list.get(9)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(10)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A, C], size=3)", list.get(11)
-                .toString());
-        assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(12)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(13)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A, B, C], size=4)", list.get(14)
-                .toString());
-        assertEquals("CombinatoricsVector=([B, B, C], size=3)", list.get(15)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, B, B, C], size=4)", list.get(16)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A, B, B, C], size=5)",
-                list.get(17).toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void complexSubsetTest2() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create a combinatorics vector (A, A, A)
-        ICombinatoricsVector<String> initialVector = createVector("A", "A", "A");
+    assertEquals(18, list.size());
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A], size=2)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([B], size=1)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, B], size=2)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A, B], size=3)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([B, B], size=2)", list.get(6)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, B, B], size=3)", list.get(7)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A, B, B], size=4)", list.get(8)
+        .toString());
+    assertEquals("CombinatoricsVector=([C], size=1)", list.get(9)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, C], size=2)", list.get(10)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A, C], size=3)", list.get(11)
+        .toString());
+    assertEquals("CombinatoricsVector=([B, C], size=2)", list.get(12)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, B, C], size=3)", list.get(13)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A, B, C], size=4)", list.get(14)
+        .toString());
+    assertEquals("CombinatoricsVector=([B, B, C], size=3)", list.get(15)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, B, B, C], size=4)", list.get(16)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A, B, B, C], size=5)",
+        list.get(17).toString());
+  }
 
-        // create an iterator
-        Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
+  @Test
+  public void complexSubsetTest2() {
 
-        // go through the iterator
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    // create a combinatorics vector (A, A, A)
+    ICombinatoricsVector<String> initialVector = createVector("A", "A", "A");
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
 
-        assertEquals(4, list.size());
+    // create an iterator
+    Iterator<ICombinatoricsVector<String>> itr = gen.iterator();
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
-        assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A], size=2)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([A, A, A], size=3)", list.get(3)
-                .toString());
+    // go through the iterator
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void upToTwoElementsSubsetTest() {
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        // create a combinatorics vector (a, b, c, d)
-        ICombinatoricsVector<String> initialVector = createVector("a", "b", "c", "d");
+    assertEquals(4, list.size());
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    assertEquals("CombinatoricsVector=([A], size=1)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A], size=2)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([A, A, A], size=3)", list.get(3)
+        .toString());
+  }
 
-        List<ICombinatoricsVector<String>> list = gen.generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
+  @Test
+  public void upToTwoElementsSubsetTest() {
 
-            @Override
-            public boolean accepted(long index, ICombinatoricsVector<String> value) {
-                return value.getSize() <= 2;
-            }
+    // create a combinatorics vector (a, b, c, d)
+    ICombinatoricsVector<String> initialVector = createVector("a", "b", "c", "d");
+
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
+
+    List<ICombinatoricsVector<String>> list = gen
+        .generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
+
+          @Override
+          public boolean accepted(long index, ICombinatoricsVector<String> value) {
+            return value.getSize() <= 2;
+          }
         });
 
-        assertEquals(11, list.size());
+    assertEquals(11, list.size());
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
-        assertEquals("CombinatoricsVector=([a], size=1)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([b], size=1)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([c], size=1)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, c], size=2)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, c], size=2)", list.get(6)
-                .toString());
-        assertEquals("CombinatoricsVector=([d], size=1)", list.get(7)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, d], size=2)", list.get(8)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, d], size=2)", list.get(9)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, d], size=2)", list.get(10)
-                .toString());
-    }
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0).toString());
+    assertEquals("CombinatoricsVector=([a], size=1)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([b], size=1)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([c], size=1)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, c], size=2)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, c], size=2)", list.get(6)
+        .toString());
+    assertEquals("CombinatoricsVector=([d], size=1)", list.get(7)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, d], size=2)", list.get(8)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, d], size=2)", list.get(9)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, d], size=2)", list.get(10)
+        .toString());
+  }
 
 
-    @Test
-    public void exactlyTwoElementsSubsetTest() {
+  @Test
+  public void exactlyTwoElementsSubsetTest() {
 
-        // create a combinatorics vector (a, b, c, d)
-        ICombinatoricsVector<String> initialVector = createVector("a", "b", "c", "d");
+    // create a combinatorics vector (a, b, c, d)
+    ICombinatoricsVector<String> initialVector = createVector("a", "b", "c", "d");
 
-        // create a sub-set generator
-        Generator<String> gen = createSubSetGenerator(initialVector);
+    // create a sub-set generator
+    Generator<String> gen = createSubSetGenerator(initialVector);
 
-        List<ICombinatoricsVector<String>> list = gen.generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
+    List<ICombinatoricsVector<String>> list = gen
+        .generateFilteredObjects(new IFilter<ICombinatoricsVector<String>>() {
 
-            @Override
-            public boolean accepted(long index, ICombinatoricsVector<String> value) {
-                return value.getSize() == 2;
-            }
+          @Override
+          public boolean accepted(long index, ICombinatoricsVector<String> value) {
+            return value.getSize() == 2;
+          }
         });
 
-        assertEquals(6, list.size());
+    assertEquals(6, list.size());
 
-        assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, c], size=2)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, c], size=2)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, d], size=2)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, d], size=2)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([c, d], size=2)", list.get(5)
-                .toString());
-    }
+    assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, c], size=2)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, c], size=2)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, d], size=2)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, d], size=2)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([c, d], size=2)", list.get(5)
+        .toString());
+  }
 
 
-    @Test
-    public void treatAsDistinctSubsetTest() {
+  @Test
+  public void treatAsDistinctSubsetTest() {
 
-        // create a combinatorics vector (a, b, c, d)
-        ICombinatoricsVector<String> initialVector = createVector("a", "b", "b", "b");
+    // create a combinatorics vector (a, b, c, d)
+    ICombinatoricsVector<String> initialVector = createVector("a", "b", "b", "b");
 
-        // create a sub-set generator and don't treat the identical elements as identical
-        Generator<String> gen = createSubSetGenerator(initialVector, false);
+    // create a sub-set generator and don't treat the identical elements as identical
+    Generator<String> gen = createSubSetGenerator(initialVector, false);
 
-        List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
+    List<ICombinatoricsVector<String>> list = gen.generateAllObjects();
 
-        assertEquals(16, list.size());
+    assertEquals(16, list.size());
 
-        assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
-                .toString());
-        assertEquals("CombinatoricsVector=([a], size=1)", list.get(1)
-                .toString());
-        assertEquals("CombinatoricsVector=([b], size=1)", list.get(2)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(3)
-                .toString());
-        assertEquals("CombinatoricsVector=([b], size=1)", list.get(4)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(5)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(6)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(7)
-                .toString());
-        assertEquals("CombinatoricsVector=([b], size=1)", list.get(8)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(9)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(10)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(11)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(12)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(13)
-                .toString());
-        assertEquals("CombinatoricsVector=([b, b, b], size=3)", list.get(14)
-                .toString());
-        assertEquals("CombinatoricsVector=([a, b, b, b], size=4)", list.get(15)
-                .toString());
-    }
+    assertEquals("CombinatoricsVector=([], size=0)", list.get(0)
+        .toString());
+    assertEquals("CombinatoricsVector=([a], size=1)", list.get(1)
+        .toString());
+    assertEquals("CombinatoricsVector=([b], size=1)", list.get(2)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(3)
+        .toString());
+    assertEquals("CombinatoricsVector=([b], size=1)", list.get(4)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(5)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(6)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(7)
+        .toString());
+    assertEquals("CombinatoricsVector=([b], size=1)", list.get(8)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b], size=2)", list.get(9)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(10)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(11)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, b], size=2)", list.get(12)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, b], size=3)", list.get(13)
+        .toString());
+    assertEquals("CombinatoricsVector=([b, b, b], size=3)", list.get(14)
+        .toString());
+    assertEquals("CombinatoricsVector=([a, b, b, b], size=4)", list.get(15)
+        .toString());
+  }
 }

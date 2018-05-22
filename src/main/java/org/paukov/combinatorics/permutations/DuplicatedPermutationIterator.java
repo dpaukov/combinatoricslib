@@ -4,191 +4,190 @@
  */
 package org.paukov.combinatorics.permutations;
 
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
+
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * Iterator for the permutation generator which contains duplicates
- * 
+ *
+ * @param <T> Type of elements in the permutations
  * @author Dmytro Paukov
  * @version 2.0
  * @see ICombinatoricsVector
  * @see PermutationGenerator
- * @param <T>
- *            Type of elements in the permutations
  */
 class DuplicatedPermutationIterator<T> implements
-		Iterator<ICombinatoricsVector<T>> {
+    Iterator<ICombinatoricsVector<T>> {
 
-	/**
-	 * Generator
-	 */
-	final Generator<T> _generator;
+  /**
+   * Generator
+   */
+  final Generator<T> _generator;
 
-	/**
-	 * Current permutation
-	 */
-	ICombinatoricsVector<T> _currentPermutation;
+  /**
+   * Number of elements in the permutations
+   */
+  final int _length;
 
-	/**
-	 * Current index of current permutation
-	 */
-	long _currentIndex = 0;
+  /**
+   * Current permutation
+   */
+  ICombinatoricsVector<T> _currentPermutation;
 
-	/**
-	 * Number of elements in the permutations
-	 */
-	final int _length;
+  /**
+   * Current index of current permutation
+   */
+  long _currentIndex = 0;
 
-	/**
-	 * Internal data
-	 */
-	private int _data[] = null;
-	private boolean _firstIteration = true;
-	ICombinatoricsVector<T> _initialOrderedPermutation;
+  ICombinatoricsVector<T> _initialOrderedPermutation;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param generator
-	 *            Permutation generator
-	 */
-	DuplicatedPermutationIterator(Generator<T> generator) {
-		_generator = generator;
-		_length = generator.getOriginalVector().getSize();
-		_data = new int[_length];
+  /**
+   * Internal data
+   */
+  private int _data[] = null;
+  private boolean _firstIteration = true;
 
-		ICombinatoricsVector<T> originalVector = generator.getOriginalVector();
-		ICombinatoricsVector<T> initialPermutation = Factory.createVector();
+  /**
+   * Constructor
+   *
+   * @param generator Permutation generator
+   */
+  DuplicatedPermutationIterator(Generator<T> generator) {
+    _generator = generator;
+    _length = generator.getOriginalVector().getSize();
+    _data = new int[_length];
 
-		// Create a set of the initial data
-		Set<T> initialSet = new LinkedHashSet<T>(originalVector.getVector());
-		initialSet.addAll(originalVector.getVector());
+    ICombinatoricsVector<T> originalVector = generator.getOriginalVector();
+    ICombinatoricsVector<T> initialPermutation = createVector();
 
-		// Create internal data
-		int dataValue = 0;
-		int dataIndex = 0;
+    // Create a set of the initial data
+    Set<T> initialSet = new LinkedHashSet<T>(originalVector.getVector());
+    initialSet.addAll(originalVector.getVector());
 
-		_initialOrderedPermutation = Factory.createVector(initialSet);
+    // Create internal data
+    int dataValue = 0;
+    int dataIndex = 0;
 
-		for (int i = 0; i < _initialOrderedPermutation.getSize(); i++) {
+    _initialOrderedPermutation = createVector(initialSet);
 
-			T value = _initialOrderedPermutation.getValue(i);
-			dataValue++;
+    for (int i = 0; i < _initialOrderedPermutation.getSize(); i++) {
 
-			if (!initialPermutation.contains(value)) {
-				// Determine how many duplicates of the value in the original
-				// vector
-				int count = originalVector.countElements(value);
+      T value = _initialOrderedPermutation.getValue(i);
+      dataValue++;
 
-				for (int countIndex = 0; countIndex < count; countIndex++) {
-					_data[dataIndex++] = dataValue;
-					initialPermutation.addValue(value);
-				}
-			}
-		}
+      if (!initialPermutation.contains(value)) {
+        // Determine how many duplicates of the value in the original
+        // vector
+        int count = originalVector.countElements(value);
 
-		init();
-	}
+        for (int countIndex = 0; countIndex < count; countIndex++) {
+          _data[dataIndex++] = dataValue;
+          initialPermutation.addValue(value);
+        }
+      }
+    }
 
-	private static void swap(int[] data, int k, int l) {
-		int temp = data[k];
-		data[k] = data[l];
-		data[l] = temp;
-	}
+    init();
+  }
 
-	private boolean isFinished() {
-		int k = _data.length - 2;
-		while (_data[k] >= _data[k + 1]) {
-			k--;
-			if (k < 0) {
-				return true;
-			}
-		}
-		return false;
-	}
+  private static void swap(int[] data, int k, int l) {
+    int temp = data[k];
+    data[k] = data[l];
+    data[l] = temp;
+  }
 
-	/**
-	 * Initialize the iteration process
-	 */
-	private void init() {
-		_currentIndex = 0;
+  private boolean isFinished() {
+    int k = _data.length - 2;
+    while (_data[k] >= _data[k + 1]) {
+      k--;
+      if (k < 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-		_currentPermutation = Factory.createVector();
+  /**
+   * Initialize the iteration process
+   */
+  private void init() {
+    _currentIndex = 0;
 
-		for (int i = 0; i < _length; i++) {
-			int index = _data[i] - 1;
-			_currentPermutation.addValue(_initialOrderedPermutation
-					.getValue(index));
-		}
-	}
+    _currentPermutation = createVector();
 
-	/**
-	 * Return true if the iteration process is finished
-	 */
-	@Override
-	public boolean hasNext() {
-		return !isFinished() || _firstIteration;
-	}
+    for (int i = 0; i < _length; i++) {
+      int index = _data[i] - 1;
+      _currentPermutation.addValue(_initialOrderedPermutation
+          .getValue(index));
+    }
+  }
 
-	/**
-	 * Moves to the next permutation
-	 */
-	@Override
-	public ICombinatoricsVector<T> next() {
+  /**
+   * Return true if the iteration process is finished
+   */
+  @Override
+  public boolean hasNext() {
+    return !isFinished() || _firstIteration;
+  }
 
-		if (_firstIteration) {
-			_firstIteration = false;
-			return _currentPermutation;
-		}
+  /**
+   * Moves to the next permutation
+   */
+  @Override
+  public ICombinatoricsVector<T> next() {
 
-		int k = _data.length - 2;
+    if (_firstIteration) {
+      _firstIteration = false;
+      return _currentPermutation;
+    }
 
-		while (_data[k] >= _data[k + 1]) {
-			k--;
-		}
+    int k = _data.length - 2;
 
-		int l = _data.length - 1;
-		while (_data[k] >= _data[l]) {
-			l--;
-		}
-		swap(_data, k, l);
-		int length = _data.length - (k + 1);
-		for (int i = 0; i < length / 2; i++) {
-			swap(_data, k + 1 + i, _data.length - i - 1);
-		}
+    while (_data[k] >= _data[k + 1]) {
+      k--;
+    }
 
-		_currentIndex++;
-		_currentPermutation = Factory.createVector();
+    int l = _data.length - 1;
+    while (_data[k] >= _data[l]) {
+      l--;
+    }
+    swap(_data, k, l);
+    int length = _data.length - (k + 1);
+    for (int i = 0; i < length / 2; i++) {
+      swap(_data, k + 1 + i, _data.length - i - 1);
+    }
 
-		for (int i = 0; i < _length; i++) {
-			int index = _data[i] - 1;
-			_currentPermutation.addValue(_initialOrderedPermutation
-					.getValue(index));
-		}
+    _currentIndex++;
+    _currentPermutation = createVector();
 
-		return _currentPermutation;
-	}
+    for (int i = 0; i < _length; i++) {
+      int index = _data[i] - 1;
+      _currentPermutation.addValue(_initialOrderedPermutation
+          .getValue(index));
+    }
 
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException();
-	}
+    return _currentPermutation;
+  }
 
-	/**
-	 * Returns the current permutation as a string
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "DuplicatedPermutationIterator=[#" + _currentIndex + ", "
-				+ _currentPermutation + "]";
-	}
+  @Override
+  public void remove() {
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * Returns the current permutation as a string
+   *
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
+    return "DuplicatedPermutationIterator=[#" + _currentIndex + ", "
+        + _currentPermutation + "]";
+  }
 
 }

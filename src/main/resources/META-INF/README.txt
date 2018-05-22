@@ -4,9 +4,11 @@
 
 
 CombinatoricsLib 2.2 (May 2018)
-- Added a method for calculating factorials using BigDecimal (Issue 10).
+- Added a method for calculating factorials using BigDecimal (Issue #10).
 - Added cartesian product generator.
 - Switched to Java 7.
+- Changed type of the input parameters for generateObjectsRange() from int to long (Issue #14)
+- Factory class renamed to CombinatoricsFactory (Issue #12)
 
 
 -----------------------------------------------------------------

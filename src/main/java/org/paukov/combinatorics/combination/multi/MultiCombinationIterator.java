@@ -4,158 +4,155 @@
  */
 package org.paukov.combinatorics.combination.multi;
 
-import java.util.Iterator;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
-import org.paukov.combinatorics.Factory;
+import java.util.Iterator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * Multi-combinations iterator for enumerating combinations with repetitions
- * 
+ *
+ * @param <T> Type of the elements in the combinations
  * @author Dmytro Paukov
+ * @version 2.0
  * @see ICombinatoricsVector
  * @see MultiCombinationGenerator
- * @param <T>
- *            Type of the elements in the combinations
- * @version 2.0
  */
 class MultiCombinationIterator<T> implements
-		Iterator<ICombinatoricsVector<T>> {
+    Iterator<ICombinatoricsVector<T>> {
 
-	/**
-	 * Generator
-	 */
-	final MultiCombinationGenerator<T> _generator;
+  /**
+   * Generator
+   */
+  final MultiCombinationGenerator<T> _generator;
 
-	/**
-	 * Current combination
-	 */
-	ICombinatoricsVector<T> _currentCombination = null;
+  /**
+   * Size of the original vector/set
+   */
+  final int _lengthN;
 
-	/**
-	 * Index of the current combination
-	 */
-	long _currentIndex = 0;
+  /**
+   * Size of the combinations (number of elements) to generate
+   */
+  final int _lengthK;
 
-	/**
-	 * Size of the original vector/set
-	 */
-	final int _lengthN;
+  /**
+   * Current combination
+   */
+  ICombinatoricsVector<T> _currentCombination = null;
 
-	/**
-	 * Size of the combinations (number of elements) to generate
-	 */
-	final int _lengthK;
+  /**
+   * Index of the current combination
+   */
+  long _currentIndex = 0;
 
-	/**
-	 * A helper array
-	 */
-	private int[] _bitVector = null;
+  /**
+   * A helper array
+   */
+  private int[] _bitVector = null;
 
-	/**
-	 * Criteria to stop iteration
-	 */
-	private boolean _end = false;
+  /**
+   * Criteria to stop iteration
+   */
+  private boolean _end = false;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param generator
-	 *            Multi-combinations generator
-	 */
-	MultiCombinationIterator(MultiCombinationGenerator<T> generator) {
-		_generator = generator;
-		_lengthN = generator.getOriginalVector().getSize();
-		_currentCombination = Factory.createVector();
-		_bitVector = new int[generator.getCombinationLength()];
-		_lengthK = generator.getCombinationLength() - 1;
-		init();
-	}
+  /**
+   * Constructor
+   *
+   * @param generator Multi-combinations generator
+   */
+  MultiCombinationIterator(MultiCombinationGenerator<T> generator) {
+    _generator = generator;
+    _lengthN = generator.getOriginalVector().getSize();
+    _currentCombination = createVector();
+    _bitVector = new int[generator.getCombinationLength()];
+    _lengthK = generator.getCombinationLength() - 1;
+    init();
+  }
 
-	/**
-	 * Initialization of the iterator
-	 */
-	private void init() {
+  /**
+   * Initialization of the iterator
+   */
+  private void init() {
 
-		for (int i = 0; i < _generator.getCombinationLength(); i++) {
-			_bitVector[i] = 0;
-		}
-		_end = false;
-		_currentIndex = 0;
+    for (int i = 0; i < _generator.getCombinationLength(); i++) {
+      _bitVector[i] = 0;
+    }
+    _end = false;
+    _currentIndex = 0;
 
-	}
+  }
 
-	/**
-	 * Returns true if all combinations were iterated, otherwise false
-	 */
-	@Override
-	public boolean hasNext() {
-		return (_end != true);
-	}
+  /**
+   * Returns true if all combinations were iterated, otherwise false
+   */
+  @Override
+  public boolean hasNext() {
+    return (_end != true);
+  }
 
-	/**
-	 * Moves to the next combination
-	 */
-	@Override
-	public ICombinatoricsVector<T> next() {
-		_currentIndex++;
+  /**
+   * Moves to the next combination
+   */
+  @Override
+  public ICombinatoricsVector<T> next() {
+    _currentIndex++;
 
-		for (int i = 0; i < _generator.getCombinationLength(); i++) {
-			int index = _bitVector[i];
-			if (_generator.getOriginalVector().getSize() > 0) {
-				_currentCombination.setValue(i, _generator.getOriginalVector()
-						.getValue(index));
-			}
-		}
+    for (int i = 0; i < _generator.getCombinationLength(); i++) {
+      int index = _bitVector[i];
+      if (_generator.getOriginalVector().getSize() > 0) {
+        _currentCombination.setValue(i, _generator.getOriginalVector()
+            .getValue(index));
+      }
+    }
 
-		if (_bitVector.length > 0) {
-			_bitVector[_lengthK]++;
+    if (_bitVector.length > 0) {
+      _bitVector[_lengthK]++;
 
-			if (_bitVector[_lengthK] > _lengthN - 1) {
-				int index = -1;
-				for (int i = 1; i <= _bitVector.length; i++) {
-					if (_lengthK - i >= 0) {
-						if (_bitVector[_lengthK - i] < _lengthN - 1) {
-							index = _lengthK - i;
-							break;
-						}
-					}
-				}
+      if (_bitVector[_lengthK] > _lengthN - 1) {
+        int index = -1;
+        for (int i = 1; i <= _bitVector.length; i++) {
+          if (_lengthK - i >= 0) {
+            if (_bitVector[_lengthK - i] < _lengthN - 1) {
+              index = _lengthK - i;
+              break;
+            }
+          }
+        }
 
-				if (index != -1) {
-					_bitVector[index]++;
+        if (index != -1) {
+          _bitVector[index]++;
 
-					for (int j = 1; j < _bitVector.length - index; j++) {
-						_bitVector[index + j] = _bitVector[index];
-					}
+          for (int j = 1; j < _bitVector.length - index; j++) {
+            _bitVector[index + j] = _bitVector[index];
+          }
 
-				} else {
-					_end = true;
-				}
+        } else {
+          _end = true;
+        }
 
-			}
-		} else {
-			_end = true;
-		}
+      }
+    } else {
+      _end = true;
+    }
 
-		// return the current combination
-		return Factory.createVector(_currentCombination);
-	}
+    // return the current combination
+    return createVector(_currentCombination);
+  }
 
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException();
-	}
+  @Override
+  public void remove() {
+    throw new UnsupportedOperationException();
+  }
 
-	/**
-	 * Returns the current combination as a string
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "MultiCombinationIterator=[#" + _currentIndex + ", "
-				+ _currentCombination + "]";
-	}
+  /**
+   * Returns the current combination as a string
+   *
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
+    return "MultiCombinationIterator=[#" + _currentIndex + ", " + _currentCombination + "]";
+  }
 
 }

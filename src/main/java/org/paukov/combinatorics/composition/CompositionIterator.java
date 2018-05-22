@@ -4,130 +4,127 @@
  */
 package org.paukov.combinatorics.composition;
 
+import static org.paukov.combinatorics.CombinatoricsFactory.createSubSetGenerator;
+import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
+
 import java.util.Iterator;
 import java.util.List;
-
-import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 /**
  * Iterator for enumeration of all compositions
- * 
+ *
  * @author Dmytro Paukov
  * @version 2.0
  * @see ICombinatoricsVector
  * @see CompositionGenerator
  */
 class CompositionIterator implements
-		Iterator<ICombinatoricsVector<Integer>> {
+    Iterator<ICombinatoricsVector<Integer>> {
 
-	final CompositionGenerator _generator;
+  final CompositionGenerator _generator;
+  /**
+   * Subset generator
+   */
+  final Generator<Integer> _subsetGenerator;
+  /**
+   * Subset iterator
+   */
+  final Iterator<ICombinatoricsVector<Integer>> _subsetIterator;
+  /**
+   * Current composition
+   */
+  ICombinatoricsVector<Integer> _currentComposition = null;
+  /**
+   * Current index of the weak composition
+   */
+  long _currentIndex = 0;
+  /**
+   * Current subset
+   */
+  ICombinatoricsVector<Integer> _currentSubset = null;
 
-	/**
-	 * Current composition
-	 */
-	ICombinatoricsVector<Integer> _currentComposition = null;
+  /**
+   * Constructor of the iterator
+   *
+   * @param generator The Composition generator
+   */
+  CompositionIterator(CompositionGenerator generator) {
+    super();
+    _generator = generator;
 
-	/**
-	 * Current index of the weak composition
-	 */
-	long _currentIndex = 0;
+    ICombinatoricsVector<Integer> coreSet = createVector();
 
-	/**
-	 * Subset generator
-	 */
-	final Generator<Integer> _subsetGenerator;
+    for (int i = 1; i < this._generator._initialValue; i++) {
+      coreSet.addValue(i);
+    }
 
-	/**
-	 * Subset iterator
-	 */
-	final Iterator<ICombinatoricsVector<Integer>> _subsetIterator;
+    _subsetGenerator = createSubSetGenerator(coreSet);
 
-	/**
-	 * Current subset
-	 */
-	ICombinatoricsVector<Integer> _currentSubset = null;
+    _subsetIterator = _subsetGenerator.iterator();
+  }
 
-	/**
-	 * Constructor of the iterator
-	 * 
-	 * @param generator The Composition generator
-	 */
-	CompositionIterator(CompositionGenerator generator) {
-		super();
-		_generator = generator;
+  /**
+   * Returns the next composition
+   */
+  @Override
+  public ICombinatoricsVector<Integer> next() {
+    _currentIndex++;
+    _currentSubset = this._subsetIterator.next();
+    return getCurrentItem();
+  }
 
-		ICombinatoricsVector<Integer> coreSet = Factory.createVector();
+  /**
+   * Returns true when all composition are iterated
+   */
+  @Override
+  public boolean hasNext() {
+    return this._subsetIterator.hasNext();
+  }
 
-		for (int i = 1; i < this._generator._initialValue; i++)
-			coreSet.addValue(i);
+  /**
+   * Returns current composition
+   */
+  private ICombinatoricsVector<Integer> getCurrentItem() {
 
-		_subsetGenerator = Factory.createSubSetGenerator(coreSet);
+    _currentComposition = createVector();
 
-		_subsetIterator = _subsetGenerator.iterator();
-	}
+    List<Integer> vector = _currentSubset.getVector();
+    java.util.Iterator<Integer> itr = vector.iterator();
 
-	/**
-	 * Returns the next composition
-	 */
-	@Override
-	public ICombinatoricsVector<Integer> next() {
-		_currentIndex++;
-		_currentSubset = this._subsetIterator.next();
-		return getCurrentItem();
-	}
+    int currentValueSubSet = 0;
+    int indexCompositionElement = 0;
+    int valueCompositionElement = 0;
 
-	/**
-	 * Returns true when all composition are iterated
-	 */
-	@Override
-	public boolean hasNext() {
-		return this._subsetIterator.hasNext();
-	}
+    while (itr.hasNext()) {
+      Integer currentSubsetElement = itr.next();
+      valueCompositionElement = currentSubsetElement - currentValueSubSet;
+      _currentComposition.setValue(indexCompositionElement,
+          valueCompositionElement);
+      indexCompositionElement++;
+      currentValueSubSet = currentSubsetElement;
+    }
+    _currentComposition.setValue(indexCompositionElement,
+        _generator._initialValue - currentValueSubSet);
 
-	/**
-	 * Returns current composition
-	 */
-	private ICombinatoricsVector<Integer> getCurrentItem() {
+    return _currentComposition;
+  }
 
-		_currentComposition = Factory.<Integer> createVector();
+  @Override
+  public void remove() {
+    throw new UnsupportedOperationException();
+  }
 
-		List<Integer> vector = _currentSubset.getVector();
-		java.util.Iterator<Integer> itr = vector.iterator();
-
-		int currentValueSubSet = 0;
-		int indexCompositionElement = 0;
-		int valueCompositionElement = 0;
-
-		while (itr.hasNext()) {
-			Integer currentSubsetElement = itr.next();
-			valueCompositionElement = currentSubsetElement - currentValueSubSet;
-			_currentComposition.setValue(indexCompositionElement,
-					valueCompositionElement);
-			indexCompositionElement++;
-			currentValueSubSet = currentSubsetElement;
-		}
-		_currentComposition.setValue(indexCompositionElement,
-				_generator._initialValue - currentValueSubSet);
-
-		return _currentComposition;
-	}
-	
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Returns composition as a string
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "CompositionIterator=[#" + _currentIndex + ", "
-				+ _currentComposition + "]";
-	}
+  /**
+   * Returns composition as a string
+   *
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
+    return "CompositionIterator=[#" + _currentIndex + ", "
+        + _currentComposition + "]";
+  }
 
 }
