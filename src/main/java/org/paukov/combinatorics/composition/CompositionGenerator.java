@@ -98,8 +98,8 @@ public class CompositionGenerator extends Generator<Integer> {
   }
 
   /**
-   * Returns value which is used to generate all compositions. This value
-   * returned as a element of vector. Vector has length of 1
+   * Returns the value which is used for generating the compositions. This value is
+   * returned as an element of the single value vector.
    */
   @Override
   public ICombinatoricsVector<Integer> getOriginalVector() {

@@ -4,8 +4,9 @@
  */
 package org.paukov.combinatorics.composition;
 
+import static org.paukov.combinatorics.IntegerFactory.createIntegerVector;
+
 import java.util.Iterator;
-import org.paukov.combinatorics.IntegerFactory;
 import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
 import org.paukov.combinatorics.util.Util;
@@ -79,12 +80,12 @@ public class IntegerCompositionGenerator extends IntegerGenerator {
   }
 
   /**
-   * Returns value which is used to generate all compositions. This value
-   * returned as a element of vector. Vector has length of 1
+   * Returns the value which is used for generating the compositions. This value is
+   * returned as an element of the single value vector.
    */
   @Override
   public IntegerVector getOriginalVector() {
-    return IntegerFactory.createIntegerVector(new int[]{_initialValue});
+    return createIntegerVector(new int[]{_initialValue});
   }
 
   /**

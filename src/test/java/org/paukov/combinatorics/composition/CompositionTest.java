@@ -22,8 +22,7 @@ public class CompositionTest {
   public void simpleFiveComposition() {
 
     Generator<Integer> compositionGenerator = createCompositionGenerator(5);
-    Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator
-        .iterator();
+    Iterator<ICombinatoricsVector<Integer>> compositionIterator = compositionGenerator.iterator();
 
     System.out.println("Number of compositions is: "
         + compositionGenerator.getNumberOfGeneratedObjects());
@@ -34,8 +33,9 @@ public class CompositionTest {
       System.out.println(compositionIterator);
     }
 
-    List<ICombinatoricsVector<Integer>> list = compositionGenerator
-        .generateAllObjects();
+    List<ICombinatoricsVector<Integer>> list = compositionGenerator.generateAllObjects();
+
+    assertEquals(5, compositionGenerator.getOriginalVector().getValue(0).intValue());
 
     assertEquals(16, list.size());
 

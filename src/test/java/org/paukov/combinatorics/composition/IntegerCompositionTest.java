@@ -5,170 +5,160 @@
 package org.paukov.combinatorics.composition;
 
 import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.IntegerFactory.createIntegerCompositionGenerator;
 
 import java.util.Iterator;
 import java.util.List;
-
 import org.junit.Test;
-
 import org.paukov.combinatorics.IGenerator;
-import org.paukov.combinatorics.IntegerFactory;
 import org.paukov.combinatorics.IntegerGenerator;
 import org.paukov.combinatorics.IntegerVector;
 
 /**
  * @author Dmytro Paukov
- * 
  */
 public class IntegerCompositionTest {
 
-	@Test
-	public void simpleFiveComposition() {
+  @Test
+  public void simpleFiveComposition() {
 
-		IGenerator<IntegerVector> compositionGenerator = IntegerFactory
-				.createIntegerCompositionGenerator(5);
-		Iterator<IntegerVector> compositionIterator = compositionGenerator
-				.iterator();
+    IGenerator<IntegerVector> compositionGenerator = createIntegerCompositionGenerator(5);
+    Iterator<IntegerVector> compositionIterator = compositionGenerator.iterator();
 
-		System.out.println("Number of compositions is: "
-				+ compositionGenerator.getNumberOfGeneratedObjects());
-		assertEquals(16, compositionGenerator.getNumberOfGeneratedObjects());
+    System.out.println("Number of compositions is: "
+        + compositionGenerator.getNumberOfGeneratedObjects());
+    assertEquals(16, compositionGenerator.getNumberOfGeneratedObjects());
 
-		while (compositionIterator.hasNext()) {
-			compositionIterator.next();
-			System.out.println(compositionIterator);
-		}
+    while (compositionIterator.hasNext()) {
+      compositionIterator.next();
+      System.out.println(compositionIterator);
+    }
 
-		List<IntegerVector> list = compositionGenerator.generateAllObjects();
+    List<IntegerVector> list = compositionGenerator.generateAllObjects();
 
-		assertEquals(16, list.size());
+    assertEquals(5, compositionGenerator.getOriginalVector().getValue(0));
 
-		assertEquals("IntegerVector=([5], size=1)", list.get(0).toString());
-		assertEquals("IntegerVector=([1, 4], size=2)", list.get(1).toString());
-		assertEquals("IntegerVector=([2, 3], size=2)", list.get(2).toString());
-		assertEquals("IntegerVector=([1, 1, 3], size=3)", list.get(3)
-				.toString());
-		assertEquals("IntegerVector=([3, 2], size=2)", list.get(4).toString());
-		assertEquals("IntegerVector=([1, 2, 2], size=3)", list.get(5)
-				.toString());
-		assertEquals("IntegerVector=([2, 1, 2], size=3)", list.get(6)
-				.toString());
+    assertEquals(16, list.size());
 
-		assertEquals("IntegerVector=([1, 1, 1, 2], size=4)", list.get(7)
-				.toString());
-		assertEquals("IntegerVector=([4, 1], size=2)", list.get(8).toString());
-		assertEquals("IntegerVector=([1, 3, 1], size=3)", list.get(9)
-				.toString());
-		assertEquals("IntegerVector=([2, 2, 1], size=3)", list.get(10)
-				.toString());
-		assertEquals("IntegerVector=([1, 1, 2, 1], size=4)", list.get(11)
-				.toString());
-		assertEquals("IntegerVector=([3, 1, 1], size=3)", list.get(12)
-				.toString());
-		assertEquals("IntegerVector=([1, 2, 1, 1], size=4)", list.get(13)
-				.toString());
+    assertEquals("IntegerVector=([5], size=1)", list.get(0).toString());
+    assertEquals("IntegerVector=([1, 4], size=2)", list.get(1).toString());
+    assertEquals("IntegerVector=([2, 3], size=2)", list.get(2).toString());
+    assertEquals("IntegerVector=([1, 1, 3], size=3)", list.get(3)
+        .toString());
+    assertEquals("IntegerVector=([3, 2], size=2)", list.get(4).toString());
+    assertEquals("IntegerVector=([1, 2, 2], size=3)", list.get(5)
+        .toString());
+    assertEquals("IntegerVector=([2, 1, 2], size=3)", list.get(6)
+        .toString());
 
-		assertEquals("IntegerVector=([2, 1, 1, 1], size=4)", list.get(14)
-				.toString());
-		assertEquals("IntegerVector=([1, 1, 1, 1, 1], size=5)", list.get(15)
-				.toString());
-	}
+    assertEquals("IntegerVector=([1, 1, 1, 2], size=4)", list.get(7)
+        .toString());
+    assertEquals("IntegerVector=([4, 1], size=2)", list.get(8).toString());
+    assertEquals("IntegerVector=([1, 3, 1], size=3)", list.get(9)
+        .toString());
+    assertEquals("IntegerVector=([2, 2, 1], size=3)", list.get(10)
+        .toString());
+    assertEquals("IntegerVector=([1, 1, 2, 1], size=4)", list.get(11)
+        .toString());
+    assertEquals("IntegerVector=([3, 1, 1], size=3)", list.get(12)
+        .toString());
+    assertEquals("IntegerVector=([1, 2, 1, 1], size=4)", list.get(13)
+        .toString());
 
-	@Test
-	public void simpleFiveCompositionRange() {
+    assertEquals("IntegerVector=([2, 1, 1, 1], size=4)", list.get(14)
+        .toString());
+    assertEquals("IntegerVector=([1, 1, 1, 1, 1], size=5)", list.get(15)
+        .toString());
+  }
 
-		IntegerGenerator compositionGenerator = IntegerFactory
-				.createIntegerCompositionGenerator(5);
+  @Test
+  public void simpleFiveCompositionRange() {
 
-		System.out.println("Number of compositions is: "
-				+ compositionGenerator.getNumberOfGeneratedObjects());
-		assertEquals(16, compositionGenerator.getNumberOfGeneratedObjects());
+    IntegerGenerator compositionGenerator = createIntegerCompositionGenerator(5);
 
-		List<IntegerVector> list = compositionGenerator.generateObjectsRange(5,
-				7);
+    System.out.println("Number of compositions is: "
+        + compositionGenerator.getNumberOfGeneratedObjects());
+    assertEquals(16, compositionGenerator.getNumberOfGeneratedObjects());
 
-		assertEquals(3, list.size());
+    List<IntegerVector> list = compositionGenerator.generateObjectsRange(5,
+        7);
 
-		assertEquals("IntegerVector=([3, 2], size=2)", list.get(0).toString());
-		assertEquals("IntegerVector=([1, 2, 2], size=3)", list.get(1)
-				.toString());
-		assertEquals("IntegerVector=([2, 1, 2], size=3)", list.get(2)
-				.toString());
-	}
+    assertEquals(3, list.size());
 
-	@Test
-	public void simpleOneComposition() {
+    assertEquals("IntegerVector=([3, 2], size=2)", list.get(0).toString());
+    assertEquals("IntegerVector=([1, 2, 2], size=3)", list.get(1)
+        .toString());
+    assertEquals("IntegerVector=([2, 1, 2], size=3)", list.get(2)
+        .toString());
+  }
 
-		IntegerGenerator compositionGenerator = IntegerFactory
-				.createIntegerCompositionGenerator(1);
-		Iterator<IntegerVector> compositionIterator = compositionGenerator
-				.iterator();
+  @Test
+  public void simpleOneComposition() {
 
-		System.out.println("Number of compositions is: "
-				+ compositionGenerator.getNumberOfGeneratedObjects());
-		assertEquals(1, compositionGenerator.getNumberOfGeneratedObjects());
+    IntegerGenerator compositionGenerator = createIntegerCompositionGenerator(1);
+    Iterator<IntegerVector> compositionIterator = compositionGenerator.iterator();
 
-		while (compositionIterator.hasNext()) {
-			compositionIterator.next();
-			System.out.println(compositionIterator);
-		}
+    System.out.println("Number of compositions is: "
+        + compositionGenerator.getNumberOfGeneratedObjects());
+    assertEquals(1, compositionGenerator.getNumberOfGeneratedObjects());
 
-		List<IntegerVector> list = compositionGenerator.generateAllObjects();
+    while (compositionIterator.hasNext()) {
+      compositionIterator.next();
+      System.out.println(compositionIterator);
+    }
 
-		assertEquals(1, list.size());
+    List<IntegerVector> list = compositionGenerator.generateAllObjects();
 
-		assertEquals("IntegerVector=([1], size=1)", list.get(0).toString());
+    assertEquals(1, list.size());
 
-	}
+    assertEquals("IntegerVector=([1], size=1)", list.get(0).toString());
 
-	@Test
-	public void simpleTwoComposition() {
+  }
 
-		IntegerGenerator compositionGenerator = IntegerFactory
-				.createIntegerCompositionGenerator(2);
-		Iterator<IntegerVector> compositionIterator = compositionGenerator
-				.iterator();
+  @Test
+  public void simpleTwoComposition() {
 
-		System.out.println("Number of compositions is: "
-				+ compositionGenerator.getNumberOfGeneratedObjects());
-		assertEquals(2, compositionGenerator.getNumberOfGeneratedObjects());
+    IntegerGenerator compositionGenerator = createIntegerCompositionGenerator(2);
+    Iterator<IntegerVector> compositionIterator = compositionGenerator.iterator();
 
-		while (compositionIterator.hasNext()) {
-			compositionIterator.next();
-			System.out.println(compositionIterator);
-		}
+    System.out.println("Number of compositions is: "
+        + compositionGenerator.getNumberOfGeneratedObjects());
+    assertEquals(2, compositionGenerator.getNumberOfGeneratedObjects());
 
-		List<IntegerVector> list = compositionGenerator.generateAllObjects();
+    while (compositionIterator.hasNext()) {
+      compositionIterator.next();
+      System.out.println(compositionIterator);
+    }
 
-		assertEquals(2, list.size());
+    List<IntegerVector> list = compositionGenerator.generateAllObjects();
 
-		assertEquals("IntegerVector=([2], size=1)", list.get(0).toString());
-		assertEquals("IntegerVector=([1, 1], size=2)", list.get(1).toString());
+    assertEquals(2, list.size());
 
-	}
+    assertEquals("IntegerVector=([2], size=1)", list.get(0).toString());
+    assertEquals("IntegerVector=([1, 1], size=2)", list.get(1).toString());
 
-	@Test
-	public void simpleZeroComposition() {
+  }
 
-		IntegerGenerator compositionGenerator = IntegerFactory
-				.createIntegerCompositionGenerator(0);
-		Iterator<IntegerVector> compositionIterator = compositionGenerator
-				.iterator();
+  @Test
+  public void simpleZeroComposition() {
 
-		System.out.println("Number of compositions is: "
-				+ compositionGenerator.getNumberOfGeneratedObjects());
-		assertEquals(1, compositionGenerator.getNumberOfGeneratedObjects());
+    IntegerGenerator compositionGenerator = createIntegerCompositionGenerator(0);
+    Iterator<IntegerVector> compositionIterator = compositionGenerator.iterator();
 
-		while (compositionIterator.hasNext()) {
-			compositionIterator.next();
-			System.out.println(compositionIterator);
-		}
+    System.out.println("Number of compositions is: "
+        + compositionGenerator.getNumberOfGeneratedObjects());
+    assertEquals(1, compositionGenerator.getNumberOfGeneratedObjects());
 
-		List<IntegerVector> list = compositionGenerator.generateAllObjects();
+    while (compositionIterator.hasNext()) {
+      compositionIterator.next();
+      System.out.println(compositionIterator);
+    }
 
-		assertEquals(1, list.size());
+    List<IntegerVector> list = compositionGenerator.generateAllObjects();
 
-		assertEquals("IntegerVector=([0], size=1)", list.get(0).toString());
+    assertEquals(1, list.size());
 
-	}
+    assertEquals("IntegerVector=([0], size=1)", list.get(0).toString());
+
+  }
 }
