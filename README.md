@@ -23,10 +23,10 @@ You can use the following table to select a generator:
 
 | Description                      | Is Order Important? | Is Repetition Allowed? | CombinatoricsFactory Method  |
 |----------------------------------|:-------------------:|:----------------------:|---------| 
-| [Permutations with repetitions](#2-permutations-with-repetitions) | Yes | Yes | createPermutationWithRepetitionGenerator() |
-| [Simple permutations](#1-simple-permutations) | Yes | No | createPermutationGenerator() |
-| [Combinations with repetitions](#4-combinations-with-repetitions) | No | Yes | createMultiCombinationGenerator()|
 | [Simple combinations](#3-simple-combinations) | No | No | createSimpleCombinationGenerator() |
+| [Combinations with repetitions](#4-combinations-with-repetitions) | No | Yes | createMultiCombinationGenerator()|
+| [Simple permutations](#1-simple-permutations) | Yes | No | createPermutationGenerator() |
+| [Permutations with repetitions](#2-permutations-with-repetitions) | Yes | Yes | createPermutationWithRepetitionGenerator() |
 
 
 ### 1. Simple permutations
@@ -126,7 +126,7 @@ And the result of 10 combinations
    CombinatoricsVector=([white, green, blue], size=3)
 ```
 
-### 4. Combinations with repetitions (multicombination)
+### 4. Combinations with repetitions
 A k-multicombination or k-combination with repetition of a finite set S is given by a sequence of 
 k not necessarily distinct elements of S, where order is not taken into account.
 
