@@ -4,6 +4,7 @@
  */
 package org.paukov.examples;
 
+import static org.paukov.combinatorics.CombinatoricsFactory.createCartesianProductGenerator;
 import static org.paukov.combinatorics.CombinatoricsFactory.createCompositionGenerator;
 import static org.paukov.combinatorics.CombinatoricsFactory.createMultiCombinationGenerator;
 import static org.paukov.combinatorics.CombinatoricsFactory.createPartitionGenerator;
@@ -23,7 +24,7 @@ import org.paukov.combinatorics.IntegerVector;
 import org.paukov.combinatorics.util.ComplexCombinationGenerator;
 
 /**
- * This class contains various examples of using the combinatoricslib
+ * This class contains various examples of using the combinatoricslib.
  *
  * @author Dmytro Paukov
  */
@@ -78,6 +79,7 @@ public class Main {
      */
     all_permutations_of_all_combination();
 
+    cartesian_product();
   }
 
   static void simple_combinations() {
@@ -343,6 +345,19 @@ public class Main {
       for (ICombinatoricsVector<String> perm : permutations) {
         System.out.println(perm);
       }
+    }
+  }
+
+  static void cartesian_product() {
+    System.out.println("===== Cartesian Product: =====");
+
+    ICombinatoricsVector<Integer> set01 = createVector(1, 2);
+    ICombinatoricsVector<Integer> set02 = createVector(4);
+    ICombinatoricsVector<Integer> set03 = createVector(5, 6);
+
+    Generator<Integer> generator = createCartesianProductGenerator(set01, set02, set03);
+    for (ICombinatoricsVector<Integer> catresianProduct : generator) {
+      System.out.println(catresianProduct);
     }
   }
 

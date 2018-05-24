@@ -336,17 +336,25 @@ where k is the size of the set of lists.
 A simple k-element Cartesian product of a finite sets S(1), S(2)...S(k) is a set
 of all ordered pairs (x(1), x(2)...x(k), where x(1) ∈ S(1), x(2) ∈ S(2) ... x(k) ∈ S(k)
 
-Example. Generate 3-element Cartesian product from (1, 2, 3), (4, 5, 6), (7, 8, 9).
+Example. Generate the cartesian product for (1, 2), (4), (5, 6).
 
 ```java
-   ICombinatoricsVector<Integer> set01 = createVector(1, 2, 3);
-   ICombinatoricsVector<Integer> set02 = createVector(4, 5, 6);
-   ICombinatoricsVector<Integer> set03 = createVector(7, 8, 9);
+   ICombinatoricsVector<Integer> set01 = createVector(1, 2);
+   ICombinatoricsVector<Integer> set02 = createVector(4);
+   ICombinatoricsVector<Integer> set03 = createVector(5, 6);
 
-   Generator<Integer> generator = new CartesianProductGenerator<Integer>(createVector(set01, set02, set03));
+   Generator<Integer> generator = createCartesianProductGenerator(set01, set02, set03);
    for (ICombinatoricsVector<Integer> catresianProduct : generator) {
       System.out.println(catresianProduct);
    }
+```
+
+The cartesian product will be:
+```
+   CombinatoricsVector=([1, 4, 5], size=3)
+   CombinatoricsVector=([1, 4, 6], size=3)
+   CombinatoricsVector=([2, 4, 5], size=3)
+   CombinatoricsVector=([2, 4, 6], size=3)
 ```
 
 ### The latest release
