@@ -9,16 +9,15 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Abstract base class for all generic generators of the library
+ * Abstract base class for all generic generators of the library.
  *
  * This is a library written on Java to resolve some combinatorics issues such
  * as generating combinatorial objects (permutations, partitions, compositions,
  * subsets, combinations and etc).
  *
- * Type of the items should be specified as a parameter of generators and
- * vectors.
+ * Type of the items should be specified as a parameter of generators and vectors.
  *
- * There is a general pattern how to use the generators
+ * There is a general pattern how to use the generators:
  * <pre>
  * // create the initial vector or set
  * ICombinatoricsVector&lt;T&gt; vector = CombinatoricsFactory.createVector(new &lt;T&gt;[]{ elements } );
@@ -32,7 +31,7 @@ import java.util.List;
  * }
  * </pre>
  *
- * @param <T> Type of the elements in the generated vectors
+ * @param <T> Type of the elements in the generated vectors.
  * @author Dmytro Paukov
  * @version 2.0
  * @see ICombinatoricsVector

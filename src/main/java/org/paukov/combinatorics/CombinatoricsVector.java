@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This class represents a simple vector of element's type <code>T</code>
+ * This class represents a simple vector of element's type <code>T</code>.
  *
  * @param <T> Type of the elements
  * @author Dmytro Paukov
@@ -27,22 +27,22 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   protected final List<T> _vector;
 
   /**
-   * Default constructor creates the empty vector
+   * Default constructor that creates an empty vector.
    * <p>
-   * Notes: Use the factory method <code>Factory.createVector()</code> to
-   * create an empty vector
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
+   * create an empty vector.
    */
   public CombinatoricsVector() {
     _vector = new ArrayList<>();
   }
 
   /**
-   * Constructor from a collection
+   * Constructor from a collection.
    * <p>
-   * Notes: Use the factory method <code>Factory.createVector()</code> to
-   * create a vector from a collection
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
+   * create a vector from a collection.
    *
-   * @param vector Initial collection to initialize the created vector
+   * @param vector Initial collection to initialize the created vector.
    */
   public CombinatoricsVector(Collection<? extends T> vector) {
     _vector = new ArrayList<>(vector.size());
@@ -50,12 +50,12 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Constructor from an array
+   * Constructor from an array.
    * <p>
-   * Notes: Use the factory method <code>Factory.createVector()</code> to
-   * create a vector from an array
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
+   * create a vector from an array.
    *
-   * @param array Initial array to initialize the created vector
+   * @param array Initial array to initialize the created vector.
    */
   public CombinatoricsVector(T... array) {
     _vector = new ArrayList<>(array.length);
@@ -66,10 +66,10 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
    * Copy constructor
    * <p>
    * <p>
-   * Notes: Use the factory method <code>Factory.createVector()</code> to
-   * create a vector from another vector
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
+   * create a vector from another vector.
    *
-   * @param vector Initial combinatorics vector to initialize the created vector
+   * @param vector Initial combinatorics vector to initialize the created vector.
    */
   public CombinatoricsVector(ICombinatoricsVector<T> vector) {
     _vector = new ArrayList<>(vector.getSize());
@@ -78,10 +78,10 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
   /**
    * Sets value to position <code>index</code>. If the index is out of bounds
-   * the value will be added at the end of the vector
+   * the value will be added at the end of the vector.
    *
-   * @param index Position of element
-   * @param value Value of the element to be set
+   * @param index Position of element.
+   * @param value Value of the element to be set.
    */
   @Override
   public void setValue(int index, T value) {
@@ -95,7 +95,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   /**
    * Adds value to this vector.
    *
-   * @param value Value of the element to be added
+   * @param value Value of the element to be added.
    */
   @Override
   public boolean addValue(T value) {
@@ -103,10 +103,10 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Returns value of the <code>index</code>-element
+   * Returns value of the <code>index</code>-element.
    *
-   * @param index The position of the element (Index of the element)
-   * @return Value of the element
+   * @param index The position of the element (Index of the element).
+   * @return Value of the element.
    */
   @Override
   public T getValue(int index) {
@@ -114,7 +114,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Returns the size of the vector
+   * Returns the size of the vector.
    */
   @Override
   public int getSize() {
@@ -125,9 +125,9 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * This method detects duplicates in the vector
+   * This method detects duplicates in the vector.
    *
-   * @return <code>true</code> if the vector has duplicates, otherwise <code>false</code>
+   * @return <code>true</code> if the vector has duplicates, otherwise <code>false</code>.
    */
   @Override
   public boolean hasDuplicates() {
@@ -139,9 +139,9 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * This method calculates the count of duplicates of a given value
+   * This method calculates the count of duplicates of a given value.
    *
-   * @return Number of the duplicates within the vector
+   * @return Number of the duplicates within the vector.
    */
   @Override
   public int countElements(T value) {
@@ -159,9 +159,9 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * This method detects if the victor contains a given value
+   * This method detects if the vector contains a given value.
    *
-   * @return <code>true</code> if the vector contains the value, otherwise <code>false</code>
+   * @return <code>true</code> if the vector contains the value, otherwise <code>false</code>.
    */
   @Override
   public boolean contains(T value) {
@@ -170,9 +170,9 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
 
   /**
    * This method detects if the vector's elements are equal. For example, this
-   * method returns true for a vector (a, a, a) and false for a vector (a, b, a)
+   * method returns true for a vector (a, a, a) and false for a vector (a, b, a).
    *
-   * @return <code>True</code> if the vector's elements are equal
+   * @return <code>True</code> if the vector's elements are equal.
    */
   @Override
   public boolean isAllElementsEqual() {
@@ -182,12 +182,12 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
     if (_vector.size() == 1) {
       return true;
     }
-    Set<T> set = new HashSet<T>(_vector);
+    Set<T> set = new HashSet<>(_vector);
     return set.size() == 1;
   }
 
   /**
-   * Returns this vector as a list
+   * Returns this vector as a list.
    */
   @Override
   public List<T> getVector() {
@@ -195,7 +195,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Hash code of the current vector
+   * Hash code of the current vector.
    *
    * @see java.lang.Object#hashCode()
    */
@@ -235,7 +235,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Clear the elements
+   * Clear the elements.
    */
   @Override
   public void clearVector() {
@@ -243,7 +243,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Returns an iterator over the current vector
+   * Returns an iterator over the current vector.
    *
    * @return an Iterator.
    */
@@ -253,7 +253,7 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Returns vector as a string
+   * Returns vector as a string.
    *
    * @see java.lang.Object#toString()
    */
@@ -261,5 +261,4 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   public String toString() {
     return "CombinatoricsVector=(" + _vector + ", size=" + getSize() + ")";
   }
-
 }

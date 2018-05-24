@@ -5,6 +5,7 @@
 package org.paukov.combinatorics;
 
 import java.util.Collection;
+import org.paukov.combinatorics.cartesian.CartesianProductGenerator;
 import org.paukov.combinatorics.combination.multi.MultiCombinationGenerator;
 import org.paukov.combinatorics.combination.simple.SimpleCombinationGenerator;
 import org.paukov.combinatorics.composition.CompositionGenerator;
@@ -14,8 +15,7 @@ import org.paukov.combinatorics.permutations.PermutationWithRepetitionGenerator;
 import org.paukov.combinatorics.subsets.SubSetGenerator;
 
 /**
- * This is the factory class to create combinatorics vectors and generators. It
- * is recommended to use this class to create vectors and concrete generators.
+ * This is a factory class to create combinatorics vectors and concrete generators.
  *
  * @author Dmytro Paukov
  * @version 2.0
@@ -25,19 +25,19 @@ import org.paukov.combinatorics.subsets.SubSetGenerator;
 public class CombinatoricsFactory {
 
   /**
-   * Creates the empty vector instance
+   * Creates an empty vector instance.
    *
-   * @return The empty vector
+   * @return The empty vector.
    */
   public static <T> ICombinatoricsVector<T> createVector() {
     return new CombinatoricsVector<>();
   }
 
   /**
-   * Creates a combinatorics vector from an array
+   * Creates a combinatorics vector from an array.
    *
-   * @param array The array
-   * @return The combinatorics vector
+   * @param array The array.
+   * @return The combinatorics vector.
    */
   @SafeVarargs
   public static <T> ICombinatoricsVector<T> createVector(T... array) {
@@ -45,10 +45,10 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a combinatorics vector from a collection
+   * Creates a combinatorics vector from a collection.
    *
-   * @param collection The collection
-   * @return The combinatorics vector
+   * @param collection The collection.
+   * @return The combinatorics vector.
    */
   public static <T> ICombinatoricsVector<T> createVector(
       Collection<? extends T> collection) {
@@ -56,10 +56,10 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a copy of the given combinatorics vector
+   * Creates a copy of a given combinatorics vector.
    *
-   * @param vector The combinatorics vector to be copied
-   * @return The copy of the given vector
+   * @param vector The combinatorics vector to be copied.
+   * @return The copy of the given vector.
    */
   public static <T> ICombinatoricsVector<T> createVector(
       ICombinatoricsVector<T> vector) {
@@ -67,15 +67,14 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * This method creates a combinatorics vector of (1, 2,.., n)
+   * This method creates a combinatorics vector of (1, 2,.., n).
    *
-   * @param n The value of the number of the elements
-   * @return The vector
+   * @param n The number of the elements.
+   * @return The vector.
    */
   public static ICombinatoricsVector<Integer> range(int n) {
     if (n < 0) {
-      throw new IllegalArgumentException(
-          "Range value must be more or equal to 0");
+      throw new IllegalArgumentException("Range value must be more or equal to 0");
     }
 
     // If range is zero return an empty vector
@@ -93,16 +92,15 @@ public class CombinatoricsFactory {
 
   /**
    * This method creates a combinatorics vector of (from, from + 1,.., to-1,
-   * to)
+   * to).
    *
-   * @param from The first value
-   * @param to The second value
-   * @return The vector
+   * @param from The first value.
+   * @param to The second value.
+   * @return The vector.
    */
   public static ICombinatoricsVector<Integer> range(int from, int to) {
     if (from > to) {
-      throw new IllegalArgumentException(
-          "From parameter must be less then To parameter");
+      throw new IllegalArgumentException("From parameter must be less then To parameter");
     }
 
     Integer[] array = new Integer[to - from + 1];
@@ -114,11 +112,11 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a simple combination generator
+   * Creates a simple combination generator.
    *
-   * @param originalVector The original vector
-   * @param combinationsLength The combinations length
-   * @return An instance of the simple combinations generator
+   * @param originalVector The original vector.
+   * @param combinationsLength The combinations length.
+   * @return An instance of the simple combinations generator.
    * @see SimpleCombinationGenerator
    */
   public static <T> Generator<T> createSimpleCombinationGenerator(
@@ -128,11 +126,11 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a multi-combination generator
+   * Creates a multi-combination generator.
    *
-   * @param originalVector The original vector
-   * @param combinationsLength The combination length
-   * @return An instance of the multi-combinations generator
+   * @param originalVector The original vector.
+   * @param combinationsLength The combination length.
+   * @return An instance of the multi-combinations generator.
    * @see MultiCombinationGenerator
    */
   public static <T> Generator<T> createMultiCombinationGenerator(
@@ -142,10 +140,10 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a permutation generator
+   * Creates a permutation generator.
    *
-   * @param originalVector The original vector
-   * @return An instance of the simple permutation generator
+   * @param originalVector The original vector.
+   * @return An instance of the simple permutation generator.
    * @see PermutationGenerator
    */
   public static <T> Generator<T> createPermutationGenerator(
@@ -154,11 +152,11 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a permutation generator
+   * Creates a permutation generator.
    *
-   * @param originalVector The original vector
-   * @param treatAsIdentical True if the generator should treat the vector as identical
-   * @return An instance of the simple permutation generator
+   * @param originalVector The original vector.
+   * @param treatAsIdentical True if the generator should treat the vector as identical.
+   * @return An instance of the simple permutation generator.
    * @see PermutationGenerator
    */
   public static <T> Generator<T> createPermutationGenerator(
@@ -167,11 +165,11 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a permutation with repetitions generator
+   * Creates a permutation with repetitions generator.
    *
-   * @param originalVector The original vector
-   * @param permutationLength The length of the generated permutations
-   * @return An instance of the generator
+   * @param originalVector The original vector.
+   * @param permutationLength The length of the generated permutations.
+   * @return An instance of the generator.
    * @see PermutationWithRepetitionGenerator
    */
   public static <T> Generator<T> createPermutationWithRepetitionGenerator(
@@ -182,10 +180,10 @@ public class CombinatoricsFactory {
 
   /**
    * Creates a sub-set generator. This generator supports vector with
-   * duplicates
+   * duplicates.
    *
-   * @param originalVector The original vector/set
-   * @return An instance of the generator
+   * @param originalVector The original vector/set.
+   * @return An instance of the generator.
    * @see SubSetGenerator
    */
   public static <T> Generator<T> createSubSetGenerator(
@@ -194,11 +192,11 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a sub-set generator
+   * Creates a sub-set generator.
    *
-   * @param originalVector The initial vector
-   * @param treatAsIdentical <code>true</code> if the sub sets have to be treated as identical
-   * @return An instance of the generator
+   * @param originalVector The initial vector.
+   * @param treatAsIdentical <code>true</code> if the sub sets have to be treated as identical.
+   * @return An instance of the generator.
    * @see SubSetGenerator
    */
   public static <T> Generator<T> createSubSetGenerator(
@@ -207,10 +205,10 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a composition generator of the given integer value <code>n</code>
+   * Creates a composition generator of the given integer value <code>n</code>.
    *
-   * @param n The initial value
-   * @return An instance of the generator
+   * @param n The initial value.
+   * @return An instance of the generator.
    * @see CompositionGenerator
    */
   public static Generator<Integer> createCompositionGenerator(Integer n) {
@@ -218,14 +216,26 @@ public class CombinatoricsFactory {
   }
 
   /**
-   * Creates a partition generator of the given integer value <code>n</code>
+   * Creates a partition generator of the given integer value <code>n</code>.
    *
-   * @param n The initial value
-   * @return An instance of the generator
+   * @param n The initial value.
+   * @return An instance of the generator.
    * @see PartitionGenerator
    */
   public static Generator<Integer> createPartitionGenerator(Integer n) {
     return new PartitionGenerator(n);
   }
 
+  /**
+   * Creates a cartesian product generator for a given number of vectors.
+   *
+   * @param array The array of the vectors.
+   * @param <T> Type of the elements within the vectors.
+   * @return An instance of the cartesian product generator.
+   * @see CartesianProductGenerator
+   */
+  @SafeVarargs
+  public static <T> Generator<T> createCartesianProductGenerator(ICombinatoricsVector<T>... array) {
+    return new CartesianProductGenerator<>(createVector(array));
+  }
 }

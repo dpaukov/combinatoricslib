@@ -40,14 +40,11 @@ public class CartesianProductGenerator<T> extends Generator<T> {
   final ICombinatoricsVector<ICombinatoricsVector<T>> originalVector;
 
   /**
-   * Constructor
-   *
-   * @param originalVector Vector which is used for generating the Cartesian product
+   * @param originalVector Vector which is used for generating the Cartesian product.
    */
-  CartesianProductGenerator(ICombinatoricsVector<ICombinatoricsVector<T>> originalVector) {
+  public CartesianProductGenerator(ICombinatoricsVector<ICombinatoricsVector<T>> originalVector) {
     this.originalVector = createVector(originalVector);
   }
-
 
   @Override
   public ICombinatoricsVector<T> getOriginalVector() {

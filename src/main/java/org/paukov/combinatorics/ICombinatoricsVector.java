@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * This interface is implemented by all generic combinatorics vectors of the
- * library
+ * library.
  *
  * @param <T> Type of the elements
  * @author Dmytro Paukov

@@ -1,6 +1,7 @@
 package org.paukov.combinatorics.cartesian;
 
 import static org.junit.Assert.assertEquals;
+import static org.paukov.combinatorics.CombinatoricsFactory.createCartesianProductGenerator;
 import static org.paukov.combinatorics.CombinatoricsFactory.createVector;
 
 import java.util.Iterator;
@@ -15,69 +16,69 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  */
 public class CartesianProductTest {
 
-    @Test
-    public void test_cartesian_product() {
+  @Test
+  public void test_cartesian_product() {
 
-        ICombinatoricsVector<String> set01 = createVector("a", "b");
-        ICombinatoricsVector<String> set02 = createVector("x", "y");
+    ICombinatoricsVector<String> set01 = createVector("a", "b");
+    ICombinatoricsVector<String> set02 = createVector("x", "y");
 
-        Generator<String> cartesianProduct = new CartesianProductGenerator<>(createVector(set01, set02));
+    Generator<String> cartesianProduct = createCartesianProductGenerator(set01, set02);
 
-        Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
+    Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
 
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
-
-        List<ICombinatoricsVector<String>> list = cartesianProduct.generateAllObjects();
-
-        assertEquals(4, list.size());
-        assertEquals(4, cartesianProduct.getNumberOfGeneratedObjects());
-
-        assertEquals(list.get(0), createVector("a", "x"));
-        assertEquals(list.get(1), createVector("a", "y"));
-        assertEquals(list.get(2), createVector("b", "x"));
-        assertEquals(list.get(3), createVector("b", "y"));
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void test_cartesian_product_one_set_is_empty() {
+    List<ICombinatoricsVector<String>> list = cartesianProduct.generateAllObjects();
 
-        ICombinatoricsVector<String> set01 = createVector("a", "b");
-        ICombinatoricsVector<String> set02 = createVector();
+    assertEquals(4, list.size());
+    assertEquals(4, cartesianProduct.getNumberOfGeneratedObjects());
 
-        Generator<String> cartesianProduct = new CartesianProductGenerator<>(createVector(set01, set02));
+    assertEquals(list.get(0), createVector("a", "x"));
+    assertEquals(list.get(1), createVector("a", "y"));
+    assertEquals(list.get(2), createVector("b", "x"));
+    assertEquals(list.get(3), createVector("b", "y"));
+  }
 
-        Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
+  @Test
+  public void test_cartesian_product_one_set_is_empty() {
 
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    ICombinatoricsVector<String> set01 = createVector("a", "b");
+    ICombinatoricsVector<String> set02 = createVector();
 
-        List<ICombinatoricsVector<String>> list = cartesianProduct.generateAllObjects();
+    Generator<String> cartesianProduct = createCartesianProductGenerator(set01, set02);
 
-        assertEquals(0, list.size());
-        assertEquals(0, cartesianProduct.getNumberOfGeneratedObjects());
+    Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
+
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
 
-    @Test
-    public void test_cartesian_product_empty() {
+    List<ICombinatoricsVector<String>> list = cartesianProduct.generateAllObjects();
 
-        Generator<String> cartesianProduct = new CartesianProductGenerator<>(
-            CombinatoricsFactory.<ICombinatoricsVector<String>>createVector());
+    assertEquals(0, list.size());
+    assertEquals(0, cartesianProduct.getNumberOfGeneratedObjects());
+  }
 
-        Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
+  @Test
+  public void test_cartesian_product_empty() {
 
-        while (itr.hasNext()) {
-            ICombinatoricsVector<String> combination = itr.next();
-            System.out.println(combination);
-        }
+    Generator<String> cartesianProduct = createCartesianProductGenerator(
+        CombinatoricsFactory.<String>createVector());
 
-        List<ICombinatoricsVector<String>> list = cartesianProduct.generateAllObjects();
+    Iterator<ICombinatoricsVector<String>> itr = cartesianProduct.iterator();
 
-        assertEquals(0, list.size());
-        assertEquals(0, cartesianProduct.getNumberOfGeneratedObjects());
+    while (itr.hasNext()) {
+      ICombinatoricsVector<String> combination = itr.next();
+      System.out.println(combination);
     }
+
+    List<ICombinatoricsVector<String>> list = cartesianProduct.generateAllObjects();
+
+    assertEquals(0, list.size());
+    assertEquals(0, cartesianProduct.getNumberOfGeneratedObjects());
+  }
 }
