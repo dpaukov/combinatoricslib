@@ -17,17 +17,11 @@ import org.paukov.combinatorics.ICombinatoricsVector;
  * Example. Generate 3-element Cartesian product from (1, 2, 3), (4, 5, 6), (7, 8, 9).
  *
  * <pre>
- * ICombinatoricsVector&lt;Integer&gt; set01 = createVector(new Integer[] { 1, 2, 3 });
- * ICombinatoricsVector&lt;Integer&gt; set02 = createVector(new Integer[] { 4, 5, 6 });
- * ICombinatoricsVector&lt;Integer&gt; set03 = createVector(new Integer[] { 7, 8, 9 });
+ * ICombinatoricsVector&lt;Integer&gt; set01 = createVector(1, 2, 3);
+ * ICombinatoricsVector&lt;Integer&gt; set02 = createVector(4, 5, 6);
+ * ICombinatoricsVector&lt;Integer&gt; set03 = createVector(7, 8, 9);
  *
- * ICombinatoricsVector&lt;ICombinatoricsVector&lt;Integer&gt;&gt; initialVector = createVector();
- * initialVector.addValue(set01);
- * initialVector.addValue(set02);
- * initialVector.addValue(set03);
- *
- * Generator&lt;Integer&gt; cartesianProduct = new CartesianProductGenerator&lt;Integer&gt;(initialVector);
- *
+ *  Generator&lt;Integer&gt; cartesianProduct = createCartesianProductGenerator(set01, set02, set03);
  * </pre>
  *
  * @param <T> Type of elements in the Cartesian product
