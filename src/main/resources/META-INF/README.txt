@@ -2,7 +2,10 @@
              CombinatoricsLib - release notes
                    by Dmytro Paukov
 
+CombinatoricsLib 2.3 (2018)
 
+
+-----------------------------------------------------------------
 CombinatoricsLib 2.2 (May 2018)
 - Added a method for calculating factorials using BigDecimal (Issue #10).
 - Added cartesian product generator.

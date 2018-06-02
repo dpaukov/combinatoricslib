@@ -5,8 +5,8 @@
 combinatoricslib 2.3
 ====================
 
-Very simple java library to generate permutations, combinations and other combinatorial sequences for java 7.
-New version of the library for java 8 can be found [here](https://github.com/dpaukov/combinatoricslib3)
+Very simple java library to generate permutations, combinations and other combinatorial sequences for Java 7+.
+New version of the library for (Java 8) can be found [here](https://github.com/dpaukov/combinatoricslib3).
 
 1. [Simple combinations](#1-simple-combinations)
 2. [Combinations with repetitions (multicombination)](#2-combinations-with-repetitions)
@@ -18,6 +18,7 @@ New version of the library for java 8 can be found [here](https://github.com/dpa
 8. [Integer Compositions](#8-integer-compositions)
 9. [Cartesian Product](#9-cartesian-product)
 10. [The latest release](#the-latest-release)
+
 
 You can use the following table to select a generator:
 
@@ -359,14 +360,14 @@ The cartesian product will be:
 
 ### The latest release
 
-The latest release of the library is available through The Maven Central Repository [here](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22)
+The latest release of the library is available through The Maven Central Repository [here](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22).
 Include the following section into your `pom.xml` file.
 
 ```xml
 <dependency>
   <groupId>com.googlecode.combinatoricslib</groupId>
   <artifactId>combinatoricslib</artifactId>
-  <version>2.1</version>
+  <version>2.2</version>
   <scope>compile</scope>
 </dependency>
 ```
