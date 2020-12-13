@@ -367,7 +367,7 @@ Include the following section into your `pom.xml` file.
 <dependency>
   <groupId>com.googlecode.combinatoricslib</groupId>
   <artifactId>combinatoricslib</artifactId>
-  <version>2.2</version>
+  <version>2.3</version>
   <scope>compile</scope>
 </dependency>
 ```
