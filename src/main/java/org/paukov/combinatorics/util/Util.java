@@ -75,7 +75,10 @@ public class Util {
    * @param k Value k
    */
   public static long combination(long n, long k) {
-    return factorial(n) / (factorial(k) * factorial(n - k));
+    BigDecimal factorialN = bigFactorial(n);
+    BigDecimal factorialK = bigFactorial(k);
+    BigDecimal factorialNK = bigFactorial(n-k);
+    return factorialN.divide(factorialK.multiply(factorialNK)).longValue();
   }
 
   /**

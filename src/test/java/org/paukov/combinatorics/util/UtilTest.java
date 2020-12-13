@@ -76,6 +76,15 @@ public class UtilTest {
     assertEquals(6L, Util.factorial(3));
     assertEquals(24L, Util.factorial(4));
     assertEquals(3628800L, Util.factorial(10));
+    assertEquals(2432902008176640000L, Util.factorial(20));
+  }
+
+  @Test
+  public void test_combination() {
+    assertEquals(1L, Util.combination(21, 0));
+    assertEquals(21L, Util.combination(21, 1));
+    assertEquals(210L, Util.combination(21, 2));
+    assertEquals(1L, Util.combination(21, 21));
   }
 
   @Test
@@ -88,6 +97,8 @@ public class UtilTest {
     assertEquals(BigDecimal.valueOf(24), Util.bigFactorial(4));
     assertEquals(BigDecimal.valueOf(3628800), Util.bigFactorial(10));
     assertEquals(new BigDecimal("1307674368000"), Util.bigFactorial(15));
+    assertEquals(new BigDecimal("2432902008176640000"), Util.bigFactorial(20));
+    assertEquals(new BigDecimal("51090942171709440000"), Util.bigFactorial(21));
   }
 
   @Test
