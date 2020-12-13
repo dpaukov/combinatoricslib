@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/dpaukov/combinatoricslib/badge.svg?branch=master)](https://coveralls.io/r/dpaukov/combinatoricslib?branch=master) 
 [![Maven Central](https://img.shields.io/maven-central/v/com.googlecode.combinatoricslib/combinatoricslib.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22)
 
-combinatoricslib 2.3
+combinatoricslib 2.4
 ====================
 
 Very simple java library to generate permutations, combinations and other combinatorial sequences for Java 7+.
@@ -358,7 +358,7 @@ The cartesian product will be:
    CombinatoricsVector=([2, 4, 6], size=3)
 ```
 
-### The latest release
+### The latest stable release - version 2.3
 
 The latest release of the library is available through The Maven Central Repository [here](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22).
 Include the following section into your `pom.xml` file.
@@ -367,7 +367,7 @@ Include the following section into your `pom.xml` file.
 <dependency>
   <groupId>com.googlecode.combinatoricslib</groupId>
   <artifactId>combinatoricslib</artifactId>
-  <version>2.2</version>
+  <version>2.3</version>
   <scope>compile</scope>
 </dependency>
 ```

@@ -2,6 +2,10 @@
              CombinatoricsLib - release notes
                    by Dmytro Paukov
 
+CombinatoricsLib 2.4 (2021)
+
+
+-----------------------------------------------------------------
 CombinatoricsLib 2.3 (Dec 2020)
 - Fixed combination number calculation (Issue #23).
   https://github.com/dpaukov/combinatoricslib/issues/23
