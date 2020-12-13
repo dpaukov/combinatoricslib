@@ -1,6 +1,5 @@
 /**
- * Combinatorics Library
- * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ * Combinatorics Library Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
 package org.paukov.combinatorics;
 
@@ -29,8 +28,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   /**
    * Default constructor that creates an empty vector.
    * <p>
-   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
-   * create an empty vector.
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to create an
+   * empty vector.
    */
   public CombinatoricsVector() {
     _vector = new ArrayList<>();
@@ -39,8 +38,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   /**
    * Constructor from a collection.
    * <p>
-   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
-   * create a vector from a collection.
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to create a
+   * vector from a collection.
    *
    * @param vector Initial collection to initialize the created vector.
    */
@@ -52,8 +51,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   /**
    * Constructor from an array.
    * <p>
-   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
-   * create a vector from an array.
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to create a
+   * vector from an array.
    *
    * @param array Initial array to initialize the created vector.
    */
@@ -66,8 +65,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
    * Copy constructor
    * <p>
    * <p>
-   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to
-   * create a vector from another vector.
+   * Notes: Use the factory method <code>CombinatoricsFactory.createVector()</code> to create a
+   * vector from another vector.
    *
    * @param vector Initial combinatorics vector to initialize the created vector.
    */
@@ -77,8 +76,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * Sets value to position <code>index</code>. If the index is out of bounds
-   * the value will be added at the end of the vector.
+   * Sets value to position <code>index</code>. If the index is out of bounds the value will be
+   * added at the end of the vector.
    *
    * @param index Position of element.
    * @param value Value of the element to be set.
@@ -169,8 +168,8 @@ public class CombinatoricsVector<T> implements ICombinatoricsVector<T> {
   }
 
   /**
-   * This method detects if the vector's elements are equal. For example, this
-   * method returns true for a vector (a, a, a) and false for a vector (a, b, a).
+   * This method detects if the vector's elements are equal. For example, this method returns true
+   * for a vector (a, a, a) and false for a vector (a, b, a).
    *
    * @return <code>True</code> if the vector's elements are equal.
    */

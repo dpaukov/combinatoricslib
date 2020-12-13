@@ -1,6 +1,5 @@
 /**
- * Combinatorics Library
- * Copyright 2012 Dmytro Paukov d.paukov@gmail.com
+ * Combinatorics Library Copyright 2012 Dmytro Paukov d.paukov@gmail.com
  */
 package org.paukov.combinatorics;
 
