@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/dpaukov/combinatoricslib.svg)](http://travis-ci.org/dpaukov/combinatoricslib)
+[![Build Status](https://travis-ci.com/dpaukov/combinatoricslib.svg?branch=master)](https://travis-ci.com/github/dpaukov/combinatoricslib)
 [![Coverage Status](https://coveralls.io/repos/dpaukov/combinatoricslib/badge.svg?branch=master)](https://coveralls.io/r/dpaukov/combinatoricslib?branch=master) 
 [![Maven Central](https://img.shields.io/maven-central/v/com.googlecode.combinatoricslib/combinatoricslib.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.googlecode.combinatoricslib%22%20AND%20a%3A%22combinatoricslib%22)
 
